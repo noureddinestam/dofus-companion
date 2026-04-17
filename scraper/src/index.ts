@@ -3,10 +3,17 @@ import { join, resolve } from 'path';
 import Fuse from 'fuse.js';
 import { fetchAllDungeons } from './sources/dofusdb.ts';
 import { fetchBossStrategy, fandomPageUrl } from './sources/fandom.ts';
+import { fetchBossStrategyFr } from './sources/fandom-fr.ts';
 import { sleep } from './cache.ts';
 import { validateDungeons } from './validate.ts';
 import { diffDungeons, loadPreviousDungeons, generateChangelog } from './diff.ts';
-import type { Dungeon, Monster, Boss } from './validate.ts';
+import type {
+  Dungeon,
+  Monster,
+  Boss,
+  StrategyBundle,
+  StrategyLong,
+} from './validate.ts';
 import type { DbDungeon, DbMonster } from './sources/dofusdb.ts';
 
 const OUTPUT_DIR = join(process.cwd(), 'output');
@@ -18,7 +25,7 @@ const APP_DATA = join(APP_DATA_DIR, 'dungeons.json');
 const APP_FUSE = join(APP_DATA_DIR, 'fuse-index.json');
 const APP_DATA_LEGACY = join(APP_DATA_DIR, 'dungeons.legacy.json');
 
-const DATA_VERSION = '0.3.0';
+const DATA_VERSION = '0.4.0';
 const FANDOM_DELAY_MS = 700;
 
 mkdirSync(OUTPUT_DIR, { recursive: true });
@@ -48,45 +55,92 @@ function toMonster(m: DbMonster): Monster {
   };
 }
 
-async function buildDungeon(db: DbDungeon, onStep?: (s: string) => void): Promise<Dungeon | null> {
+function buildBundle(longEn: StrategyLong | null, longFr: StrategyLong | null): StrategyBundle | null {
+  if (!longEn && !longFr) return null;
+  return {
+    long: { fr: longFr, en: longEn },
+    short: { fr: null, en: null },
+  };
+}
+
+async function buildDungeon(
+  db: DbDungeon,
+  onStep?: (s: string) => void,
+): Promise<Dungeon | null> {
   if (!db.boss) return null;
   if (db.recommendedLevel <= 0) return null;
 
   const now = new Date().toISOString();
 
   const baseBoss: Monster = toMonster(db.boss);
-  let strategy: Boss['strategy'] = null;
-  let phases: Boss['phases'] = [];
+  let longEn: StrategyLong | null = null;
+  let longFr: StrategyLong | null = null;
+  let fandomFrPageUrl: string | null = null;
 
-  // Fandom EN strategy uniquement pour donjons niveau 50+
-  if (db.boss.nameEn && db.recommendedLevel >= 50) {
+  // Stratégies via Fandom uniquement pour donjons niveau 50+
+  if (db.recommendedLevel >= 50) {
+    // Source 1 — Fandom EN (matched on nameEn)
+    if (db.boss.nameEn) {
+      try {
+        const fandomEn = await fetchBossStrategy(db.boss.nameEn, onStep);
+        if (fandomEn) {
+          longEn = {
+            text: fandomEn.text,
+            provenance: {
+              kind: 'native',
+              lang: 'en',
+              source: 'fandom-en',
+              sourceUrl: fandomEn.url,
+            },
+          };
+        }
+        await sleep(FANDOM_DELAY_MS);
+      } catch {
+        // Silencieux : Fandom peut bloquer/timeout
+      }
+    }
+
+    // Source 2 — Fandom FR (matched on nameFr, fallback nameEn)
     try {
-      const fandom = await fetchBossStrategy(db.boss.nameEn, onStep);
-      if (fandom) {
-        strategy = {
-          text: fandom.text,
-          source: 'fandom-en',
-          sourceUrl: fandom.url,
+      const fandomFr = await fetchBossStrategyFr(db.boss.name, db.boss.nameEn, onStep);
+      if (fandomFr) {
+        longFr = {
+          text: fandomFr.text,
+          provenance: {
+            kind: 'native',
+            lang: 'fr',
+            source: 'fandom-fr',
+            sourceUrl: fandomFr.url,
+          },
         };
+        fandomFrPageUrl = fandomFr.url;
       }
       await sleep(FANDOM_DELAY_MS);
     } catch {
-      // Silencieux : Fandom peut bloquer/timeout
+      // Silencieux
     }
   }
 
+  const strategies = buildBundle(longEn, longFr);
+
+  // Legacy strategy field (v0.3 compat) : rempli quand Fandom EN trouvé
+  const legacyStrategy = longEn && longEn.provenance.kind === 'native'
+    ? {
+        text: longEn.text,
+        source: 'fandom-en' as const,
+        sourceUrl: longEn.provenance.sourceUrl,
+      }
+    : null;
+
   const boss: Boss = {
     ...baseBoss,
-    strategy,
-    strategies: null,
-    phases,
+    strategy: legacyStrategy,
+    strategies,
+    phases: [],
   };
 
-  // Monsters triés par niveau décroissant
   const sortedMonsters = [...db.monsters].sort((a, b) => b.level - a.level);
   const monsters: Monster[] = sortedMonsters.map(toMonster);
-
-  // Filet de sécurité : si aucun monstre standard, garantir au moins le boss en tant que monstre
   const finalMonsters = monsters.length > 0 ? monsters : [baseBoss];
 
   const levelMin = Math.max(1, db.recommendedLevel - 20);
@@ -103,16 +157,15 @@ async function buildDungeon(db: DbDungeon, onStep?: (s: string) => void): Promis
     monsters: finalMonsters,
     boss,
     externalGuideUrl: fandomPageUrl(db.boss.nameEn) ?? db.sourceUrl,
-    externalGuideUrlFr: null,
+    externalGuideUrlFr: fandomFrPageUrl,
     lastUpdated: now,
     dataVersion: DATA_VERSION,
   };
 }
 
 async function main() {
-  console.log('\n🗡️  Dofus Companion — Scraper v0.3 (DofusDB + Fandom EN)\n');
+  console.log('\n🗡️  Dofus Companion — Scraper v0.4 (DofusDB + Fandom EN + Fandom FR)\n');
 
-  // 1. Purger ancien fichier app s'il existe (backup legacy)
   if (existsSync(APP_DATA)) {
     try {
       renameSync(APP_DATA, APP_DATA_LEGACY);
@@ -122,30 +175,32 @@ async function main() {
     }
   }
 
-  // 2. Fetch DofusDB (source factuelle)
+  // 1. DofusDB (source factuelle)
   console.log('\n🔵 Source 1 — DofusDB API (stats factuelles)');
   const dbDungeons = await fetchAllDungeons((done, total) => {
     if (done % 10 === 0 || done === total) process.stdout.write(`   ${done}/${total}\r`);
   });
   console.log(`\n   ✓ ${dbDungeons.length} donjons récupérés`);
 
-  // 3. Construire donjons + enrichir stratégie via Fandom EN
-  console.log('\n🟢 Source 2 — Fandom EN (stratégies boss 50+)');
+  // 2-3. Fandom EN + Fandom FR (stratégies natives par boss)
+  console.log('\n🟢 Source 2/3 — Fandom EN + Fandom FR (boss niveau 50+)');
   const built: Dungeon[] = [];
-  let fandomFound = 0;
   const eligible = dbDungeons.filter((d) => d.boss && d.recommendedLevel > 0);
+  let foundEn = 0;
+  let foundFr = 0;
 
   for (let i = 0; i < eligible.length; i++) {
     const db = eligible[i];
     const dungeon = await buildDungeon(db, (s) => {
-      process.stdout.write(`   [${i + 1}/${eligible.length}] ${db.name.slice(0, 28)} · ${s}\r`);
+      process.stdout.write(`   [${i + 1}/${eligible.length}] ${db.name.slice(0, 24)} · ${s.slice(0, 28)}\r`);
     });
     if (dungeon) {
       built.push(dungeon);
-      if (dungeon.boss.strategy) fandomFound++;
+      if (dungeon.boss.strategies?.long.en) foundEn++;
+      if (dungeon.boss.strategies?.long.fr) foundFr++;
     }
   }
-  console.log(`\n   ✓ ${built.length} donjons construits, ${fandomFound} avec stratégie Fandom`);
+  console.log(`\n   ✓ ${built.length} donjons · Fandom EN: ${foundEn} · Fandom FR: ${foundFr}`);
 
   // 4. Validation Zod
   console.log('\n✅ Validation Zod…');
@@ -158,7 +213,6 @@ async function main() {
     });
   }
   console.log(`   ✓ ${valid.length} donjons valides`);
-
   const endgame = valid.filter((d) => d.recommendedLevel >= 160);
   console.log(`   🔴 Endgame 160+ : ${endgame.length}`);
 
@@ -166,7 +220,7 @@ async function main() {
   const prev = loadPreviousDungeons(OUTPUT_JSON);
   const diff = diffDungeons(prev, valid);
   console.log(
-    `\n📊 Diff : +${diff.added.length} ajoutés · ~${diff.modified.length} modifiés · -${diff.removed.length} supprimés`,
+    `\n📊 Diff : +${diff.added.length} · ~${diff.modified.length} · -${diff.removed.length}`,
   );
 
   // 6. Fuse index
@@ -176,9 +230,8 @@ async function main() {
     valid,
   );
 
-  // 7. Écriture outputs
+  // 7. Écriture
   console.log('\n💾 Écriture…');
-  // Tri par niveau décroissant pour que endgame apparaisse en premier par défaut
   const sortedValid = [...valid].sort((a, b) => b.recommendedLevel - a.recommendedLevel);
   writeFileSync(OUTPUT_JSON, JSON.stringify(sortedValid, null, 2));
   writeFileSync(OUTPUT_FUSE, JSON.stringify(fuseIndex.toJSON()));
@@ -186,7 +239,6 @@ async function main() {
   const changelog = generateChangelog(diff, DATA_VERSION, new Date().toISOString().slice(0, 10));
   writeFileSync(OUTPUT_CHANGELOG, changelog);
 
-  // 8. Copie vers app/src/data
   try {
     copyFileSync(OUTPUT_JSON, APP_DATA);
     copyFileSync(OUTPUT_FUSE, APP_FUSE);
@@ -196,7 +248,8 @@ async function main() {
   }
 
   console.log('\n🎉 Scraper terminé');
-  console.log(`   Total : ${valid.length} donjons · Endgame 160+ : ${endgame.length} · Strat Fandom : ${fandomFound}`);
+  console.log(`   ${valid.length} donjons · Endgame 160+ : ${endgame.length}`);
+  console.log(`   Stratégies natives : EN=${foundEn} FR=${foundFr} (coverage : EN ${((foundEn / valid.length) * 100).toFixed(0)}%, FR ${((foundFr / valid.length) * 100).toFixed(0)}%)`);
 
   if (errors.length > 0) process.exit(1);
 }
