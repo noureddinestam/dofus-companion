@@ -7,6 +7,7 @@ import { useDungeons } from './features/dungeons/useDungeons';
 import { useSearch } from './features/search/useSearch';
 import { useUpdater } from './hooks/useUpdater';
 import { useI18n } from './i18n/useI18n';
+import { useAppStore } from './store/appStore';
 import type { Dungeon } from './types/dungeon';
 
 function levelBadgeColor(level: number): string {
@@ -25,6 +26,12 @@ export default function App() {
   const searchRef = useRef<HTMLInputElement>(null);
   const { update, install, dismiss } = useUpdater();
   const { t, toggleLang } = useI18n();
+  const strategyView = useAppStore((s) => s.strategyView);
+  const setStrategyView = useAppStore((s) => s.setStrategyView);
+
+  const toggleView = useCallback(() => {
+    setStrategyView(strategyView === 'short' ? 'long' : 'short');
+  }, [strategyView, setStrategyView]);
 
   const handleQueryChange = useCallback(
     (q: string) => {
@@ -61,6 +68,17 @@ export default function App() {
       }
 
       if (selected) {
+        const inInput =
+          document.activeElement instanceof HTMLInputElement ||
+          document.activeElement instanceof HTMLTextAreaElement;
+
+        // V ou Tab : bascule Actionnable ⇄ Détaillée (hors input)
+        if (!inInput && (e.key === 'v' || e.key === 'V' || e.key === 'Tab')) {
+          e.preventDefault();
+          toggleView();
+          return;
+        }
+
         if (e.key === 'Escape' || e.key === 'Backspace') {
           if (e.key === 'Backspace' && document.activeElement === searchRef.current) return;
           e.preventDefault();
@@ -103,7 +121,7 @@ export default function App() {
 
     window.addEventListener('keydown', down);
     return () => window.removeEventListener('keydown', down);
-  }, [selected, results, focusIdx, goBack, openDungeon, toggleLang]);
+  }, [selected, results, focusIdx, goBack, openDungeon, toggleLang, toggleView]);
 
   // Focus search on mount
   useEffect(() => {
@@ -312,8 +330,8 @@ function Footer({ selected }: { selected: Dungeon | null }) {
   const hints: Array<[string, string]> = selected
     ? [
         ['Backspace', t.dungeon.back],
+        ['V', t.footer.switchView],
         ['Esc', t.footer.close],
-        ['↑↓', t.footer.sections],
         ['Ctrl+L', t.footer.switchLang],
       ]
     : [
