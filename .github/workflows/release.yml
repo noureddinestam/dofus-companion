@@ -59,7 +59,9 @@ jobs:
           }
 
           $sig = (Get-Content $sigPath -Raw).Trim()
-          $encodedName = [Uri]::EscapeDataString($nsisExe.Name)
+          # GitHub remplace les espaces par des points à l'upload des assets de release
+          $uploadedName = $nsisExe.Name -replace ' ', '.'
+          $encodedName = [Uri]::EscapeDataString($uploadedName)
 
           $manifest = [ordered]@{
             version   = $version
