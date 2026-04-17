@@ -93,6 +93,18 @@ export default function App() {
     setTimeout(() => searchRef.current?.focus(), 100);
   }, []);
 
+  // Re-focus search when window comes back into focus (Alt+D toggle from Dofus)
+  useEffect(() => {
+    const win = getCurrentWindow();
+    let unlisten: (() => void) | null = null;
+    win.onFocusChanged(({ payload: focused }) => {
+      if (focused && !selected) {
+        setTimeout(() => searchRef.current?.focus(), 60);
+      }
+    }).then((fn) => { unlisten = fn; });
+    return () => { unlisten?.(); };
+  }, [selected]);
+
   return (
     <div style={{
       height: '100vh',
