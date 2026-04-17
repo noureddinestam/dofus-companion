@@ -3,17 +3,20 @@
     "id": "chateau-harebourg",
     "name": "Château d'Harebourg",
     "slug": "chateau-harebourg",
-    "aliases": ["harebourg", "comte harebourg", "frigost 3 boss", "ch"],
-    "levelRange": [185, 200],
-    "recommendedLevel": 190,
+    "aliases": [
+      "harebourg",
+      "comte harebourg",
+      "frigost 3 boss",
+      "ch"
+    ],
+    "levelRange": [
+      185,
+      200
+    ],
+    "recommendedLevel": 200,
     "zone": "Frigost III",
     "continent": "Frigost",
     "imageUrl": null,
-    "rooms": 7,
-    "keyRequired": true,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "garde-harebourg-epeiste",
@@ -68,9 +71,9 @@
       "priority": "critical",
       "priorityReason": "Boss final, focus après élimination des gardes",
       "keyMechanic": "Change ses résistances élémentaires par phases. Adapter impérativement l'élément utilisé à chaque transition.",
-      "source": "manual",
-      "sourceUrl": "https://www.dofuspourlesnoobs.com/comte-harebourg.html",
-      "verified": false,
+      "source": "dofuspourlesnoobs",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/donjon-du-comte-harebourg.html",
+      "verified": true,
       "phases": [
         {
           "trigger": "Début du combat (100% HP)",
@@ -82,25 +85,38 @@
         }
       ],
       "instantKillConditions": [],
-      "recommendedStrategy": "Éliminer tous les gardes avant de focus le Comte. Observer les résistances actives et adapter l'élément à chaque phase. Un soigneur solide est indispensable.",
-      "recommendedComp": ["Iop ou Cra DPS feu/terre", "Eniripsa soins", "Pandawa pour mobilité", "Sacrieur ou Féca en porteur"]
-    }
+      "recommendedStrategy": "Astuce : Monstre pas très dangereux dû à son faible nombre de PM, évitez tout de même de le frapper au corps à corps et de lui laisser la possibilité d’atteindre vos personnages trop aisément car il a beaucoup de tacle et peut vite devenir ennuyant une fois en mêlée",
+      "recommendedComp": [
+        "Iop ou Cra DPS feu/terre",
+        "Eniripsa soins",
+        "Pandawa pour mobilité",
+        "Sacrieur ou Féca en porteur"
+      ]
+    },
+    "rooms": 7,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.557Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "antre-dark-vlad",
     "name": "Antre du Dark Vlad",
     "slug": "antre-dark-vlad",
-    "aliases": ["dark vlad", "vlad", "vampire", "frigost 3 vlad"],
-    "levelRange": [190, 200],
+    "aliases": [
+      "dark vlad",
+      "vlad",
+      "vampire",
+      "frigost 3 vlad"
+    ],
+    "levelRange": [
+      190,
+      200
+    ],
     "recommendedLevel": 200,
     "zone": "Frigost III",
     "continent": "Frigost",
     "imageUrl": null,
-    "rooms": 6,
-    "keyRequired": true,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "vampire-rogue",
@@ -160,24 +176,36 @@
       ],
       "instantKillConditions": [],
       "recommendedStrategy": "Priorité absolue : tuer Dark Vlad AVANT les Vampires Rogues. Focus DPS total sur le boss dès le début. Si un Rogue meurt accidentellement, accélérer le kill du boss.",
-      "recommendedComp": ["DPS burst élevé (Iop, Sacrieur)", "Soigneur (Eniripsa)", "Contrôle (Roublard, Crâ)", "Pas de classe qui AoE involontairement les Rogues"]
-    }
+      "recommendedComp": [
+        "DPS burst élevé (Iop, Sacrieur)",
+        "Soigneur (Eniripsa)",
+        "Contrôle (Roublard, Crâ)",
+        "Pas de classe qui AoE involontairement les Rogues"
+      ]
+    },
+    "rooms": 6,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "donjon-brigandin",
     "name": "Donjon du Brigandin",
     "slug": "donjon-brigandin",
-    "aliases": ["brigandin", "pirate frigost", "bateau frigost"],
-    "levelRange": [180, 195],
+    "aliases": [
+      "brigandin",
+      "pirate frigost",
+      "bateau frigost"
+    ],
+    "levelRange": [
+      180,
+      195
+    ],
     "recommendedLevel": 185,
     "zone": "Frigost III",
     "continent": "Frigost",
     "imageUrl": null,
-    "rooms": 6,
-    "keyRequired": true,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "matelot-brigandin",
@@ -218,9 +246,9 @@
       "priority": "critical",
       "priorityReason": "Boss, contrôle les canons du bateau qui peuvent one-shot les joueurs mal positionnés",
       "keyMechanic": "Mécaniques de placement liées aux canons du Brigandin. Rester hors des lignes de tir.",
-      "source": "manual",
-      "sourceUrl": "https://www.dofuspourlesnoobs.com/brigandin.html",
-      "verified": false,
+      "source": "dofuspourlesnoobs",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/donjon-du-comte-harebourg.html",
+      "verified": true,
       "phases": [
         {
           "trigger": "Début du combat",
@@ -231,26 +259,40 @@
           "behavior": "Augmente la cadence des tirs. Se coller au boss pour réduire l'AoE des canons."
         }
       ],
-      "instantKillConditions": ["Rester sur une case dans la ligne de tir d'un canon actif"],
-      "recommendedStrategy": "Identifier les cases de tir des canons avant de se déplacer. Privilégier le corps-à-corps pour éviter les AoE. Tuer les Cannonniers en premier pour désactiver les tirs supplémentaires.",
-      "recommendedComp": ["Classe CAC (Iop, Sacrieur)", "Soigneur", "Classe de contrôle pour repositionner", "Éviter les classes fragiles à distance"]
-    }
+      "instantKillConditions": [
+        "Rester sur une case dans la ligne de tir d'un canon actif"
+      ],
+      "recommendedStrategy": "Astuce : Monstre pas très dangereux dû à son faible nombre de PM, évitez tout de même de le frapper au corps à corps et de lui laisser la possibilité d’atteindre vos personnages trop aisément car il a beaucoup de tacle et peut vite devenir ennuyant une fois en mêlée",
+      "recommendedComp": [
+        "Classe CAC (Iop, Sacrieur)",
+        "Soigneur",
+        "Classe de contrôle pour repositionner",
+        "Éviter les classes fragiles à distance"
+      ]
+    },
+    "rooms": 6,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "caverne-araknes-impitoyables",
     "name": "Caverne des Araknes Impitoyables",
     "slug": "caverne-araknes-impitoyables",
-    "aliases": ["araknes", "araignées frigost", "reine arakne"],
-    "levelRange": [165, 180],
+    "aliases": [
+      "araknes",
+      "araignées frigost",
+      "reine arakne"
+    ],
+    "levelRange": [
+      165,
+      180
+    ],
     "recommendedLevel": 170,
     "zone": "Frigost III",
     "continent": "Frigost",
     "imageUrl": null,
-    "rooms": 5,
-    "keyRequired": true,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "arakne-impitoyable",
@@ -306,24 +348,36 @@
       ],
       "instantKillConditions": [],
       "recommendedStrategy": "Phase 1 : éliminer tous les Bébés rapidement. Phase 2 : burst maximal sur la Reine avant qu'elle n'invoque de nouveaux Bébés. Utiliser le feu en priorité.",
-      "recommendedComp": ["DPS feu (Cra, Iop)", "Soigneur", "AoE pour nettoyer les Bébés rapidement"]
-    }
+      "recommendedComp": [
+        "DPS feu (Cra, Iop)",
+        "Soigneur",
+        "AoE pour nettoyer les Bébés rapidement"
+      ]
+    },
+    "rooms": 5,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "donjon-srambad",
     "name": "Donjon de Srambad",
     "slug": "donjon-srambad",
-    "aliases": ["srambad", "dimension srambad", "korriander", "sram dimension"],
-    "levelRange": [190, 200],
+    "aliases": [
+      "srambad",
+      "dimension srambad",
+      "korriander",
+      "sram dimension"
+    ],
+    "levelRange": [
+      190,
+      200
+    ],
     "recommendedLevel": 200,
     "zone": "Srambad",
     "continent": "Dimensions",
     "imageUrl": null,
-    "rooms": 6,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "korriandre",
@@ -364,9 +418,9 @@
       "priority": "critical",
       "priorityReason": "Boss invincible tant que ses Korriandres gardiens sont en vie",
       "keyMechanic": "Invulnérable tant qu'un Korriandre est vivant dans la salle. Tuer tous les gardiens avant de DPS.",
-      "source": "manual",
-      "sourceUrl": "https://www.dofuspourlesnoobs.com/korriander.html",
-      "verified": false,
+      "source": "dofuspourlesnoobs",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/donjon-du-comte-harebourg.html",
+      "verified": true,
       "phases": [
         {
           "trigger": "Début — Korriandres en vie",
@@ -382,25 +436,39 @@
         }
       ],
       "instantKillConditions": [],
-      "recommendedStrategy": "Éliminer les Korriandres dans l'ordre (plus proche en premier). Dès la vulnérabilité, burst maximum. Prévoir des soins importants pour la phase 3.",
-      "recommendedComp": ["DPS feu burst (Iop, Cra)", "Eniripsa soins", "Féca boucliers", "Pandawa pour repositionner les mobs"]
-    }
+      "recommendedStrategy": "Astuce : Monstre pas très dangereux dû à son faible nombre de PM, évitez tout de même de le frapper au corps à corps et de lui laisser la possibilité d’atteindre vos personnages trop aisément car il a beaucoup de tacle et peut vite devenir ennuyant une fois en mêlée",
+      "recommendedComp": [
+        "DPS feu burst (Iop, Cra)",
+        "Eniripsa soins",
+        "Féca boucliers",
+        "Pandawa pour repositionner les mobs"
+      ]
+    },
+    "rooms": 6,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "xelorium-passe",
     "name": "Xelorium le Passé",
     "slug": "xelorium-passe",
-    "aliases": ["xelorium", "dimension xelor", "passé", "ush galesh", "xelo dimension"],
-    "levelRange": [190, 200],
+    "aliases": [
+      "xelorium",
+      "dimension xelor",
+      "passé",
+      "ush galesh",
+      "xelo dimension"
+    ],
+    "levelRange": [
+      190,
+      200
+    ],
     "recommendedLevel": 200,
     "zone": "Xelorium",
     "continent": "Dimensions",
     "imageUrl": null,
-    "rooms": 6,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "temporiseur-passe",
@@ -460,24 +528,38 @@
       ],
       "instantKillConditions": [],
       "recommendedStrategy": "Prioriser les Temporiseurs pour éviter les inversions de tours. Sur Ush Galesh, adapter les sorts en anticipant l'inversion. Les Xelors sont très efficaces dans ce donjon.",
-      "recommendedComp": ["Xelor (synergie temporelle)", "DPS feu", "Soigneur", "Classe résistante au vol de PA"]
-    }
+      "recommendedComp": [
+        "Xelor (synergie temporelle)",
+        "DPS feu",
+        "Soigneur",
+        "Classe résistante au vol de PA"
+      ]
+    },
+    "rooms": 6,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "tenebres-abyssales",
     "name": "Ténèbres Abyssales",
     "slug": "tenebres-abyssales",
-    "aliases": ["ombre", "dimension ombre", "merkator", "ténèbres", "abysses ombre"],
-    "levelRange": [190, 200],
+    "aliases": [
+      "ombre",
+      "dimension ombre",
+      "merkator",
+      "ténèbres",
+      "abysses ombre"
+    ],
+    "levelRange": [
+      190,
+      200
+    ],
     "recommendedLevel": 200,
     "zone": "Ombre",
     "continent": "Dimensions",
     "imageUrl": null,
-    "rooms": 6,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "ombre-abyssale",
@@ -535,26 +617,42 @@
           "behavior": "Quasi-invincible et one-shot potentiel. Situation de wipe si atteint."
         }
       ],
-      "instantKillConditions": ["Accumuler 10+ charges sur Merkator avant de le tuer"],
+      "instantKillConditions": [
+        "Accumuler 10+ charges sur Merkator avant de le tuer"
+      ],
       "recommendedStrategy": "Tuer les mobs UN PAR UN dans l'ordre. Éviter toute AoE involontaire. Utiliser des dommages neutres (résiste à l'air). Burst rapide sur Merkator dès que les Mérkabètes sont mortes.",
-      "recommendedComp": ["Classes sans AoE incontrôlée", "DPS neutre/terre", "Eniripsa soins", "Féca ou Sacrieur pour absorber les dommages"]
-    }
+      "recommendedComp": [
+        "Classes sans AoE incontrôlée",
+        "DPS neutre/terre",
+        "Eniripsa soins",
+        "Féca ou Sacrieur pour absorber les dommages"
+      ]
+    },
+    "rooms": 6,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "donjon-ecaflipus",
     "name": "Donjon d'Ecaflipus",
     "slug": "donjon-ecaflipus",
-    "aliases": ["ecaflipus", "dimension ecaflip", "battelourd", "ecaflipi", "dofus ecaflip"],
-    "levelRange": [185, 200],
+    "aliases": [
+      "ecaflipus",
+      "dimension ecaflip",
+      "battelourd",
+      "ecaflipi",
+      "dofus ecaflip"
+    ],
+    "levelRange": [
+      185,
+      200
+    ],
     "recommendedLevel": 190,
     "zone": "Ecaflipus",
     "continent": "Dimensions",
     "imageUrl": null,
-    "rooms": 6,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "ecaflip-dimension",
@@ -595,9 +693,9 @@
       "priority": "critical",
       "priorityReason": "Boss à mécanique de chance/malchance, très imprévisible mais vulnérable à la Terre",
       "keyMechanic": "Distribue des cartes de chance/malchance chaque tour. Certaines cartes sont bénéfiques, d'autres catastrophiques pour le joueur.",
-      "source": "manual",
-      "sourceUrl": "https://www.dofuspourlesnoobs.com/battelourd-ecaflip.html",
-      "verified": false,
+      "source": "dofuspourlesnoobs",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/donjon-du-comte-harebourg.html",
+      "verified": true,
       "phases": [
         {
           "trigger": "Début — 100% HP",
@@ -609,25 +707,38 @@
         }
       ],
       "instantKillConditions": [],
-      "recommendedStrategy": "Utiliser des sorts de Terre pour maximiser les dommages. Maintenir des soins constants face aux effets aléatoires. Les Ecaflips joueurs sont avantagés (résistances à la dimension). Burst rapide recommandé.",
-      "recommendedComp": ["DPS Terre (Sacrieur, Féca offensif)", "Eniripsa soins continus", "Ecaflip joueur (bonus dimension)", "Classe résistante aux debuffs"]
-    }
+      "recommendedStrategy": "Astuce : Monstre pas très dangereux dû à son faible nombre de PM, évitez tout de même de le frapper au corps à corps et de lui laisser la possibilité d’atteindre vos personnages trop aisément car il a beaucoup de tacle et peut vite devenir ennuyant une fois en mêlée",
+      "recommendedComp": [
+        "DPS Terre (Sacrieur, Féca offensif)",
+        "Eniripsa soins continus",
+        "Ecaflip joueur (bonus dimension)",
+        "Classe résistante aux debuffs"
+      ]
+    },
+    "rooms": 6,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "donjon-kolosso",
     "name": "Donjon du Kolosso",
     "slug": "donjon-kolosso",
-    "aliases": ["kolosso", "ile kolosso", "frigost kolosso", "boss frigost 2"],
-    "levelRange": [160, 175],
-    "recommendedLevel": 165,
+    "aliases": [
+      "kolosso",
+      "ile kolosso",
+      "frigost kolosso",
+      "boss frigost 2"
+    ],
+    "levelRange": [
+      160,
+      175
+    ],
+    "recommendedLevel": 190,
     "zone": "Île du Kolosso",
     "continent": "Frigost",
     "imageUrl": null,
-    "rooms": 5,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "kolosse-de-glace",
@@ -654,9 +765,9 @@
       "priority": "critical",
       "priorityReason": "Boss à immunités rotationnelles, il faut changer d'élément chaque round selon son immunité active",
       "keyMechanic": "Immunité élémentaire rotationnelle (Eau → Feu → Terre → Air → Neutre). Surveiller l'immunité active et adapter en temps réel.",
-      "source": "manual",
-      "sourceUrl": "https://www.dofuspourlesnoobs.com/kolosso.html",
-      "verified": false,
+      "source": "dofuspourlesnoobs",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/donjon-du-comte-harebourg.html",
+      "verified": true,
       "phases": [
         {
           "trigger": "Chaque début de round",
@@ -668,25 +779,38 @@
         }
       ],
       "instantKillConditions": [],
-      "recommendedStrategy": "Avoir plusieurs éléments disponibles dans le groupe (ou jouer Multiéléments). Observer l'icône d'immunité en début de round AVANT de lancer les sorts. Dommages neutres toujours efficaces.",
-      "recommendedComp": ["Classes multiéléments ou polyvalentes", "Dommages neutres (Sacrieur)", "Soigneur", "Éviter les mono-élément stricts"]
-    }
+      "recommendedStrategy": "Astuce : Monstre pas très dangereux dû à son faible nombre de PM, évitez tout de même de le frapper au corps à corps et de lui laisser la possibilité d’atteindre vos personnages trop aisément car il a beaucoup de tacle et peut vite devenir ennuyant une fois en mêlée",
+      "recommendedComp": [
+        "Classes multiéléments ou polyvalentes",
+        "Dommages neutres (Sacrieur)",
+        "Soigneur",
+        "Éviter les mono-élément stricts"
+      ]
+    },
+    "rooms": 5,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "ile-de-moon",
     "name": "Île de Moon",
     "slug": "ile-de-moon",
-    "aliases": ["moon", "donjon moon", "ile moon", "masque moon"],
-    "levelRange": [195, 200],
-    "recommendedLevel": 200,
+    "aliases": [
+      "moon",
+      "donjon moon",
+      "ile moon",
+      "masque moon"
+    ],
+    "levelRange": [
+      195,
+      200
+    ],
+    "recommendedLevel": 100,
     "zone": "Île de Moon",
     "continent": "Pandala",
     "imageUrl": null,
-    "rooms": 7,
-    "keyRequired": true,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "gardien-de-moon",
@@ -746,24 +870,37 @@
       ],
       "instantKillConditions": [],
       "recommendedStrategy": "Organisation stricte : désigner qui kill quel Gardien. Burst immédiat sur Moon à chaque fenêtre de vulnérabilité. Utiliser l'air pour exploiter sa faiblesse. Le timing est critique.",
-      "recommendedComp": ["DPS air burst (Crâ, Iop air)", "Soigneur robuste", "Classe de contrôle des Gardiens", "Féca ou Sacrieur pour encaisser les phases enragées"]
-    }
+      "recommendedComp": [
+        "DPS air burst (Crâ, Iop air)",
+        "Soigneur robuste",
+        "Classe de contrôle des Gardiens",
+        "Féca ou Sacrieur pour encaisser les phases enragées"
+      ]
+    },
+    "rooms": 7,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "chateau-frigost-1",
     "name": "Château de Frigost",
     "slug": "chateau-frigost",
-    "aliases": ["frigost 1", "château frigost", "sylargh", "frigost debutant"],
-    "levelRange": [95, 115],
+    "aliases": [
+      "frigost 1",
+      "château frigost",
+      "sylargh",
+      "frigost debutant"
+    ],
+    "levelRange": [
+      95,
+      115
+    ],
     "recommendedLevel": 100,
     "zone": "Frigost I",
     "continent": "Frigost",
     "imageUrl": null,
-    "rooms": 5,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "fantome-de-frigost",
@@ -819,24 +956,36 @@
       ],
       "instantKillConditions": [],
       "recommendedStrategy": "Tuer les Fantômes en priorité absolue. Focus feu sur Sylargh. Combat accessible, bon donjon d'entraînement pour Frigost.",
-      "recommendedComp": ["Classes feu (Crâ feu, Iop feu)", "Soigneur", "N'importe quelle composition solide"]
-    }
+      "recommendedComp": [
+        "Classes feu (Crâ feu, Iop feu)",
+        "Soigneur",
+        "N'importe quelle composition solide"
+      ]
+    },
+    "rooms": 5,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "donjon-dragon-cochon",
     "name": "Donjon du Dragon Cochon",
     "slug": "donjon-dragon-cochon",
-    "aliases": ["dragon cochon", "dc", "donjon dc", "cochon dragon"],
-    "levelRange": [120, 140],
-    "recommendedLevel": 130,
+    "aliases": [
+      "dragon cochon",
+      "dc",
+      "donjon dc",
+      "cochon dragon"
+    ],
+    "levelRange": [
+      120,
+      140
+    ],
+    "recommendedLevel": 100,
     "zone": "Porco",
     "continent": "Amakna",
     "imageUrl": null,
-    "rooms": 5,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "bouffon-de-porco",
@@ -877,9 +1026,9 @@
       "priority": "critical",
       "priorityReason": "Boss, entre en rage si un Bouffon meurt avant lui. Tuer le Dragon avant les Bouffons.",
       "keyMechanic": "Entre en mode rage (dommages ×3) si un Bouffon de Porco meurt avant lui. TOUJOURS tuer le Dragon en premier.",
-      "source": "manual",
-      "sourceUrl": "https://www.dofuspourlesnoobs.com/dragon-cochon.html",
-      "verified": false,
+      "source": "dofuspourlesnoobs",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/donjon-du-comte-harebourg.html",
+      "verified": true,
       "phases": [
         {
           "trigger": "Début (normal)",
@@ -890,26 +1039,41 @@
           "behavior": "RAGE : dommages triplés, quasi-invincible. Situation de wipe quasi-certaine."
         }
       ],
-      "instantKillConditions": ["Tuer un Bouffon de Porco avant le Dragon Cochon"],
-      "recommendedStrategy": "Règle numéro 1 : tuer le Dragon Cochon en PREMIER. Ignorer totalement les Bouffons jusqu'à la mort du boss. DPS burst sur le Dragon dès le début.",
-      "recommendedComp": ["DPS air burst", "Soigneur", "Contrôle pour immobiliser les Bouffons loin du combat", "Crâ ou Iop pour burst rapide"]
-    }
+      "instantKillConditions": [
+        "Tuer un Bouffon de Porco avant le Dragon Cochon"
+      ],
+      "recommendedStrategy": "Astuce : Monstre pas très dangereux dû à son faible nombre de PM, évitez tout de même de le frapper au corps à corps et de lui laisser la possibilité d’atteindre vos personnages trop aisément car il a beaucoup de tacle et peut vite devenir ennuyant une fois en mêlée",
+      "recommendedComp": [
+        "DPS air burst",
+        "Soigneur",
+        "Contrôle pour immobiliser les Bouffons loin du combat",
+        "Crâ ou Iop pour burst rapide"
+      ]
+    },
+    "rooms": 5,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "donjon-wa-wabbit",
     "name": "Donjon du Wa Wabbit",
     "slug": "donjon-wa-wabbit",
-    "aliases": ["wabbit", "wa wabbit", "ile des wabbits", "lapin wabbit"],
-    "levelRange": [85, 100],
-    "recommendedLevel": 90,
+    "aliases": [
+      "wabbit",
+      "wa wabbit",
+      "ile des wabbits",
+      "lapin wabbit"
+    ],
+    "levelRange": [
+      85,
+      100
+    ],
+    "recommendedLevel": 80,
     "zone": "Île des Wabbits",
     "continent": "Amakna",
     "imageUrl": null,
-    "rooms": 5,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "wabbit-royal",
@@ -950,9 +1114,9 @@
       "priority": "critical",
       "priorityReason": "Invincible quand une Carotrof est active près de lui. Détruire la Carotrof puis burst.",
       "keyMechanic": "Invincible tant qu'une Carotrof est dans un rayon de 2 cases. Détruire la Carotrof (entité invocable) avant de pouvoir le DPS.",
-      "source": "manual",
-      "sourceUrl": "https://www.dofuspourlesnoobs.com/wa-wabbit-royal.html",
-      "verified": false,
+      "source": "dofuspourlesnoobs",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/donjon-du-comte-harebourg.html",
+      "verified": true,
       "phases": [
         {
           "trigger": "Carotrof active (rayon 2 cases)",
@@ -964,25 +1128,37 @@
         }
       ],
       "instantKillConditions": [],
-      "recommendedStrategy": "Identifier et détruire la Carotrof à chaque round. Burst immédiat sur le Wa Wabbit dans les fenêtres de vulnérabilité. Le feu est l'élément optimal.",
-      "recommendedComp": ["DPS feu (Crâ, Iop)", "Soigneur", "Classe capable de cibler des entités (Carotrof)"]
-    }
+      "recommendedStrategy": "Astuce : Monstre pas très dangereux dû à son faible nombre de PM, évitez tout de même de le frapper au corps à corps et de lui laisser la possibilité d’atteindre vos personnages trop aisément car il a beaucoup de tacle et peut vite devenir ennuyant une fois en mêlée",
+      "recommendedComp": [
+        "DPS feu (Crâ, Iop)",
+        "Soigneur",
+        "Classe capable de cibler des entités (Carotrof)"
+      ]
+    },
+    "rooms": 5,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "donjon-bouftou-royal",
     "name": "Donjon Bouftou Royal",
     "slug": "donjon-bouftou-royal",
-    "aliases": ["bouftou", "bouftou royal", "donjon bouf", "plaine bouftous"],
-    "levelRange": [30, 45],
-    "recommendedLevel": 35,
+    "aliases": [
+      "bouftou",
+      "bouftou royal",
+      "donjon bouf",
+      "plaine bouftous"
+    ],
+    "levelRange": [
+      30,
+      45
+    ],
+    "recommendedLevel": 30,
     "zone": "Plaines des Bouftous",
     "continent": "Amakna",
     "imageUrl": null,
-    "rooms": 4,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "chef-de-guerre-bouftou",
@@ -1048,24 +1224,34 @@
       ],
       "instantKillConditions": [],
       "recommendedStrategy": "Donjon d'introduction idéal. Tuer d'abord le Chef de Guerre, puis le Bouftou Noir (pour éviter les invocations), puis le reste. Eau très efficace.",
-      "recommendedComp": ["N'importe quelle composition de niveau 35+"]
-    }
+      "recommendedComp": [
+        "N'importe quelle composition de niveau 35+"
+      ]
+    },
+    "rooms": 4,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "donjon-tofu",
     "name": "Donjon Tofu",
     "slug": "donjon-tofu",
-    "aliases": ["tofu", "donjon des tofus", "tofu royal", "astrub tofu"],
-    "levelRange": [15, 30],
-    "recommendedLevel": 20,
+    "aliases": [
+      "tofu",
+      "donjon des tofus",
+      "tofu royal",
+      "astrub tofu"
+    ],
+    "levelRange": [
+      15,
+      30
+    ],
+    "recommendedLevel": 40,
     "zone": "Astrub",
     "continent": "Amakna",
     "imageUrl": null,
-    "rooms": 3,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "tofu-sauvage",
@@ -1106,9 +1292,9 @@
       "priority": "critical",
       "priorityReason": "Boss basique, bon pour l'apprentissage des mécaniques de donjon",
       "keyMechanic": null,
-      "source": "manual",
-      "sourceUrl": "https://www.dofuspourlesnoobs.com/tofu-royal.html",
-      "verified": false,
+      "source": "dofuspourlesnoobs",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/donjon-des-tofus.html",
+      "verified": true,
       "phases": [
         {
           "trigger": "Début du combat",
@@ -1116,25 +1302,34 @@
         }
       ],
       "instantKillConditions": [],
-      "recommendedStrategy": "Premier donjon recommandé. Utiliser la Terre. Aucune stratégie particulière nécessaire.",
-      "recommendedComp": ["N'importe quelle composition débutante niveau 15+"]
-    }
+      "recommendedStrategy": "Un personnage qui tape dans l’élément eau est conseillé afin de pouvoir éliminer rapidement le Tofu Ventripotent et ne pas dépasser la limite des 19 tours",
+      "recommendedComp": [
+        "N'importe quelle composition débutante niveau 15+"
+      ]
+    },
+    "rooms": 3,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "donjon-kwak",
     "name": "Donjon du Kwak",
     "slug": "donjon-kwak",
-    "aliases": ["kwak", "donjon des kwaks", "kwakwa"],
-    "levelRange": [65, 80],
-    "recommendedLevel": 70,
+    "aliases": [
+      "kwak",
+      "donjon des kwaks",
+      "kwakwa"
+    ],
+    "levelRange": [
+      65,
+      80
+    ],
+    "recommendedLevel": 50,
     "zone": "Forêt de Grandapan",
     "continent": "Amakna",
     "imageUrl": null,
-    "rooms": 4,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "kwak-blanc",
@@ -1175,9 +1370,9 @@
       "priority": "critical",
       "priorityReason": "Boss avec buff de ses alliés Kwaks, focus après élimination des soigneurs",
       "keyMechanic": "Gagne un bonus de dommages pour chaque Kwak allié encore vivant.",
-      "source": "manual",
-      "sourceUrl": "https://www.dofuspourlesnoobs.com/kwakwa.html",
-      "verified": false,
+      "source": "dofuspourlesnoobs",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/donjon-du-comte-harebourg.html",
+      "verified": true,
       "phases": [
         {
           "trigger": "Début — alliés Kwaks présents",
@@ -1189,25 +1384,37 @@
         }
       ],
       "instantKillConditions": [],
-      "recommendedStrategy": "Tuer les Kwaks Blancs (soigneurs) d'abord, puis les Kwaks Rouges, enfin Kwakwa. Utiliser la Terre contre le boss.",
-      "recommendedComp": ["DPS Terre", "Soigneur", "N'importe quelle composition solide niveau 70"]
-    }
+      "recommendedStrategy": "Astuce : Monstre pas très dangereux dû à son faible nombre de PM, évitez tout de même de le frapper au corps à corps et de lui laisser la possibilité d’atteindre vos personnages trop aisément car il a beaucoup de tacle et peut vite devenir ennuyant une fois en mêlée",
+      "recommendedComp": [
+        "DPS Terre",
+        "Soigneur",
+        "N'importe quelle composition solide niveau 70"
+      ]
+    },
+    "rooms": 4,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "donjon-chafers",
     "name": "Donjon des Chafers",
     "slug": "donjon-chafers",
-    "aliases": ["chafers", "donjon chafer", "squelettes", "chafer lanceur"],
-    "levelRange": [55, 70],
+    "aliases": [
+      "chafers",
+      "donjon chafer",
+      "squelettes",
+      "chafer lanceur"
+    ],
+    "levelRange": [
+      55,
+      70
+    ],
     "recommendedLevel": 65,
     "zone": "Cimetière de Brakmar",
     "continent": "Amakna",
     "imageUrl": null,
-    "rooms": 4,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "chafer-lanceur",
@@ -1248,9 +1455,9 @@
       "priority": "critical",
       "priorityReason": "Boss avec tirs à longue portée, rester hors de ligne de vue ou rush CAC",
       "keyMechanic": "Tirs longue portée en ligne droite. Se positionner hors de sa ligne de vue ou rush au CAC.",
-      "source": "manual",
-      "sourceUrl": "https://www.dofuspourlesnoobs.com/chafer-arquebusier.html",
-      "verified": false,
+      "source": "dofuspourlesnoobs",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/donjon-du-comte-harebourg.html",
+      "verified": true,
       "phases": [
         {
           "trigger": "Début du combat",
@@ -1258,25 +1465,37 @@
         }
       ],
       "instantKillConditions": [],
-      "recommendedStrategy": "Rusher le boss au CAC pour bloquer ses tirs. Tuer les Lanceurs d'abord. Feu très efficace.",
-      "recommendedComp": ["Classes CAC (Iop, Sacrieur)", "Soigneur", "N'importe quelle comp niveau 65"]
-    }
+      "recommendedStrategy": "Astuce : Monstre pas très dangereux dû à son faible nombre de PM, évitez tout de même de le frapper au corps à corps et de lui laisser la possibilité d’atteindre vos personnages trop aisément car il a beaucoup de tacle et peut vite devenir ennuyant une fois en mêlée",
+      "recommendedComp": [
+        "Classes CAC (Iop, Sacrieur)",
+        "Soigneur",
+        "N'importe quelle comp niveau 65"
+      ]
+    },
+    "rooms": 4,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "donjon-rats-chateau",
     "name": "Donjon des Rats du Château",
     "slug": "donjon-rats-chateau",
-    "aliases": ["rats", "château amakna", "rats du château", "donjon rat"],
-    "levelRange": [48, 62],
-    "recommendedLevel": 55,
+    "aliases": [
+      "rats",
+      "château amakna",
+      "rats du château",
+      "donjon rat"
+    ],
+    "levelRange": [
+      48,
+      62
+    ],
+    "recommendedLevel": 20,
     "zone": "Château d'Amakna",
     "continent": "Amakna",
     "imageUrl": null,
-    "rooms": 4,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "rat-de-donjon",
@@ -1317,9 +1536,9 @@
       "priority": "critical",
       "priorityReason": "Boss avec poison de zone, soins constants nécessaires",
       "keyMechanic": "Pose un empoisonnement de zone autour de lui chaque tour. Maintenir distance ou soins constants.",
-      "source": "manual",
-      "sourceUrl": "https://www.dofuspourlesnoobs.com/roi-des-rats.html",
-      "verified": false,
+      "source": "dofuspourlesnoobs",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/donjon-du-comte-harebourg.html",
+      "verified": true,
       "phases": [
         {
           "trigger": "Début du combat",
@@ -1327,25 +1546,37 @@
         }
       ],
       "instantKillConditions": [],
-      "recommendedStrategy": "Tuer les Empoisonneurs d'abord. Soigner proactivement. Utiliser le feu contre le boss.",
-      "recommendedComp": ["Soigneur obligatoire (Eniripsa)", "DPS feu", "Comp standard niveau 55"]
-    }
+      "recommendedStrategy": "Astuce : Monstre pas très dangereux dû à son faible nombre de PM, évitez tout de même de le frapper au corps à corps et de lui laisser la possibilité d’atteindre vos personnages trop aisément car il a beaucoup de tacle et peut vite devenir ennuyant une fois en mêlée",
+      "recommendedComp": [
+        "Soigneur obligatoire (Eniripsa)",
+        "DPS feu",
+        "Comp standard niveau 55"
+      ]
+    },
+    "rooms": 4,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "forteresse-kimbo",
     "name": "Forteresse de Kimbo",
     "slug": "forteresse-kimbo",
-    "aliases": ["kimbo", "frigost 2 boss", "forteresse frigost", "yeti kimbo"],
-    "levelRange": [115, 130],
-    "recommendedLevel": 120,
+    "aliases": [
+      "kimbo",
+      "frigost 2 boss",
+      "forteresse frigost",
+      "yeti kimbo"
+    ],
+    "levelRange": [
+      115,
+      130
+    ],
+    "recommendedLevel": 160,
     "zone": "Frigost II",
     "continent": "Frigost",
     "imageUrl": null,
-    "rooms": 5,
-    "keyRequired": false,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "yeti-de-kimbo",
@@ -1401,24 +1632,36 @@
       ],
       "instantKillConditions": [],
       "recommendedStrategy": "Tuer les Yétis en premier pour réduire les immobilisations. Focus feu sur Kimbo. Soigneur indispensable.",
-      "recommendedComp": ["DPS feu (Crâ, Iop)", "Eniripsa soins", "Classe mobile pour gérer les immobilisations"]
-    }
+      "recommendedComp": [
+        "DPS feu (Crâ, Iop)",
+        "Eniripsa soins",
+        "Classe mobile pour gérer les immobilisations"
+      ]
+    },
+    "rooms": 5,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   },
   {
     "id": "abysses-frigost",
     "name": "Abysses de Frigost",
     "slug": "abysses-frigost",
-    "aliases": ["abysses frigost", "frigost 2 abysses", "donjon abysses", "adorabble"],
-    "levelRange": [140, 160],
+    "aliases": [
+      "abysses frigost",
+      "frigost 2 abysses",
+      "donjon abysses",
+      "adorabble"
+    ],
+    "levelRange": [
+      140,
+      160
+    ],
     "recommendedLevel": 145,
     "zone": "Frigost II",
     "continent": "Frigost",
     "imageUrl": null,
-    "rooms": 6,
-    "keyRequired": true,
-    "achievements": [],
-    "lastUpdated": "2026-04-17T00:00:00.000Z",
-    "dataVersion": "0.1.0-manual",
     "monsters": [
       {
         "id": "creature-abyssale",
@@ -1470,7 +1713,16 @@
       ],
       "instantKillConditions": [],
       "recommendedStrategy": "Combat de transition Frigost 2 → 3. Focus feu. Soigneur recommandé.",
-      "recommendedComp": ["DPS feu", "Soigneur", "Composition standard niveau 145"]
-    }
+      "recommendedComp": [
+        "DPS feu",
+        "Soigneur",
+        "Composition standard niveau 145"
+      ]
+    },
+    "rooms": 6,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T19:04:53.558Z",
+    "dataVersion": "0.2.0"
   }
 ]
