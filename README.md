@@ -16,7 +16,7 @@ Overlay Windows pour Dofus — guides de donjons sans alt-tab.
 
 ## Installation
 
-1. Téléchargez `Dofus.Companion_x64-setup.exe` depuis la [dernière release](../../releases/latest)
+1. Téléchargez `Dofus Companion_<version>_x64-setup.exe` depuis la [dernière release](../../releases/latest)
 2. Lancez le setup (acceptez WebView2 si demandé, composant Microsoft standard)
 3. L'application démarre dans la barre système — appuyez **Alt+D** pour l'ouvrir
 
@@ -75,8 +75,6 @@ pnpm --filter app tauri signer generate -w ~/.tauri/dofus-companion.key
 # TAURI_SIGNING_PRIVATE_KEY  (contenu du fichier .key)
 # TAURI_SIGNING_PRIVATE_KEY_PASSWORD  (le mot de passe choisi, ou vide)
 ```
-
-Remplacez également `YOUR_USERNAME` dans `tauri.conf.json` → `plugins.updater.endpoints`.
 
 ### 2. Publier une release
 

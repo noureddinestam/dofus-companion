@@ -9,7 +9,6 @@ export function useUpdater() {
   const [update, setUpdate] = useState<UpdateInfo | null>(null);
 
   useEffect(() => {
-    // Only run inside Tauri runtime
     if (!('__TAURI_INTERNALS__' in window)) return;
 
     let cancelled = false;
@@ -18,11 +17,11 @@ export function useUpdater() {
       try {
         const { check } = await import('@tauri-apps/plugin-updater');
         const result = await check();
-        if (!cancelled && result?.available) {
-          setUpdate({ version: result.currentVersion, installing: false });
+        if (!cancelled && result) {
+          setUpdate({ version: result.version, installing: false });
         }
       } catch {
-        // Silently ignore — no key configured or network error
+        // Pas de clé configurée, erreur réseau, ou runtime sans updater : silence.
       }
     })();
 
@@ -36,9 +35,11 @@ export function useUpdater() {
       const { check } = await import('@tauri-apps/plugin-updater');
       const { relaunch } = await import('@tauri-apps/plugin-process');
       const result = await check();
-      if (result?.available) {
+      if (result) {
         await result.downloadAndInstall();
         await relaunch();
+      } else {
+        setUpdate(null);
       }
     } catch {
       setUpdate((u) => u && { ...u, installing: false });

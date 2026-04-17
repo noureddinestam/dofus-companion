@@ -46,24 +46,36 @@ jobs:
           $tag  = "${{ github.ref_name }}"
           $base = "https://github.com/$repo/releases/download/$tag"
 
-          # Préfère NSIS pour l'auto-updater (plus léger)
-          $nsisExe = Get-ChildItem "app/src-tauri/target/release/bundle/nsis" -Filter "*-setup.exe" | Select-Object -First 1
-          $nsisSig = Get-Content "$($nsisExe.FullName).sig" -Raw
+          $nsisExe = Get-ChildItem "app/src-tauri/target/release/bundle/nsis" -Filter "*-setup.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $nsisExe) {
+            Write-Host "::warning::Aucun installeur NSIS trouvé — latest.json non généré"
+            exit 0
+          }
+
+          $sigPath = "$($nsisExe.FullName).sig"
+          if (-not (Test-Path $sigPath)) {
+            Write-Host "::warning::Signature manquante ($sigPath) — TAURI_SIGNING_PRIVATE_KEY secret absent ? latest.json non généré"
+            exit 0
+          }
+
+          $sig = (Get-Content $sigPath -Raw).Trim()
+          $encodedName = [Uri]::EscapeDataString($nsisExe.Name)
 
           $manifest = [ordered]@{
-            version  = $version
-            notes    = "Voir https://github.com/$repo/releases/tag/$tag"
-            pub_date = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
-            platforms = @{
+            version   = $version
+            notes     = "Voir https://github.com/$repo/releases/tag/$tag"
+            pub_date  = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
+            platforms = [ordered]@{
               "windows-x86_64" = [ordered]@{
-                signature = $nsisSig.Trim()
-                url       = "$base/$($nsisExe.Name)"
+                signature = $sig
+                url       = "$base/$encodedName"
               }
             }
           }
 
-          $manifest | ConvertTo-Json -Depth 5 | Set-Content latest.json -Encoding utf8
-          Write-Host "latest.json :"
+          $json = $manifest | ConvertTo-Json -Depth 5
+          Set-Content -Path latest.json -Value $json -Encoding utf8 -NoNewline
+          Write-Host "== latest.json =="
           Get-Content latest.json
 
       - name: Create GitHub Release
@@ -73,13 +85,15 @@ jobs:
           body: |
             ## Installation
 
-            Téléchargez **`Dofus.Companion_x64-setup.exe`** (NSIS, recommandé) ou `.msi`.
+            Téléchargez l'installeur **NSIS** (recommandé, plus léger) ou **MSI**.
 
-            **Première installation :** lancez le setup, acceptez WebView2 si demandé.
-            **Mise à jour :** l'application détecte et installe automatiquement les nouvelles versions.
+            **Première installation :** lancez le setup, acceptez WebView2 si demandé (composant Microsoft standard).
+            **Mise à jour :** l'application détecte et installe automatiquement les nouvelles versions au démarrage.
+
+            > Windows SmartScreen peut afficher un avertissement (binaire non signé avec certificat EV) — cliquer "Informations complémentaires" puis "Exécuter quand même".
 
             ---
-            Voir le [README](https://github.com/${{ github.repository }}#readme) pour les raccourcis et la configuration.
+            [README](https://github.com/${{ github.repository }}#readme) · [CHANGELOG](https://github.com/${{ github.repository }}/blob/main/scraper/output/CHANGELOG-DATA.md)
           files: |
             app/src-tauri/target/release/bundle/msi/*.msi
             app/src-tauri/target/release/bundle/msi/*.msi.sig
