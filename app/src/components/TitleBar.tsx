@@ -1,4 +1,5 @@
 import { getCurrentWindow } from '@tauri-apps/api/window';
+import { LangToggle } from './LangToggle';
 
 interface TitleBarProps {
   query: string;
@@ -102,6 +103,8 @@ export function TitleBar({ query, onQueryChange, searchRef }: TitleBarProps) {
           onBlur={(e) => (e.target.style.borderColor = 'var(--border-default)')}
         />
       </div>
+
+      <LangToggle />
 
       <button
         onClick={hide}
