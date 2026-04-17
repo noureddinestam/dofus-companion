@@ -3,6 +3,7 @@ import { DungeonSchema } from '../../types/dungeon';
 import type { Dungeon } from '../../types/dungeon';
 import { z } from 'zod';
 import { migrateLegacyStrategy } from './migrateLegacyStrategy';
+import { applyDevFixtures } from './devFixtures';
 
 // Loaded at build time — zero network, zero latency
 import rawData from '../../data/dungeons.json';
@@ -16,7 +17,9 @@ function loadDungeons(): Dungeon[] {
     return [];
   }
   // Migration legacy v0.3 → v0.4 : hydrate Boss.strategies depuis Boss.strategy
-  return result.data.map(migrateLegacyStrategy);
+  const migrated = result.data.map(migrateLegacyStrategy);
+  // Fixtures dev-only (no-op en prod) pour valider la vue Actionnable
+  return applyDevFixtures(migrated);
 }
 
 // Parsed once at module load, never again
