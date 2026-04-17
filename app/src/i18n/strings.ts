@@ -62,6 +62,19 @@ export interface UiStrings {
   source: {
     dofusdb: string;
     fandomEn: string;
+    fandomFr: string;
+  };
+  provenance: {
+    native: string;
+    llmGrounded: (source: string) => string;
+    community: (contributor: string) => string;
+    viewOriginal: string;
+    viewPr: string;
+  };
+  strategy: {
+    noShort: string;
+    noShortCta: string;
+    fallbackLang: (availableLang: string) => string;
   };
 }
 
@@ -128,6 +141,20 @@ const fr: UiStrings = {
   source: {
     dofusdb: 'DofusDB',
     fandomEn: 'Wiki Fandom EN',
+    fandomFr: 'Wiki Fandom FR',
+  },
+  provenance: {
+    native: 'Source vérifiée',
+    llmGrounded: (source) => `Synthèse IA · ancrée sur ${source}`,
+    community: (contributor) => `Contribution communautaire · ${contributor}`,
+    viewOriginal: 'Voir original',
+    viewPr: 'Voir PR',
+  },
+  strategy: {
+    noShort: 'Version actionnable pas encore disponible pour ce donjon.',
+    noShortCta: 'Voir version détaillée',
+    fallbackLang: (availableLang) =>
+      `Disponible uniquement en ${availableLang} · traduction à venir`,
   },
 };
 
@@ -192,6 +219,20 @@ const en: UiStrings = {
   source: {
     dofusdb: 'DofusDB',
     fandomEn: 'Fandom Wiki EN',
+    fandomFr: 'Fandom Wiki FR',
+  },
+  provenance: {
+    native: 'Verified source',
+    llmGrounded: (source) => `AI summary · anchored on ${source}`,
+    community: (contributor) => `Community · ${contributor}`,
+    viewOriginal: 'Show original',
+    viewPr: 'View PR',
+  },
+  strategy: {
+    noShort: 'Actionable version not yet available for this dungeon.',
+    noShortCta: 'Show detailed version',
+    fallbackLang: (availableLang) =>
+      `Available only in ${availableLang} · translation coming soon`,
   },
 };
 
