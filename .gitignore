@@ -1,0 +1,10 @@
+node_modules/
+dist/
+target/
+.DS_Store
+*.log
+scraper/cache/
+scraper/output/dungeons.json
+scraper/output/fuse-index.json
+app/src/data/dungeons.json
+app/src/data/fuse-index.json
