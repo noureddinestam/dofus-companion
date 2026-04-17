@@ -40,6 +40,7 @@ function toMonster(m: DbMonster): Monster {
     level: m.level,
     hp: m.hp,
     family: m.family,
+    familyEn: null,
     weakElement: m.weakElement,
     resistElement: m.resistElement,
     source: 'dofusdb',
@@ -77,6 +78,7 @@ async function buildDungeon(db: DbDungeon, onStep?: (s: string) => void): Promis
   const boss: Boss = {
     ...baseBoss,
     strategy,
+    strategies: null,
     phases,
   };
 
@@ -101,6 +103,7 @@ async function buildDungeon(db: DbDungeon, onStep?: (s: string) => void): Promis
     monsters: finalMonsters,
     boss,
     externalGuideUrl: fandomPageUrl(db.boss.nameEn) ?? db.sourceUrl,
+    externalGuideUrlFr: null,
     lastUpdated: now,
     dataVersion: DATA_VERSION,
   };
