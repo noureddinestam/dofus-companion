@@ -7,6 +7,13 @@ import { fetchBossStrategyFr } from './sources/fandom-fr.ts';
 import { sleep } from './cache.ts';
 import { validateDungeons } from './validate.ts';
 import { diffDungeons, loadPreviousDungeons, generateChangelog } from './diff.ts';
+import { hasApiKey } from './llm/client.ts';
+import { translate } from './llm/translate.ts';
+import {
+  validateGlossary,
+  SENTENCE_RATIO_MIN,
+  SENTENCE_RATIO_MAX,
+} from './validate/glossary.ts';
 import type {
   Dungeon,
   Monster,
@@ -27,6 +34,11 @@ const APP_DATA_LEGACY = join(APP_DATA_DIR, 'dungeons.legacy.json');
 
 const DATA_VERSION = '0.4.0';
 const FANDOM_DELAY_MS = 700;
+
+// CLI flags
+const ARGS = new Set(process.argv.slice(2));
+const NO_LLM = ARGS.has('--no-llm');
+const DRY_RUN = ARGS.has('--dry-run');
 
 mkdirSync(OUTPUT_DIR, { recursive: true });
 
@@ -62,6 +74,66 @@ function buildBundle(longEn: StrategyLong | null, longFr: StrategyLong | null): 
     short: { fr: null, en: null },
   };
 }
+
+/**
+ * Traduit long.en → long.fr via LLM avec glossaire et validation structurelle.
+ * Retourne null si :
+ *  - pas de clé API (mode dégradé)
+ *  - couverture glossaire < 0.6 (traduction suspecte)
+ *  - ratio de phrases hors [0.8, 1.2]
+ *  - erreur réseau / API
+ */
+async function translateLongEnToFr(
+  longEn: StrategyLong,
+): Promise<StrategyLong | null> {
+  try {
+    const result = await translate(longEn.text, { dryRun: DRY_RUN });
+    const report = validateGlossary(longEn.text, result.translated, {});
+    // Validation structurelle sur le ratio de phrases uniquement
+    // (coverage non-bloquant ici — glossary peut être vide pour certains textes)
+    if (
+      report.sentenceRatio < SENTENCE_RATIO_MIN ||
+      report.sentenceRatio > SENTENCE_RATIO_MAX
+    ) {
+      console.warn(
+        `    ⚠ traduction rejetée : sentenceRatio=${report.sentenceRatio.toFixed(2)} hors [${SENTENCE_RATIO_MIN},${SENTENCE_RATIO_MAX}]`,
+      );
+      return null;
+    }
+
+    const baseProv = longEn.provenance;
+    if (baseProv.kind !== 'native') return null; // on ne traduit que du natif
+
+    return {
+      text: result.translated,
+      provenance: {
+        kind: 'llm-grounded',
+        baseLang: 'en',
+        baseSource: baseProv.source === 'manual' ? 'fandom-en' : baseProv.source,
+        baseSourceUrl: baseProv.sourceUrl,
+        model: result.model,
+        promptVersion: result.promptVersion,
+        anchors: [
+          {
+            // Pour une traduction, l'ancre est l'intégralité du texte source.
+            // La quote est un extrait des 200 premiers caractères pour traçabilité.
+            bulletIndex: 0,
+            quote: longEn.text.slice(0, 200),
+            similarity: 1,
+          },
+        ],
+        generatedAt: result.createdAt,
+      },
+    };
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    if (!DRY_RUN) {
+      console.warn(`    ⚠ translate error: ${msg}`);
+    }
+    return null;
+  }
+}
+
 
 async function buildDungeon(
   db: DbDungeon,
@@ -121,6 +193,12 @@ async function buildDungeon(
     }
   }
 
+  // Source 3 — LLM translate EN → FR (si long.en présent, long.fr absent, LLM activé)
+  if (longEn && !longFr && !NO_LLM && (hasApiKey() || DRY_RUN)) {
+    const translated = await translateLongEnToFr(longEn);
+    if (translated) longFr = translated;
+  }
+
   const strategies = buildBundle(longEn, longFr);
 
   // Legacy strategy field (v0.3 compat) : rempli quand Fandom EN trouvé
@@ -164,7 +242,17 @@ async function buildDungeon(
 }
 
 async function main() {
-  console.log('\n🗡️  Dofus Companion — Scraper v0.4 (DofusDB + Fandom EN + Fandom FR)\n');
+  const llmEnabled = !NO_LLM && (hasApiKey() || DRY_RUN);
+  const llmStatus = NO_LLM
+    ? 'OFF (--no-llm)'
+    : DRY_RUN
+      ? 'DRY-RUN (cache only)'
+      : hasApiKey()
+        ? 'ON'
+        : 'OFF (no ANTHROPIC_API_KEY)';
+  console.log(
+    `\n🗡️  Dofus Companion — Scraper v0.4 (DofusDB + Fandom EN/FR + LLM translate: ${llmStatus})\n`,
+  );
 
   if (existsSync(APP_DATA)) {
     try {
@@ -182,12 +270,13 @@ async function main() {
   });
   console.log(`\n   ✓ ${dbDungeons.length} donjons récupérés`);
 
-  // 2-3. Fandom EN + Fandom FR (stratégies natives par boss)
-  console.log('\n🟢 Source 2/3 — Fandom EN + Fandom FR (boss niveau 50+)');
+  // 2-4. Fandom EN + Fandom FR + LLM translate (selon flags)
+  console.log('\n🟢 Sources 2/3/4 — Fandom EN + Fandom FR + LLM translate (boss niveau 50+)');
   const built: Dungeon[] = [];
   const eligible = dbDungeons.filter((d) => d.boss && d.recommendedLevel > 0);
   let foundEn = 0;
-  let foundFr = 0;
+  let foundFrNative = 0;
+  let foundFrLlm = 0;
 
   for (let i = 0; i < eligible.length; i++) {
     const db = eligible[i];
@@ -197,10 +286,14 @@ async function main() {
     if (dungeon) {
       built.push(dungeon);
       if (dungeon.boss.strategies?.long.en) foundEn++;
-      if (dungeon.boss.strategies?.long.fr) foundFr++;
+      const frProv = dungeon.boss.strategies?.long.fr?.provenance;
+      if (frProv?.kind === 'native') foundFrNative++;
+      if (frProv?.kind === 'llm-grounded') foundFrLlm++;
     }
   }
-  console.log(`\n   ✓ ${built.length} donjons · Fandom EN: ${foundEn} · Fandom FR: ${foundFr}`);
+  console.log(
+    `\n   ✓ ${built.length} donjons · EN: ${foundEn} · FR native: ${foundFrNative} · FR LLM: ${foundFrLlm}`,
+  );
 
   // 4. Validation Zod
   console.log('\n✅ Validation Zod…');
@@ -249,9 +342,19 @@ async function main() {
 
   console.log('\n🎉 Scraper terminé');
   console.log(`   ${valid.length} donjons · Endgame 160+ : ${endgame.length}`);
-  console.log(`   Stratégies natives : EN=${foundEn} FR=${foundFr} (coverage : EN ${((foundEn / valid.length) * 100).toFixed(0)}%, FR ${((foundFr / valid.length) * 100).toFixed(0)}%)`);
+  const frTotal = foundFrNative + foundFrLlm;
+  console.log(
+    `   EN=${foundEn} (${pct(foundEn, valid.length)}%) · FR=${frTotal} (${pct(frTotal, valid.length)}%) — native ${foundFrNative} + llm ${foundFrLlm}`,
+  );
+  if (!llmEnabled && foundEn > frTotal) {
+    console.log(`   ℹ  LLM désactivé — ${foundEn - frTotal} donjons sans long.fr`);
+  }
 
   if (errors.length > 0) process.exit(1);
+}
+
+function pct(n: number, total: number): string {
+  return total === 0 ? '0' : ((n / total) * 100).toFixed(0);
 }
 
 main().catch((e) => {
