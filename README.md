@@ -42,7 +42,7 @@ Overlay Windows pour Dofus — guides de donjons sans alt-tab.
 - [WebView2](https://developer.microsoft.com/fr-fr/microsoft-edge/webview2/) (Windows, inclus dans Windows 11)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/dofus-companion
+git clone https://github.com/noureddinestam/dofus-companion
 cd dofus-companion
 pnpm install
 pnpm dev          # lance l'overlay en mode dev (hot-reload)

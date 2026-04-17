@@ -33,9 +33,9 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDM3MjQ4Qjg2Q0RCOTk2MzgKUldRNGxybk5ob3NrTjlsVE80Y3NibmpJSVlqYmlHQTdFTGd1dzdnT2dJMWFobmtURGFVaWRwbVMK",
       "endpoints": [
-        "https://github.com/YOUR_USERNAME/dofus-companion/releases/latest/download/latest.json"
+        "https://github.com/noureddinestam/dofus-companion/releases/latest/download/latest.json"
       ]
     }
   },
