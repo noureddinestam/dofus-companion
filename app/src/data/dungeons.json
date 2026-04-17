@@ -1,0 +1,1476 @@
+[
+  {
+    "id": "chateau-harebourg",
+    "name": "Château d'Harebourg",
+    "slug": "chateau-harebourg",
+    "aliases": ["harebourg", "comte harebourg", "frigost 3 boss", "ch"],
+    "levelRange": [185, 200],
+    "recommendedLevel": 190,
+    "zone": "Frigost III",
+    "continent": "Frigost",
+    "imageUrl": null,
+    "rooms": 7,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "garde-harebourg-epeiste",
+        "name": "Garde d'Harebourg Épéiste",
+        "level": 190,
+        "family": "Gardes d'Harebourg",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "danger",
+        "priorityReason": "Buff les alliés et réduit les dommages reçus par le Comte, à éliminer en priorité",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/garde-harebourg-epeiste",
+        "verified": false
+      },
+      {
+        "id": "garde-harebourg-lancier",
+        "name": "Garde d'Harebourg Lancier",
+        "level": 192,
+        "family": "Gardes d'Harebourg",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "caution",
+        "priorityReason": "Attaque à distance et repositionne les joueurs, gérable en second",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/garde-harebourg-lancier",
+        "verified": false
+      },
+      {
+        "id": "elementaire-de-glace",
+        "name": "Élémentaire de Glace",
+        "level": 188,
+        "family": "Élémentaires",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "manageable",
+        "priorityReason": "Dommages modérés, pas de mécanique particulière",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/elementaire-de-glace",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "comte-harebourg",
+      "name": "Comte Harebourg",
+      "level": 200,
+      "family": "Harebourgs",
+      "weakElement": "feu",
+      "resistElement": "eau",
+      "priority": "critical",
+      "priorityReason": "Boss final, focus après élimination des gardes",
+      "keyMechanic": "Change ses résistances élémentaires par phases. Adapter impérativement l'élément utilisé à chaque transition.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/comte-harebourg.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début du combat (100% HP)",
+          "behavior": "Résistances Eau et Air élevées. Privilégier Feu et Terre."
+        },
+        {
+          "trigger": "HP < 50%",
+          "behavior": "Inverse ses résistances et invoque des Gardes de Glace supplémentaires. Changer d'élément immédiatement."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Éliminer tous les gardes avant de focus le Comte. Observer les résistances actives et adapter l'élément à chaque phase. Un soigneur solide est indispensable.",
+      "recommendedComp": ["Iop ou Cra DPS feu/terre", "Eniripsa soins", "Pandawa pour mobilité", "Sacrieur ou Féca en porteur"]
+    }
+  },
+  {
+    "id": "antre-dark-vlad",
+    "name": "Antre du Dark Vlad",
+    "slug": "antre-dark-vlad",
+    "aliases": ["dark vlad", "vlad", "vampire", "frigost 3 vlad"],
+    "levelRange": [190, 200],
+    "recommendedLevel": 200,
+    "zone": "Frigost III",
+    "continent": "Frigost",
+    "imageUrl": null,
+    "rooms": 6,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "vampire-rogue",
+        "name": "Vampire Rogue",
+        "level": 195,
+        "family": "Vampires",
+        "weakElement": "feu",
+        "resistElement": "air",
+        "priority": "caution",
+        "priorityReason": "NE PAS TUER avant Dark Vlad — leur mort donne des charges de puissance au boss",
+        "keyMechanic": "Si tué avant Dark Vlad, renforce considérablement ce dernier. Laisser en vie ou tuer en dernier.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/vampire-rogue",
+        "verified": false
+      },
+      {
+        "id": "chauve-souris-du-vlad",
+        "name": "Chauve-Souris de Vlad",
+        "level": 190,
+        "family": "Chauve-Souris",
+        "weakElement": "feu",
+        "resistElement": "air",
+        "priority": "manageable",
+        "priorityReason": "Mob de remplissage, peut être ignoré sauf s'il soigne le boss",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/chauve-souris-de-vlad",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "dark-vlad",
+      "name": "Dark Vlad",
+      "level": 200,
+      "family": "Vampires",
+      "weakElement": "feu",
+      "resistElement": "air",
+      "priority": "critical",
+      "priorityReason": "Boss principal, devient quasi-invincible si les Vampires Rogues meurent avant lui",
+      "keyMechanic": "Absorbe la puissance des Vampires Rogues morts. Tuer les Rogues en dernier ou les garder en vie jusqu'à la mort du boss.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/dark-vlad.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début (100% HP)",
+          "behavior": "Dommages standards. Les Vampires Rogues sont présents."
+        },
+        {
+          "trigger": "Mort d'un Vampire Rogue",
+          "behavior": "Gagne un stack de puissance permanent. Si tous les Rogues meurent, devient extrêmement puissant."
+        },
+        {
+          "trigger": "HP < 30%",
+          "behavior": "Régénération partielle si des Rogues sont encore en vie."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Priorité absolue : tuer Dark Vlad AVANT les Vampires Rogues. Focus DPS total sur le boss dès le début. Si un Rogue meurt accidentellement, accélérer le kill du boss.",
+      "recommendedComp": ["DPS burst élevé (Iop, Sacrieur)", "Soigneur (Eniripsa)", "Contrôle (Roublard, Crâ)", "Pas de classe qui AoE involontairement les Rogues"]
+    }
+  },
+  {
+    "id": "donjon-brigandin",
+    "name": "Donjon du Brigandin",
+    "slug": "donjon-brigandin",
+    "aliases": ["brigandin", "pirate frigost", "bateau frigost"],
+    "levelRange": [180, 195],
+    "recommendedLevel": 185,
+    "zone": "Frigost III",
+    "continent": "Frigost",
+    "imageUrl": null,
+    "rooms": 6,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "matelot-brigandin",
+        "name": "Matelot Brigandin",
+        "level": 183,
+        "family": "Pirates de Frigost",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "danger",
+        "priorityReason": "Active les canons du bateau si non ciblé, dommages AoE importants",
+        "keyMechanic": "Activation de canons si laissé en vie trop longtemps.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/matelot-brigandin",
+        "verified": false
+      },
+      {
+        "id": "canonnier-brigandin",
+        "name": "Canonnier Brigandin",
+        "level": 185,
+        "family": "Pirates de Frigost",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "critical",
+        "priorityReason": "Lance des tirs de canon AoE dévastateurs, tuer en priorité absolue",
+        "keyMechanic": "Tirs de canon AoE à large portée. Se repositionner hors de portée si impossible à tuer.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/canonnier-brigandin",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "le-brigandin",
+      "name": "Le Brigandin",
+      "level": 195,
+      "family": "Pirates de Frigost",
+      "weakElement": "feu",
+      "resistElement": "eau",
+      "priority": "critical",
+      "priorityReason": "Boss, contrôle les canons du bateau qui peuvent one-shot les joueurs mal positionnés",
+      "keyMechanic": "Mécaniques de placement liées aux canons du Brigandin. Rester hors des lignes de tir.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/brigandin.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début du combat",
+          "behavior": "Active des canons positionnels. Identifier et éviter les cases dangereuses."
+        },
+        {
+          "trigger": "HP < 50%",
+          "behavior": "Augmente la cadence des tirs. Se coller au boss pour réduire l'AoE des canons."
+        }
+      ],
+      "instantKillConditions": ["Rester sur une case dans la ligne de tir d'un canon actif"],
+      "recommendedStrategy": "Identifier les cases de tir des canons avant de se déplacer. Privilégier le corps-à-corps pour éviter les AoE. Tuer les Cannonniers en premier pour désactiver les tirs supplémentaires.",
+      "recommendedComp": ["Classe CAC (Iop, Sacrieur)", "Soigneur", "Classe de contrôle pour repositionner", "Éviter les classes fragiles à distance"]
+    }
+  },
+  {
+    "id": "caverne-araknes-impitoyables",
+    "name": "Caverne des Araknes Impitoyables",
+    "slug": "caverne-araknes-impitoyables",
+    "aliases": ["araknes", "araignées frigost", "reine arakne"],
+    "levelRange": [165, 180],
+    "recommendedLevel": 170,
+    "zone": "Frigost III",
+    "continent": "Frigost",
+    "imageUrl": null,
+    "rooms": 5,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "arakne-impitoyable",
+        "name": "Arakne Impitoyable",
+        "level": 168,
+        "family": "Araknes",
+        "weakElement": "feu",
+        "resistElement": "terre",
+        "priority": "danger",
+        "priorityReason": "Pose des toiles qui immobilisent, très dangereux en groupe",
+        "keyMechanic": "Pose des pièges de toile au sol. Éviter les cases marquées.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/arakne-impitoyable",
+        "verified": false
+      },
+      {
+        "id": "bebe-arakne-impitoyable",
+        "name": "Bébé Arakne Impitoyable",
+        "level": 165,
+        "family": "Araknes",
+        "weakElement": "feu",
+        "resistElement": "terre",
+        "priority": "caution",
+        "priorityReason": "Se sacrifie pour protéger la Reine, interposer des boucliers",
+        "keyMechanic": "Interposition de bouclier entre le DPS et la Reine. Tuer les Bébés pour atteindre la Reine.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/bebe-arakne-impitoyable",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "reine-arakne-impitoyable",
+      "name": "Reine Arakne Impitoyable",
+      "level": 180,
+      "family": "Araknes",
+      "weakElement": "feu",
+      "resistElement": "terre",
+      "priority": "critical",
+      "priorityReason": "Boss, intouchable tant que des Bébés Araknes sont vivants devant elle",
+      "keyMechanic": "Les Bébés Araknes servent de bouclier. Éliminer tous les Bébés pour pouvoir DPS la Reine.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/reine-arakne-impitoyable.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début du combat",
+          "behavior": "Protégée par ses Bébés. Concentrer le DPS sur les Bébés Araknes."
+        },
+        {
+          "trigger": "Tous les Bébés éliminés",
+          "behavior": "Vulnérable. DPS total sur la Reine. Elle invoque de nouveaux Bébés si laissée trop longtemps."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Phase 1 : éliminer tous les Bébés rapidement. Phase 2 : burst maximal sur la Reine avant qu'elle n'invoque de nouveaux Bébés. Utiliser le feu en priorité.",
+      "recommendedComp": ["DPS feu (Cra, Iop)", "Soigneur", "AoE pour nettoyer les Bébés rapidement"]
+    }
+  },
+  {
+    "id": "donjon-srambad",
+    "name": "Donjon de Srambad",
+    "slug": "donjon-srambad",
+    "aliases": ["srambad", "dimension srambad", "korriander", "sram dimension"],
+    "levelRange": [190, 200],
+    "recommendedLevel": 200,
+    "zone": "Srambad",
+    "continent": "Dimensions",
+    "imageUrl": null,
+    "rooms": 6,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "korriandre",
+        "name": "Korriandre",
+        "level": 195,
+        "family": "Srambad",
+        "weakElement": "feu",
+        "resistElement": "terre",
+        "priority": "critical",
+        "priorityReason": "Garde de Korriander, rend le boss invincible tant qu'il est vivant",
+        "keyMechanic": "Bouclier permanent sur Korriander tant qu'un Korriandre est vivant.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/korriandre",
+        "verified": false
+      },
+      {
+        "id": "sbire-srambad",
+        "name": "Sbire de Srambad",
+        "level": 190,
+        "family": "Srambad",
+        "weakElement": "air",
+        "resistElement": "terre",
+        "priority": "danger",
+        "priorityReason": "Téléporte les joueurs hors position, perturbe le placement",
+        "keyMechanic": "Téléportation de joueurs sur des cases piégées.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/sbire-srambad",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "korriander",
+      "name": "Korriander",
+      "level": 200,
+      "family": "Srambad",
+      "weakElement": "feu",
+      "resistElement": "terre",
+      "priority": "critical",
+      "priorityReason": "Boss invincible tant que ses Korriandres gardiens sont en vie",
+      "keyMechanic": "Invulnérable tant qu'un Korriandre est vivant dans la salle. Tuer tous les gardiens avant de DPS.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/korriander.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début — Korriandres en vie",
+          "behavior": "Invincible. Focus total sur les Korriandres gardiens."
+        },
+        {
+          "trigger": "Tous les Korriandres morts",
+          "behavior": "Vulnérable. Dommages élevés, téléportations fréquentes. Burst immédiat."
+        },
+        {
+          "trigger": "HP < 25%",
+          "behavior": "Invoque de nouveaux sbires et augmente ses dommages."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Éliminer les Korriandres dans l'ordre (plus proche en premier). Dès la vulnérabilité, burst maximum. Prévoir des soins importants pour la phase 3.",
+      "recommendedComp": ["DPS feu burst (Iop, Cra)", "Eniripsa soins", "Féca boucliers", "Pandawa pour repositionner les mobs"]
+    }
+  },
+  {
+    "id": "xelorium-passe",
+    "name": "Xelorium le Passé",
+    "slug": "xelorium-passe",
+    "aliases": ["xelorium", "dimension xelor", "passé", "ush galesh", "xelo dimension"],
+    "levelRange": [190, 200],
+    "recommendedLevel": 200,
+    "zone": "Xelorium",
+    "continent": "Dimensions",
+    "imageUrl": null,
+    "rooms": 6,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "temporiseur-passe",
+        "name": "Temporiseur du Passé",
+        "level": 193,
+        "family": "Xelorium",
+        "weakElement": "feu",
+        "resistElement": "air",
+        "priority": "critical",
+        "priorityReason": "Inverse le sens des tours si vivant en fin de round, désorganise totalement le groupe",
+        "keyMechanic": "Inversion de l'ordre des tours. Doit mourir avant la fin du round.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/temporiseur-du-passe",
+        "verified": false
+      },
+      {
+        "id": "xelorage",
+        "name": "Xelorage",
+        "level": 190,
+        "family": "Xelorium",
+        "weakElement": "feu",
+        "resistElement": "air",
+        "priority": "danger",
+        "priorityReason": "Vol de PA/PM, neutralise les classes actions-dépendantes",
+        "keyMechanic": "Vol de PA et PM. Cibler en second après les Temporiseurs.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/xelorage",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "ush-galesh",
+      "name": "Ush Galesh",
+      "level": 200,
+      "family": "Xelorium",
+      "weakElement": "feu",
+      "resistElement": "air",
+      "priority": "critical",
+      "priorityReason": "Boss temporel, manipule l'ordre des tours et les positions",
+      "keyMechanic": "Inverse l'ordre des tours du groupe. Les actions planifiées doivent tenir compte de l'inversion.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/ush-galesh.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début du combat",
+          "behavior": "Manipulation temporelle légère. Tuer les Temporiseurs en priorité."
+        },
+        {
+          "trigger": "HP < 50%",
+          "behavior": "Inverse systématiquement l'ordre des tours chaque round. Adapter la stratégie."
+        },
+        {
+          "trigger": "HP < 20%",
+          "behavior": "Vol de PA massif sur tout le groupe. Utiliser des sorts ne nécessitant qu'1 PA."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Prioriser les Temporiseurs pour éviter les inversions de tours. Sur Ush Galesh, adapter les sorts en anticipant l'inversion. Les Xelors sont très efficaces dans ce donjon.",
+      "recommendedComp": ["Xelor (synergie temporelle)", "DPS feu", "Soigneur", "Classe résistante au vol de PA"]
+    }
+  },
+  {
+    "id": "tenebres-abyssales",
+    "name": "Ténèbres Abyssales",
+    "slug": "tenebres-abyssales",
+    "aliases": ["ombre", "dimension ombre", "merkator", "ténèbres", "abysses ombre"],
+    "levelRange": [190, 200],
+    "recommendedLevel": 200,
+    "zone": "Ombre",
+    "continent": "Dimensions",
+    "imageUrl": null,
+    "rooms": 6,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "ombre-abyssale",
+        "name": "Ombre Abyssale",
+        "level": 195,
+        "family": "Ombres",
+        "weakElement": "neutre",
+        "resistElement": "air",
+        "priority": "danger",
+        "priorityReason": "Donne des charges de puissance à Merkator à chaque mort (alliée ou ennemie)",
+        "keyMechanic": "Sa mort charge Merkator. Éviter les AoE qui tueraient plusieurs mobs en même temps.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/ombre-abyssale",
+        "verified": false
+      },
+      {
+        "id": "merkabete",
+        "name": "Mérkabète",
+        "level": 192,
+        "family": "Ombres",
+        "weakElement": "neutre",
+        "resistElement": "air",
+        "priority": "caution",
+        "priorityReason": "Soigne Merkator si laissé en vie, à éliminer avant de focus le boss",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/merkabete",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "merkator",
+      "name": "Merkator",
+      "level": 200,
+      "family": "Ombres",
+      "weakElement": "neutre",
+      "resistElement": "air",
+      "priority": "critical",
+      "priorityReason": "Gagne en puissance à chaque mort dans le combat, devient ingérable si surchargé",
+      "keyMechanic": "Accumule des charges à chaque mort (alliée ou ennemie). Limiter les morts et contrôler l'ordre des kills.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/merkator.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début — charges faibles",
+          "behavior": "Dommages standards. Contrôler le nombre de morts dans l'arène."
+        },
+        {
+          "trigger": "5+ charges accumulées",
+          "behavior": "Dommages significativement augmentés. Accélérer le kill."
+        },
+        {
+          "trigger": "10+ charges",
+          "behavior": "Quasi-invincible et one-shot potentiel. Situation de wipe si atteint."
+        }
+      ],
+      "instantKillConditions": ["Accumuler 10+ charges sur Merkator avant de le tuer"],
+      "recommendedStrategy": "Tuer les mobs UN PAR UN dans l'ordre. Éviter toute AoE involontaire. Utiliser des dommages neutres (résiste à l'air). Burst rapide sur Merkator dès que les Mérkabètes sont mortes.",
+      "recommendedComp": ["Classes sans AoE incontrôlée", "DPS neutre/terre", "Eniripsa soins", "Féca ou Sacrieur pour absorber les dommages"]
+    }
+  },
+  {
+    "id": "donjon-ecaflipus",
+    "name": "Donjon d'Ecaflipus",
+    "slug": "donjon-ecaflipus",
+    "aliases": ["ecaflipus", "dimension ecaflip", "battelourd", "ecaflipi", "dofus ecaflip"],
+    "levelRange": [185, 200],
+    "recommendedLevel": 190,
+    "zone": "Ecaflipus",
+    "continent": "Dimensions",
+    "imageUrl": null,
+    "rooms": 6,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "ecaflip-dimension",
+        "name": "Ecaflip de la Dimension",
+        "level": 188,
+        "family": "Ecaflipus",
+        "weakElement": "terre",
+        "resistElement": "feu",
+        "priority": "danger",
+        "priorityReason": "Tire des cartes aléatoires pouvant buff/debuff n'importe qui, imprévisible",
+        "keyMechanic": "Effets de cartes aléatoires chaque tour. Prévoir des soins importants.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/ecaflip-de-la-dimension",
+        "verified": false
+      },
+      {
+        "id": "chat-ecaflipus",
+        "name": "Chat d'Ecaflipus",
+        "level": 185,
+        "family": "Ecaflipus",
+        "weakElement": "terre",
+        "resistElement": "feu",
+        "priority": "caution",
+        "priorityReason": "Dommages en ligne prévisibles, gérable avec bon positionnement",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/chat-ecaflipus",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "battelourd-ecaflip",
+      "name": "Battelourd l'Ecaflip",
+      "level": 200,
+      "family": "Ecaflipus",
+      "weakElement": "terre",
+      "resistElement": "feu",
+      "priority": "critical",
+      "priorityReason": "Boss à mécanique de chance/malchance, très imprévisible mais vulnérable à la Terre",
+      "keyMechanic": "Distribue des cartes de chance/malchance chaque tour. Certaines cartes sont bénéfiques, d'autres catastrophiques pour le joueur.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/battelourd-ecaflip.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début — 100% HP",
+          "behavior": "Distribution de cartes aléatoires. Jouer prudemment et soigner proactivement."
+        },
+        {
+          "trigger": "HP < 50%",
+          "behavior": "Cadence de distribution de cartes augmentée. Les effets négatifs deviennent plus fréquents."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Utiliser des sorts de Terre pour maximiser les dommages. Maintenir des soins constants face aux effets aléatoires. Les Ecaflips joueurs sont avantagés (résistances à la dimension). Burst rapide recommandé.",
+      "recommendedComp": ["DPS Terre (Sacrieur, Féca offensif)", "Eniripsa soins continus", "Ecaflip joueur (bonus dimension)", "Classe résistante aux debuffs"]
+    }
+  },
+  {
+    "id": "donjon-kolosso",
+    "name": "Donjon du Kolosso",
+    "slug": "donjon-kolosso",
+    "aliases": ["kolosso", "ile kolosso", "frigost kolosso", "boss frigost 2"],
+    "levelRange": [160, 175],
+    "recommendedLevel": 165,
+    "zone": "Île du Kolosso",
+    "continent": "Frigost",
+    "imageUrl": null,
+    "rooms": 5,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "kolosse-de-glace",
+        "name": "Kolosse de Glace",
+        "level": 163,
+        "family": "Kolosses",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "danger",
+        "priorityReason": "Immunités alternantes par élément, changer impérativement de sort selon son état",
+        "keyMechanic": "Immunité élémentaire qui tourne chaque round. Surveiller l'icône d'immunité active.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/kolosse-de-glace",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "kolosso",
+      "name": "Kolosso",
+      "level": 175,
+      "family": "Kolosses",
+      "weakElement": null,
+      "resistElement": null,
+      "priority": "critical",
+      "priorityReason": "Boss à immunités rotationnelles, il faut changer d'élément chaque round selon son immunité active",
+      "keyMechanic": "Immunité élémentaire rotationnelle (Eau → Feu → Terre → Air → Neutre). Surveiller l'immunité active et adapter en temps réel.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/kolosso.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Chaque début de round",
+          "behavior": "Change d'immunité élémentaire. Les dommages de l'élément immunisé sont nuls."
+        },
+        {
+          "trigger": "HP < 30%",
+          "behavior": "Augmente la fréquence de rotation des immunités. Surveillance constante requise."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Avoir plusieurs éléments disponibles dans le groupe (ou jouer Multiéléments). Observer l'icône d'immunité en début de round AVANT de lancer les sorts. Dommages neutres toujours efficaces.",
+      "recommendedComp": ["Classes multiéléments ou polyvalentes", "Dommages neutres (Sacrieur)", "Soigneur", "Éviter les mono-élément stricts"]
+    }
+  },
+  {
+    "id": "ile-de-moon",
+    "name": "Île de Moon",
+    "slug": "ile-de-moon",
+    "aliases": ["moon", "donjon moon", "ile moon", "masque moon"],
+    "levelRange": [195, 200],
+    "recommendedLevel": 200,
+    "zone": "Île de Moon",
+    "continent": "Pandala",
+    "imageUrl": null,
+    "rooms": 7,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "gardien-de-moon",
+        "name": "Gardien de Moon",
+        "level": 197,
+        "family": "Gardiens de Moon",
+        "weakElement": "air",
+        "resistElement": "terre",
+        "priority": "critical",
+        "priorityReason": "Rend Moon invincible tant qu'il est vivant, tuer absolument en premier",
+        "keyMechanic": "Bouclier d'invincibilité sur Moon. Sa mort est un prérequis pour DPS Moon.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/gardien-de-moon",
+        "verified": false
+      },
+      {
+        "id": "masque-sacre",
+        "name": "Masque Sacré",
+        "level": 195,
+        "family": "Gardiens de Moon",
+        "weakElement": "air",
+        "resistElement": "terre",
+        "priority": "danger",
+        "priorityReason": "Renforce le bouclier de Moon et soigne les Gardiens",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/masque-sacre",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "moon",
+      "name": "Moon",
+      "level": 200,
+      "family": "Gardiens de Moon",
+      "weakElement": "air",
+      "resistElement": "terre",
+      "priority": "critical",
+      "priorityReason": "Boss invincible tant que ses Gardiens sont vivants, phases de vulnérabilité courtes",
+      "keyMechanic": "Invincible tant qu'un Gardien de Moon vit. La fenêtre de DPS sur Moon est courte entre chaque invocation de Gardiens.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/moon.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début — avec Gardiens",
+          "behavior": "Invincible. Tuer les Gardiens dans l'ordre pour ouvrir la fenêtre de DPS."
+        },
+        {
+          "trigger": "Fenêtre de vulnérabilité (Gardiens morts)",
+          "behavior": "Burst maximum sur Moon. Durée limitée avant invocation de nouveaux Gardiens."
+        },
+        {
+          "trigger": "HP < 40%",
+          "behavior": "Invoque des Masques Sacrés supplémentaires et augmente ses dommages propres."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Organisation stricte : désigner qui kill quel Gardien. Burst immédiat sur Moon à chaque fenêtre de vulnérabilité. Utiliser l'air pour exploiter sa faiblesse. Le timing est critique.",
+      "recommendedComp": ["DPS air burst (Crâ, Iop air)", "Soigneur robuste", "Classe de contrôle des Gardiens", "Féca ou Sacrieur pour encaisser les phases enragées"]
+    }
+  },
+  {
+    "id": "chateau-frigost-1",
+    "name": "Château de Frigost",
+    "slug": "chateau-frigost",
+    "aliases": ["frigost 1", "château frigost", "sylargh", "frigost debutant"],
+    "levelRange": [95, 115],
+    "recommendedLevel": 100,
+    "zone": "Frigost I",
+    "continent": "Frigost",
+    "imageUrl": null,
+    "rooms": 5,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "fantome-de-frigost",
+        "name": "Fantôme de Frigost",
+        "level": 100,
+        "family": "Morts-Vivants de Frigost",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "danger",
+        "priorityReason": "Résurrection des alliés tombés, éliminer avant de tuer d'autres mobs",
+        "keyMechanic": "Ressuscite un allié tombé une fois par combat. Tuer les Fantômes en premier.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/fantome-de-frigost",
+        "verified": false
+      },
+      {
+        "id": "chevalier-frigost",
+        "name": "Chevalier de Frigost",
+        "level": 105,
+        "family": "Morts-Vivants de Frigost",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "caution",
+        "priorityReason": "Dommages physiques importants, à cibler en second",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/chevalier-de-frigost",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "sylargh",
+      "name": "Sylargh",
+      "level": 115,
+      "family": "Morts-Vivants de Frigost",
+      "weakElement": "feu",
+      "resistElement": "eau",
+      "priority": "critical",
+      "priorityReason": "Boss des morts-vivants de Frigost 1, résistances Eau élevées",
+      "keyMechanic": "Résistances élémentaires très élevées à l'Eau. Utiliser le Feu exclusivement.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/sylargh.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début du combat",
+          "behavior": "Dommages modérés. Éliminer d'abord les Fantômes pour éviter les résurrections."
+        },
+        {
+          "trigger": "HP < 40%",
+          "behavior": "Augmente ses dommages et peut invoquer des Chevaliers supplémentaires."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Tuer les Fantômes en priorité absolue. Focus feu sur Sylargh. Combat accessible, bon donjon d'entraînement pour Frigost.",
+      "recommendedComp": ["Classes feu (Crâ feu, Iop feu)", "Soigneur", "N'importe quelle composition solide"]
+    }
+  },
+  {
+    "id": "donjon-dragon-cochon",
+    "name": "Donjon du Dragon Cochon",
+    "slug": "donjon-dragon-cochon",
+    "aliases": ["dragon cochon", "dc", "donjon dc", "cochon dragon"],
+    "levelRange": [120, 140],
+    "recommendedLevel": 130,
+    "zone": "Porco",
+    "continent": "Amakna",
+    "imageUrl": null,
+    "rooms": 5,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "bouffon-de-porco",
+        "name": "Bouffon de Porco",
+        "level": 125,
+        "family": "Porcos",
+        "weakElement": "air",
+        "resistElement": "feu",
+        "priority": "danger",
+        "priorityReason": "Rage le Dragon Cochon à sa mort, tuer le Dragon AVANT les Bouffons",
+        "keyMechanic": "Sa mort déclenche un état de rage sur le Dragon Cochon. Garder les Bouffons en vie jusqu'à la mort du boss.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/bouffon-de-porco",
+        "verified": false
+      },
+      {
+        "id": "cochon-de-lait",
+        "name": "Cochon de Lait",
+        "level": 122,
+        "family": "Porcos",
+        "weakElement": "air",
+        "resistElement": "feu",
+        "priority": "manageable",
+        "priorityReason": "Mob faible, ignorable sauf s'il soigne les alliés",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/cochon-de-lait",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "dragon-cochon",
+      "name": "Dragon Cochon",
+      "level": 140,
+      "family": "Porcos",
+      "weakElement": "air",
+      "resistElement": "feu",
+      "priority": "critical",
+      "priorityReason": "Boss, entre en rage si un Bouffon meurt avant lui. Tuer le Dragon avant les Bouffons.",
+      "keyMechanic": "Entre en mode rage (dommages ×3) si un Bouffon de Porco meurt avant lui. TOUJOURS tuer le Dragon en premier.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/dragon-cochon.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début (normal)",
+          "behavior": "Dommages normaux. Focus DPS total sur le Dragon Cochon, ignorer les Bouffons."
+        },
+        {
+          "trigger": "Mort d'un Bouffon (avant le Dragon)",
+          "behavior": "RAGE : dommages triplés, quasi-invincible. Situation de wipe quasi-certaine."
+        }
+      ],
+      "instantKillConditions": ["Tuer un Bouffon de Porco avant le Dragon Cochon"],
+      "recommendedStrategy": "Règle numéro 1 : tuer le Dragon Cochon en PREMIER. Ignorer totalement les Bouffons jusqu'à la mort du boss. DPS burst sur le Dragon dès le début.",
+      "recommendedComp": ["DPS air burst", "Soigneur", "Contrôle pour immobiliser les Bouffons loin du combat", "Crâ ou Iop pour burst rapide"]
+    }
+  },
+  {
+    "id": "donjon-wa-wabbit",
+    "name": "Donjon du Wa Wabbit",
+    "slug": "donjon-wa-wabbit",
+    "aliases": ["wabbit", "wa wabbit", "ile des wabbits", "lapin wabbit"],
+    "levelRange": [85, 100],
+    "recommendedLevel": 90,
+    "zone": "Île des Wabbits",
+    "continent": "Amakna",
+    "imageUrl": null,
+    "rooms": 5,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "wabbit-royal",
+        "name": "Wabbit Royal",
+        "level": 90,
+        "family": "Wabbits",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "danger",
+        "priorityReason": "Pose des Carotrofs qui rendent le Wa Wabbit invincible, détruire les Carotrofs",
+        "keyMechanic": "Pose des Carotrofs (invocations) qui rendent le boss invincible. Détruire les Carotrofs en priorité.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/wabbit-royal",
+        "verified": false
+      },
+      {
+        "id": "wabbit-guerrier",
+        "name": "Wabbit Guerrier",
+        "level": 87,
+        "family": "Wabbits",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "caution",
+        "priorityReason": "Attaque solide mais prévisible, gérable",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/wabbit-guerrier",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "wa-wabbit-royal",
+      "name": "Wa Wabbit Royal",
+      "level": 100,
+      "family": "Wabbits",
+      "weakElement": "feu",
+      "resistElement": "eau",
+      "priority": "critical",
+      "priorityReason": "Invincible quand une Carotrof est active près de lui. Détruire la Carotrof puis burst.",
+      "keyMechanic": "Invincible tant qu'une Carotrof est dans un rayon de 2 cases. Détruire la Carotrof (entité invocable) avant de pouvoir le DPS.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/wa-wabbit-royal.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Carotrof active (rayon 2 cases)",
+          "behavior": "Invincible. Focus sur la destruction de la Carotrof."
+        },
+        {
+          "trigger": "Carotrof détruite",
+          "behavior": "Vulnérable. DPS burst sur le Wa Wabbit avant qu'il en pose une autre."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Identifier et détruire la Carotrof à chaque round. Burst immédiat sur le Wa Wabbit dans les fenêtres de vulnérabilité. Le feu est l'élément optimal.",
+      "recommendedComp": ["DPS feu (Crâ, Iop)", "Soigneur", "Classe capable de cibler des entités (Carotrof)"]
+    }
+  },
+  {
+    "id": "donjon-bouftou-royal",
+    "name": "Donjon Bouftou Royal",
+    "slug": "donjon-bouftou-royal",
+    "aliases": ["bouftou", "bouftou royal", "donjon bouf", "plaine bouftous"],
+    "levelRange": [30, 45],
+    "recommendedLevel": 35,
+    "zone": "Plaines des Bouftous",
+    "continent": "Amakna",
+    "imageUrl": null,
+    "rooms": 4,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "chef-de-guerre-bouftou",
+        "name": "Bouftou Guerrier",
+        "level": 33,
+        "family": "Bouftous",
+        "weakElement": "eau",
+        "resistElement": "feu",
+        "priority": "danger",
+        "priorityReason": "Buff les autres Bouftous, tuer en priorité pour réduire les buffs",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/bouftou-guerrier",
+        "verified": false
+      },
+      {
+        "id": "bouftou-noir",
+        "name": "Bouftou Noir",
+        "level": 35,
+        "family": "Bouftous",
+        "weakElement": "eau",
+        "resistElement": "feu",
+        "priority": "caution",
+        "priorityReason": "Invoque 2 Bouftous à sa mort, nettoyer rapidement",
+        "keyMechanic": "Invoque 2 Bouftous normaux à sa mort.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/bouftou-noir",
+        "verified": false
+      },
+      {
+        "id": "bouftou-standard",
+        "name": "Bouftou",
+        "level": 30,
+        "family": "Bouftous",
+        "weakElement": "eau",
+        "resistElement": "feu",
+        "priority": "manageable",
+        "priorityReason": "Mob de base, aucune mécanique spéciale",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/bouftou",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "chef-de-guerre-bouftou-boss",
+      "name": "Chef de Guerre Bouftou",
+      "level": 45,
+      "family": "Bouftous",
+      "weakElement": "eau",
+      "resistElement": "feu",
+      "priority": "critical",
+      "priorityReason": "Boss, AoE en croix sur 2 cases, tuer en premier avant de s'occuper du reste",
+      "keyMechanic": "AoE en croix de 2 cases chaque round. Rester hors de la croix ou encaisser avec un soigneur.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/chef-de-guerre-bouftou.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début du combat",
+          "behavior": "AoE croix classique. Simple, bon donjon d'apprentissage."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Donjon d'introduction idéal. Tuer d'abord le Chef de Guerre, puis le Bouftou Noir (pour éviter les invocations), puis le reste. Eau très efficace.",
+      "recommendedComp": ["N'importe quelle composition de niveau 35+"]
+    }
+  },
+  {
+    "id": "donjon-tofu",
+    "name": "Donjon Tofu",
+    "slug": "donjon-tofu",
+    "aliases": ["tofu", "donjon des tofus", "tofu royal", "astrub tofu"],
+    "levelRange": [15, 30],
+    "recommendedLevel": 20,
+    "zone": "Astrub",
+    "continent": "Amakna",
+    "imageUrl": null,
+    "rooms": 3,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "tofu-sauvage",
+        "name": "Tofu Sauvage",
+        "level": 18,
+        "family": "Tofus",
+        "weakElement": "terre",
+        "resistElement": "air",
+        "priority": "manageable",
+        "priorityReason": "Mob faible, aucune mécanique particulière",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/tofu-sauvage",
+        "verified": false
+      },
+      {
+        "id": "tofu-enrage",
+        "name": "Tofu Enragé",
+        "level": 22,
+        "family": "Tofus",
+        "weakElement": "terre",
+        "resistElement": "air",
+        "priority": "caution",
+        "priorityReason": "Attaque plus forte, à cibler en premier parmi les mobs normaux",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/tofu-enrage",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "tofu-royal",
+      "name": "Tofu Royal",
+      "level": 30,
+      "family": "Tofus",
+      "weakElement": "terre",
+      "resistElement": "air",
+      "priority": "critical",
+      "priorityReason": "Boss basique, bon pour l'apprentissage des mécaniques de donjon",
+      "keyMechanic": null,
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/tofu-royal.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début du combat",
+          "behavior": "Combat standard sans mécanique complexe. Idéal pour les débutants."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Premier donjon recommandé. Utiliser la Terre. Aucune stratégie particulière nécessaire.",
+      "recommendedComp": ["N'importe quelle composition débutante niveau 15+"]
+    }
+  },
+  {
+    "id": "donjon-kwak",
+    "name": "Donjon du Kwak",
+    "slug": "donjon-kwak",
+    "aliases": ["kwak", "donjon des kwaks", "kwakwa"],
+    "levelRange": [65, 80],
+    "recommendedLevel": 70,
+    "zone": "Forêt de Grandapan",
+    "continent": "Amakna",
+    "imageUrl": null,
+    "rooms": 4,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "kwak-blanc",
+        "name": "Kwak Blanc",
+        "level": 68,
+        "family": "Kwaks",
+        "weakElement": "terre",
+        "resistElement": "feu",
+        "priority": "caution",
+        "priorityReason": "Soigne les alliés Kwaks, à éliminer avant les autres",
+        "keyMechanic": "Soins sur les alliés. Cibler en premier pour arrêter les soins.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/kwak-blanc",
+        "verified": false
+      },
+      {
+        "id": "kwak-rouge",
+        "name": "Kwak Rouge",
+        "level": 70,
+        "family": "Kwaks",
+        "weakElement": "eau",
+        "resistElement": "feu",
+        "priority": "danger",
+        "priorityReason": "Dommages feu élevés pour le niveau, cibler en priorité",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/kwak-rouge",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "kwakwa",
+      "name": "Kwakwa",
+      "level": 80,
+      "family": "Kwaks",
+      "weakElement": "terre",
+      "resistElement": "feu",
+      "priority": "critical",
+      "priorityReason": "Boss avec buff de ses alliés Kwaks, focus après élimination des soigneurs",
+      "keyMechanic": "Gagne un bonus de dommages pour chaque Kwak allié encore vivant.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/kwakwa.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début — alliés Kwaks présents",
+          "behavior": "Bonus de dommages selon le nombre d'alliés. Éliminer les Kwaks Blancs en premier."
+        },
+        {
+          "trigger": "Alliés éliminés",
+          "behavior": "Dommages réduits. Focus total sur Kwakwa."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Tuer les Kwaks Blancs (soigneurs) d'abord, puis les Kwaks Rouges, enfin Kwakwa. Utiliser la Terre contre le boss.",
+      "recommendedComp": ["DPS Terre", "Soigneur", "N'importe quelle composition solide niveau 70"]
+    }
+  },
+  {
+    "id": "donjon-chafers",
+    "name": "Donjon des Chafers",
+    "slug": "donjon-chafers",
+    "aliases": ["chafers", "donjon chafer", "squelettes", "chafer lanceur"],
+    "levelRange": [55, 70],
+    "recommendedLevel": 65,
+    "zone": "Cimetière de Brakmar",
+    "continent": "Amakna",
+    "imageUrl": null,
+    "rooms": 4,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "chafer-lanceur",
+        "name": "Chafer Lanceur",
+        "level": 63,
+        "family": "Chafers",
+        "weakElement": "feu",
+        "resistElement": "air",
+        "priority": "danger",
+        "priorityReason": "Attaques à distance à fort portée, dangereux si laissé libre",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/chafer-lanceur",
+        "verified": false
+      },
+      {
+        "id": "chafer-fantassin",
+        "name": "Chafer Fantassin",
+        "level": 60,
+        "family": "Chafers",
+        "weakElement": "feu",
+        "resistElement": "air",
+        "priority": "manageable",
+        "priorityReason": "Attaque CAC standard, gérable",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/chafer-fantassin",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "chafer-arquebusier",
+      "name": "Chafer Arquebusier",
+      "level": 70,
+      "family": "Chafers",
+      "weakElement": "feu",
+      "resistElement": "air",
+      "priority": "critical",
+      "priorityReason": "Boss avec tirs à longue portée, rester hors de ligne de vue ou rush CAC",
+      "keyMechanic": "Tirs longue portée en ligne droite. Se positionner hors de sa ligne de vue ou rush au CAC.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/chafer-arquebusier.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début du combat",
+          "behavior": "Tirs longue portée. Se coller au boss dès que possible."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Rusher le boss au CAC pour bloquer ses tirs. Tuer les Lanceurs d'abord. Feu très efficace.",
+      "recommendedComp": ["Classes CAC (Iop, Sacrieur)", "Soigneur", "N'importe quelle comp niveau 65"]
+    }
+  },
+  {
+    "id": "donjon-rats-chateau",
+    "name": "Donjon des Rats du Château",
+    "slug": "donjon-rats-chateau",
+    "aliases": ["rats", "château amakna", "rats du château", "donjon rat"],
+    "levelRange": [48, 62],
+    "recommendedLevel": 55,
+    "zone": "Château d'Amakna",
+    "continent": "Amakna",
+    "imageUrl": null,
+    "rooms": 4,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "rat-de-donjon",
+        "name": "Rat de Donjon",
+        "level": 50,
+        "family": "Rats",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "manageable",
+        "priorityReason": "Mob faible, aucune mécanique",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/rat-de-donjon",
+        "verified": false
+      },
+      {
+        "id": "rat-empoisonneur",
+        "name": "Rat Empoisonneur",
+        "level": 55,
+        "family": "Rats",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "danger",
+        "priorityReason": "Empoisonnement stack dangereux si plusieurs actifs en même temps",
+        "keyMechanic": "Pose un poison par tour. Tuer rapidement pour éviter l'accumulation.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/rat-empoisonneur",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "roi-des-rats",
+      "name": "Roi des Rats",
+      "level": 62,
+      "family": "Rats",
+      "weakElement": "feu",
+      "resistElement": "eau",
+      "priority": "critical",
+      "priorityReason": "Boss avec poison de zone, soins constants nécessaires",
+      "keyMechanic": "Pose un empoisonnement de zone autour de lui chaque tour. Maintenir distance ou soins constants.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/roi-des-rats.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début du combat",
+          "behavior": "Empoisonnement de zone. Garder le soigneur actif en permanence."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Tuer les Empoisonneurs d'abord. Soigner proactivement. Utiliser le feu contre le boss.",
+      "recommendedComp": ["Soigneur obligatoire (Eniripsa)", "DPS feu", "Comp standard niveau 55"]
+    }
+  },
+  {
+    "id": "forteresse-kimbo",
+    "name": "Forteresse de Kimbo",
+    "slug": "forteresse-kimbo",
+    "aliases": ["kimbo", "frigost 2 boss", "forteresse frigost", "yeti kimbo"],
+    "levelRange": [115, 130],
+    "recommendedLevel": 120,
+    "zone": "Frigost II",
+    "continent": "Frigost",
+    "imageUrl": null,
+    "rooms": 5,
+    "keyRequired": false,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "yeti-de-kimbo",
+        "name": "Yéti de Kimbo",
+        "level": 118,
+        "family": "Yétis",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "danger",
+        "priorityReason": "Gèle les joueurs en place, immobilisation dangereuse",
+        "keyMechanic": "Immobilise les joueurs ciblés pendant 2 tours.",
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/yeti-de-kimbo",
+        "verified": false
+      },
+      {
+        "id": "pingouin-de-frigost",
+        "name": "Pingouin de Frigost",
+        "level": 115,
+        "family": "Pingouins",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "caution",
+        "priorityReason": "Mob de soutien, peut soigner légèrement les alliés",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/pingouin-de-frigost",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "kimbo",
+      "name": "Kimbo",
+      "level": 130,
+      "family": "Yétis",
+      "weakElement": "feu",
+      "resistElement": "eau",
+      "priority": "critical",
+      "priorityReason": "Boss Yéti, immobilisations massives et dommages physiques importants",
+      "keyMechanic": "Immobilise plusieurs joueurs simultanément. Un soigneur est indispensable.",
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/kimbo.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début du combat",
+          "behavior": "Immobilisations et dommages croissants. Maintenir les soins actifs."
+        },
+        {
+          "trigger": "HP < 40%",
+          "behavior": "Augmente la fréquence des immobilisations. Accélérer le kill."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Tuer les Yétis en premier pour réduire les immobilisations. Focus feu sur Kimbo. Soigneur indispensable.",
+      "recommendedComp": ["DPS feu (Crâ, Iop)", "Eniripsa soins", "Classe mobile pour gérer les immobilisations"]
+    }
+  },
+  {
+    "id": "abysses-frigost",
+    "name": "Abysses de Frigost",
+    "slug": "abysses-frigost",
+    "aliases": ["abysses frigost", "frigost 2 abysses", "donjon abysses", "adorabble"],
+    "levelRange": [140, 160],
+    "recommendedLevel": 145,
+    "zone": "Frigost II",
+    "continent": "Frigost",
+    "imageUrl": null,
+    "rooms": 6,
+    "keyRequired": true,
+    "achievements": [],
+    "lastUpdated": "2026-04-17T00:00:00.000Z",
+    "dataVersion": "0.1.0-manual",
+    "monsters": [
+      {
+        "id": "creature-abyssale",
+        "name": "Créature Abyssale",
+        "level": 143,
+        "family": "Créatures de Frigost",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "danger",
+        "priorityReason": "Dommages élevés en AoE, priorité sur les mobs normaux",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/creature-abyssale",
+        "verified": false
+      },
+      {
+        "id": "abomination-de-frigost",
+        "name": "Abomination de Frigost",
+        "level": 140,
+        "family": "Créatures de Frigost",
+        "weakElement": "feu",
+        "resistElement": "eau",
+        "priority": "caution",
+        "priorityReason": "Mob résistant mais sans mécanique spéciale",
+        "keyMechanic": null,
+        "source": "manual",
+        "sourceUrl": "https://dofusdb.fr/fr/database/monsters/abomination-de-frigost",
+        "verified": false
+      }
+    ],
+    "boss": {
+      "id": "adorabble",
+      "name": "Adorăbble",
+      "level": 160,
+      "family": "Créatures de Frigost",
+      "weakElement": "feu",
+      "resistElement": "eau",
+      "priority": "critical",
+      "priorityReason": "Boss Frigost 2, dommages importants et mécaniques de terrain",
+      "keyMechanic": null,
+      "source": "manual",
+      "sourceUrl": "https://www.dofuspourlesnoobs.com/adorabble.html",
+      "verified": false,
+      "phases": [
+        {
+          "trigger": "Début du combat",
+          "behavior": "Dommages constants. Focus feu."
+        }
+      ],
+      "instantKillConditions": [],
+      "recommendedStrategy": "Combat de transition Frigost 2 → 3. Focus feu. Soigneur recommandé.",
+      "recommendedComp": ["DPS feu", "Soigneur", "Composition standard niveau 145"]
+    }
+  }
+]

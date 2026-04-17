@@ -6,5 +6,5 @@ target/
 scraper/cache/
 scraper/output/dungeons.json
 scraper/output/fuse-index.json
-app/src/data/dungeons.json
+# app/src/data/dungeons.json — committé (curated manual data, sera remplacé par scraper output)
 app/src/data/fuse-index.json
