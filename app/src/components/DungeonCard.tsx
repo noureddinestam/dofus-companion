@@ -1,8 +1,11 @@
 import { openUrl } from '@tauri-apps/plugin-opener';
 import type { Dungeon } from '../types/dungeon';
 import { useI18n } from '../i18n/useI18n';
+import { useAppStore } from '../store/appStore';
+import { StrategyShortView } from '../features/strategy/StrategyShortView';
 import { MonsterRow } from './MonsterRow';
 import { BossPanel } from './BossPanel';
+import { ViewToggle } from './ViewToggle';
 
 interface DungeonCardProps {
   dungeon: Dungeon;
@@ -11,6 +14,7 @@ interface DungeonCardProps {
 
 export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
   const { t } = useI18n();
+  const strategyView = useAppStore((s) => s.strategyView);
   // Monstres triés par niveau décroissant (plus dangereux en premier)
   const sortedMonsters = [...dungeon.monsters].sort((a, b) => b.level - a.level);
 
@@ -80,6 +84,9 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
             </div>
           </div>
         </div>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 6 }}>
+          <ViewToggle />
+        </div>
       </div>
 
       {/* Scrollable content */}
@@ -102,7 +109,37 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
           <MonsterRow key={m.id} monster={m} />
         ))}
 
-        <BossPanel boss={dungeon.boss} />
+        {/* Boss header toujours affiché */}
+        <div
+          style={{
+            padding: '6px 10px',
+            background: 'rgba(232,181,71,0.08)',
+            borderTop: '1px solid rgba(232,181,71,0.2)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6,
+            marginTop: 8,
+          }}
+        >
+          <span
+            style={{
+              color: 'var(--accent)',
+              fontSize: 11,
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+            }}
+          >
+            {t.dungeon.boss}
+          </span>
+        </div>
+        <MonsterRow monster={dungeon.boss} isBoss />
+
+        {/* Rendu selon la vue choisie — short par défaut (pensée "actionnable combat") */}
+        {strategyView === 'short' ? (
+          <StrategyShortView bundle={dungeon.boss.strategies} />
+        ) : (
+          <BossPanel boss={dungeon.boss} />
+        )}
 
         {/* Source credit */}
         <div
@@ -117,13 +154,6 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
         >
           <span>📖 {t.dungeon.verified}</span>
           <span style={{ color: 'var(--text-secondary)' }}>{t.source.dofusdb}</span>
-          {dungeon.boss.strategy && (
-            <>
-              <span>·</span>
-              <span>{t.dungeon.strategyLabel}</span>
-              <span style={{ color: 'var(--text-secondary)' }}>{t.source.fandomEn}</span>
-            </>
-          )}
         </div>
       </div>
     </div>

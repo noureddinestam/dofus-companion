@@ -1,72 +1,52 @@
-import { openUrl } from '@tauri-apps/plugin-opener';
 import type { Boss } from '../types/dungeon';
 import { useI18n } from '../i18n/useI18n';
-import { MonsterRow } from './MonsterRow';
+import { resolveStrategy } from '../features/strategy/resolveStrategy';
+import { ProvenanceBadge } from '../features/strategy/ProvenanceBadge';
 
 interface BossPanelProps {
   boss: Boss;
 }
 
-const SOURCE_LABEL_KEY: Record<
-  NonNullable<Boss['strategy']>['source'],
-  'fandomEn'
-> = {
-  'fandom-en': 'fandomEn',
-};
-
+/**
+ * Rend la stratégie LONG du boss (vue "Détaillée") + les phases.
+ * Ne rend PAS le header Boss/MonsterRow — DungeonCard s'en charge pour
+ * pouvoir alterner entre StrategyShortView et BossPanel sans dupliquer.
+ */
 export function BossPanel({ boss }: BossPanelProps) {
-  const { t } = useI18n();
-  const hasStrategy = !!boss.strategy;
+  const { t, lang } = useI18n();
+  const resolved = resolveStrategy(boss.strategies, lang, 'long');
 
   return (
-    <div style={{ marginTop: 8 }}>
-      <div
-        style={{
-          padding: '6px 10px',
-          background: 'rgba(232,181,71,0.08)',
-          borderTop: '1px solid rgba(232,181,71,0.2)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 6,
-        }}
-      >
-        <span
-          style={{
-            color: 'var(--accent)',
-            fontSize: 11,
-            fontWeight: 700,
-            letterSpacing: '0.08em',
-          }}
-        >
-          {t.dungeon.boss}
-        </span>
-      </div>
-
-      <MonsterRow monster={boss} isBoss />
-
+    <div>
       {boss.phases.length > 0 && (
         <div style={{ padding: '6px 10px 2px' }}>
-          {boss.phases.map((phase, i) => (
-            <div key={i} style={{ marginBottom: 6 }}>
-              <div style={{ color: 'var(--accent)', fontSize: 11, fontWeight: 600 }}>
-                ⚡ {phase.trigger}
+          {boss.phases.map((phase, i) => {
+            const trigger =
+              lang === 'en' && phase.triggerEn ? phase.triggerEn : phase.trigger;
+            const behavior =
+              lang === 'en' && phase.behaviorEn ? phase.behaviorEn : phase.behavior;
+            return (
+              <div key={i} style={{ marginBottom: 6 }}>
+                <div style={{ color: 'var(--accent)', fontSize: 11, fontWeight: 600 }}>
+                  ⚡ {trigger}
+                </div>
+                <div
+                  style={{
+                    color: 'var(--text-secondary)',
+                    fontSize: 11,
+                    paddingLeft: 14,
+                    lineHeight: 1.4,
+                  }}
+                >
+                  {behavior}
+                </div>
               </div>
-              <div
-                style={{
-                  color: 'var(--text-secondary)',
-                  fontSize: 11,
-                  paddingLeft: 14,
-                  lineHeight: 1.4,
-                }}
-              >
-                {phase.behavior}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
-      {hasStrategy ? (
+      {resolved ? (
         <div
           style={{
             margin: '6px 10px 0',
@@ -78,47 +58,46 @@ export function BossPanel({ boss }: BossPanelProps) {
         >
           <div
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 6,
+              color: 'var(--text-muted)',
+              fontSize: 10,
+              fontWeight: 700,
+              letterSpacing: '0.06em',
               marginBottom: 5,
             }}
           >
-            <span
-              style={{
-                color: 'var(--text-muted)',
-                fontSize: 10,
-                fontWeight: 700,
-                letterSpacing: '0.06em',
-              }}
-            >
-              {t.dungeon.strategy}
-            </span>
-            <span
-              onClick={() => boss.strategy && openUrl(boss.strategy.sourceUrl)}
-              style={{
-                color: 'var(--accent)',
-                fontSize: 9,
-                padding: '1px 5px',
-                border: '1px solid rgba(232,181,71,0.3)',
-                borderRadius: 3,
-                cursor: 'pointer',
-              }}
-              title={boss.strategy!.sourceUrl}
-            >
-              {t.source[SOURCE_LABEL_KEY[boss.strategy!.source]]} ↗
-            </span>
+            {t.dungeon.strategy}
           </div>
+
+          {resolved.fellBack && (
+            <div
+              style={{
+                padding: '3px 7px',
+                marginBottom: 6,
+                borderRadius: 'var(--radius-sm)',
+                background: 'rgba(250,204,21,0.08)',
+                border: '1px solid rgba(250,204,21,0.2)',
+                color: 'var(--priority-caution)',
+                fontSize: 10,
+                lineHeight: 1.3,
+              }}
+            >
+              {t.strategy.fallbackLang(resolved.effectiveLang === 'fr' ? 'FR' : 'EN')}
+            </div>
+          )}
+
           <p
             style={{
               color: 'var(--text-secondary)',
               fontSize: 11,
               lineHeight: 1.5,
               whiteSpace: 'pre-wrap',
+              marginBottom: 6,
             }}
           >
-            {boss.strategy!.text}
+            {resolved.content.text}
           </p>
+
+          <ProvenanceBadge provenance={resolved.content.provenance} />
         </div>
       ) : (
         <div
