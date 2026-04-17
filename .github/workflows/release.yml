@@ -31,24 +31,58 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - uses: tauri-apps/tauri-action@v0
+      - name: Build Tauri app
+        run: pnpm --filter app tauri build
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+
+      - name: Generate latest.json
+        shell: pwsh
+        run: |
+          $conf = Get-Content app/src-tauri/tauri.conf.json | ConvertFrom-Json
+          $version = $conf.version
+          $repo = "${{ github.repository }}"
+          $tag  = "${{ github.ref_name }}"
+          $base = "https://github.com/$repo/releases/download/$tag"
+
+          # Préfère NSIS pour l'auto-updater (plus léger)
+          $nsisExe = Get-ChildItem "app/src-tauri/target/release/bundle/nsis" -Filter "*-setup.exe" | Select-Object -First 1
+          $nsisSig = Get-Content "$($nsisExe.FullName).sig" -Raw
+
+          $manifest = [ordered]@{
+            version  = $version
+            notes    = "Voir https://github.com/$repo/releases/tag/$tag"
+            pub_date = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
+            platforms = @{
+              "windows-x86_64" = [ordered]@{
+                signature = $nsisSig.Trim()
+                url       = "$base/$($nsisExe.Name)"
+              }
+            }
+          }
+
+          $manifest | ConvertTo-Json -Depth 5 | Set-Content latest.json -Encoding utf8
+          Write-Host "latest.json :"
+          Get-Content latest.json
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          projectPath: app
-          tagName: ${{ github.ref_name }}
-          releaseName: 'Dofus Companion ${{ github.ref_name }}'
-          releaseBody: |
+          name: "Dofus Companion ${{ github.ref_name }}"
+          body: |
             ## Installation
 
-            Téléchargez `Dofus.Companion_x64-setup.exe` (NSIS, recommandé) ou `.msi`.
+            Téléchargez **`Dofus.Companion_x64-setup.exe`** (NSIS, recommandé) ou `.msi`.
 
             **Première installation :** lancez le setup, acceptez WebView2 si demandé.
-            **Mise à jour :** l'application détecte automatiquement les nouvelles versions.
+            **Mise à jour :** l'application détecte et installe automatiquement les nouvelles versions.
 
             ---
-            Voir [CHANGELOG](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) pour les détails.
-          releaseDraft: false
-          prerelease: false
+            Voir le [README](https://github.com/${{ github.repository }}#readme) pour les raccourcis et la configuration.
+          files: |
+            app/src-tauri/target/release/bundle/msi/*.msi
+            app/src-tauri/target/release/bundle/msi/*.msi.sig
+            app/src-tauri/target/release/bundle/nsis/*-setup.exe
+            app/src-tauri/target/release/bundle/nsis/*-setup.exe.sig
+            latest.json
