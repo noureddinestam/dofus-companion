@@ -6,6 +6,7 @@ import { DungeonCard } from './components/DungeonCard';
 import { useDungeons } from './features/dungeons/useDungeons';
 import { useSearch } from './features/search/useSearch';
 import { useUpdater } from './hooks/useUpdater';
+import { useI18n } from './i18n/useI18n';
 import type { Dungeon } from './types/dungeon';
 
 function levelBadgeColor(level: number): string {
@@ -23,6 +24,7 @@ export default function App() {
   const [focusIdx, setFocusIdx] = useState(0);
   const searchRef = useRef<HTMLInputElement>(null);
   const { update, install, dismiss } = useUpdater();
+  const { toggleLang } = useI18n();
 
   const handleQueryChange = useCallback(
     (q: string) => {
@@ -45,6 +47,19 @@ export default function App() {
 
   useEffect(() => {
     const down = async (e: KeyboardEvent) => {
+      // Ctrl+L global : bascule langue (fonctionne même dans la fiche donjon)
+      // N'intercepte pas si focus sur input pour préserver la sélection d'URL native
+      if (e.ctrlKey && e.key.toLowerCase() === 'l') {
+        const inInput =
+          document.activeElement instanceof HTMLInputElement ||
+          document.activeElement instanceof HTMLTextAreaElement;
+        if (!inInput) {
+          e.preventDefault();
+          toggleLang();
+          return;
+        }
+      }
+
       if (selected) {
         if (e.key === 'Escape' || e.key === 'Backspace') {
           if (e.key === 'Backspace' && document.activeElement === searchRef.current) return;
@@ -88,7 +103,7 @@ export default function App() {
 
     window.addEventListener('keydown', down);
     return () => window.removeEventListener('keydown', down);
-  }, [selected, results, focusIdx, goBack, openDungeon]);
+  }, [selected, results, focusIdx, goBack, openDungeon, toggleLang]);
 
   // Focus search on mount
   useEffect(() => {
