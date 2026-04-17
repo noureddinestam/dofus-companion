@@ -1,5 +1,6 @@
 import type { Monster } from '../types/dungeon';
 import { ELEMENT_ICON } from '../types/dungeon';
+import { useI18n } from '../i18n/useI18n';
 
 interface MonsterRowProps {
   monster: Monster;
@@ -7,6 +8,8 @@ interface MonsterRowProps {
 }
 
 export function MonsterRow({ monster, isBoss = false }: MonsterRowProps) {
+  const { t } = useI18n();
+
   return (
     <div
       style={{
@@ -39,13 +42,27 @@ export function MonsterRow({ monster, isBoss = false }: MonsterRowProps) {
         </span>
       )}
 
-      <span style={{ color: 'var(--text-secondary)', fontSize: 11, flexShrink: 0, fontVariantNumeric: 'tabular-nums' }}>
-        Nv.{monster.level}
+      <span
+        style={{
+          color: 'var(--text-secondary)',
+          fontSize: 11,
+          flexShrink: 0,
+          fontVariantNumeric: 'tabular-nums',
+        }}
+      >
+        {t.element.levelShort(monster.level)}
       </span>
 
       {monster.hp && (
-        <span style={{ color: 'var(--text-muted)', fontSize: 10, flexShrink: 0, fontVariantNumeric: 'tabular-nums' }}>
-          {monster.hp.toLocaleString('fr-FR')} PV
+        <span
+          style={{
+            color: 'var(--text-muted)',
+            fontSize: 10,
+            flexShrink: 0,
+            fontVariantNumeric: 'tabular-nums',
+          }}
+        >
+          {t.element.hpValue(monster.hp)}
         </span>
       )}
 
@@ -61,16 +78,17 @@ function ElementBadges({
   weak: Monster['weakElement'];
   resist: Monster['resistElement'];
 }) {
+  const { t } = useI18n();
   if (!weak && !resist) return null;
   return (
     <div style={{ display: 'flex', gap: 3, flexShrink: 0 }}>
       {weak && (
-        <span title={`Faiblesse : ${weak}`} style={{ fontSize: 11 }}>
+        <span title={`${t.element.weakness} : ${weak}`} style={{ fontSize: 11 }}>
           {ELEMENT_ICON[weak]}
         </span>
       )}
       {resist && (
-        <span title={`Résistance : ${resist}`} style={{ fontSize: 11, opacity: 0.5 }}>
+        <span title={`${t.element.resistance} : ${resist}`} style={{ fontSize: 11, opacity: 0.5 }}>
           🛡️
         </span>
       )}

@@ -24,7 +24,7 @@ export default function App() {
   const [focusIdx, setFocusIdx] = useState(0);
   const searchRef = useRef<HTMLInputElement>(null);
   const { update, install, dismiss } = useUpdater();
-  const { toggleLang } = useI18n();
+  const { t, toggleLang } = useI18n();
 
   const handleQueryChange = useCallback(
     (q: string) => {
@@ -145,7 +145,7 @@ export default function App() {
           flexShrink: 0,
         }}>
           <span style={{ color: 'var(--accent)', fontSize: 11, flex: 1 }}>
-            ↑ v{update.version} disponible
+            {t.update.available(update.version)}
           </span>
           <button
             onClick={install}
@@ -161,7 +161,7 @@ export default function App() {
               cursor: update.installing ? 'wait' : 'pointer',
             }}
           >
-            {update.installing ? '…' : 'Installer'}
+            {update.installing ? '…' : t.update.install}
           </button>
           <button
             onClick={dismiss}
@@ -209,6 +209,7 @@ function SearchView({
   onHover: (i: number) => void;
 }) {
   const rowRef = useRef<HTMLDivElement>(null);
+  const { t } = useI18n();
 
   // Scroll focused item into view
   useEffect(() => {
@@ -226,8 +227,8 @@ function SearchView({
         height: '100%',
         gap: 8,
       }}>
-        <span style={{ color: 'var(--text-muted)', fontSize: 13 }}>Aucun donjon trouvé</span>
-        <span style={{ color: 'var(--text-muted)', fontSize: 11 }}>Essayez "frigost", "bouf", "vlad"…</span>
+        <span style={{ color: 'var(--text-muted)', fontSize: 13 }}>{t.search.empty}</span>
+        <span style={{ color: 'var(--text-muted)', fontSize: 11 }}>{t.search.hintExamples}</span>
       </div>
     );
   }
@@ -287,13 +288,13 @@ function SearchView({
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
               }}>
-                Boss : {d.boss.name}
+                {t.dungeon.bossPrefix} {d.boss.name}
               </div>
             </div>
 
             {d.boss.strategy && (
               <span
-                title="Stratégie Fandom disponible"
+                title={t.dungeon.strategyAvailable}
                 style={{ fontSize: 10, color: 'var(--accent)', flexShrink: 0 }}
               >
                 ✦
@@ -307,9 +308,21 @@ function SearchView({
 }
 
 function Footer({ selected }: { selected: Dungeon | null }) {
-  const hints = selected
-    ? [['Backspace', 'Retour'], ['Esc', 'Fermer'], ['↑↓', 'Sections']]
-    : [['↑↓', 'Naviguer'], ['Enter', 'Ouvrir'], ['Esc', 'Fermer'], ['/', 'Recherche']];
+  const { t } = useI18n();
+  const hints: Array<[string, string]> = selected
+    ? [
+        ['Backspace', t.dungeon.back],
+        ['Esc', t.footer.close],
+        ['↑↓', t.footer.sections],
+        ['Ctrl+L', t.footer.switchLang],
+      ]
+    : [
+        ['↑↓', t.footer.navigate],
+        ['Enter', t.footer.open],
+        ['Esc', t.footer.close],
+        ['/', t.footer.search],
+        ['Ctrl+L', t.footer.switchLang],
+      ];
 
   return (
     <div style={{

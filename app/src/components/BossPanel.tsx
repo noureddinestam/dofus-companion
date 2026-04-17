@@ -1,13 +1,21 @@
 import { openUrl } from '@tauri-apps/plugin-opener';
 import type { Boss } from '../types/dungeon';
-import { SOURCE_LABELS } from '../types/dungeon';
+import { useI18n } from '../i18n/useI18n';
 import { MonsterRow } from './MonsterRow';
 
 interface BossPanelProps {
   boss: Boss;
 }
 
+const SOURCE_LABEL_KEY: Record<
+  NonNullable<Boss['strategy']>['source'],
+  'fandomEn'
+> = {
+  'fandom-en': 'fandomEn',
+};
+
 export function BossPanel({ boss }: BossPanelProps) {
+  const { t } = useI18n();
   const hasStrategy = !!boss.strategy;
 
   return (
@@ -30,7 +38,7 @@ export function BossPanel({ boss }: BossPanelProps) {
             letterSpacing: '0.08em',
           }}
         >
-          BOSS
+          {t.dungeon.boss}
         </span>
       </div>
 
@@ -84,7 +92,7 @@ export function BossPanel({ boss }: BossPanelProps) {
                 letterSpacing: '0.06em',
               }}
             >
-              STRATÉGIE
+              {t.dungeon.strategy}
             </span>
             <span
               onClick={() => boss.strategy && openUrl(boss.strategy.sourceUrl)}
@@ -96,9 +104,9 @@ export function BossPanel({ boss }: BossPanelProps) {
                 borderRadius: 3,
                 cursor: 'pointer',
               }}
-              title={`Source : ${boss.strategy!.sourceUrl}`}
+              title={boss.strategy!.sourceUrl}
             >
-              {SOURCE_LABELS[boss.strategy!.source]} ↗
+              {t.source[SOURCE_LABEL_KEY[boss.strategy!.source]]} ↗
             </span>
           </div>
           <p
@@ -124,7 +132,7 @@ export function BossPanel({ boss }: BossPanelProps) {
             fontStyle: 'italic',
           }}
         >
-          Pas de stratégie documentée (aucune section vérifiée trouvée sur le wiki). Consultez le guide externe.
+          {t.dungeon.noStrategy}
         </div>
       )}
     </div>

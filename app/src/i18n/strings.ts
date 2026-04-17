@@ -20,6 +20,10 @@ export interface UiStrings {
     noStrategy: string;
     verified: string;
     strategyLabel: string;
+    bossPrefix: string;
+    strategyAvailable: string;
+    backTitle: string;
+    levelRange: (min: number, max: number) => string;
   };
   view: {
     detailed: string;
@@ -52,6 +56,8 @@ export interface UiStrings {
     weakness: string;
     resistance: string;
     hp: string;
+    levelShort: (n: number) => string;
+    hpValue: (hp: number) => string;
   };
   source: {
     dofusdb: string;
@@ -80,6 +86,10 @@ const fr: UiStrings = {
       'Pas de stratégie documentée (aucune section vérifiée trouvée sur le wiki). Consultez le guide externe.',
     verified: 'Données vérifiées',
     strategyLabel: 'Stratégie',
+    bossPrefix: 'Boss :',
+    strategyAvailable: 'Stratégie Fandom disponible',
+    backTitle: 'Retour (Backspace)',
+    levelRange: (min, max) => `Nv. ${min}–${max}`,
   },
   view: {
     detailed: 'Détaillée',
@@ -112,6 +122,8 @@ const fr: UiStrings = {
     weakness: 'Faiblesse',
     resistance: 'Résistance',
     hp: 'PV',
+    levelShort: (n) => `Nv.${n}`,
+    hpValue: (hp) => `${hp.toLocaleString('fr-FR')} PV`,
   },
   source: {
     dofusdb: 'DofusDB',
@@ -138,6 +150,10 @@ const en: UiStrings = {
       'No documented strategy (no verified section found on the wiki). See external guide.',
     verified: 'Verified data',
     strategyLabel: 'Strategy',
+    bossPrefix: 'Boss:',
+    strategyAvailable: 'Fandom strategy available',
+    backTitle: 'Back (Backspace)',
+    levelRange: (min, max) => `Lv. ${min}–${max}`,
   },
   view: {
     detailed: 'Detailed',
@@ -170,6 +186,8 @@ const en: UiStrings = {
     weakness: 'Weakness',
     resistance: 'Resistance',
     hp: 'HP',
+    levelShort: (n) => `Lv.${n}`,
+    hpValue: (hp) => `${hp.toLocaleString('en-US')} HP`,
   },
   source: {
     dofusdb: 'DofusDB',

@@ -1,5 +1,6 @@
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { LangToggle } from './LangToggle';
+import { useI18n } from '../i18n/useI18n';
 
 interface TitleBarProps {
   query: string;
@@ -8,6 +9,7 @@ interface TitleBarProps {
 }
 
 export function TitleBar({ query, onQueryChange, searchRef }: TitleBarProps) {
+  const { t } = useI18n();
   const hide = () => getCurrentWindow().hide();
 
   return (
@@ -28,7 +30,7 @@ export function TitleBar({ query, onQueryChange, searchRef }: TitleBarProps) {
       {/* Drag handle visuel — 6 points style "grip" */}
       <div
         data-tauri-drag-region
-        title="Glisser pour déplacer"
+        title={t.titleBar.dragHandle}
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 3px)',
@@ -85,7 +87,7 @@ export function TitleBar({ query, onQueryChange, searchRef }: TitleBarProps) {
           ref={searchRef}
           value={query}
           onChange={(e) => onQueryChange(e.target.value)}
-          placeholder="Rechercher un donjon…"
+          placeholder={t.search.placeholder}
           spellCheck={false}
           style={{
             width: '100%',
@@ -108,7 +110,7 @@ export function TitleBar({ query, onQueryChange, searchRef }: TitleBarProps) {
 
       <button
         onClick={hide}
-        title="Masquer (Esc)"
+        title={t.titleBar.hide}
         style={{
           background: 'transparent',
           border: 'none',

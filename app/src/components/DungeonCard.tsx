@@ -1,5 +1,6 @@
 import { openUrl } from '@tauri-apps/plugin-opener';
 import type { Dungeon } from '../types/dungeon';
+import { useI18n } from '../i18n/useI18n';
 import { MonsterRow } from './MonsterRow';
 import { BossPanel } from './BossPanel';
 
@@ -9,6 +10,7 @@ interface DungeonCardProps {
 }
 
 export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
+  const { t } = useI18n();
   // Monstres triés par niveau décroissant (plus dangereux en premier)
   const sortedMonsters = [...dungeon.monsters].sort((a, b) => b.level - a.level);
 
@@ -19,7 +21,7 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 4 }}>
           <button
             onClick={onBack}
-            title="Retour (Backspace)"
+            title={t.dungeon.backTitle}
             style={{
               background: 'transparent',
               border: 'none',
@@ -59,9 +61,9 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
                 alignItems: 'center',
               }}
             >
-              <span>Nv. {dungeon.levelRange[0]}–{dungeon.levelRange[1]}</span>
+              <span>{t.dungeon.levelRange(dungeon.levelRange[0], dungeon.levelRange[1])}</span>
               <span>·</span>
-              <span>{dungeon.monsters.length} monstres + boss</span>
+              <span>{t.dungeon.monstersCount(dungeon.monsters.length)}</span>
               {dungeon.externalGuideUrl && (
                 <span
                   onClick={() => openUrl(dungeon.externalGuideUrl!)}
@@ -72,7 +74,7 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
                   }}
                   title={dungeon.externalGuideUrl}
                 >
-                  Voir guide ↗
+                  {t.dungeon.viewGuide} ↗
                 </span>
               )}
             </div>
@@ -93,7 +95,7 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
             borderBottom: '1px solid var(--border-subtle)',
           }}
         >
-          MONSTRES ({sortedMonsters.length}) — niveau décroissant
+          {t.dungeon.monsters} ({sortedMonsters.length}) — {t.dungeon.monstersSubtitle}
         </div>
 
         {sortedMonsters.map((m) => (
@@ -113,13 +115,13 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
             flexWrap: 'wrap',
           }}
         >
-          <span>📖 Données vérifiées</span>
-          <span style={{ color: 'var(--text-secondary)' }}>DofusDB</span>
+          <span>📖 {t.dungeon.verified}</span>
+          <span style={{ color: 'var(--text-secondary)' }}>{t.source.dofusdb}</span>
           {dungeon.boss.strategy && (
             <>
               <span>·</span>
-              <span>Stratégie</span>
-              <span style={{ color: 'var(--text-secondary)' }}>Wiki Fandom EN</span>
+              <span>{t.dungeon.strategyLabel}</span>
+              <span style={{ color: 'var(--text-secondary)' }}>{t.source.fandomEn}</span>
             </>
           )}
         </div>

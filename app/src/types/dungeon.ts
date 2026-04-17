@@ -48,23 +48,10 @@ export type Boss = z.infer<typeof BossSchema>;
 export type Dungeon = z.infer<typeof DungeonSchema>;
 export type BossStrategy = z.infer<typeof BossStrategySchema>;
 
-export const ELEMENT_LABELS = {
-  air: 'Air',
-  eau: 'Eau',
-  feu: 'Feu',
-  terre: 'Terre',
-  neutre: 'Neutre',
-} as const;
-
 export const ELEMENT_ICON = {
   air: '💨',
   eau: '💧',
   feu: '🔥',
   terre: '🌍',
   neutre: '⚪',
-} as const;
-
-export const SOURCE_LABELS = {
-  dofusdb: 'DofusDB',
-  'fandom-en': 'Wiki Fandom EN',
 } as const;
