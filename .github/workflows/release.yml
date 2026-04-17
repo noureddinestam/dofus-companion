@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release-windows:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: app/src-tauri
+
+      - run: pnpm install --frozen-lockfile
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          projectPath: app
+          tagName: ${{ github.ref_name }}
+          releaseName: 'Dofus Companion ${{ github.ref_name }}'
+          releaseBody: |
+            ## Installation
+
+            Téléchargez `Dofus.Companion_x64-setup.exe` (NSIS, recommandé) ou `.msi`.
+
+            **Première installation :** lancez le setup, acceptez WebView2 si demandé.
+            **Mise à jour :** l'application détecte automatiquement les nouvelles versions.
+
+            ---
+            Voir [CHANGELOG](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) pour les détails.
+          releaseDraft: false
+          prerelease: false

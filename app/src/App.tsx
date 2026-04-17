@@ -5,6 +5,7 @@ import { TitleBar } from './components/TitleBar';
 import { DungeonCard } from './components/DungeonCard';
 import { useDungeons } from './features/dungeons/useDungeons';
 import { useSearch } from './features/search/useSearch';
+import { useUpdater } from './hooks/useUpdater';
 import type { Dungeon } from './types/dungeon';
 
 const PRIORITY_ICON: Record<string, string> = {
@@ -21,6 +22,7 @@ export default function App() {
   const [selected, setSelected] = useState<Dungeon | null>(null);
   const [focusIdx, setFocusIdx] = useState(0);
   const searchRef = useRef<HTMLInputElement>(null);
+  const { update, install, dismiss } = useUpdater();
 
   const handleQueryChange = useCallback(
     (q: string) => {
@@ -116,6 +118,51 @@ export default function App() {
       overflow: 'hidden',
     }}>
       <TitleBar query={query} onQueryChange={handleQueryChange} searchRef={searchRef} />
+
+      {update && (
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          padding: '5px 10px',
+          background: 'rgba(232,181,71,0.12)',
+          borderBottom: '1px solid rgba(232,181,71,0.3)',
+          flexShrink: 0,
+        }}>
+          <span style={{ color: 'var(--accent)', fontSize: 11, flex: 1 }}>
+            ↑ v{update.version} disponible
+          </span>
+          <button
+            onClick={install}
+            disabled={update.installing}
+            style={{
+              background: 'var(--accent)',
+              color: '#0c0e12',
+              border: 'none',
+              borderRadius: 3,
+              padding: '2px 8px',
+              fontSize: 10,
+              fontWeight: 700,
+              cursor: update.installing ? 'wait' : 'pointer',
+            }}
+          >
+            {update.installing ? '…' : 'Installer'}
+          </button>
+          <button
+            onClick={dismiss}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: 'var(--text-muted)',
+              fontSize: 12,
+              cursor: 'pointer',
+              padding: '0 2px',
+            }}
+          >
+            ×
+          </button>
+        </div>
+      )}
 
       <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
         {selected ? (
