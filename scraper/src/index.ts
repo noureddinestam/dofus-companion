@@ -9,6 +9,7 @@ import { validateDungeons } from './validate.ts';
 import { diffDungeons, loadPreviousDungeons, generateChangelog } from './diff.ts';
 import { hasApiKey } from './llm/client.ts';
 import { translate } from './llm/translate.ts';
+import { summarize } from './llm/summarize.ts';
 import {
   validateGlossary,
   SENTENCE_RATIO_MIN,
@@ -20,6 +21,8 @@ import type {
   Boss,
   StrategyBundle,
   StrategyLong,
+  StrategyShort,
+  Provenance,
 } from './validate.ts';
 import type { DbDungeon, DbMonster } from './sources/dofusdb.ts';
 
@@ -67,11 +70,63 @@ function toMonster(m: DbMonster): Monster {
   };
 }
 
-function buildBundle(longEn: StrategyLong | null, longFr: StrategyLong | null): StrategyBundle | null {
-  if (!longEn && !longFr) return null;
+function buildBundle(
+  longEn: StrategyLong | null,
+  longFr: StrategyLong | null,
+  shortEn: StrategyShort | null,
+  shortFr: StrategyShort | null,
+): StrategyBundle | null {
+  if (!longEn && !longFr && !shortEn && !shortFr) return null;
   return {
     long: { fr: longFr, en: longEn },
-    short: { fr: null, en: null },
+    short: { fr: shortFr, en: shortEn },
+  };
+}
+
+function baseSourceFromProv(
+  prov: Provenance,
+): 'fandom-en' | 'fandom-fr' | 'gamosaurus' {
+  if (prov.kind === 'native') {
+    return prov.source === 'manual' ? 'fandom-en' : prov.source;
+  }
+  if (prov.kind === 'llm-grounded') {
+    return prov.baseSource;
+  }
+  // community : pas de baseSource, fallback
+  return 'fandom-en';
+}
+
+function baseUrlFromProv(prov: Provenance): string {
+  if (prov.kind === 'native') return prov.sourceUrl;
+  if (prov.kind === 'llm-grounded') return prov.baseSourceUrl;
+  return prov.prUrl;
+}
+
+/**
+ * Génère un short depuis un long, validé par ancres.
+ * Retourne null si :
+ *  - LLM error / throw
+ *  - validateSummaryResponse rejette (< 3 bullets ancrés)
+ */
+async function summarizeLong(
+  long: StrategyLong,
+  lang: 'fr' | 'en',
+): Promise<StrategyShort | null> {
+  const result = await summarize(long.text, lang, { dryRun: DRY_RUN });
+  if (!result) return null;
+
+  return {
+    bullets: result.summary.bullets,
+    provenance: {
+      kind: 'llm-grounded',
+      baseLang: lang,
+      baseSource: baseSourceFromProv(long.provenance),
+      baseSourceUrl: baseUrlFromProv(long.provenance),
+      model: result.model,
+      promptVersion: result.promptVersion,
+      anchors: result.summary.anchors,
+      generatedAt: result.createdAt,
+    },
   };
 }
 
@@ -199,7 +254,19 @@ async function buildDungeon(
     if (translated) longFr = translated;
   }
 
-  const strategies = buildBundle(longEn, longFr);
+  // Source 4 — LLM summarize (génère short.en depuis long.en, short.fr depuis long.fr)
+  let shortEn: StrategyShort | null = null;
+  let shortFr: StrategyShort | null = null;
+  if (!NO_LLM && (hasApiKey() || DRY_RUN)) {
+    if (longEn) {
+      shortEn = await summarizeLong(longEn, 'en');
+    }
+    if (longFr) {
+      shortFr = await summarizeLong(longFr, 'fr');
+    }
+  }
+
+  const strategies = buildBundle(longEn, longFr, shortEn, shortFr);
 
   // Legacy strategy field (v0.3 compat) : rempli quand Fandom EN trouvé
   const legacyStrategy = longEn && longEn.provenance.kind === 'native'
@@ -277,6 +344,8 @@ async function main() {
   let foundEn = 0;
   let foundFrNative = 0;
   let foundFrLlm = 0;
+  let shortEnCount = 0;
+  let shortFrCount = 0;
 
   for (let i = 0; i < eligible.length; i++) {
     const db = eligible[i];
@@ -289,10 +358,12 @@ async function main() {
       const frProv = dungeon.boss.strategies?.long.fr?.provenance;
       if (frProv?.kind === 'native') foundFrNative++;
       if (frProv?.kind === 'llm-grounded') foundFrLlm++;
+      if (dungeon.boss.strategies?.short.en) shortEnCount++;
+      if (dungeon.boss.strategies?.short.fr) shortFrCount++;
     }
   }
   console.log(
-    `\n   ✓ ${built.length} donjons · EN: ${foundEn} · FR native: ${foundFrNative} · FR LLM: ${foundFrLlm}`,
+    `\n   ✓ ${built.length} donjons · long.en=${foundEn} · long.fr=${foundFrNative + foundFrLlm} · short.en=${shortEnCount} · short.fr=${shortFrCount}`,
   );
 
   // 4. Validation Zod
@@ -344,10 +415,18 @@ async function main() {
   console.log(`   ${valid.length} donjons · Endgame 160+ : ${endgame.length}`);
   const frTotal = foundFrNative + foundFrLlm;
   console.log(
-    `   EN=${foundEn} (${pct(foundEn, valid.length)}%) · FR=${frTotal} (${pct(frTotal, valid.length)}%) — native ${foundFrNative} + llm ${foundFrLlm}`,
+    `   long  · EN=${foundEn} (${pct(foundEn, valid.length)}%) · FR=${frTotal} (${pct(frTotal, valid.length)}%) [native ${foundFrNative} + llm ${foundFrLlm}]`,
   );
-  if (!llmEnabled && foundEn > frTotal) {
-    console.log(`   ℹ  LLM désactivé — ${foundEn - frTotal} donjons sans long.fr`);
+  console.log(
+    `   short · EN=${shortEnCount} (${pct(shortEnCount, valid.length)}%) · FR=${shortFrCount} (${pct(shortFrCount, valid.length)}%)`,
+  );
+  const endgameShortEn = endgame.filter((d) => d.boss.strategies?.short.en).length;
+  const endgameShortFr = endgame.filter((d) => d.boss.strategies?.short.fr).length;
+  console.log(
+    `   short endgame 160+ · EN=${endgameShortEn}/${endgame.length} (${pct(endgameShortEn, endgame.length)}%) · FR=${endgameShortFr}/${endgame.length} (${pct(endgameShortFr, endgame.length)}%)`,
+  );
+  if (!llmEnabled && foundEn > 0) {
+    console.log(`   ℹ  LLM désactivé — aucun short généré`);
   }
 
   if (errors.length > 0) process.exit(1);
