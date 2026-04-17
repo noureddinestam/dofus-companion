@@ -18,22 +18,36 @@ fn position_top_right<R: Runtime>(window: &WebviewWindow<R>) {
     let _ = window.set_position(PhysicalPosition::new(x.max(0), y));
 }
 
+/// Toggle robuste — gère les cas minimisée, cachée, non-focalisée.
+/// Sur Windows, après Ctrl+D (show desktop) ou Win+D, la fenêtre peut être
+/// dans un état où is_visible() retourne true mais elle n'est plus au premier plan.
 fn toggle_window<R: Runtime>(app: &tauri::AppHandle<R>) {
     let Some(window) = app.get_webview_window("main") else { return };
-    if window.is_visible().unwrap_or(false) {
+    let visible = window.is_visible().unwrap_or(false);
+    let minimized = window.is_minimized().unwrap_or(false);
+    let focused = window.is_focused().unwrap_or(false);
+
+    if visible && !minimized && focused {
+        // Vraiment au premier plan → masquer
         let _ = window.hide();
     } else {
+        // Hidden, minimized, ou au second plan → forcer l'affichage propre
+        if minimized {
+            let _ = window.unminimize();
+        }
         let _ = window.show();
+        // Re-applique always_on_top qui peut sauter après Win+D / Ctrl+D
+        let _ = window.set_always_on_top(true);
         let _ = window.set_focus();
     }
 }
 
 fn reset_position<R: Runtime>(app: &tauri::AppHandle<R>) {
     let Some(window) = app.get_webview_window("main") else { return };
+    let _ = window.unminimize();
     position_top_right(&window);
-    if !window.is_visible().unwrap_or(false) {
-        let _ = window.show();
-    }
+    let _ = window.show();
+    let _ = window.set_always_on_top(true);
     let _ = window.set_focus();
 }
 
@@ -46,7 +60,6 @@ pub fn run() {
         .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_global_shortcut::Builder::new().build())
         .setup(|app| {
-            // Alt+D — filter Pressed uniquement pour éviter toggle on/off
             let handle_shortcut = app.handle().clone();
             let shortcut = Shortcut::new(Some(Modifiers::ALT), Code::KeyD);
             app.global_shortcut()

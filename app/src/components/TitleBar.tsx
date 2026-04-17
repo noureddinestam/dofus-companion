@@ -21,17 +21,63 @@ export function TitleBar({ query, onQueryChange, searchRef }: TitleBarProps) {
         background: 'var(--bg-elevated)',
         borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0',
         userSelect: 'none',
+        cursor: 'move',
       }}
     >
-      <span style={{ color: 'var(--accent)', fontSize: 13, fontWeight: 700, letterSpacing: '0.04em', flexShrink: 0 }}>
+      {/* Drag handle visuel — 6 points style "grip" */}
+      <div
+        data-tauri-drag-region
+        title="Glisser pour déplacer"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 3px)',
+          gridTemplateRows: 'repeat(3, 3px)',
+          gap: 2,
+          flexShrink: 0,
+          opacity: 0.35,
+          cursor: 'move',
+        }}
+      >
+        {Array.from({ length: 6 }).map((_, i) => (
+          <span
+            key={i}
+            data-tauri-drag-region
+            style={{
+              width: 3,
+              height: 3,
+              borderRadius: '50%',
+              background: 'var(--text-muted)',
+            }}
+          />
+        ))}
+      </div>
+
+      <span
+        data-tauri-drag-region
+        style={{
+          color: 'var(--accent)',
+          fontSize: 13,
+          fontWeight: 700,
+          letterSpacing: '0.04em',
+          flexShrink: 0,
+          cursor: 'move',
+        }}
+      >
         DC
       </span>
 
-      <div style={{ flex: 1, position: 'relative' }} data-tauri-drag-region="false">
-        <span style={{
-          position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)',
-          color: 'var(--text-muted)', fontSize: 13, pointerEvents: 'none',
-        }}>
+      <div style={{ flex: 1, position: 'relative', cursor: 'text' }} data-tauri-drag-region="false">
+        <span
+          style={{
+            position: 'absolute',
+            left: 8,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            color: 'var(--text-muted)',
+            fontSize: 13,
+            pointerEvents: 'none',
+          }}
+        >
           🔍
         </span>
         <input
