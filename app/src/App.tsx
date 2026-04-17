@@ -8,12 +8,12 @@ import { useSearch } from './features/search/useSearch';
 import { useUpdater } from './hooks/useUpdater';
 import type { Dungeon } from './types/dungeon';
 
-const PRIORITY_ICON: Record<string, string> = {
-  critical: '🔴',
-  danger: '🟠',
-  caution: '🟡',
-  manageable: '🟢',
-};
+function levelBadgeColor(level: number): string {
+  if (level >= 180) return 'var(--priority-critical)';
+  if (level >= 150) return 'var(--priority-danger)';
+  if (level >= 100) return 'var(--priority-caution)';
+  return 'var(--priority-manageable)';
+}
 
 export default function App() {
   const { dungeons } = useDungeons();
@@ -220,7 +220,6 @@ function SearchView({
   return (
     <div ref={rowRef} style={{ height: '100%', overflowY: 'auto' }}>
       {results.map((d, i) => {
-        const topPriority = d.boss.priority;
         const isFocused = i === focusIdx;
         return (
           <div
@@ -240,7 +239,19 @@ function SearchView({
               borderLeft: isFocused ? '2px solid var(--accent)' : '2px solid transparent',
             }}
           >
-            <span style={{ fontSize: 13, flexShrink: 0 }}>{PRIORITY_ICON[topPriority]}</span>
+            <span
+              style={{
+                color: levelBadgeColor(d.recommendedLevel),
+                fontSize: 12,
+                fontWeight: 700,
+                fontVariantNumeric: 'tabular-nums',
+                flexShrink: 0,
+                minWidth: 30,
+                textAlign: 'center',
+              }}
+            >
+              {d.recommendedLevel}
+            </span>
 
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{
@@ -253,19 +264,26 @@ function SearchView({
               }}>
                 {d.name}
               </div>
-              <div style={{ color: 'var(--text-muted)', fontSize: 11, marginTop: 1 }}>
-                {d.zone} · {d.boss.name}
+              <div style={{
+                color: 'var(--text-muted)',
+                fontSize: 11,
+                marginTop: 1,
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}>
+                Boss : {d.boss.name}
               </div>
             </div>
 
-            <div style={{ textAlign: 'right', flexShrink: 0 }}>
-              <div style={{ color: 'var(--text-secondary)', fontSize: 12, fontWeight: 600 }}>
-                {d.recommendedLevel}
-              </div>
-              <div style={{ color: 'var(--text-muted)', fontSize: 10 }}>
-                {d.continent}
-              </div>
-            </div>
+            {d.boss.strategy && (
+              <span
+                title="Stratégie Fandom disponible"
+                style={{ fontSize: 10, color: 'var(--accent)', flexShrink: 0 }}
+              >
+                ✦
+              </span>
+            )}
           </div>
         );
       })}

@@ -1,44 +1,44 @@
 import { z } from 'zod';
 
-// Mirror of app/src/types/dungeon.ts — source of truth stays in the app
+const ElementEnum = z.enum(['air', 'eau', 'feu', 'terre', 'neutre']);
+
 export const MonsterSchema = z.object({
   id: z.string(),
   name: z.string(),
-  level: z.number().int().min(1).max(300),
-  hp: z.number().int().optional(),
-  family: z.string(),
-  weakElement: z.enum(['air', 'eau', 'feu', 'terre', 'neutre']).nullable(),
-  resistElement: z.enum(['air', 'eau', 'feu', 'terre', 'neutre']).nullable(),
-  priority: z.enum(['critical', 'danger', 'caution', 'manageable']),
-  priorityReason: z.string().min(5).max(200),
-  keyMechanic: z.string().nullable(),
-  source: z.enum(['dofuspourlesnoobs', 'dofusdb', 'manual']),
+  nameEn: z.string().nullable().default(null),
+  level: z.number().int().min(0),
+  hp: z.number().int().nullable().default(null),
+  family: z.string().default('Inconnu'),
+  weakElement: ElementEnum.nullable(),
+  resistElement: ElementEnum.nullable(),
+  source: z.enum(['dofusdb', 'fandom-en']),
   sourceUrl: z.string().url(),
-  verified: z.boolean(),
+});
+
+export const BossStrategySchema = z.object({
+  text: z.string().min(30),
+  source: z.literal('fandom-en'),
+  sourceUrl: z.string().url(),
 });
 
 export const BossSchema = MonsterSchema.extend({
-  phases: z.array(z.object({ trigger: z.string(), behavior: z.string() })).default([]),
-  instantKillConditions: z.array(z.string()).default([]),
-  recommendedStrategy: z.string(),
-  recommendedComp: z.array(z.string()).default([]),
+  strategy: BossStrategySchema.nullable().default(null),
+  phases: z
+    .array(z.object({ trigger: z.string(), behavior: z.string() }))
+    .default([]),
 });
 
 export const DungeonSchema = z.object({
   id: z.string(),
   name: z.string(),
+  nameEn: z.string().nullable().default(null),
   slug: z.string(),
   aliases: z.array(z.string()).default([]),
-  levelRange: z.tuple([z.number(), z.number()]),
   recommendedLevel: z.number(),
-  zone: z.string(),
-  continent: z.string(),
-  imageUrl: z.string().url().nullable(),
+  levelRange: z.tuple([z.number(), z.number()]),
   monsters: z.array(MonsterSchema).min(1),
   boss: BossSchema,
-  rooms: z.number().int().default(5),
-  keyRequired: z.boolean().default(false),
-  achievements: z.array(z.string()).default([]),
+  externalGuideUrl: z.string().url().nullable().default(null),
   lastUpdated: z.string().datetime(),
   dataVersion: z.string(),
 });
@@ -48,6 +48,7 @@ export const DungeonsArraySchema = z.array(DungeonSchema);
 export type Monster = z.infer<typeof MonsterSchema>;
 export type Boss = z.infer<typeof BossSchema>;
 export type Dungeon = z.infer<typeof DungeonSchema>;
+export type BossStrategy = z.infer<typeof BossStrategySchema>;
 
 export interface ValidationReport {
   valid: Dungeon[];

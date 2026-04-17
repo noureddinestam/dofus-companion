@@ -11,10 +11,11 @@ export const FUSE_OPTIONS: IFuseOptions<Dungeon> = {
   shouldSort: true,
   keys: [
     { name: 'name', weight: 3 },
+    { name: 'nameEn', weight: 2 },
     { name: 'aliases', weight: 2.5 },
     { name: 'slug', weight: 2 },
-    { name: 'zone', weight: 1 },
     { name: 'boss.name', weight: 1 },
+    { name: 'boss.nameEn', weight: 0.8 },
   ],
 };
 

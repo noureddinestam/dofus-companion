@@ -1,36 +1,44 @@
 import { cachedFetch } from '../cache.ts';
 
 const BASE = 'https://api.dofusdb.fr';
-
-// ── Raw API types ────────────────────────────────────────────────────────────
+const BATCH_SIZE = 50;
 
 interface ApiName {
   fr?: string;
+  en?: string;
   [lang: string]: string | undefined;
+}
+
+interface ApiGrade {
+  grade: number;
+  level: number;
+  lifePoints: number;
+  earthResistance?: number;
+  fireResistance?: number;
+  waterResistance?: number;
+  airResistance?: number;
+  neutralResistance?: number;
 }
 
 interface ApiMonster {
   id: number;
-  name: ApiName | undefined;
-  level: number;
-  familyName?: ApiName;
-  resistances?: {
-    airPercent?: number;
-    earthPercent?: number;
-    firePercent?: number;
-    waterPercent?: number;
-    neutralPercent?: number;
-  };
-  characteristics?: { maxVitality?: number };
+  name?: ApiName;
+  race?: number;
+  isBoss?: boolean;
+  isMiniBoss?: boolean;
+  grades?: ApiGrade[];
 }
 
 interface ApiDungeon {
   id: number;
-  name: ApiName | undefined;
+  name?: ApiName;
   optimalPlayerLevel?: number;
-  monsterCount?: number;
-  monsters?: ApiMonster[];
-  boss?: ApiMonster;
+  monsters?: number[]; // juste des IDs maintenant
+}
+
+interface ApiRace {
+  id: number;
+  name?: ApiName;
 }
 
 interface ApiPage<T> {
@@ -40,133 +48,185 @@ interface ApiPage<T> {
   skip: number;
 }
 
-// ── Normalized output ────────────────────────────────────────────────────────
-
-export interface DbDungeon {
-  id: string;
-  name: string;
-  recommendedLevel: number;
-  monsters: DbMonster[];
-  boss: DbMonster | null;
-}
+export type Element = 'air' | 'eau' | 'feu' | 'terre' | 'neutre' | null;
 
 export interface DbMonster {
   id: string;
   name: string;
+  nameEn: string | null;
   level: number;
   family: string;
   hp: number | null;
-  weakElement: string | null;
-  resistElement: string | null;
+  weakElement: Element;
+  resistElement: Element;
+  isBoss: boolean;
+  sourceUrl: string;
 }
 
-// ── API client ───────────────────────────────────────────────────────────────
+export interface DbDungeon {
+  id: string;
+  name: string;
+  nameEn: string | null;
+  recommendedLevel: number;
+  monsters: DbMonster[];
+  boss: DbMonster | null;
+  sourceUrl: string;
+}
 
-function name(n: ApiName | undefined | null): string {
+function nameFr(n: ApiName | undefined | null): string {
   if (!n) return 'Inconnu';
   return n.fr ?? Object.values(n).find((v) => v) ?? 'Inconnu';
 }
 
-function topResist(r: ApiMonster['resistances']): string | null {
-  if (!r) return null;
-  const map = {
-    neutre: r.neutralPercent ?? 0,
-    terre: r.earthPercent ?? 0,
-    eau: r.waterPercent ?? 0,
-    feu: r.firePercent ?? 0,
-    air: r.airPercent ?? 0,
+function nameEn(n: ApiName | undefined | null): string | null {
+  if (!n) return null;
+  return n.en ?? null;
+}
+
+function lastGrade(m: ApiMonster): ApiGrade | null {
+  const grades = m.grades ?? [];
+  if (grades.length === 0) return null;
+  // Le dernier grade (5 le plus souvent) représente le niveau max du monstre dans le donjon
+  return grades[grades.length - 1];
+}
+
+function topResist(g: ApiGrade | null): Element {
+  if (!g) return null;
+  const map: Record<Exclude<Element, null>, number> = {
+    neutre: g.neutralResistance ?? 0,
+    terre: g.earthResistance ?? 0,
+    eau: g.waterResistance ?? 0,
+    feu: g.fireResistance ?? 0,
+    air: g.airResistance ?? 0,
   };
   const sorted = Object.entries(map).sort(([, a], [, b]) => b - a);
-  return sorted[0][1] > 20 ? sorted[0][0] : null;
+  return sorted[0][1] > 20 ? (sorted[0][0] as Element) : null;
 }
 
-function topWeak(r: ApiMonster['resistances']): string | null {
-  if (!r) return null;
-  const map = {
-    neutre: r.neutralPercent ?? 0,
-    terre: r.earthPercent ?? 0,
-    eau: r.waterPercent ?? 0,
-    feu: r.firePercent ?? 0,
-    air: r.airPercent ?? 0,
+function topWeak(g: ApiGrade | null): Element {
+  if (!g) return null;
+  const map: Record<Exclude<Element, null>, number> = {
+    neutre: g.neutralResistance ?? 0,
+    terre: g.earthResistance ?? 0,
+    eau: g.waterResistance ?? 0,
+    feu: g.fireResistance ?? 0,
+    air: g.airResistance ?? 0,
   };
   const sorted = Object.entries(map).sort(([, a], [, b]) => a - b);
-  return sorted[0][1] < -10 ? sorted[0][0] : null;
+  return sorted[0][1] < -10 ? (sorted[0][0] as Element) : null;
 }
 
-function toDbMonster(m: ApiMonster): DbMonster {
+function toDbMonster(m: ApiMonster, raceMap: Map<number, string>): DbMonster {
+  const grade = lastGrade(m);
   return {
     id: String(m.id),
-    name: name(m.name),
-    level: m.level,
-    family: name(m.familyName ?? {}),
-    hp: m.characteristics?.maxVitality ?? null,
-    weakElement: topWeak(m.resistances),
-    resistElement: topResist(m.resistances),
+    name: nameFr(m.name),
+    nameEn: nameEn(m.name),
+    level: grade?.level ?? 0,
+    family: m.race != null ? raceMap.get(m.race) ?? 'Inconnu' : 'Inconnu',
+    hp: grade?.lifePoints ?? null,
+    weakElement: topWeak(grade),
+    resistElement: topResist(grade),
+    isBoss: Boolean(m.isBoss || m.isMiniBoss),
+    sourceUrl: `https://dofusdb.fr/fr/database/monsters/${m.id}`,
   };
 }
 
-async function fetchPage(skip: number): Promise<ApiPage<ApiDungeon>> {
-  const url = `${BASE}/dungeons?lang=fr&$limit=50&$skip=${skip}`;
+async function fetchList<T>(path: string, skip: number, limit = BATCH_SIZE): Promise<ApiPage<T>> {
+  const url = `${BASE}${path}${path.includes('?') ? '&' : '?'}$limit=${limit}&$skip=${skip}`;
   const { body, status } = await cachedFetch(url);
-  if (status !== 200) throw new Error(`DofusDB dungeons ${status} at skip=${skip}`);
-  return JSON.parse(body) as ApiPage<ApiDungeon>;
+  if (status !== 200) throw new Error(`DofusDB ${path} HTTP ${status} at skip=${skip}`);
+  return JSON.parse(body) as ApiPage<T>;
 }
 
-async function fetchDungeonDetail(id: number): Promise<ApiDungeon | null> {
-  try {
-    const { body, status } = await cachedFetch(`${BASE}/dungeons/${id}?lang=fr`);
-    if (status !== 200) return null;
-    return JSON.parse(body) as ApiDungeon;
-  } catch {
-    return null;
+async function fetchAllPages<T>(path: string): Promise<T[]> {
+  const all: T[] = [];
+  let skip = 0;
+  let total = Infinity;
+  while (skip < total) {
+    const page = await fetchList<T>(path, skip);
+    all.push(...page.data);
+    total = page.total;
+    skip += page.data.length;
+    if (page.data.length === 0) break;
   }
+  return all;
+}
+
+async function fetchMonstersByIds(ids: number[]): Promise<ApiMonster[]> {
+  if (ids.length === 0) return [];
+  const chunks: number[][] = [];
+  for (let i = 0; i < ids.length; i += BATCH_SIZE) {
+    chunks.push(ids.slice(i, i + BATCH_SIZE));
+  }
+
+  const all: ApiMonster[] = [];
+  for (const chunk of chunks) {
+    const query = chunk.map((id) => `id[$in][]=${id}`).join('&');
+    const url = `${BASE}/monsters?${query}&$limit=${BATCH_SIZE}`;
+    const { body, status } = await cachedFetch(url);
+    if (status !== 200) continue;
+    const page = JSON.parse(body) as ApiPage<ApiMonster>;
+    all.push(...page.data);
+  }
+  return all;
 }
 
 export async function fetchAllDungeons(
   onProgress?: (done: number, total: number) => void,
 ): Promise<DbDungeon[]> {
-  console.log('  → DofusDB: récupération liste donjons…');
+  // 1. Races (pour résoudre family)
+  console.log('  → DofusDB: chargement races monstres…');
+  const races = await fetchAllPages<ApiRace>('/monster-races');
+  const raceMap = new Map(races.map((r) => [r.id, nameFr(r.name)]));
+  console.log(`  → DofusDB: ${races.length} races chargées`);
 
-  let first: ApiPage<ApiDungeon>;
-  try {
-    first = await fetchPage(0);
-  } catch (e) {
-    console.error('  ✗ DofusDB inaccessible:', e);
-    return [];
+  // 2. Dungeons
+  console.log('  → DofusDB: chargement donjons…');
+  const dungeons = await fetchAllPages<ApiDungeon>('/dungeons');
+  console.log(`  → DofusDB: ${dungeons.length} donjons trouvés`);
+
+  // 3. Collecter tous les IDs de monstres uniques
+  const allMonsterIds = new Set<number>();
+  for (const d of dungeons) {
+    for (const mid of d.monsters ?? []) allMonsterIds.add(mid);
   }
 
-  const total = first.total;
-  const allRaw: ApiDungeon[] = [...first.data];
+  console.log(`  → DofusDB: hydratation ${allMonsterIds.size} monstres…`);
+  const monsters = await fetchMonstersByIds([...allMonsterIds]);
+  const monsterMap = new Map(monsters.map((m) => [m.id, m]));
+  console.log(`  → DofusDB: ${monsters.length} monstres récupérés`);
 
-  let skip = first.data.length;
-  while (skip < total) {
-    try {
-      const page = await fetchPage(skip);
-      allRaw.push(...page.data);
-      skip += page.data.length;
-    } catch {
-      break;
-    }
-  }
-
-  console.log(`  → DofusDB: ${allRaw.length} donjons trouvés, récupération détails…`);
-
+  // 4. Construire les DbDungeon
   const results: DbDungeon[] = [];
-  for (let i = 0; i < allRaw.length; i++) {
-    const raw = allRaw[i];
-    onProgress?.(i + 1, allRaw.length);
+  for (let i = 0; i < dungeons.length; i++) {
+    const d = dungeons[i];
+    onProgress?.(i + 1, dungeons.length);
 
-    const detail = (await fetchDungeonDetail(raw.id)) ?? raw;
-    const monsters: DbMonster[] = (detail.monsters ?? [])
-      .filter((m) => !detail.boss || m.id !== detail.boss?.id)
-      .map(toDbMonster);
+    const monsterIds = d.monsters ?? [];
+    const dbMonsters: DbMonster[] = monsterIds
+      .map((mid) => monsterMap.get(mid))
+      .filter((m): m is ApiMonster => Boolean(m))
+      .map((m) => toDbMonster(m, raceMap));
+
+    // Boss = monstre avec isBoss=true. Sinon on prend le monstre de plus haut niveau.
+    let boss: DbMonster | null = dbMonsters.find((m) => m.isBoss) ?? null;
+    if (!boss && dbMonsters.length > 0) {
+      boss = [...dbMonsters].sort((a, b) => b.level - a.level)[0];
+    }
+
+    const otherMonsters = boss
+      ? dbMonsters.filter((m) => m.id !== boss!.id)
+      : dbMonsters;
 
     results.push({
-      id: String(detail.id),
-      name: name(detail.name),
-      recommendedLevel: detail.optimalPlayerLevel ?? 1,
-      monsters,
-      boss: detail.boss ? toDbMonster(detail.boss) : null,
+      id: String(d.id),
+      name: nameFr(d.name),
+      nameEn: nameEn(d.name),
+      recommendedLevel: d.optimalPlayerLevel ?? 0,
+      monsters: otherMonsters,
+      boss,
+      sourceUrl: `https://dofusdb.fr/fr/database/dungeons/${d.id}`,
     });
   }
 
