@@ -66,19 +66,54 @@ describe('dungeons.json v0.3 + migration', () => {
     expect(total).toBeGreaterThan(100);
   });
 
-  // === v0.5 invariants post-migration ===
-  // Le critère d'additivité reste : un monstre lambda reste lambda (combat === null).
-  // Les boss peuvent désormais avoir une combat card populated par Phase B, mais
-  // chaque boss avec combat populated doit aussi avoir legacyStrategies rempli
-  // (footer "Notes legacy v0.4" du brief §8.5). Les boss sans combat restent sur
-  // le rendu v0.4 classique.
-  it('v0.5 invariant: every monster still has combat === null (lambda silence)', () => {
+  // === v0.5 invariants post-migration (Phase B boss + Phase C monstres) ===
+  // Certains monstres ont désormais un combat populated (Phase C). Les lambdas
+  // sans mécanique sur Fandom restent combat=null (règle du silence). Chaque
+  // boss populated doit aussi avoir legacyStrategies (footer §8.5).
+  it('v0.5 invariant: monster combat cards are well-formed or null (no half-state)', () => {
     if (!parsed.success) throw new Error('parse failed');
+    let monstersWithCombat = 0;
+    let monstersLambda = 0;
     for (const d of parsed.data) {
       for (const m of d.monsters) {
-        expect(m.combat).toBeNull();
+        if (m.combat === null) {
+          monstersLambda++;
+          continue;
+        }
+        monstersWithCombat++;
+        const totalBullets =
+          m.combat.unlock.length +
+          m.combat.constraints.length +
+          m.combat.dangers.length +
+          m.combat.tips.length;
+        expect(totalBullets).toBeGreaterThan(0);
       }
     }
+    console.log(
+      `\n  📊 Monsters : ${monstersWithCombat} avec combat · ${monstersLambda} lambda`,
+    );
+    expect(monstersWithCombat).toBeGreaterThan(100);
+  });
+
+  // === Phase C archetype coverage ===
+  // Snapshot léger : on ne fige pas des IDs de monstres précis (brittle aux
+  // reruns Fandom), on garantit que la diversité archétypale du dataset reste
+  // au-dessus d'un seuil. 13/14 types canoniques lors du premier run v0.5.
+  it('v0.5 Phase C: monster combat cards span at least 10 distinct mechanicTypes', () => {
+    if (!parsed.success) throw new Error('parse failed');
+    const types = new Set<string>();
+    for (const d of parsed.data) {
+      for (const m of d.monsters) {
+        if (!m.combat) continue;
+        for (const block of ['unlock', 'constraints', 'dangers', 'tips'] as const) {
+          for (const bullet of m.combat[block]) {
+            if (bullet.mechanicType) types.add(bullet.mechanicType);
+          }
+        }
+      }
+    }
+    console.log(`\n  📊 Archetypes covered by monster cards: ${types.size}/14 (${[...types].sort().join(', ')})`);
+    expect(types.size).toBeGreaterThanOrEqual(10);
   });
 
   it('v0.5 invariant: every boss with populated combat also has legacyStrategies', () => {
