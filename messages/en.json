@@ -7,28 +7,25 @@
     "github": "GitHub"
   },
   "hero": {
-    "eyebrow": "Windows overlay · Open source · MIT",
+    "eyebrow": "Windows overlay · Open source · Not an ad, not a bot",
     "titleLead": "The Dofus overlay that fits behind",
     "titleAccent": "Alt+D",
     "titleTrail": ".",
-    "subtitle": "185 dungeons, bilingual FR/EN strategies, a short form you can read in 10 seconds. No Alt+Tab, no ads, no tracking.",
+    "subtitle": "185 dungeons. Bilingual FR/EN strategies. 3 to 6 bullets readable between two turns. Zero Alt+Tab, zero ads, zero pixel tracking.",
     "ctaPrimaryPrefix": "Download for Windows",
     "ctaSecondary": "View on GitHub",
-    "microCopy": "Windows 10/11 · WebView2 required (bundled on W11) · Works with Dofus 2.x and 3.x"
+    "microCopy": "Windows 10/11 · Works with Dofus 2.x and 3.x · Tauri-signed, VirusTotal-verified"
   },
   "mockOverlay": {
-    "hotkeyHint": "Press",
     "hotkey": "Alt+D",
-    "searchPlaceholder": "Search a boss or dungeon…",
     "searchValue": "transporter",
-    "resultTitle": "The Sealed Transporter",
-    "resultSubtitle": "Incarnam of Dreams · 200",
-    "resultTagShort": "Short version · EN",
-    "resultBullets": [
-      "Block regeneration on turn 1 with Slow Ray.",
-      "Never hit the shadow while the shield is up.",
-      "Dispel before the charge or it's a wipe."
-    ]
+    "searchCounter": "3 · 15 · 185",
+    "metaTemplate": "Lv. {min}–{max} · {count} monsters + boss",
+    "shortLabel": "Short version · EN",
+    "sourceLabel": "Source",
+    "keyhintBack": "Backspace Back",
+    "keyhintView": "V View",
+    "keyhintClose": "Esc Close"
   },
   "valueProps": {
     "sectionTitle": "Three things that change your run",
@@ -36,17 +33,17 @@
       {
         "icon": "bolt",
         "title": "Instant",
-        "body": "Global Alt+D, open in under 150 ms. Zero alt-tab, zero game switch."
+        "body": "Alt+D. Window open in 150 ms, on top of Dofus, not beside it. You're back in combat without losing a turn."
       },
       {
         "icon": "target",
         "title": "Actionable",
-        "body": "3 to 6 colored bullets per boss. Designed to be read mid-fight, not in passive reading."
+        "body": "3 to 6 colored bullets per boss. Built to be read between two turns, not in the middle of a guild DM."
       },
       {
         "icon": "shield",
-        "title": "Transparent",
-        "body": "Every sentence is traceable — official, community, or LLM with a citation. Zero hallucinations tolerated."
+        "title": "Traceable",
+        "body": "Every sentence carries a clickable source. Fandom EN, Fandom FR, DofusDB, or LLM with a citation of the source text. Nothing made up."
       }
     ]
   },
@@ -55,20 +52,20 @@
     "sectionTitle": "Built for endgame players",
     "items": [
       {
-        "title": "Two views per boss",
-        "body": "Actionable for mid-fight, detailed when you want to understand a cycle. Keyboard toggle between them."
+        "title": "Two views, same boss.",
+        "body": "Actionable when you're deep in a Koulosse nightmare. Detailed when you're prepping the run with your guild on Sunday evening. Toggle with V."
       },
       {
-        "title": "FR ⇄ EN in one click",
-        "body": "Instant language toggle with Ctrl+L. Both languages are on par — no second-class EN content."
+        "title": "FR ⇄ EN, Ctrl+L.",
+        "body": "Both languages get the same level of detail. No watered-down EN, no rushed FR. When we had to translate, the source citation is clickable."
       },
       {
-        "title": "Verified data",
-        "body": "Every line carries a provenance badge: official Ankama, consolidated community, or LLM with a source citation. Nothing is made up."
+        "title": "Three sources, zero invention.",
+        "body": "Community Fandom strategies. DofusDB stats. LLM syntheses with verbatim source citation. Every sentence is clickable to its origin. If there's no reliable source, we leave it empty — never a guess."
       },
       {
-        "title": "Endgame coverage 160+",
-        "body": "114 dungeons above level 160, 100 of them with a full strategy. Continuously updated via public PRs."
+        "title": "114 endgame dungeons, 160+.",
+        "body": "100 of them with a full strategy. Continuously updated via public PRs — the community can fix, add, contest. Everything is versioned."
       }
     ]
   },
@@ -79,17 +76,17 @@
       {
         "n": "01",
         "title": "Download the installer",
-        "body": "3.3 MB, Tauri-signed, from GitHub Releases."
+        "body": "3.2 MB, Tauri-signed, VirusTotal-verified. Single source: GitHub Releases."
       },
       {
         "n": "02",
         "title": "Run the setup",
-        "body": "Accept WebView2 if prompted — standard Microsoft component, bundled on Windows 11."
+        "body": "If Windows SmartScreen complains, that's normal — the Security page explains why. SHA256 hash shown for the paranoid (rightfully so)."
       },
       {
         "n": "03",
-        "title": "Alt+D in-game",
-        "body": "On top of Dofus. Search, read, play. No account, no data sent."
+        "title": "Alt+D in combat",
+        "body": "No account. No server ping. The app reads local JSON files, shows a window, that's it."
       }
     ]
   },
@@ -118,10 +115,11 @@
   },
   "support": {
     "eyebrow": "Support",
-    "title": "Maintained by one person in their spare time",
-    "body": "If the tool helps you, a sponsor or a star on the repo makes a real difference.",
+    "title": "Solo project, spare time, no plan B.",
+    "body": "No monetization. No ogrines. No ads. If the tool helps you, a sponsor, a star, or just sharing it with your guild — each one counts.",
     "ctaSponsor": "GitHub Sponsors",
     "ctaStar": "Star the repo",
+    "detailsLink": "Details on what donations cover",
     "microCopy": "Thank you."
   },
   "credits": {
@@ -131,17 +129,26 @@
       {
         "role": "Idea & gameplay vision",
         "name": "Kamil F.",
-        "body": "Dofus Companion wouldn't exist without Kamil. A long-time Dofus fan, he came up with the tool and carried the vision: what an endgame player actually wants to read mid-fight, and what they definitely don't. The whole '3 to 6 actionable bullets' philosophy comes from him."
+        "body": "Dofusien since 2010. He's the one who defined exactly what an endgame player wants to read mid-fight, and above all what they don't want to read. The whole '3 to 6 bullets, not a Wikipedia page' philosophy comes from his Songes Infinis nights."
       },
       {
         "role": "Execution",
         "name": "noureddinestam + Claude",
-        "body": "Vibe-coded: Noureddine drives, Claude types the code, fast iteration by conversation. From the landing page to the Tauri overlay, the entire repo was built at that tempo."
+        "body": "Vibe-coded. Noureddine drives, Claude types the code, PRs stack up via conversation. From the landing page to the Tauri overlay to the bilingual scraper — the whole monorepo was built that way."
       }
     ]
   },
   "footer": {
     "tagline": "Open source Windows overlay. MIT license.",
+    "buildLines": [
+      "launched between two turns",
+      "built with 4 AP and 3 MP",
+      "Brokle not included",
+      "no Ecaflip was betrayed in this build",
+      "no tax collector parked here",
+      "this line changes, the app not so much",
+      "build {hash}, for the conspiracists"
+    ],
     "columns": {
       "project": "Project",
       "code": "Code",
@@ -444,13 +451,44 @@
   },
   "supportPage": {
     "eyebrow": "Support",
-    "title": "Maintained by one person in their spare time",
-    "body": "If Dofus Companion helps you, a GitHub sponsor or a star on the repo makes a real difference.",
-    "ctaSponsor": "GitHub Sponsors",
-    "ctaStar": "Star the repo",
+    "title": "No ogrines, no subscription, no cosmetic shop",
+    "subtitle": "Dofus Companion is maintained on spare time. If the tool genuinely helps, here's how to give a hand.",
     "starCtaHref": "https://github.com/noureddinestam/dofus-companion",
     "sponsorHref": "https://github.com/sponsors/noureddinestam",
-    "thanks": "Thank you."
+    "tiers": [
+      {
+        "tag": "Free",
+        "title": "Star & share",
+        "body": "Zero euros. One click. Helps the Windows SmartScreen reputation (the more of us, the less often the blue screen hits the next user).",
+        "ctaLabel": "Star the repo",
+        "ctaVariant": "outline"
+      },
+      {
+        "tag": "Recurring",
+        "title": "GitHub Sponsors",
+        "body": "Monthly, via your GitHub account. Long-term goal: fund a Windows EV certificate to remove the SmartScreen warning for everyone, once and for all.",
+        "ctaLabel": "Sponsor the project",
+        "ctaVariant": "primary"
+      }
+    ],
+    "transparency": {
+      "title": "Where does the support actually go?",
+      "body": "Donations cover the LLM costs for regenerating strategies, a possible Windows EV certificate (the comfort tier for the whole community), the domain name, and the dev's coffee. Nothing fancy, nothing extravagant.",
+      "microCopy": "Everything is declared in the commits. No off-the-record wallet, no merch, no sponsored collabs."
+    },
+    "noPerks": {
+      "title": "No perks, no early access, no VIP Discord",
+      "body": "The app stays 100% free and identical for everyone. Sponsors don't get extra features, early-access strategies, or a magic button. You support open source — or you don't, and that's fine too. No guilt trip."
+    },
+    "alternatives": {
+      "title": "Can't donate? Do this instead.",
+      "items": [
+        "Star the repo — 1 second, useful for SmartScreen reputation.",
+        "Open an issue when you find a bug — that's valuable.",
+        "Fix a strategy via PR — we have a template ready.",
+        "Tell your guild about the app — the best marketing there is."
+      ]
+    }
   },
   "legal": {
     "privacy": {
