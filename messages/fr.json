@@ -118,10 +118,10 @@
   "support": {
     "eyebrow": "Soutenir",
     "title": "Projet maintenu par une personne, sur son temps libre",
-    "body": "Les dons couvrent trois postes concrets : coûts LLM pour régénérer les stratégies (~30 €/an), certificat EV Windows (~200 €/an, supprime SmartScreen), et domaine (~20 €/an).",
+    "body": "Si l'outil t'aide, un sponsor ou un star au repo aide énormément.",
     "ctaSponsor": "GitHub Sponsors",
     "ctaStar": "Star le repo",
-    "microCopy": "Pas de Buy Me a Coffee ni de Stripe au launch. On reste simple."
+    "microCopy": "Merci."
   },
   "footer": {
     "tagline": "Overlay Windows open source. Licence MIT.",
@@ -152,5 +152,24 @@
     "title": "Cette salle est vide. Aucun boss à l'horizon.",
     "body": "La page que vous cherchez n'existe pas, ou le lien a été déplacé.",
     "back": "Retour à l'accueil"
+  },
+  "comingSoon": {
+    "eyebrow": "Bientôt",
+    "body": "Cette page est en construction. Elle arrivera dans une prochaine phase — le code et la roadmap restent publics sur GitHub.",
+    "back": "Retour à l'accueil",
+    "pages": {
+      "changelog": {
+        "title": "Changelog",
+        "subtitle": "L'historique complet des releases, version par version."
+      },
+      "faq": {
+        "title": "FAQ",
+        "subtitle": "Les réponses aux questions récurrentes : ToS Ankama, SmartScreen, installation, données locales."
+      },
+      "support": {
+        "title": "Soutenir le projet",
+        "subtitle": "Projet maintenu par une personne, sur son temps libre."
+      }
+    }
   }
 }
