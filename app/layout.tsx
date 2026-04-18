@@ -32,7 +32,11 @@ export const metadata: Metadata = {
   applicationName: "Dofus Companion",
   authors: [{ name: "noureddinestam" }],
   creator: "noureddinestam",
-  robots: { index: false, follow: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
   openGraph: {
     type: "website",
     locale: "fr_FR",
