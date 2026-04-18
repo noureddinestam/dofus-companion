@@ -80,6 +80,32 @@ jobs:
           Write-Host "== latest.json =="
           Get-Content latest.json
 
+      - name: Generate SHA256SUMS.txt
+        shell: pwsh
+        run: |
+          $outputPath = "SHA256SUMS.txt"
+          $patterns = @(
+            "app/src-tauri/target/release/bundle/nsis/*-setup.exe",
+            "app/src-tauri/target/release/bundle/msi/*.msi"
+          )
+          $lines = @()
+          foreach ($pattern in $patterns) {
+            Get-ChildItem $pattern -ErrorAction SilentlyContinue | ForEach-Object {
+              $hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower()
+              # GitHub replaces spaces with dots in uploaded asset names
+              $uploadedName = $_.Name -replace ' ', '.'
+              # sha256sum(1) format: "<hash>  <filename>"
+              $lines += "${hash}  ${uploadedName}"
+            }
+          }
+          if ($lines.Count -eq 0) {
+            Write-Host "::warning::Aucun artefact trouvé — SHA256SUMS.txt non généré"
+            exit 0
+          }
+          Set-Content -Path $outputPath -Value ($lines -join "`n") -Encoding utf8
+          Write-Host "== SHA256SUMS.txt =="
+          Get-Content $outputPath
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -94,6 +120,8 @@ jobs:
 
             > Windows SmartScreen peut afficher un avertissement (binaire non signé avec certificat EV) — cliquer "Informations complémentaires" puis "Exécuter quand même".
 
+            **Intégrité :** vérifiable depuis `SHA256SUMS.txt` attaché à cette release, ou `Get-FileHash <fichier> -Algorithm SHA256` en PowerShell.
+
             ---
             [README](https://github.com/${{ github.repository }}#readme) · [CHANGELOG](https://github.com/${{ github.repository }}/blob/main/scraper/output/CHANGELOG-DATA.md)
           files: |
@@ -102,3 +130,4 @@ jobs:
             app/src-tauri/target/release/bundle/nsis/*-setup.exe
             app/src-tauri/target/release/bundle/nsis/*-setup.exe.sig
             latest.json
+            SHA256SUMS.txt
