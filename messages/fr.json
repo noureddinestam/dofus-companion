@@ -171,5 +171,150 @@
         "subtitle": "Projet maintenu par une personne, sur son temps libre."
       }
     }
+  },
+  "download": {
+    "eyebrow": "Télécharger",
+    "title": "Dofus Companion pour Windows",
+    "subtitle": "Open source, signé Tauri, sans tracker.",
+    "os": {
+      "windows": {
+        "label": "Windows détecté",
+        "body": "L'installeur NSIS ci-dessous est recommandé."
+      },
+      "mac": {
+        "label": "macOS détecté",
+        "body": "Pas encore supporté — une version Mac est prévue."
+      },
+      "linux": {
+        "label": "Linux détecté",
+        "body": "Pas encore supporté — une version Linux arrivera après la Mac."
+      },
+      "mobile": {
+        "label": "Téléphone détecté",
+        "body": "Les binaires sont pour Windows. Télécharge depuis ton PC."
+      },
+      "unknown": {
+        "label": "Télécharger",
+        "body": "Choisis le format adapté à ton usage."
+      }
+    },
+    "cards": {
+      "nsis": {
+        "title": "Installeur NSIS",
+        "tag": "Recommandé",
+        "body": "Auto-update intégré, installation rapide, désinstallation propre."
+      },
+      "msi": {
+        "title": "Package MSI",
+        "tag": "Admins",
+        "body": "Pour déploiement GPO, Chocolatey, MDM."
+      },
+      "download": "Télécharger"
+    },
+    "sha256": {
+      "label": "SHA256",
+      "pending": "Sera publié à la prochaine release (SHA256SUMS.txt)",
+      "copy": "Copier",
+      "copied": "Copié"
+    },
+    "verify": {
+      "title": "Vérifier l'intégrité du fichier (PowerShell)",
+      "body": "Ouvre PowerShell dans le dossier de téléchargement et compare l'empreinte :",
+      "commandTemplate": "Get-FileHash .\\{asset} -Algorithm SHA256"
+    },
+    "notes": {
+      "title": "Notes de version",
+      "read": "Lire les notes complètes"
+    },
+    "previous": {
+      "title": "Autres versions",
+      "body": "Toutes les releases et leurs assets sont archivés sur GitHub.",
+      "link": "Voir toutes les releases"
+    }
+  },
+  "smartScreen": {
+    "eyebrow": "Windows SmartScreen",
+    "title": "Si Windows affiche un avertissement, voici pourquoi et quoi faire",
+    "body": "L'app est open source et signée avec la signature Tauri (pour l'auto-updater), mais sans certificat EV Windows. Tant que l'app n'a pas assez de téléchargements réputés, SmartScreen peut afficher \"Windows a protégé votre PC\".",
+    "steps": [
+      "Cliquer sur « Informations complémentaires »",
+      "Cliquer sur « Exécuter quand même »"
+    ],
+    "microCopy": "Tu peux vérifier l'empreinte SHA256 avant d'exécuter, depuis le bloc PowerShell ci-dessous.",
+    "moreLink": "En savoir plus sur SmartScreen"
+  },
+  "virusTotal": {
+    "label": "VirusTotal",
+    "clean": "0 détection",
+    "flagged": "détections",
+    "pending": "Pas encore analysé",
+    "unavailable": "Analyse indisponible",
+    "reportLink": "Voir le rapport",
+    "engines": "moteurs antivirus",
+    "notSubmitted": "Le fichier n'a pas encore été soumis à VirusTotal."
+  },
+  "security": {
+    "eyebrow": "Sécurité",
+    "title": "Sécurité et transparence",
+    "subtitle": "Ce que l'app fait, ce qu'elle ne fait pas, et comment le vérifier toi-même.",
+    "sections": {
+      "behavior": {
+        "title": "Ce que l'app fait et ne fait pas",
+        "positive": {
+          "heading": "Ce qu'elle fait",
+          "items": [
+            "Lit des fichiers JSON locaux (les données des donjons).",
+            "Affiche une fenêtre par-dessus Dofus.",
+            "Vérifie GitHub Releases pour l'auto-update (HTTPS, signature Ed25519)."
+          ]
+        },
+        "negative": {
+          "heading": "Ce qu'elle ne fait pas",
+          "items": [
+            "Aucune lecture de la mémoire du process Dofus (respect ToS Ankama).",
+            "Aucune simulation d'input clavier ou souris (ce n'est pas un bot).",
+            "Aucune lecture de packets réseau Dofus.",
+            "Aucune télémétrie, aucun analytics, aucun tracking.",
+            "Aucun envoi de données personnelles."
+          ]
+        }
+      },
+      "fingerprints": {
+        "title": "Empreintes SHA256",
+        "body": "Les SHA256 des assets seront publiés dans une release ultérieure (fichier SHA256SUMS.txt attaché). En attendant, tu peux vérifier localement depuis PowerShell."
+      },
+      "virusTotal": {
+        "title": "VirusTotal",
+        "body": "Chaque asset est soumis à VirusTotal (70+ moteurs antivirus). Le badge s'affiche ici dès que les SHA256 sont publiés."
+      },
+      "smartScreen": {
+        "title": "Windows SmartScreen",
+        "body": "SmartScreen bloque les exécutables sans réputation suffisante. L'app est signée Tauri mais sans certificat EV Windows. L'avertissement disparaîtra avec assez de téléchargements ou via un certificat EV. Si tu préfères, tu peux compiler depuis la source.",
+        "alt": "Compiler depuis la source"
+      },
+      "audit": {
+        "title": "Audit open source",
+        "items": [
+          {
+            "label": "Code",
+            "body": "100 % public sur GitHub, licence MIT.",
+            "cta": "Voir le repo",
+            "href": "https://github.com/noureddinestam/dofus-companion"
+          },
+          {
+            "label": "Build",
+            "body": "Reproductible via GitHub Actions, signé Tauri.",
+            "cta": "Voir release.yml",
+            "href": "https://github.com/noureddinestam/dofus-companion/blob/main/.github/workflows/release.yml"
+          }
+        ]
+      },
+      "report": {
+        "title": "Signaler une vulnérabilité",
+        "body": "Ouvre un Security Advisory sur GitHub. Réponse sous 72h, fix et disclosure coordonné.",
+        "cta": "Ouvrir un Security Advisory",
+        "href": "https://github.com/noureddinestam/dofus-companion/security/advisories/new"
+      }
+    }
   }
 }

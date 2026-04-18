@@ -11,7 +11,33 @@ if (!inputPath) {
   process.exit(1);
 }
 
+const SHA256SUMS_ASSET_NAME = "SHA256SUMS.txt";
+
+function parseSha256Sums(text) {
+  const out = {};
+  for (const raw of text.split(/\r?\n/)) {
+    const line = raw.trim();
+    if (!line || line.startsWith("#")) continue;
+    const match = line.match(/^([a-f0-9]{64})\s+\*?(.+)$/i);
+    if (match) out[match[2]] = match[1].toLowerCase();
+  }
+  return out;
+}
+
 const raw = JSON.parse(readFileSync(inputPath, "utf8"));
+
+let sha256Map = {};
+const sumsAsset = raw.assets.find((a) => a.name === SHA256SUMS_ASSET_NAME);
+if (sumsAsset) {
+  try {
+    const res = await fetch(sumsAsset.browser_download_url);
+    if (res.ok) sha256Map = parseSha256Sums(await res.text());
+  } catch (err) {
+    console.warn(
+      `Warn: failed to fetch ${SHA256SUMS_ASSET_NAME} — shipping without hashes (${err.message})`,
+    );
+  }
+}
 
 const shaped = {
   version: raw.tag_name,
@@ -19,16 +45,26 @@ const shaped = {
   publishedAt: raw.published_at,
   notesUrl: raw.html_url,
   assets: raw.assets
-    .filter((a) => !a.name.endsWith(".sig") && a.name !== "latest.json")
-    .map((a) => ({
-      name: a.name,
-      size: a.size,
-      downloadUrl: a.browser_download_url,
-      kind: a.name.endsWith(".msi") ? "msi" : "nsis",
-    })),
+    .filter(
+      (a) =>
+        !a.name.endsWith(".sig") &&
+        a.name !== "latest.json" &&
+        a.name !== SHA256SUMS_ASSET_NAME,
+    )
+    .map((a) => {
+      const asset = {
+        name: a.name,
+        size: a.size,
+        downloadUrl: a.browser_download_url,
+        kind: a.name.endsWith(".msi") ? "msi" : "nsis",
+      };
+      if (sha256Map[a.name]) asset.sha256 = sha256Map[a.name];
+      return asset;
+    }),
 };
 
 writeFileSync(outputPath, JSON.stringify(shaped, null, 2) + "\n");
+const hashCount = shaped.assets.filter((a) => a.sha256).length;
 console.log(
-  `Wrote ${outputPath}: ${shaped.version} with ${shaped.assets.length} assets`,
+  `Wrote ${outputPath}: ${shaped.version} with ${shaped.assets.length} assets (${hashCount} hashed)`,
 );
