@@ -72,6 +72,7 @@ function toMonster(m: DbMonster): Monster {
     resistElement: m.resistElement,
     source: 'dofusdb',
     sourceUrl: m.sourceUrl,
+    combat: null,
   };
 }
 

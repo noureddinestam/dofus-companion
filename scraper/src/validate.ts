@@ -85,6 +85,46 @@ export const StrategyBundleSchema = z
     message: 'At least one language/format must be populated',
   });
 
+// ========== Combat Cards (v0.5) ==========
+
+export const MechanicTypeEnum = z.enum([
+  'summoner',
+  'reviver',
+  'self-heal',
+  'buffer',
+  'debuffer',
+  'healer',
+  'tackler',
+  'puller',
+  'pusher',
+  'counter-damage',
+  'zone-control',
+  'ap-mp-stripper',
+  'execute',
+  'chain-summon',
+]);
+
+export const CombatSeverityEnum = z.enum(['critical', 'danger', 'caution']);
+
+export const LocalizedBulletTextSchema = z.object({
+  fr: z.string().min(3).max(160),
+  en: z.string().min(3).max(160),
+});
+
+export const BulletSchema = z.object({
+  text: LocalizedBulletTextSchema,
+  mechanicType: MechanicTypeEnum.nullable().default(null),
+  severity: CombatSeverityEnum.nullable().default(null),
+  provenance: ProvenanceSchema,
+});
+
+export const CombatCardSchema = z.object({
+  unlock: z.array(BulletSchema).default([]),
+  constraints: z.array(BulletSchema).default([]),
+  dangers: z.array(BulletSchema).default([]),
+  tips: z.array(BulletSchema).default([]),
+});
+
 // ========== Monster / Boss / Dungeon ==========
 
 export const MonsterSchema = z.object({
@@ -99,6 +139,8 @@ export const MonsterSchema = z.object({
   resistElement: ElementEnum.nullable(),
   source: z.enum(['dofusdb', 'fandom-en', 'fandom-fr']),
   sourceUrl: z.string().url(),
+  // v0.5 Combat Cards — null = monstre lambda.
+  combat: CombatCardSchema.nullable().default(null),
 });
 
 // LEGACY v0.3
@@ -121,6 +163,8 @@ export const BossSchema = MonsterSchema.extend({
       }),
     )
     .default([]),
+  // v0.5 transition — snapshot textuel des strategies v0.4 par boss.
+  legacyStrategies: z.array(z.string()).optional(),
 });
 
 export const DungeonSchema = z.object({
@@ -152,6 +196,28 @@ export type Monster = z.infer<typeof MonsterSchema>;
 export type Boss = z.infer<typeof BossSchema>;
 export type Dungeon = z.infer<typeof DungeonSchema>;
 export type BossStrategyLegacy = z.infer<typeof BossStrategyLegacySchema>;
+export type MechanicType = z.infer<typeof MechanicTypeEnum>;
+export type CombatSeverity = z.infer<typeof CombatSeverityEnum>;
+export type Bullet = z.infer<typeof BulletSchema>;
+export type CombatCard = z.infer<typeof CombatCardSchema>;
+export type CombatBlockKey = 'unlock' | 'constraints' | 'dangers' | 'tips';
+
+export const COMBAT_BLOCK_ORDER: readonly CombatBlockKey[] = [
+  'unlock',
+  'constraints',
+  'dangers',
+  'tips',
+] as const;
+
+export function isCombatCardEmpty(card: CombatCard | null): boolean {
+  if (!card) return true;
+  return (
+    card.unlock.length === 0 &&
+    card.constraints.length === 0 &&
+    card.dangers.length === 0 &&
+    card.tips.length === 0
+  );
+}
 
 export interface ValidationReport {
   valid: Dungeon[];
