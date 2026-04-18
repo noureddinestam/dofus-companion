@@ -153,25 +153,6 @@
     "body": "La page que vous cherchez n'existe pas, ou le lien a été déplacé.",
     "back": "Retour à l'accueil"
   },
-  "comingSoon": {
-    "eyebrow": "Bientôt",
-    "body": "Cette page est en construction. Elle arrivera dans une prochaine phase — le code et la roadmap restent publics sur GitHub.",
-    "back": "Retour à l'accueil",
-    "pages": {
-      "changelog": {
-        "title": "Changelog",
-        "subtitle": "L'historique complet des releases, version par version."
-      },
-      "faq": {
-        "title": "FAQ",
-        "subtitle": "Les réponses aux questions récurrentes : ToS Ankama, SmartScreen, installation, données locales."
-      },
-      "support": {
-        "title": "Soutenir le projet",
-        "subtitle": "Projet maintenu par une personne, sur son temps libre."
-      }
-    }
-  },
   "download": {
     "eyebrow": "Télécharger",
     "title": "Dofus Companion pour Windows",
@@ -315,6 +296,235 @@
         "cta": "Ouvrir un Security Advisory",
         "href": "https://github.com/noureddinestam/dofus-companion/security/advisories/new"
       }
+    }
+  },
+  "changelog": {
+    "eyebrow": "Changelog",
+    "title": "Historique des releases",
+    "subtitle": "Chaque version, ses changements, et les liens vers les notes complètes et les binaires.",
+    "empty": "Pas encore de release publiée.",
+    "viewNotes": "Notes complètes",
+    "downloads": "Téléchargements",
+    "unavailable": "Impossible de charger les releases depuis GitHub — réessaie plus tard.",
+    "fullHistory": "Voir toutes les releases sur GitHub"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Questions fréquentes",
+    "subtitle": "Légal, installation, utilisation, données, contribution.",
+    "categories": [
+      {
+        "title": "Légal & ToS Ankama",
+        "items": [
+          {
+            "q": "Est-ce qu'Ankama autorise cet outil ?",
+            "a": "Dofus Companion respecte les ToS d'Ankama : pas de lecture de la mémoire du process, pas d'automatisation clavier/souris, pas de lecture de packets réseau. C'est un overlay d'information — tu cherches, tu lis, tu joues. Pas affilié à Ankama, pas approuvé par Ankama."
+          },
+          {
+            "q": "Risque de ban ?",
+            "a": "L'app n'interagit pas avec Dofus. Aucun cas de ban connu lié à un overlay d'information. Ceci dit, Ankama reste seul juge — à tes risques."
+          },
+          {
+            "q": "Différence avec un bot ?",
+            "a": "Un bot joue à ta place (macros, automation, lecture mémoire). Dofus Companion affiche des stratégies par-dessus la fenêtre de jeu. Tu lis, tu appliques toi-même."
+          }
+        ]
+      },
+      {
+        "title": "Installation",
+        "items": [
+          {
+            "q": "Windows SmartScreen bloque le setup. Que faire ?",
+            "a": "C'est normal — l'app n'a pas encore de certificat EV Windows. Clique « Informations complémentaires » puis « Exécuter quand même ». Tu peux vérifier l'empreinte SHA256 avant, depuis la page /download."
+          },
+          {
+            "q": "Mon antivirus signale un faux positif",
+            "a": "Vérifie l'empreinte SHA256 du fichier sur /download et compare avec le rapport VirusTotal. Si 0 détection sur VirusTotal, c'est un faux positif local — signale-le à ton éditeur antivirus."
+          },
+          {
+            "q": "Où sont stockées mes données ?",
+            "a": "Dans %APPDATA%\\Dofus Companion (Windows). Données JSON locales uniquement — rien n'est envoyé à un serveur."
+          }
+        ]
+      },
+      {
+        "title": "Utilisation",
+        "items": [
+          {
+            "q": "Le hotkey Alt+D ne marche pas",
+            "a": "Vérifie qu'aucune autre app (Discord, AutoHotkey, OBS) n'utilise le même raccourci. Tu peux changer le hotkey dans les paramètres de l'app."
+          },
+          {
+            "q": "L'overlay disparaît en plein écran exclusif",
+            "a": "Dofus en fullscreen exclusif cache les overlays Windows. Bascule Dofus en « Fenêtre sans bord » dans les paramètres graphiques du jeu."
+          },
+          {
+            "q": "Comment changer le raccourci ?",
+            "a": "Clic droit sur l'icône de l'app → Paramètres → Raccourci global. Toute combinaison libre fonctionne."
+          }
+        ]
+      },
+      {
+        "title": "Données et confidentialité",
+        "items": [
+          {
+            "q": "Mes données sont envoyées où ?",
+            "a": "Nulle part. L'app lit des JSON locaux et vérifie GitHub Releases pour l'auto-update (HTTPS + signature Ed25519). Aucune télémétrie, aucun analytics, aucun tracking."
+          },
+          {
+            "q": "Comment désinstaller proprement ?",
+            "a": "Panneau de configuration Windows → Applications → Dofus Companion → Désinstaller. L'installeur NSIS supprime le dossier de données. Pour MSI : même chose via Apps & fonctionnalités."
+          },
+          {
+            "q": "Les stratégies sont-elles à jour ?",
+            "a": "Mise à jour continue via PR publiques. Chaque phrase porte un badge de provenance (officielle, communauté, LLM + citation). Tu peux signaler une erreur via GitHub Issues."
+          }
+        ]
+      },
+      {
+        "title": "Contribuer",
+        "items": [
+          {
+            "q": "Comment signaler une erreur dans une stratégie ?",
+            "a": "Ouvre une Issue sur GitHub avec le nom du boss et ce qui est incorrect. Voir la page Contribuer."
+          },
+          {
+            "q": "Comment traduire ou ajouter une langue ?",
+            "a": "EN est déjà couvert. Pour une autre langue, ouvre une Discussion GitHub — on évalue ensemble avant de lancer."
+          }
+        ]
+      }
+    ]
+  },
+  "contribute": {
+    "eyebrow": "Contribuer",
+    "title": "Le projet avance avec toi",
+    "subtitle": "Code, données, rapports — tout passe par GitHub, tracé, versionné.",
+    "paths": [
+      {
+        "title": "Code",
+        "body": "Fork, PR, issue. Convention Commits. README à la racine du repo pour le setup local.",
+        "cta": "Voir le repo",
+        "href": "https://github.com/noureddinestam/dofus-companion"
+      },
+      {
+        "title": "Données",
+        "body": "Corriger ou enrichir les stratégies de donjons. Workflow documenté dans DATA-CONTRIBUTING.md.",
+        "cta": "Lire le guide",
+        "href": "https://github.com/noureddinestam/dofus-companion/blob/main/DATA-CONTRIBUTING.md"
+      },
+      {
+        "title": "Rapport de bug",
+        "body": "Template d'issue dédié avec les infos utiles : version, OS, hotkey, étapes de reproduction.",
+        "cta": "Ouvrir une issue",
+        "href": "https://github.com/noureddinestam/dofus-companion/issues/new/choose"
+      },
+      {
+        "title": "Discussion",
+        "body": "Une idée ? Une question qui ne rentre pas dans une issue ? Les Discussions GitHub sont faites pour ça.",
+        "cta": "Ouvrir une discussion",
+        "href": "https://github.com/noureddinestam/dofus-companion/discussions"
+      }
+    ]
+  },
+  "supportPage": {
+    "eyebrow": "Soutenir",
+    "title": "Projet maintenu par une personne, sur son temps libre",
+    "body": "Si Dofus Companion t'aide, un sponsor GitHub ou une étoile au repo fait une vraie différence.",
+    "ctaSponsor": "GitHub Sponsors",
+    "ctaStar": "Star le repo",
+    "starCtaHref": "https://github.com/noureddinestam/dofus-companion",
+    "sponsorHref": "https://github.com/sponsors/noureddinestam",
+    "thanks": "Merci."
+  },
+  "legal": {
+    "privacy": {
+      "eyebrow": "Légal",
+      "title": "Politique de confidentialité",
+      "sections": [
+        {
+          "heading": "Quelles données collectons-nous ?",
+          "body": "Aucune. L'application locale ne collecte, ne stocke et n'envoie aucune donnée personnelle. Les JSON de stratégies sont lus uniquement depuis ton disque local."
+        },
+        {
+          "heading": "Cookies ?",
+          "body": "Aucun cookie sur ce site. Aucun tracker, aucun analytics."
+        },
+        {
+          "heading": "Logs serveur",
+          "body": "Les logs d'accès standard de Vercel (IP, user-agent, chemin, code statut) sont conservés selon leur politique par défaut. Nous ne les consultons ni ne les exportons."
+        },
+        {
+          "heading": "Contact",
+          "body": "Pour toute question relative à la vie privée, ouvre une Discussion ou un Security Advisory sur GitHub."
+        }
+      ]
+    },
+    "terms": {
+      "eyebrow": "Légal",
+      "title": "Conditions d'utilisation",
+      "sections": [
+        {
+          "heading": "Licence",
+          "body": "Dofus Companion est distribué sous licence MIT. Tu peux l'utiliser, le modifier et le redistribuer sous les termes de la licence (voir LICENSE dans le repo)."
+        },
+        {
+          "heading": "Garantie",
+          "body": "Le logiciel est fourni « tel quel », sans garantie d'aucune sorte. Usage à tes risques."
+        },
+        {
+          "heading": "Marque Dofus",
+          "body": "Dofus® est une marque déposée d'Ankama Games. Dofus Companion est une application non-officielle, créée par des fans pour des fans, non affiliée à Ankama."
+        }
+      ]
+    },
+    "licenses": {
+      "eyebrow": "Légal",
+      "title": "Licences des dépendances",
+      "body": "Dofus Companion s'appuie sur des projets open source. Dépendances majeures et leurs licences :",
+      "items": [
+        {
+          "name": "Next.js",
+          "license": "MIT",
+          "href": "https://github.com/vercel/next.js"
+        },
+        {
+          "name": "React",
+          "license": "MIT",
+          "href": "https://github.com/facebook/react"
+        },
+        {
+          "name": "Tailwind CSS",
+          "license": "MIT",
+          "href": "https://github.com/tailwindlabs/tailwindcss"
+        },
+        {
+          "name": "Radix UI",
+          "license": "MIT",
+          "href": "https://github.com/radix-ui/primitives"
+        },
+        {
+          "name": "Framer Motion",
+          "license": "MIT",
+          "href": "https://github.com/framer/motion"
+        },
+        {
+          "name": "Lucide",
+          "license": "ISC",
+          "href": "https://github.com/lucide-icons/lucide"
+        },
+        {
+          "name": "next-intl",
+          "license": "MIT",
+          "href": "https://github.com/amannn/next-intl"
+        },
+        {
+          "name": "Tauri",
+          "license": "Apache-2.0 / MIT",
+          "href": "https://github.com/tauri-apps/tauri"
+        }
+      ],
+      "footer": "Liste complète dans le package.json du repo."
     }
   }
 }

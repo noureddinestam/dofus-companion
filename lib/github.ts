@@ -1,6 +1,7 @@
 const GH_OWNER = "noureddinestam";
 const GH_REPO = "dofus-companion";
 const LATEST_RELEASE_URL = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/releases/latest`;
+const RELEASES_URL = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/releases`;
 const SHA256SUMS_ASSET_NAME = "SHA256SUMS.txt";
 
 export type AssetKind = "nsis" | "msi";
@@ -21,6 +22,16 @@ export interface Release {
   assets: ReleaseAsset[];
 }
 
+export interface ReleaseSummary {
+  version: string;
+  name: string;
+  publishedAt: string;
+  notesUrl: string;
+  bodyMarkdown: string;
+  isPrerelease: boolean;
+  assetsCount: number;
+}
+
 interface RawAsset {
   name: string;
   size: number;
@@ -32,6 +43,9 @@ interface RawRelease {
   name: string;
   published_at: string;
   html_url: string;
+  body?: string | null;
+  prerelease?: boolean;
+  draft?: boolean;
   assets: RawAsset[];
 }
 
@@ -127,4 +141,40 @@ export async function fetchLatestRelease(
   }
 
   return shapeRelease(raw, sha256Map);
+}
+
+export function summarizeRelease(raw: RawRelease): ReleaseSummary {
+  return {
+    version: raw.tag_name,
+    name: raw.name,
+    publishedAt: raw.published_at,
+    notesUrl: raw.html_url,
+    bodyMarkdown: raw.body ?? "",
+    isPrerelease: raw.prerelease === true,
+    assetsCount: raw.assets.filter(
+      (a) =>
+        !a.name.endsWith(".sig") &&
+        a.name !== "latest.json" &&
+        a.name !== SHA256SUMS_ASSET_NAME,
+    ).length,
+  };
+}
+
+export async function fetchRecentReleases(
+  limit: number,
+  revalidateSeconds: number,
+): Promise<ReleaseSummary[]> {
+  const token = process.env["GITHUB_TOKEN"];
+  const clamped = Math.max(1, Math.min(limit, 30));
+  const res = await fetch(`${RELEASES_URL}?per_page=${clamped}`, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    next: { revalidate: revalidateSeconds },
+  });
+  if (!res.ok) throw new GitHubApiError(res.status, res.statusText);
+  const raw = (await res.json()) as RawRelease[];
+  return raw.filter((r) => !r.draft).map(summarizeRelease);
 }
