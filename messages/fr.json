@@ -7,28 +7,25 @@
     "github": "GitHub"
   },
   "hero": {
-    "eyebrow": "Overlay Windows · Open source · MIT",
+    "eyebrow": "Overlay Windows · Open source · Pas une pub, pas un bot",
     "titleLead": "L'overlay Dofus qui tient dans",
     "titleAccent": "Alt+D",
     "titleTrail": ".",
-    "subtitle": "185 donjons, stratégies bilingues FR/EN, version actionnable lisible en 10 secondes. Pas d'Alt+Tab, pas de pub, pas de tracking.",
+    "subtitle": "185 donjons. Stratégies bilingues FR/EN. 3 à 6 bullets lisibles entre deux tours. Zéro Alt+Tab, zéro pub, zéro pixel qui traque.",
     "ctaPrimaryPrefix": "Télécharger pour Windows",
     "ctaSecondary": "Voir sur GitHub",
-    "microCopy": "Windows 10/11 · WebView2 requis (inclus sur W11) · Compatible Dofus 2.x et 3.x"
+    "microCopy": "Windows 10/11 · Compatible Dofus 2.x et 3.x · Signé Tauri, vérifié VirusTotal"
   },
   "mockOverlay": {
-    "hotkeyHint": "Appuie sur",
     "hotkey": "Alt+D",
-    "searchPlaceholder": "Rechercher un boss ou un donjon…",
     "searchValue": "transporteur",
-    "resultTitle": "Le Transporteur Scellé",
-    "resultSubtitle": "Incarnam des Songes · 200",
-    "resultTagShort": "Version courte · FR",
-    "resultBullets": [
-      "Bloquer la régénération turn 1 avec Rayon Ralenti.",
-      "Ne jamais frapper l'ombre pendant le bouclier.",
-      "Dispell avant la charge, sinon wipe."
-    ]
+    "searchCounter": "3 · 15 · 185",
+    "metaTemplate": "Nv. {min}–{max} · {count} monstres + boss",
+    "shortLabel": "Version courte · FR",
+    "sourceLabel": "Source",
+    "keyhintBack": "Backspace Retour",
+    "keyhintView": "V Vue",
+    "keyhintClose": "Esc Fermer"
   },
   "valueProps": {
     "sectionTitle": "Trois choses qui changent ta run",
@@ -36,17 +33,17 @@
       {
         "icon": "bolt",
         "title": "Instantané",
-        "body": "Alt+D global, ouvert en moins de 150 ms. Zéro alt-tab, zéro sortie du jeu."
+        "body": "Alt+D. Fenêtre ouverte en 150 ms, au-dessus de Dofus, pas à côté. Tu reviens au combat sans avoir perdu un tour."
       },
       {
         "icon": "target",
         "title": "Actionnable",
-        "body": "3 à 6 bullets colorés par boss. Pensé pour être lu en pleine action, pas en lecture passive."
+        "body": "3 à 6 bullets colorés par boss. Pensé pour être lu entre deux tours, pas en cours de DM guilde."
       },
       {
         "icon": "shield",
-        "title": "Transparent",
-        "body": "Chaque phrase a une source traçable — officielle, communauté, ou LLM avec citation. Zéro hallucination tolérée."
+        "title": "Traçable",
+        "body": "Chaque phrase porte une source cliquable. Fandom EN, Fandom FR, DofusDB, ou IA avec citation du texte source. Rien d'inventé."
       }
     ]
   },
@@ -55,20 +52,20 @@
     "sectionTitle": "Conçu pour les joueurs endgame",
     "items": [
       {
-        "title": "Deux vues par boss",
-        "body": "Version actionnable pour la pleine action, version détaillée quand tu veux comprendre un cycle. Tu passes de l'une à l'autre au clavier."
+        "title": "Deux vues, même boss.",
+        "body": "Actionnable quand tu es en plein cauchemar de Koulosse. Détaillée quand tu prépares le run avec ta guilde le dimanche soir. Tu bascules avec V."
       },
       {
-        "title": "FR ⇄ EN en un clic",
-        "body": "Toggle de langue instantané avec Ctrl+L. Les deux langues sont équivalentes — pas de contenu dégradé en EN."
+        "title": "FR ⇄ EN, Ctrl+L.",
+        "body": "Les deux langues ont le même niveau de détail. Pas de version EN dégradée, pas de FR rédigé à la va-vite. Quand on a dû traduire, la citation source est cliquable."
       },
       {
-        "title": "Données vérifiées",
-        "body": "Chaque phrase porte un badge de provenance : officielle Ankama, communauté consolidée, ou LLM avec citation de la source. Rien n'est inventé."
+        "title": "Trois sources, zéro invention.",
+        "body": "Stratégies Fandom communautaire. Stats DofusDB. Synthèses IA avec citation verbatim de la source. Chaque phrase est cliquable vers son origine. Si on n'avait aucune source fiable, on laisse vide — jamais d'à-peu-près."
       },
       {
-        "title": "Couverture endgame 160+",
-        "body": "114 donjons au-delà du niveau 160, dont 100 avec stratégie complète. Mise à jour continue via PR publiques."
+        "title": "114 donjons endgame 160+.",
+        "body": "Dont 100 avec stratégie complète. Mise à jour continue via PR publiques — la commu peut corriger, ajouter, contester. Tout est versionné."
       }
     ]
   },
@@ -79,17 +76,17 @@
       {
         "n": "01",
         "title": "Télécharge l'installeur",
-        "body": "3,3 Mo, signé Tauri, depuis GitHub Releases."
+        "body": "3,2 Mo, signé Tauri, vérifié VirusTotal. Source unique : GitHub Releases."
       },
       {
         "n": "02",
         "title": "Lance le setup",
-        "body": "Accepte WebView2 si demandé — composant Microsoft standard, inclus sur Windows 11."
+        "body": "Si Windows SmartScreen râle, c'est normal — on explique pourquoi sur la page Sécurité. Empreinte SHA256 affichée pour les paranos (et ils ont raison)."
       },
       {
         "n": "03",
-        "title": "Alt+D en jeu",
-        "body": "Par-dessus Dofus. Cherche, lis, joue. Pas de compte, pas d'envoi de données."
+        "title": "Alt+D en combat",
+        "body": "Pas de compte. Pas de ping serveur. L'app lit des JSON locaux, affiche une fenêtre, c'est tout."
       }
     ]
   },
@@ -118,10 +115,11 @@
   },
   "support": {
     "eyebrow": "Soutenir",
-    "title": "Projet maintenu par une personne, sur son temps libre",
-    "body": "Si l'outil t'aide, un sponsor ou un star au repo aide énormément.",
+    "title": "Projet solo, temps libre, pas de plan B.",
+    "body": "Pas de monétisation. Pas d'ogrines. Pas de pub. Si l'outil t'aide, un sponsor, une étoile, ou juste le partage à ta guilde — chacun compte.",
     "ctaSponsor": "GitHub Sponsors",
     "ctaStar": "Star le repo",
+    "detailsLink": "Détails sur ce que couvrent les dons",
     "microCopy": "Merci."
   },
   "credits": {
@@ -131,17 +129,26 @@
       {
         "role": "Idée & vision gameplay",
         "name": "Kamil F.",
-        "body": "L'overlay Dofus Companion n'existerait pas sans Kamil. Fan de Dofus de longue date, il a imaginé l'outil et porté la vision : ce qu'un joueur endgame veut vraiment lire en plein combat, et ce qu'il ne veut surtout pas. Toute la logique « 3 à 6 bullets actionnables » vient de lui."
+        "body": "Dofusien depuis 2010. C'est lui qui a défini exactement ce qu'un joueur endgame veut lire en plein combat, et surtout ce qu'il ne veut pas lire. Toute la logique « 3 à 6 bullets, pas une page Wikipédia » vient de ses nuits en Songes Infinis."
       },
       {
         "role": "Exécution",
         "name": "noureddinestam + Claude",
-        "body": "Vibe-coded : Noureddine guide, Claude tape le code, itération rapide par conversation. De la landing à l'overlay Tauri, tout le repo a été construit dans ce tempo."
+        "body": "Vibe-coded. Noureddine pilote, Claude tape le code, les PR s'enchaînent en conversation. De la landing page à l'overlay Tauri en passant par le scraper bilingue — tout le monorepo a été construit comme ça."
       }
     ]
   },
   "footer": {
     "tagline": "Overlay Windows open source. Licence MIT.",
+    "buildLines": [
+      "lancé entre deux tours",
+      "compilé avec 4 PA et 3 PM",
+      "Brokle non incluse",
+      "zéro Ecaflip n'a été trahi dans ce build",
+      "pas de perco sur cette page",
+      "cette ligne change, l'app pas tant que ça",
+      "build {hash}, pour les complotistes"
+    ],
     "columns": {
       "project": "Projet",
       "code": "Code",
@@ -447,13 +454,44 @@
   },
   "supportPage": {
     "eyebrow": "Soutenir",
-    "title": "Projet maintenu par une personne, sur son temps libre",
-    "body": "Si Dofus Companion t'aide, un sponsor GitHub ou une étoile au repo fait une vraie différence.",
-    "ctaSponsor": "GitHub Sponsors",
-    "ctaStar": "Star le repo",
+    "title": "Pas d'ogrines, pas d'abonnement, pas de cosmetic shop",
+    "subtitle": "Dofus Companion est maintenu sur du temps libre. Si l'outil te sert vraiment, voilà comment donner un coup de pouce.",
     "starCtaHref": "https://github.com/noureddinestam/dofus-companion",
     "sponsorHref": "https://github.com/sponsors/noureddinestam",
-    "thanks": "Merci."
+    "tiers": [
+      {
+        "tag": "Gratuit",
+        "title": "Star & partage",
+        "body": "Zéro euro. Un clic. Ça aide la réputation Windows SmartScreen (plus on est nombreux, moins l'écran bleu apparaît pour les suivants).",
+        "ctaLabel": "Star le repo",
+        "ctaVariant": "outline"
+      },
+      {
+        "tag": "Récurrent",
+        "title": "GitHub Sponsors",
+        "body": "Mensuel, via ton compte GitHub. Objectif long terme : couvrir un certificat EV Windows pour supprimer l'avertissement SmartScreen une bonne fois.",
+        "ctaLabel": "Sponsor le projet",
+        "ctaVariant": "primary"
+      }
+    ],
+    "transparency": {
+      "title": "Où va concrètement le soutien ?",
+      "body": "Les dons couvrent les coûts LLM pour régénérer les stratégies, un éventuel certificat EV Windows (le palier confort pour toute la commu), le nom de domaine, et le café du dev. Rien de luxueux, rien d'extravagant.",
+      "microCopy": "Tout est déclaré dans les commits. Pas de wallet off-the-record, pas de goodies, pas de collaborations sponsorisées."
+    },
+    "noPerks": {
+      "title": "Pas de perks, pas d'early access, pas de Discord VIP",
+      "body": "L'app reste 100 % gratuite et identique pour tout le monde. Les sponsors ne reçoivent pas de features en plus, pas de stratégies en avant-première, pas de bouton magique. Tu soutiens l'open source — ou tu ne le fais pas, et c'est très bien aussi. Pas de mauvaise conscience."
+    },
+    "alternatives": {
+      "title": "Tu ne peux pas donner ? Fais ça à la place.",
+      "items": [
+        "Star le repo — 1 seconde, utile pour la réputation SmartScreen.",
+        "Ouvre une issue si tu trouves un bug — c'est précieux.",
+        "Corrige une stratégie via PR — on a un template prêt.",
+        "Parle de l'app à ta guilde — le meilleur marketing possible."
+      ]
+    }
   },
   "legal": {
     "privacy": {
