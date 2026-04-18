@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { env } from "@/lib/env";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,17 +17,37 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const SITE_URL = env.NEXT_PUBLIC_SITE_URL;
+const DESCRIPTION =
+  "Overlay Windows open source pour Dofus : 185 donjons, stratégies bilingues FR/EN, lisible en 10 secondes. Pas d'Alt+Tab, pas de pub, pas de tracking.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Dofus Companion — l'overlay Dofus qui tient dans Alt+D",
     template: "%s · Dofus Companion",
   },
-  description:
-    "Overlay Windows open source pour Dofus : 185 donjons, stratégies bilingues FR/EN, lisible en 10 secondes. Pas d'Alt+Tab, pas de pub, pas de tracking.",
+  description: DESCRIPTION,
   applicationName: "Dofus Companion",
   authors: [{ name: "noureddinestam" }],
   creator: "noureddinestam",
   robots: { index: false, follow: false },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "Dofus Companion",
+    title: "Dofus Companion — l'overlay Dofus qui tient dans Alt+D",
+    description: DESCRIPTION,
+    url: SITE_URL,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dofus Companion — l'overlay Dofus qui tient dans Alt+D",
+    description: DESCRIPTION,
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export const viewport: Viewport = {

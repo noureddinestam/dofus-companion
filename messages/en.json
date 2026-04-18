@@ -1,0 +1,175 @@
+{
+  "nav": {
+    "features": "Fonctionnalités",
+    "changelog": "Changelog",
+    "faq": "FAQ",
+    "support": "Soutenir",
+    "github": "GitHub"
+  },
+  "hero": {
+    "eyebrow": "Overlay Windows · Open source · MIT",
+    "titleLead": "L'overlay Dofus qui tient dans",
+    "titleAccent": "Alt+D",
+    "titleTrail": ".",
+    "subtitle": "185 donjons, stratégies bilingues FR/EN, version actionnable lisible en 10 secondes. Pas d'Alt+Tab, pas de pub, pas de tracking.",
+    "ctaPrimaryPrefix": "Télécharger pour Windows",
+    "ctaSecondary": "Voir sur GitHub",
+    "microCopy": "Windows 10/11 · WebView2 requis (inclus sur W11) · Compatible Dofus 2.x et 3.x"
+  },
+  "mockOverlay": {
+    "hotkeyHint": "Appuie sur",
+    "hotkey": "Alt+D",
+    "searchPlaceholder": "Rechercher un boss ou un donjon…",
+    "searchValue": "transporteur",
+    "resultTitle": "Le Transporteur Scellé",
+    "resultSubtitle": "Incarnam des Songes · 200",
+    "resultTagShort": "Version courte · FR",
+    "resultBullets": [
+      "Bloquer la régénération turn 1 avec Rayon Ralenti.",
+      "Ne jamais frapper l'ombre pendant le bouclier.",
+      "Dispell avant la charge, sinon wipe."
+    ]
+  },
+  "valueProps": {
+    "sectionTitle": "Trois choses qui changent ta run",
+    "items": [
+      {
+        "icon": "bolt",
+        "title": "Instantané",
+        "body": "Alt+D global, ouvert en moins de 150 ms. Zéro alt-tab, zéro sortie du jeu."
+      },
+      {
+        "icon": "target",
+        "title": "Actionnable",
+        "body": "3 à 6 bullets colorés par boss. Pensé pour être lu en pleine action, pas en lecture passive."
+      },
+      {
+        "icon": "shield",
+        "title": "Transparent",
+        "body": "Chaque phrase a une source traçable — officielle, communauté, ou LLM avec citation. Zéro hallucination tolérée."
+      }
+    ]
+  },
+  "features": {
+    "sectionEyebrow": "Fonctionnalités",
+    "sectionTitle": "Conçu pour les joueurs endgame",
+    "items": [
+      {
+        "title": "Deux vues par boss",
+        "body": "Version actionnable pour la pleine action, version détaillée quand tu veux comprendre un cycle. Tu passes de l'une à l'autre au clavier."
+      },
+      {
+        "title": "FR ⇄ EN en un clic",
+        "body": "Toggle de langue instantané avec Ctrl+L. Les deux langues sont équivalentes — pas de contenu dégradé en EN."
+      },
+      {
+        "title": "Données vérifiées",
+        "body": "Chaque phrase porte un badge de provenance : officielle Ankama, communauté consolidée, ou LLM avec citation de la source. Rien n'est inventé."
+      },
+      {
+        "title": "Couverture endgame 160+",
+        "body": "114 donjons au-delà du niveau 160, dont 100 avec stratégie complète. Mise à jour continue via PR publiques."
+      }
+    ]
+  },
+  "howItWorks": {
+    "eyebrow": "Comment ça marche",
+    "title": "Trois étapes, zéro friction",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Télécharge l'installeur",
+        "body": "3,3 Mo, signé Tauri, depuis GitHub Releases."
+      },
+      {
+        "n": "02",
+        "title": "Lance le setup",
+        "body": "Accepte WebView2 si demandé — composant Microsoft standard, inclus sur Windows 11."
+      },
+      {
+        "n": "03",
+        "title": "Alt+D en jeu",
+        "body": "Par-dessus Dofus. Cherche, lis, joue. Pas de compte, pas d'envoi de données."
+      }
+    ]
+  },
+  "roadmap": {
+    "eyebrow": "Roadmap",
+    "title": "Publique, versionnée, par PR",
+    "subtitle": "Les issues les plus upvotées passent en priorité. Tout est tracé.",
+    "columns": [
+      {
+        "label": "En cours",
+        "version": "v0.4",
+        "body": "Coverage endgame, i18n EN, workflow contributeurs."
+      },
+      {
+        "label": "Prochain",
+        "version": "v0.5",
+        "body": "Vue builds, recherche avancée, mode low-latency."
+      },
+      {
+        "label": "Community asks",
+        "version": "Ouvert",
+        "body": "Suggère, upvote, discute. Les demandes populaires passent d'abord."
+      }
+    ]
+  },
+  "support": {
+    "eyebrow": "Soutenir",
+    "title": "Projet maintenu par une personne, sur son temps libre",
+    "body": "Si l'outil t'aide, un sponsor ou un star au repo aide énormément.",
+    "ctaSponsor": "GitHub Sponsors",
+    "ctaStar": "Star le repo",
+    "microCopy": "Merci."
+  },
+  "footer": {
+    "tagline": "Overlay Windows open source. Licence MIT.",
+    "columns": {
+      "project": "Projet",
+      "code": "Code",
+      "legal": "Légal"
+    },
+    "links": {
+      "changelog": "Changelog",
+      "roadmap": "Roadmap",
+      "security": "Sécurité",
+      "faq": "FAQ",
+      "github": "GitHub",
+      "issues": "Issues",
+      "releases": "Releases",
+      "contribute": "Contribuer",
+      "privacy": "Confidentialité",
+      "terms": "CGU",
+      "licenses": "Licences OSS"
+    }
+  },
+  "disclaimer": {
+    "body": "Dofus Companion est une application <strong>non-officielle</strong>, créée par des fans pour des fans. <strong>Dofus®</strong> est une marque déposée d'<strong>Ankama Games</strong>. Ce projet n'est ni approuvé ni affilié à Ankama. Aucune lecture mémoire ni automatisation du jeu — cet outil est un overlay d'information uniquement."
+  },
+  "notFound": {
+    "code": "Erreur 404",
+    "title": "Cette salle est vide. Aucun boss à l'horizon.",
+    "body": "La page que vous cherchez n'existe pas, ou le lien a été déplacé.",
+    "back": "Retour à l'accueil"
+  },
+  "comingSoon": {
+    "eyebrow": "Bientôt",
+    "body": "Cette page est en construction. Elle arrivera dans une prochaine phase — le code et la roadmap restent publics sur GitHub.",
+    "back": "Retour à l'accueil",
+    "pages": {
+      "changelog": {
+        "title": "Changelog",
+        "subtitle": "L'historique complet des releases, version par version."
+      },
+      "faq": {
+        "title": "FAQ",
+        "subtitle": "Les réponses aux questions récurrentes : ToS Ankama, SmartScreen, installation, données locales."
+      },
+      "support": {
+        "title": "Soutenir le projet",
+        "subtitle": "Projet maintenu par une personne, sur son temps libre."
+      }
+    }
+  }
+}

@@ -1,14 +1,16 @@
 import Link from "next/link";
+import { messages } from "@/lib/messages";
 import { GithubIcon } from "@/components/icons/GithubIcon";
 
 const NAV_LINKS = [
-  { href: "/#features", label: "Fonctionnalités" },
-  { href: "/changelog", label: "Changelog" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/support", label: "Soutenir" },
+  { href: "/#features", key: "features" },
+  { href: "/changelog", key: "changelog" },
+  { href: "/faq", key: "faq" },
+  { href: "/support", key: "support" },
 ] as const;
 
 export function Nav() {
+  const t = messages.nav;
   return (
     <header className="border-border/60 bg-background/80 sticky top-0 z-40 border-b backdrop-blur">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
@@ -31,7 +33,7 @@ export function Nav() {
               href={link.href}
               className="hover:text-foreground transition-colors"
             >
-              {link.label}
+              {t[link.key]}
             </Link>
           ))}
           <a
@@ -41,7 +43,7 @@ export function Nav() {
             className="hover:text-foreground inline-flex items-center gap-1.5 transition-colors"
           >
             <GithubIcon className="h-4 w-4" />
-            GitHub
+            {t.github}
           </a>
         </nav>
       </div>
