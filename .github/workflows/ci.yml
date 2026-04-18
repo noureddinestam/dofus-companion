@@ -40,4 +40,4 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NEXT_PUBLIC_SITE_URL: https://dofus-companion-web.vercel.app
+          NEXT_PUBLIC_SITE_URL: https://dofuscompanion.com

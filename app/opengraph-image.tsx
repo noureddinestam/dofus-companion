@@ -89,7 +89,7 @@ export default function Image() {
         }}
       >
         <span>Windows · Open source · MIT</span>
-        <span style={{ color: "#e8b547" }}>dofus-companion-web.vercel.app</span>
+        <span style={{ color: "#e8b547" }}>dofuscompanion.com</span>
       </div>
     </div>,
     { ...size },
