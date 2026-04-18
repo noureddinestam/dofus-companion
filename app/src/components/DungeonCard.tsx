@@ -3,8 +3,10 @@ import type { Dungeon } from '../types/dungeon';
 import { useI18n } from '../i18n/useI18n';
 import { useAppStore } from '../store/appStore';
 import { StrategyShortView } from '../features/strategy/StrategyShortView';
+import { resolveBossView } from '../features/dungeons/resolveBossView';
 import { MonsterRow } from './MonsterRow';
 import { BossPanel } from './BossPanel';
+import { CombatCardView } from './CombatCardView';
 import { ViewToggle } from './ViewToggle';
 
 interface DungeonCardProps {
@@ -15,6 +17,7 @@ interface DungeonCardProps {
 export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
   const { t } = useI18n();
   const strategyView = useAppStore((s) => s.strategyView);
+  const bossView = resolveBossView(dungeon.boss);
   // Monstres triés par niveau décroissant (plus dangereux en premier)
   const sortedMonsters = [...dungeon.monsters].sort((a, b) => b.level - a.level);
 
@@ -84,9 +87,11 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
             </div>
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 6 }}>
-          <ViewToggle />
-        </div>
+        {bossView === 'legacy' && (
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 6 }}>
+            <ViewToggle />
+          </div>
+        )}
       </div>
 
       {/* Scrollable content */}
@@ -134,8 +139,12 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
         </div>
         <MonsterRow monster={dungeon.boss} isBoss />
 
-        {/* Rendu selon la vue choisie — short par défaut (pensée "actionnable combat") */}
-        {strategyView === 'short' ? (
+        {bossView === 'combat' ? (
+          <CombatCardView
+            card={dungeon.boss.combat}
+            legacyStrategies={dungeon.boss.legacyStrategies}
+          />
+        ) : strategyView === 'short' ? (
           <StrategyShortView bundle={dungeon.boss.strategies} />
         ) : (
           <BossPanel boss={dungeon.boss} />

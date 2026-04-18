@@ -66,18 +66,41 @@ describe('dungeons.json v0.3 + migration', () => {
     expect(total).toBeGreaterThan(100);
   });
 
-  // === v0.5 regression guard ===
-  // Aucune donnée v0.4 ne doit produire de combat card populated : tous les
-  // boss et monstres doivent sortir du parse avec combat === null, et
-  // legacyStrategies absent. Le critère d'additivité : un monstre lambda reste lambda.
-  it('v0.5 schema additive: every boss and monster has combat === null after v0.4 parse', () => {
+  // === v0.5 invariants post-migration ===
+  // Le critère d'additivité reste : un monstre lambda reste lambda (combat === null).
+  // Les boss peuvent désormais avoir une combat card populated par Phase B, mais
+  // chaque boss avec combat populated doit aussi avoir legacyStrategies rempli
+  // (footer "Notes legacy v0.4" du brief §8.5). Les boss sans combat restent sur
+  // le rendu v0.4 classique.
+  it('v0.5 invariant: every monster still has combat === null (lambda silence)', () => {
     if (!parsed.success) throw new Error('parse failed');
     for (const d of parsed.data) {
-      expect(d.boss.combat).toBeNull();
-      expect(d.boss.legacyStrategies).toBeUndefined();
       for (const m of d.monsters) {
         expect(m.combat).toBeNull();
       }
     }
+  });
+
+  it('v0.5 invariant: every boss with populated combat also has legacyStrategies', () => {
+    if (!parsed.success) throw new Error('parse failed');
+    let withCombat = 0;
+    let withoutCombat = 0;
+    for (const d of parsed.data) {
+      if (d.boss.combat === null) {
+        withoutCombat++;
+        continue;
+      }
+      withCombat++;
+      const totalBullets =
+        d.boss.combat.unlock.length +
+        d.boss.combat.constraints.length +
+        d.boss.combat.dangers.length +
+        d.boss.combat.tips.length;
+      expect(totalBullets).toBeGreaterThan(0);
+      expect(d.boss.legacyStrategies).toBeDefined();
+      expect(d.boss.legacyStrategies!.length).toBeGreaterThan(0);
+    }
+    console.log(`\n  📊 Combat cards : ${withCombat}/${withCombat + withoutCombat} boss avec combat populated`);
+    expect(withCombat).toBeGreaterThan(100);
   });
 });
