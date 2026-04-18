@@ -1,46 +1,23 @@
 import { z } from 'zod';
-
-const ElementEnum = z.enum(['air', 'eau', 'feu', 'terre', 'neutre']);
-const LangEnum = z.enum(['fr', 'en']);
-
-// ========== Provenance ==========
-
-export const AnchorSchema = z.object({
-  bulletIndex: z.number().int().min(0),
-  quote: z.string().min(5).max(300),
-  similarity: z.number().min(0).max(1),
-});
-
-export const ProvenanceNativeSchema = z.object({
-  kind: z.literal('native'),
-  lang: LangEnum,
-  source: z.enum(['fandom-en', 'fandom-fr', 'gamosaurus', 'manual']),
-  sourceUrl: z.string().url(),
-});
-
-export const ProvenanceLlmSchema = z.object({
-  kind: z.literal('llm-grounded'),
-  baseLang: LangEnum,
-  baseSource: z.enum(['fandom-en', 'fandom-fr', 'gamosaurus']),
-  baseSourceUrl: z.string().url(),
-  model: z.string(),
-  promptVersion: z.string(),
-  anchors: z.array(AnchorSchema).min(1),
-  generatedAt: z.string().datetime(),
-});
-
-export const ProvenanceCommunitySchema = z.object({
-  kind: z.literal('community'),
-  contributor: z.string(),
-  reviewedBy: z.string().optional(),
-  prUrl: z.string().url(),
-});
-
-export const ProvenanceSchema = z.discriminatedUnion('kind', [
+import {
+  AnchorSchema,
+  ProvenanceSchema,
   ProvenanceNativeSchema,
   ProvenanceLlmSchema,
   ProvenanceCommunitySchema,
-]);
+} from './provenance';
+
+const ElementEnum = z.enum(['air', 'eau', 'feu', 'terre', 'neutre']);
+export const LangEnum = z.enum(['fr', 'en']);
+
+// Re-exports pour ne pas casser les imports existants.
+export {
+  AnchorSchema,
+  ProvenanceSchema,
+  ProvenanceNativeSchema,
+  ProvenanceLlmSchema,
+  ProvenanceCommunitySchema,
+};
 
 // ========== Stratégies ==========
 
@@ -144,11 +121,13 @@ export const DungeonSchema = z.object({
 // ========== Types inférés ==========
 
 export type Lang = z.infer<typeof LangEnum>;
-export type Anchor = z.infer<typeof AnchorSchema>;
-export type ProvenanceNative = z.infer<typeof ProvenanceNativeSchema>;
-export type ProvenanceLlm = z.infer<typeof ProvenanceLlmSchema>;
-export type ProvenanceCommunity = z.infer<typeof ProvenanceCommunitySchema>;
-export type Provenance = z.infer<typeof ProvenanceSchema>;
+export type {
+  Anchor,
+  ProvenanceNative,
+  ProvenanceLlm,
+  ProvenanceCommunity,
+  Provenance,
+} from './provenance';
 export type StrategyLong = z.infer<typeof StrategyLongSchema>;
 export type ActionableBullet = z.infer<typeof ActionableBulletSchema>;
 export type StrategyShort = z.infer<typeof StrategyShortSchema>;
