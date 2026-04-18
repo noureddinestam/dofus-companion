@@ -101,14 +101,14 @@
     "cta": "Voir la roadmap",
     "columns": [
       {
-        "label": "En cours",
-        "version": "v0.4",
-        "body": "Coverage endgame, i18n EN, workflow contributeurs."
+        "label": "Livré",
+        "version": "v0.5.0",
+        "body": "Combat Cards 4 blocs (141 boss + 129 monstres), vue monstre dédiée Ctrl+M, recherche par nom de monstre."
       },
       {
         "label": "Prochain",
-        "version": "v0.5",
-        "body": "Vue builds, recherche avancée, mode low-latency."
+        "version": "v0.6",
+        "body": "Archétypes mécaniques filtrables, contributions community cards, couverture étendue sur les Expéditions 200."
       },
       {
         "label": "Community asks",

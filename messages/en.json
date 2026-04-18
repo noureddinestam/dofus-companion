@@ -101,14 +101,14 @@
     "cta": "View the roadmap",
     "columns": [
       {
-        "label": "In progress",
-        "version": "v0.4",
-        "body": "Endgame coverage, EN i18n, contributor workflow."
+        "label": "Shipped",
+        "version": "v0.5.0",
+        "body": "4-block Combat Cards (141 bosses + 129 monsters), dedicated monster view Ctrl+M, search by monster name."
       },
       {
         "label": "Next",
-        "version": "v0.5",
-        "body": "Builds view, advanced search, low-latency mode."
+        "version": "v0.6",
+        "body": "Filter by mechanic archetype, community card contributions, broader coverage on level 200 Expeditions."
       },
       {
         "label": "Community asks",
