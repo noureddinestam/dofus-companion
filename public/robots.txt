@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+# Phase 1 : indexation désactivée jusqu'au launch (Phase 7).
