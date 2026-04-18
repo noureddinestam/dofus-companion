@@ -1,52 +1,56 @@
 import Link from "next/link";
 import { AnkamaDisclaimer } from "@/components/AnkamaDisclaimer";
 import { env } from "@/lib/env";
+import { messages } from "@/lib/messages";
 
-const FOOTER_LINKS: ReadonlyArray<{
-  title: string;
-  links: ReadonlyArray<{ href: string; label: string; external?: boolean }>;
+type LinkKey = keyof typeof messages.footer.links;
+
+const FOOTER_COLS: ReadonlyArray<{
+  titleKey: keyof typeof messages.footer.columns;
+  links: ReadonlyArray<{ href: string; key: LinkKey; external?: boolean }>;
 }> = [
   {
-    title: "Projet",
+    titleKey: "project",
     links: [
-      { href: "/changelog", label: "Changelog" },
-      { href: "/roadmap", label: "Roadmap" },
-      { href: "/security", label: "Sécurité" },
-      { href: "/faq", label: "FAQ" },
+      { href: "/changelog", key: "changelog" },
+      { href: "/roadmap", key: "roadmap" },
+      { href: "/security", key: "security" },
+      { href: "/faq", key: "faq" },
     ],
   },
   {
-    title: "Code",
+    titleKey: "code",
     links: [
       {
         href: "https://github.com/noureddinestam/dofus-companion",
-        label: "GitHub",
+        key: "github",
         external: true,
       },
       {
         href: "https://github.com/noureddinestam/dofus-companion/issues",
-        label: "Issues",
+        key: "issues",
         external: true,
       },
       {
         href: "https://github.com/noureddinestam/dofus-companion/releases",
-        label: "Releases",
+        key: "releases",
         external: true,
       },
-      { href: "/contribute", label: "Contribuer" },
+      { href: "/contribute", key: "contribute" },
     ],
   },
   {
-    title: "Légal",
+    titleKey: "legal",
     links: [
-      { href: "/legal/privacy", label: "Confidentialité" },
-      { href: "/legal/terms", label: "CGU" },
-      { href: "/legal/licenses", label: "Licences OSS" },
+      { href: "/legal/privacy", key: "privacy" },
+      { href: "/legal/terms", key: "terms" },
+      { href: "/legal/licenses", key: "licenses" },
     ],
   },
 ];
 
 export function Footer() {
+  const t = messages.footer;
   const buildHash = env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? "local";
   const buildDate = new Date().toISOString().slice(0, 10);
 
@@ -64,14 +68,12 @@ export function Footer() {
               </span>
               Dofus Companion
             </div>
-            <p className="text-muted text-sm leading-relaxed">
-              Overlay Windows open source. Licence MIT.
-            </p>
+            <p className="text-muted text-sm leading-relaxed">{t.tagline}</p>
           </div>
-          {FOOTER_LINKS.map((col) => (
-            <div key={col.title}>
+          {FOOTER_COLS.map((col) => (
+            <div key={col.titleKey}>
               <h2 className="text-muted mb-3 text-xs font-semibold tracking-[0.15em] uppercase">
-                {col.title}
+                {t.columns[col.titleKey]}
               </h2>
               <ul className="space-y-2 text-sm">
                 {col.links.map((link) => (
@@ -83,14 +85,14 @@ export function Footer() {
                         rel="noopener noreferrer"
                         className="text-foreground/80 hover:text-gold transition-colors"
                       >
-                        {link.label}
+                        {t.links[link.key]}
                       </a>
                     ) : (
                       <Link
                         href={link.href}
                         className="text-foreground/80 hover:text-gold transition-colors"
                       >
-                        {link.label}
+                        {t.links[link.key]}
                       </Link>
                     )}
                   </li>
