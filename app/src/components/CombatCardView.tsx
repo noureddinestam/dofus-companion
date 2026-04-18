@@ -6,6 +6,9 @@ import { ProvenanceBadge } from '../features/strategy/ProvenanceBadge';
 
 interface CombatCardViewProps {
   card: CombatCard | null;
+  /** v0.4 bullets / long text, preserved pendant la transition v0.5.x.
+   *  Rendu dans un <details> collapsé sous la card si présent. */
+  legacyStrategies?: string[];
   /** Optional footer slot (e.g. custom legacy notes). Rendered under provenance. */
   footer?: ReactNode;
 }
@@ -17,7 +20,7 @@ const BLOCK_EMOJI: Record<CombatBlockKey, string> = {
   tips: '💡',
 };
 
-export function CombatCardView({ card, footer }: CombatCardViewProps) {
+export function CombatCardView({ card, legacyStrategies, footer }: CombatCardViewProps) {
   const { t } = useI18n();
 
   // Silence rule : un monstre lambda (card === null) ou card entièrement vide → aucun rendu.
@@ -61,6 +64,17 @@ export function CombatCardView({ card, footer }: CombatCardViewProps) {
         <div className="combat-card__provenance">
           <ProvenanceBadge provenance={firstBullet.provenance} />
         </div>
+      )}
+
+      {legacyStrategies && legacyStrategies.length > 0 && (
+        <details className="combat-card__legacy">
+          <summary>{t.combat.legacyNotes}</summary>
+          <div className="combat-card__legacy-body">
+            {legacyStrategies.map((line, i) => (
+              <p key={i}>{line}</p>
+            ))}
+          </div>
+        </details>
       )}
 
       {footer}

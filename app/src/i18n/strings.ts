@@ -81,6 +81,7 @@ export interface UiStrings {
     constraints: string;
     dangers: string;
     tips: string;
+    legacyNotes: string;
   };
 }
 
@@ -167,6 +168,7 @@ const fr: UiStrings = {
     constraints: 'CONTRAINTES',
     dangers: 'DANGERS',
     tips: 'INFOS UTILES',
+    legacyNotes: 'Notes legacy v0.4',
   },
 };
 
@@ -251,6 +253,7 @@ const en: UiStrings = {
     constraints: 'CONSTRAINTS',
     dangers: 'DANGERS',
     tips: 'TIPS',
+    legacyNotes: 'v0.4 legacy notes',
   },
 };
 
