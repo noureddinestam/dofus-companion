@@ -4,7 +4,9 @@
     "changelog": "Changelog",
     "faq": "FAQ",
     "support": "Soutenir",
-    "github": "GitHub"
+    "github": "GitHub",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
   },
   "hero": {
     "eyebrow": "Overlay Windows · Open source · Pas une pub, pas un bot",
