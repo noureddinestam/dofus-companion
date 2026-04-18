@@ -12,14 +12,22 @@ import { ViewToggle } from './ViewToggle';
 interface DungeonCardProps {
   dungeon: Dungeon;
   onBack: () => void;
+  /** Monster id matched by the search query — scrolled into view on open. */
+  highlightedMonsterId?: string | null;
 }
 
-export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
+export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCardProps) {
   const { t } = useI18n();
   const strategyView = useAppStore((s) => s.strategyView);
+  const hideLambdas = useAppStore((s) => s.hideLambdas);
+  const setHideLambdas = useAppStore((s) => s.setHideLambdas);
   const bossView = resolveBossView(dungeon.boss);
   // Monstres triés par niveau décroissant (plus dangereux en premier)
   const sortedMonsters = [...dungeon.monsters].sort((a, b) => b.level - a.level);
+  const visibleMonsters = hideLambdas
+    ? sortedMonsters.filter((m) => m.combat !== null)
+    : sortedMonsters;
+  const hiddenLambdaCount = sortedMonsters.length - visibleMonsters.length;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -87,11 +95,37 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
             </div>
           </div>
         </div>
-        {bossView === 'legacy' && (
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 6 }}>
-            <ViewToggle />
-          </div>
-        )}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            gap: 10,
+            marginTop: 6,
+            alignItems: 'center',
+          }}
+        >
+          <label
+            title={t.settings.hideLambdasHint}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 5,
+              fontSize: 10,
+              color: 'var(--text-muted)',
+              cursor: 'pointer',
+              userSelect: 'none',
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={hideLambdas}
+              onChange={(e) => setHideLambdas(e.target.checked)}
+              style={{ margin: 0, cursor: 'pointer' }}
+            />
+            {t.settings.hideLambdas}
+          </label>
+          {bossView === 'legacy' && <ViewToggle />}
+        </div>
       </div>
 
       {/* Scrollable content */}
@@ -107,11 +141,17 @@ export function DungeonCard({ dungeon, onBack }: DungeonCardProps) {
             borderBottom: '1px solid var(--border-subtle)',
           }}
         >
-          {t.dungeon.monsters} ({sortedMonsters.length}) — {t.dungeon.monstersSubtitle}
+          {t.dungeon.monsters} ({visibleMonsters.length}
+          {hiddenLambdaCount > 0 ? ` / ${sortedMonsters.length}` : ''}) —{' '}
+          {t.dungeon.monstersSubtitle}
         </div>
 
-        {sortedMonsters.map((m) => (
-          <MonsterRow key={m.id} monster={m} />
+        {visibleMonsters.map((m) => (
+          <MonsterRow
+            key={m.id}
+            monster={m}
+            highlighted={highlightedMonsterId === m.id}
+          />
         ))}
 
         {/* Boss header toujours affiché */}
