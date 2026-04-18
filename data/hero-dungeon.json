@@ -1,59 +1,62 @@
 {
-  "_note": "Baked snapshot from the parent dataset (app/src/data/dungeons.json, Transporteur de Sylargh entry). Kept in sync manually so the hero demo never depends on a live fetch. Every bullet below must appear verbatim in the dataset for the 'zero hallucination' promise to hold.",
+  "_note": "Baked snapshot from the v0.5 dataset — 4-block Combat Card for Transporteur de Sylargh (Laboratoire de Sylargh). Kept in sync manually so the hero demo never depends on a live fetch. Every bullet below must appear verbatim in the parent dataset for the 'zero hallucination' promise to hold.",
   "name": { "fr": "Transporteur de Sylargh", "en": "Sylargh's Carrier" },
-  "slug": "transporteur-de-sylargh",
+  "slug": "laboratoire-de-sylargh",
   "levelRange": [180, 210],
   "monsterCount": 5,
-  "short": {
-    "fr": {
-      "bullets": [
-        {
-          "severity": "danger",
-          "text": "Tuer les zombies rend Sylargh vulnérable 1 tour"
+  "combat": {
+    "unlock": [
+      {
+        "text": {
+          "fr": "Tuer les 3 zombies avant d'attaquer Sylargh",
+          "en": "Kill the 3 zombies before attacking Sylargh"
         },
-        {
-          "severity": "caution",
-          "text": "Éviter d'être à 90%+ PV : risque d'état pacifique"
-        },
-        {
-          "severity": "critical",
-          "text": "Mort zombie tue instantanément les autres zombies proches"
-        },
-        {
-          "severity": "danger",
-          "text": "Zombie mort = explosion 1000 dégâts feu zone 5"
-        }
-      ],
-      "provenance": {
-        "kind": "llm-grounded",
-        "baseSource": "fandom-en",
-        "baseSourceUrl": "https://dofuswiki.fandom.com/wiki/Sylargh"
+        "severity": "critical",
+        "mechanicType": "chain-summon"
       }
-    },
-    "en": {
-      "bullets": [
-        {
-          "severity": "critical",
-          "text": "Zombie death instakills all other zombies in 5-cell AoE"
+    ],
+    "constraints": [
+      {
+        "text": {
+          "fr": "Rester sous 90 % PV pour éviter l'état pacifique",
+          "en": "Stay below 90% HP to avoid the pacifist state"
         },
-        {
-          "severity": "danger",
-          "text": "Stay below 90% HP or become pacifist when zombie dies"
-        },
-        {
-          "severity": "danger",
-          "text": "Dead monsters revive at 10% HP with +300 dmg buff for 1 turn"
-        },
-        {
-          "severity": "danger",
-          "text": "Kill all monsters at once to prevent chain revives"
-        }
-      ],
-      "provenance": {
-        "kind": "llm-grounded",
-        "baseSource": "fandom-en",
-        "baseSourceUrl": "https://dofuswiki.fandom.com/wiki/Sylargh"
+        "severity": "danger",
+        "mechanicType": "debuffer"
       }
-    }
+    ],
+    "dangers": [
+      {
+        "text": {
+          "fr": "Zombie tué déclenche 1000 dégâts feu sur zone 5",
+          "en": "Dead zombie triggers 1000 fire damage in a 5-cell area"
+        },
+        "severity": "critical",
+        "mechanicType": null
+      },
+      {
+        "text": {
+          "fr": "Morts ressuscitent à 10 % PV avec buff +300 dégâts 1 tour",
+          "en": "Dead monsters revive at 10% HP with +300 dmg buff for 1 turn"
+        },
+        "severity": "danger",
+        "mechanicType": "reviver"
+      }
+    ],
+    "tips": [
+      {
+        "text": {
+          "fr": "Tuer tous les monstres en même temps pour couper la chaîne de résurrections",
+          "en": "Kill all monsters at once to break the chain of revives"
+        },
+        "severity": null,
+        "mechanicType": null
+      }
+    ]
+  },
+  "provenance": {
+    "kind": "llm-grounded",
+    "baseSource": "fandom-en",
+    "baseSourceUrl": "https://dofuswiki.fandom.com/wiki/Sylargh"
   }
 }

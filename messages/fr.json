@@ -13,7 +13,7 @@
     "titleLead": "L'overlay Dofus qui tient dans",
     "titleAccent": "Alt+D",
     "titleTrail": ".",
-    "subtitle": "{count} donjons. Stratégies bilingues FR/EN. 3 à 6 bullets lisibles entre deux tours. Zéro Alt+Tab, zéro pub, zéro pixel qui traque.",
+    "subtitle": "{count} donjons. Combat Cards 4 blocs bilingues FR/EN. Scanner entre deux tours, pas de mental mapping. Zéro Alt+Tab, zéro pub, zéro pixel qui traque.",
     "dungeonCount": "185",
     "dungeonHoverHint": "dont 42 attendent ta PR",
     "dungeonHoverCta": "Contribuer",
@@ -27,10 +27,15 @@
     "searchValue": "transporteur",
     "searchCounter": "3 · 15 · 185",
     "metaTemplate": "Nv. {min}–{max} · {count} monstres + boss",
-    "shortLabel": "Version courte · FR",
     "sourceLabel": "Source",
+    "combatBlocks": {
+      "unlock": "DÉLOCK",
+      "constraints": "CONTRAINTES",
+      "dangers": "DANGERS",
+      "tips": "INFOS UTILES"
+    },
     "keyhintBack": "Backspace Retour",
-    "keyhintView": "V Vue",
+    "keyhintMonster": "Ctrl+M Monstres",
     "keyhintClose": "Esc Fermer"
   },
   "valueProps": {
@@ -43,8 +48,8 @@
       },
       {
         "icon": "target",
-        "title": "Actionnable",
-        "body": "3 à 6 bullets colorés par boss. Pensé pour être lu entre deux tours, pas en cours de DM guilde."
+        "title": "Combat Cards",
+        "body": "Quatre blocs, ordre fixe : déverrouiller, contraintes, dangers, infos. Tu scannes, tu joues. Pas de pavé à lire, pas de toggle à mémoriser."
       },
       {
         "icon": "shield",
@@ -58,8 +63,12 @@
     "sectionTitle": "Conçu pour les joueurs endgame",
     "items": [
       {
-        "title": "Deux vues, même boss.",
-        "body": "Actionnable quand tu es en plein cauchemar de Koulosse. Détaillée quand tu prépares le run avec ta guilde le dimanche soir. Tu bascules avec V."
+        "title": "Une card, quatre blocs, zéro choix.",
+        "body": "🔓 DÉLOCK · ⚠️ CONTRAINTES · ❌ DANGERS · 💡 INFOS. Tu scannes dans cet ordre, toujours. Les anciennes notes v0.4 restent accessibles en un clic sous chaque card."
+      },
+      {
+        "title": "Ctrl+M, mode monstre.",
+        "body": "Tape un nom, tu tombes sur sa card + tous les donjons où il apparaît. En Songes Infinis, tu identifies un add en 3 secondes clavier."
       },
       {
         "title": "FR ⇄ EN, Ctrl+L.",
@@ -67,11 +76,11 @@
       },
       {
         "title": "Trois sources, zéro invention.",
-        "body": "Stratégies Fandom communautaire. Stats DofusDB. Synthèses IA avec citation verbatim de la source. Chaque phrase est cliquable vers son origine. Si on n'avait aucune source fiable, on laisse vide — jamais d'à-peu-près."
+        "body": "Stratégies Fandom. Stats DofusDB. Extraction LLM avec ancre verbatim dans le texte source, rejet automatique si la citation ne matche pas. Si aucune source fiable, on laisse vide — jamais d'à-peu-près."
       },
       {
-        "title": "114 donjons endgame 160+.",
-        "body": "Dont 100 avec stratégie complète. Mise à jour continue via PR publiques — la commu peut corriger, ajouter, contester. Tout est versionné."
+        "title": "185 donjons. Règle du silence.",
+        "body": "141 boss + 129 monstres notables avec card. Les lambdas sans mécanique restent invisibles. Zéro bruit, zéro pavé creux. Tu ne vois que ce qui peut te tuer."
       }
     ]
   },
@@ -103,14 +112,14 @@
     "cta": "Voir la roadmap",
     "columns": [
       {
-        "label": "En cours",
-        "version": "v0.4",
-        "body": "Coverage endgame, i18n EN, workflow contributeurs."
+        "label": "Livré",
+        "version": "v0.5.0",
+        "body": "Combat Cards 4 blocs (141 boss + 129 monstres), vue monstre dédiée Ctrl+M, recherche par nom de monstre."
       },
       {
         "label": "Prochain",
-        "version": "v0.5",
-        "body": "Vue builds, recherche avancée, mode low-latency."
+        "version": "v0.6",
+        "body": "Archétypes mécaniques filtrables, contributions community cards, couverture étendue sur les Expéditions 200."
       },
       {
         "label": "Community asks",
@@ -135,7 +144,7 @@
       {
         "role": "Idée & vision gameplay",
         "name": "Kamil F.",
-        "body": "Dofusien depuis 2010. C'est lui qui a défini exactement ce qu'un joueur endgame veut lire en plein combat, et surtout ce qu'il ne veut pas lire. Toute la logique « 3 à 6 bullets, pas une page Wikipédia » vient de ses nuits en Songes Infinis."
+        "body": "Dofusien depuis 2010. C'est lui qui a défini exactement ce qu'un joueur endgame veut lire en plein combat, et surtout ce qu'il ne veut pas lire. Toute la logique « quatre blocs fixes, pas une page Wikipédia » vient de ses nuits en Songes Infinis."
       },
       {
         "role": "Exécution",

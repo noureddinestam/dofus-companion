@@ -13,7 +13,7 @@
     "titleLead": "The Dofus overlay that fits behind",
     "titleAccent": "Alt+D",
     "titleTrail": ".",
-    "subtitle": "{count} dungeons. Bilingual FR/EN strategies. 3 to 6 bullets readable between two turns. Zero Alt+Tab, zero ads, zero pixel tracking.",
+    "subtitle": "{count} dungeons. 4-block bilingual Combat Cards. Scan between two turns, no mental mapping. Zero Alt+Tab, zero ads, zero pixel tracking.",
     "dungeonCount": "185",
     "dungeonHoverHint": "42 still waiting for your PR",
     "dungeonHoverCta": "Contribute",
@@ -27,10 +27,15 @@
     "searchValue": "transporter",
     "searchCounter": "3 · 15 · 185",
     "metaTemplate": "Lv. {min}–{max} · {count} monsters + boss",
-    "shortLabel": "Short version · EN",
     "sourceLabel": "Source",
+    "combatBlocks": {
+      "unlock": "UNLOCK",
+      "constraints": "CONSTRAINTS",
+      "dangers": "DANGERS",
+      "tips": "TIPS"
+    },
     "keyhintBack": "Backspace Back",
-    "keyhintView": "V View",
+    "keyhintMonster": "Ctrl+M Monsters",
     "keyhintClose": "Esc Close"
   },
   "valueProps": {
@@ -43,8 +48,8 @@
       },
       {
         "icon": "target",
-        "title": "Actionable",
-        "body": "3 to 6 colored bullets per boss. Built to be read between two turns, not in the middle of a guild DM."
+        "title": "Combat Cards",
+        "body": "Four blocks, fixed order: unlock, constraints, dangers, tips. You scan, you play. No wall of text, no toggle to remember."
       },
       {
         "icon": "shield",
@@ -58,8 +63,12 @@
     "sectionTitle": "Built for endgame players",
     "items": [
       {
-        "title": "Two views, same boss.",
-        "body": "Actionable when you're deep in a Koulosse nightmare. Detailed when you're prepping the run with your guild on Sunday evening. Toggle with V."
+        "title": "One card, four blocks, no choice.",
+        "body": "🔓 UNLOCK · ⚠️ CONSTRAINTS · ❌ DANGERS · 💡 TIPS. You scan in that order, always. Legacy v0.4 notes stay one click away under each card."
+      },
+      {
+        "title": "Ctrl+M, monster mode.",
+        "body": "Type a name, get the card plus every dungeon where it shows up. In Songes Infinis you identify an add in 3 seconds keyboard-only."
       },
       {
         "title": "FR ⇄ EN, Ctrl+L.",
@@ -67,11 +76,11 @@
       },
       {
         "title": "Three sources, zero invention.",
-        "body": "Community Fandom strategies. DofusDB stats. LLM syntheses with verbatim source citation. Every sentence is clickable to its origin. If there's no reliable source, we leave it empty — never a guess."
+        "body": "Community Fandom strategies. DofusDB stats. LLM extraction with verbatim anchor in the source text, auto-rejected if the citation doesn't match. If there's no reliable source, we leave it empty — never a guess."
       },
       {
-        "title": "114 endgame dungeons, 160+.",
-        "body": "100 of them with a full strategy. Continuously updated via public PRs — the community can fix, add, contest. Everything is versioned."
+        "title": "185 dungeons. Silence rule.",
+        "body": "141 bosses + 129 notable monsters carrying a card. Lambdas without mechanics stay invisible. Zero noise, zero empty fluff. You only see what can kill you."
       }
     ]
   },
@@ -103,14 +112,14 @@
     "cta": "View the roadmap",
     "columns": [
       {
-        "label": "In progress",
-        "version": "v0.4",
-        "body": "Endgame coverage, EN i18n, contributor workflow."
+        "label": "Shipped",
+        "version": "v0.5.0",
+        "body": "4-block Combat Cards (141 bosses + 129 monsters), dedicated monster view Ctrl+M, search by monster name."
       },
       {
         "label": "Next",
-        "version": "v0.5",
-        "body": "Builds view, advanced search, low-latency mode."
+        "version": "v0.6",
+        "body": "Filter by mechanic archetype, community card contributions, broader coverage on level 200 Expeditions."
       },
       {
         "label": "Community asks",
@@ -135,7 +144,7 @@
       {
         "role": "Idea & gameplay vision",
         "name": "Kamil F.",
-        "body": "Dofusien since 2010. He's the one who defined exactly what an endgame player wants to read mid-fight, and above all what they don't want to read. The whole '3 to 6 bullets, not a Wikipedia page' philosophy comes from his Songes Infinis nights."
+        "body": "Dofusien since 2010. He's the one who defined exactly what an endgame player wants to read mid-fight, and above all what they don't want to read. The whole 'four fixed blocks, not a Wikipedia page' philosophy comes from his Songes Infinis nights."
       },
       {
         "role": "Execution",

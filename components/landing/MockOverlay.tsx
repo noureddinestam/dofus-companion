@@ -2,13 +2,43 @@ import heroDungeon from "@/data/hero-dungeon.json";
 import { getLocale, getMessages } from "@/lib/messages";
 import { SearchIcon } from "@/components/icons/InlineIcons";
 
-type Severity = "critical" | "danger" | "caution" | "info";
+type BlockKey = "unlock" | "constraints" | "dangers" | "tips";
 
-const SEVERITY_DOT: Record<Severity, string> = {
-  critical: "bg-rose-400",
-  danger: "bg-gold",
-  caution: "bg-amber-300",
-  info: "bg-muted",
+const BLOCK_ORDER: readonly BlockKey[] = [
+  "unlock",
+  "constraints",
+  "dangers",
+  "tips",
+] as const;
+
+const BLOCK_STYLE: Record<
+  BlockKey,
+  { border: string; bg: string; title: string; emoji: string }
+> = {
+  unlock: {
+    border: "border-emerald-500/40",
+    bg: "bg-emerald-500/10",
+    title: "text-emerald-300",
+    emoji: "🔓",
+  },
+  constraints: {
+    border: "border-amber-500/40",
+    bg: "bg-amber-500/10",
+    title: "text-amber-300",
+    emoji: "⚠️",
+  },
+  dangers: {
+    border: "border-rose-500/40",
+    bg: "bg-rose-500/10",
+    title: "text-rose-300",
+    emoji: "❌",
+  },
+  tips: {
+    border: "border-sky-500/40",
+    bg: "bg-sky-500/10",
+    title: "text-sky-300",
+    emoji: "💡",
+  },
 };
 
 function formatMeta(template: string, min: number, max: number, count: number) {
@@ -21,7 +51,7 @@ function formatMeta(template: string, min: number, max: number, count: number) {
 export async function MockOverlay() {
   const [m, locale] = await Promise.all([getMessages(), getLocale()]);
   const t = m.mockOverlay;
-  const short = heroDungeon.short[locale];
+  const card = heroDungeon.combat;
   const name = heroDungeon.name[locale];
   const levelMin = heroDungeon.levelRange[0] ?? 0;
   const levelMax = heroDungeon.levelRange[1] ?? 0;
@@ -31,7 +61,7 @@ export async function MockOverlay() {
     levelMax,
     heroDungeon.monsterCount,
   );
-  const sourceHost = new URL(short.provenance.baseSourceUrl).host.replace(
+  const sourceHost = new URL(heroDungeon.provenance.baseSourceUrl).host.replace(
     /^www\./,
     "",
   );
@@ -71,31 +101,47 @@ export async function MockOverlay() {
             </span>
           </label>
           <div className="border-gold/25 bg-gold/[0.04] rounded-md border px-4 py-3">
-            <div className="mb-1 flex items-baseline justify-between gap-3">
+            <div className="mb-3 flex items-baseline justify-between gap-3">
               <p className="text-foreground text-sm font-semibold">{name}</p>
               <p className="text-muted font-mono text-[11px]">{meta}</p>
             </div>
-            <p className="text-gold mb-3 font-mono text-[10px] tracking-[0.15em] uppercase">
-              {t.shortLabel}
-            </p>
-            <ul className="text-foreground/90 space-y-1.5 text-[13px] leading-relaxed">
-              {short.bullets.map((bullet, i) => (
-                <li key={i} className="flex gap-2">
-                  <span
-                    aria-hidden
-                    className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${
-                      SEVERITY_DOT[bullet.severity as Severity] ??
-                      SEVERITY_DOT.danger
-                    }`}
-                  />
-                  {bullet.text}
-                </li>
-              ))}
-            </ul>
+            <div className="space-y-2">
+              {BLOCK_ORDER.map((key) => {
+                const bullets = card[key];
+                if (bullets.length === 0) return null;
+                const style = BLOCK_STYLE[key];
+                return (
+                  <div
+                    key={key}
+                    className={`rounded-md border px-3 py-2 ${style.border} ${style.bg}`}
+                  >
+                    <p
+                      className={`mb-1 font-mono text-[10px] font-bold tracking-[0.15em] uppercase ${style.title}`}
+                    >
+                      <span aria-hidden className="mr-1.5">
+                        {style.emoji}
+                      </span>
+                      {t.combatBlocks[key]}
+                    </p>
+                    <ul className="space-y-1 text-[12.5px] leading-relaxed text-foreground/90">
+                      {bullets.map((bullet, i) => (
+                        <li key={i} className="flex gap-2">
+                          <span
+                            aria-hidden
+                            className={`mt-1.5 h-1 w-1 shrink-0 rounded-full ${style.title.replace("text-", "bg-")}`}
+                          />
+                          {bullet.text[locale]}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
             <p className="border-gold/15 text-muted mt-3 border-t pt-2 font-mono text-[10px]">
               {t.sourceLabel} ·{" "}
               <a
-                href={short.provenance.baseSourceUrl}
+                href={heroDungeon.provenance.baseSourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gold/80 hover:text-gold underline-offset-2 hover:underline"
@@ -106,7 +152,7 @@ export async function MockOverlay() {
           </div>
           <div className="text-muted flex items-center justify-between gap-3 pt-1 font-mono text-[10px] tracking-[0.15em] uppercase">
             <span>{t.keyhintBack}</span>
-            <span>{t.keyhintView}</span>
+            <span>{t.keyhintMonster}</span>
             <span>{t.keyhintClose}</span>
           </div>
         </div>
