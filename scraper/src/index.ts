@@ -39,7 +39,7 @@ const APP_DATA = join(APP_DATA_DIR, 'dungeons.json');
 const APP_FUSE = join(APP_DATA_DIR, 'fuse-index.json');
 const APP_DATA_LEGACY = join(APP_DATA_DIR, 'dungeons.legacy.json');
 
-const DATA_VERSION = '0.4.0';
+const DATA_VERSION = '0.5.0';
 const FANDOM_DELAY_MS = 700;
 
 // CLI flags
