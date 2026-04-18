@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { messages } from "@/lib/messages";
+import { getMessages } from "@/lib/messages";
 
-export default function NotFound() {
-  const t = messages.notFound;
+export default async function NotFound() {
+  const m = await getMessages();
+  const t = m.notFound;
   return (
     <section className="mx-auto flex min-h-[70vh] max-w-xl flex-col items-center justify-center gap-6 px-6 py-24 text-center">
       <p className="text-gold font-mono text-sm tracking-[0.2em] uppercase">

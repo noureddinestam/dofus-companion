@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AnkamaDisclaimer } from "@/components/AnkamaDisclaimer";
 import { env } from "@/lib/env";
-import { messages } from "@/lib/messages";
+import { getMessages, messages } from "@/lib/messages";
 
 type LinkKey = keyof typeof messages.footer.links;
 
@@ -49,8 +49,9 @@ const FOOTER_COLS: ReadonlyArray<{
   },
 ];
 
-export function Footer() {
-  const t = messages.footer;
+export async function Footer() {
+  const m = await getMessages();
+  const t = m.footer;
   const buildHash = env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? "local";
   const buildDate = new Date().toISOString().slice(0, 10);
 

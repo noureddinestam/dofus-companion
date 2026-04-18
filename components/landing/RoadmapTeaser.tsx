@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { messages } from "@/lib/messages";
+import { getMessages } from "@/lib/messages";
 import { ArrowRightIcon } from "@/components/icons/InlineIcons";
 
-export function RoadmapTeaser() {
-  const t = messages.roadmap;
+export async function RoadmapTeaser() {
+  const m = await getMessages();
+  const t = m.roadmap;
   return (
     <section className="border-border/60 border-b py-20">
       <div className="mx-auto max-w-6xl px-6">
@@ -23,7 +24,7 @@ export function RoadmapTeaser() {
             href="/roadmap"
             className="group text-gold hover:text-gold-soft inline-flex items-center gap-1.5 text-sm font-medium"
           >
-            Voir la roadmap
+            {t.cta}
             <ArrowRightIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </Link>
         </header>

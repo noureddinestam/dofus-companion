@@ -1,13 +1,13 @@
-import { messages } from "@/lib/messages";
+import { getMessages } from "@/lib/messages";
 import type { DetectedOs } from "@/lib/os";
 
 interface OsBannerProps {
   os: DetectedOs;
 }
 
-export function OsBanner({ os }: OsBannerProps) {
-  const key = os;
-  const t = messages.download.os[key];
+export async function OsBanner({ os }: OsBannerProps) {
+  const m = await getMessages();
+  const t = m.download.os[os];
   const isSupported = os === "windows" || os === "unknown";
   return (
     <div

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { messages } from "@/lib/messages";
+import { getMessages, messages } from "@/lib/messages";
 import { ArrowRightIcon } from "@/components/icons/InlineIcons";
 
 export const metadata: Metadata = {
@@ -7,8 +7,9 @@ export const metadata: Metadata = {
   description: messages.contribute.subtitle,
 };
 
-export default function ContributePage() {
-  const t = messages.contribute;
+export default async function ContributePage() {
+  const m = await getMessages();
+  const t = m.contribute;
   return (
     <div className="mx-auto max-w-4xl px-6 py-16 sm:py-20">
       <header className="mb-12 max-w-2xl">

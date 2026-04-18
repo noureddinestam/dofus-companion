@@ -1,11 +1,12 @@
-import { messages } from "@/lib/messages";
+import { getMessages } from "@/lib/messages";
 import { SearchIcon } from "@/components/icons/InlineIcons";
 
-export function MockOverlay() {
-  const t = messages.mockOverlay;
+export async function MockOverlay() {
+  const m = await getMessages();
+  const t = m.mockOverlay;
   return (
     <div
-      aria-label="Aperçu de l'overlay Dofus Companion"
+      aria-label="Dofus Companion overlay preview"
       role="img"
       className="relative mx-auto w-full max-w-xl"
     >
@@ -30,8 +31,11 @@ export function MockOverlay() {
             <span className="text-foreground/90 flex-1 truncate font-mono">
               {t.searchValue}
             </span>
-            <span className="text-muted font-mono text-[10px] tracking-[0.15em] uppercase">
-              3 résultats
+            <span
+              aria-hidden
+              className="text-muted font-mono text-[10px] tracking-[0.15em] uppercase"
+            >
+              3 · 15 · 185
             </span>
           </label>
           <div className="border-gold/25 bg-gold/[0.04] rounded-md border px-4 py-3">

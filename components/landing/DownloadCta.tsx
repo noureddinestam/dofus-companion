@@ -1,14 +1,17 @@
 import { getLatestRelease, pickPrimaryAsset } from "@/lib/release";
 import { formatBytes } from "@/lib/format";
-import { messages } from "@/lib/messages";
+import { getMessages } from "@/lib/messages";
 import { DownloadIcon } from "@/components/icons/InlineIcons";
 
 export async function DownloadCta() {
-  const { release } = await getLatestRelease();
+  const [{ release }, m] = await Promise.all([
+    getLatestRelease(),
+    getMessages(),
+  ]);
   const asset = pickPrimaryAsset(release);
   if (!asset) return null;
 
-  const t = messages.hero;
+  const t = m.hero;
   const version = release.version.replace(/^v/, "");
   return (
     <a

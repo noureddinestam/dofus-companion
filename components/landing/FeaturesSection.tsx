@@ -1,7 +1,8 @@
-import { messages } from "@/lib/messages";
+import { getMessages } from "@/lib/messages";
 
-export function FeaturesSection() {
-  const t = messages.features;
+export async function FeaturesSection() {
+  const m = await getMessages();
+  const t = m.features;
   return (
     <section id="features" className="border-border/60 border-b py-20">
       <div className="mx-auto max-w-6xl px-6">

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { messages } from "@/lib/messages";
+import { getMessages, messages } from "@/lib/messages";
 import { HeartIcon, StarIcon } from "@/components/icons/InlineIcons";
 
 export const metadata: Metadata = {
   title: messages.supportPage.title,
 };
 
-export default function SupportPage() {
-  const t = messages.supportPage;
+export default async function SupportPage() {
+  const m = await getMessages();
+  const t = m.supportPage;
   return (
     <div className="mx-auto max-w-2xl px-6 py-16 sm:py-20">
       <p className="text-gold mb-3 font-mono text-xs tracking-[0.2em] uppercase">
