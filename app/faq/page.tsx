@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { messages } from "@/lib/messages";
+import { getMessages, messages } from "@/lib/messages";
 
 export const metadata: Metadata = {
   title: messages.faq.title,
   description: messages.faq.subtitle,
 };
 
-export default function FaqPage() {
-  const t = messages.faq;
+export default async function FaqPage() {
+  const m = await getMessages();
+  const t = m.faq;
   return (
     <div className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
       <header className="mb-12 max-w-2xl">

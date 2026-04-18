@@ -1,8 +1,9 @@
-import { messages } from "@/lib/messages";
+import { getMessages } from "@/lib/messages";
 import { HeartIcon, StarIcon } from "@/components/icons/InlineIcons";
 
-export function SupportBlock() {
-  const t = messages.support;
+export async function SupportBlock() {
+  const m = await getMessages();
+  const t = m.support;
   return (
     <section className="py-20">
       <div className="mx-auto max-w-4xl px-6">

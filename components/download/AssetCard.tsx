@@ -1,5 +1,5 @@
 import { formatBytes } from "@/lib/format";
-import { messages } from "@/lib/messages";
+import { getMessages } from "@/lib/messages";
 import type { ReleaseAsset } from "@/lib/github";
 import { DownloadIcon } from "@/components/icons/InlineIcons";
 import { CopyInline } from "@/components/ui/CopyInline";
@@ -10,9 +10,14 @@ interface AssetCardProps {
   highlighted?: boolean;
 }
 
-export function AssetCard({ asset, sha256, highlighted }: AssetCardProps) {
-  const t = messages.download.cards;
-  const tSha = messages.download.sha256;
+export async function AssetCard({
+  asset,
+  sha256,
+  highlighted,
+}: AssetCardProps) {
+  const m = await getMessages();
+  const t = m.download.cards;
+  const tSha = m.download.sha256;
   const variant = asset.kind === "nsis" ? t.nsis : t.msi;
   return (
     <article

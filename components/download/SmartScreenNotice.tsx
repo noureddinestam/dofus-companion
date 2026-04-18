@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { messages } from "@/lib/messages";
+import { getMessages } from "@/lib/messages";
 
-export function SmartScreenNotice() {
-  const t = messages.smartScreen;
+export async function SmartScreenNotice() {
+  const m = await getMessages();
+  const t = m.smartScreen;
   return (
     <section className="border-border/70 bg-card/30 rounded-lg border p-6 sm:p-8">
       <p className="text-gold mb-2 font-mono text-[11px] tracking-[0.15em] uppercase">

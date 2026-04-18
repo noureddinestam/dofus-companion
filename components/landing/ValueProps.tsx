@@ -1,4 +1,4 @@
-import { messages } from "@/lib/messages";
+import { getMessages } from "@/lib/messages";
 import {
   BoltIcon,
   TargetIcon,
@@ -13,8 +13,9 @@ const ICONS = {
 
 type IconName = keyof typeof ICONS;
 
-export function ValueProps() {
-  const t = messages.valueProps;
+export async function ValueProps() {
+  const m = await getMessages();
+  const t = m.valueProps;
   return (
     <section className="border-border/60 border-b py-20">
       <div className="mx-auto max-w-6xl px-6">

@@ -1,13 +1,14 @@
-import { messages } from "@/lib/messages";
+import { getMessages } from "@/lib/messages";
 import { CodeBlock } from "@/components/ui/CodeBlock";
 
 interface VerifyBlockProps {
   assetName: string;
 }
 
-export function VerifyBlock({ assetName }: VerifyBlockProps) {
-  const t = messages.download.verify;
-  const tCopy = messages.download.sha256;
+export async function VerifyBlock({ assetName }: VerifyBlockProps) {
+  const m = await getMessages();
+  const t = m.download.verify;
+  const tCopy = m.download.sha256;
   const command = t.commandTemplate.replace("{asset}", assetName);
   return (
     <section className="space-y-4">

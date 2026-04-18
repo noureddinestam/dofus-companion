@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { messages } from "@/lib/messages";
+import { getMessages, messages } from "@/lib/messages";
 import { VirusTotalBadge } from "@/components/download/VirusTotalBadge";
 
 export const metadata: Metadata = {
@@ -7,8 +7,9 @@ export const metadata: Metadata = {
   description: messages.security.subtitle,
 };
 
-export default function SecurityPage() {
-  const t = messages.security;
+export default async function SecurityPage() {
+  const m = await getMessages();
+  const t = m.security;
   const s = t.sections;
   return (
     <div className="mx-auto max-w-4xl px-6 py-16 sm:py-20">
