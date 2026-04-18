@@ -11,8 +11,12 @@
     "titleLead": "The Dofus overlay that fits behind",
     "titleAccent": "Alt+D",
     "titleTrail": ".",
-    "subtitle": "185 dungeons. Bilingual FR/EN strategies. 3 to 6 bullets readable between two turns. Zero Alt+Tab, zero ads, zero pixel tracking.",
+    "subtitle": "{count} dungeons. Bilingual FR/EN strategies. 3 to 6 bullets readable between two turns. Zero Alt+Tab, zero ads, zero pixel tracking.",
+    "dungeonCount": "185",
+    "dungeonHoverHint": "42 still waiting for your PR",
+    "dungeonHoverCta": "Contribute",
     "ctaPrimaryPrefix": "Download for Windows",
+    "ctaPrimaryReveal": "Yes, it's the same file.",
     "ctaSecondary": "View on GitHub",
     "microCopy": "Windows 10/11 · Works with Dofus 2.x and 3.x · Tauri-signed, VirusTotal-verified"
   },
@@ -172,11 +176,19 @@
   "disclaimer": {
     "body": "Dofus Companion is an <strong>unofficial</strong> application, built by fans for fans. <strong>Dofus®</strong> is a registered trademark of <strong>Ankama Games</strong>. This project is neither endorsed by nor affiliated with Ankama. No memory reading, no game automation — this is an information overlay only."
   },
+  "kerubim": {
+    "alt": "Kerubim, Dofus' old merchant cat",
+    "firstUnlock": "Well, well. A curious one. I was right to keep that rune.",
+    "reUnlock": "Yes, yes — I saw you the first time."
+  },
   "notFound": {
-    "code": "Error 404",
-    "title": "This room is empty. No boss in sight.",
-    "body": "The page you're looking for doesn't exist, or the link has moved.",
-    "back": "Back to home"
+    "code": "404 · This page is invisible.",
+    "title": "A Sram must have stolen it.",
+    "body": "Maybe it existed, maybe it never did. In the meantime:",
+    "back": "Home",
+    "changelog": "Changelog",
+    "faq": "FAQ",
+    "meta": "If you expected an easter egg here, you lost. Or won."
   },
   "download": {
     "eyebrow": "Download",
@@ -208,15 +220,19 @@
       "nsis": {
         "title": "NSIS installer",
         "tag": "Recommended",
-        "body": "Built-in auto-update, quick install, clean uninstall."
+        "body": "Built-in auto-update, quick install, clean uninstall.",
+        "microWeight": "3.2 MB. Lighter than a level 50 armor set."
       },
       "msi": {
         "title": "MSI package",
         "tag": "Admins",
-        "body": "For GPO deployment, Chocolatey, MDM."
+        "body": "For GPO deployment, Chocolatey, MDM.",
+        "microWeight": "4.6 MB. Deployable via GPO or Chocolatey."
       },
       "download": "Download"
     },
+    "smartScreenQuip": "Windows looks at your executable the way a Sram looks at a tax collector: suspicious. Here's how to tell it we're here to help.",
+    "verifyMicroIntro": "For the truly paranoid — and they're right to exist.",
     "sha256": {
       "label": "SHA256",
       "pending": "Will be published with the next release (SHA256SUMS.txt)",
@@ -258,8 +274,8 @@
   },
   "security": {
     "eyebrow": "Security",
-    "title": "Security and transparency",
-    "subtitle": "What the app does, what it doesn't, and how to verify it yourself.",
+    "title": "What comes in, what goes out, what stays on your disk.",
+    "subtitle": "The app in 3 honest lists. Green — what it does. Red — what it doesn't. Yellow — what Windows will say anyway.",
     "sections": {
       "behavior": {
         "title": "What the app does and doesn't",
@@ -323,7 +339,7 @@
   "changelog": {
     "eyebrow": "Changelog",
     "title": "Release history",
-    "subtitle": "Every version, its changes, and links to the full notes and binaries.",
+    "subtitle": "Every version. Clickable Git hashes. Nothing hidden, nothing glorified.",
     "empty": "No releases published yet.",
     "viewNotes": "Full notes",
     "downloads": "Downloads",
@@ -336,7 +352,7 @@
     "subtitle": "Legal, installation, usage, data, contributing.",
     "categories": [
       {
-        "title": "Legal & Ankama ToS",
+        "title": "Did Ankama sign off on this?",
         "items": [
           {
             "q": "Does Ankama allow this tool?",
@@ -353,7 +369,7 @@
         ]
       },
       {
-        "title": "Installation",
+        "title": "Setup — the 3 things that can go wrong",
         "items": [
           {
             "q": "Windows SmartScreen blocks the setup. What now?",
@@ -370,7 +386,7 @@
         ]
       },
       {
-        "title": "Usage",
+        "title": "When Alt+D doesn't respond",
         "items": [
           {
             "q": "The Alt+D hotkey doesn't work",
@@ -387,7 +403,7 @@
         ]
       },
       {
-        "title": "Data and privacy",
+        "title": "Privacy — simple, we collect nothing",
         "items": [
           {
             "q": "Where is my data sent?",
@@ -404,7 +420,7 @@
         ]
       },
       {
-        "title": "Contributing",
+        "title": "Found a mistake? Good.",
         "items": [
           {
             "q": "How do I report a mistake in a strategy?",
@@ -420,8 +436,8 @@
   },
   "contribute": {
     "eyebrow": "Contribute",
-    "title": "The project moves forward with you",
-    "subtitle": "Code, data, reports — everything goes through GitHub, tracked and versioned.",
+    "title": "The community fixes. That's how the app improves.",
+    "subtitle": "A wrong strategy, a missing boss, a clunky translation — open an issue, or drop a PR. The workflow is documented, templates are ready. No CLA, no gatekeeping.",
     "paths": [
       {
         "title": "Code",
