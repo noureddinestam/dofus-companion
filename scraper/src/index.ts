@@ -8,6 +8,7 @@ import { sleep } from './cache.ts';
 import { validateDungeons } from './validate.ts';
 import { diffDungeons, loadPreviousDungeons, generateChangelog } from './diff.ts';
 import { collectMissing, renderMissingMarkdown } from './report/missing.ts';
+import { renderIssuesMarkdown } from './report/issues.ts';
 import { hasApiKey } from './llm/client.ts';
 import { translate } from './llm/translate.ts';
 import { summarize } from './llm/summarize.ts';
@@ -32,6 +33,7 @@ const OUTPUT_JSON = join(OUTPUT_DIR, 'dungeons.json');
 const OUTPUT_FUSE = join(OUTPUT_DIR, 'fuse-index.json');
 const OUTPUT_CHANGELOG = join(OUTPUT_DIR, 'CHANGELOG-DATA.md');
 const OUTPUT_MISSING = join(OUTPUT_DIR, 'MISSING.md');
+const OUTPUT_ISSUES = join(OUTPUT_DIR, 'ISSUES.md');
 const APP_DATA_DIR = resolve(process.cwd(), '../app/src/data');
 const APP_DATA = join(APP_DATA_DIR, 'dungeons.json');
 const APP_FUSE = join(APP_DATA_DIR, 'fuse-index.json');
@@ -44,6 +46,7 @@ const FANDOM_DELAY_MS = 700;
 const ARGS = new Set(process.argv.slice(2));
 const NO_LLM = ARGS.has('--no-llm');
 const DRY_RUN = ARGS.has('--dry-run');
+const GEN_ISSUES = ARGS.has('--gen-issues');
 
 mkdirSync(OUTPUT_DIR, { recursive: true });
 
@@ -408,6 +411,10 @@ async function main() {
   // Audit : liste les donjons sans stratégie complète (long+short × fr+en)
   const missing = collectMissing(valid);
   writeFileSync(OUTPUT_MISSING, renderMissingMarkdown(missing, valid.length));
+  if (GEN_ISSUES) {
+    writeFileSync(OUTPUT_ISSUES, renderIssuesMarkdown(missing));
+    console.log(`   ✓ ${missing.length} issues générées → output/ISSUES.md`);
+  }
 
   try {
     copyFileSync(OUTPUT_JSON, APP_DATA);
