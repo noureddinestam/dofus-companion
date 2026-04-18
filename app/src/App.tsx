@@ -8,7 +8,13 @@ import { useSearch } from './features/search/useSearch';
 import { useUpdater } from './hooks/useUpdater';
 import { useI18n } from './i18n/useI18n';
 import { useAppStore } from './store/appStore';
+import { CombatCardPlayground } from './features/combat/CombatCardPlayground';
 import type { Dungeon } from './types/dungeon';
+
+function isCombatPlaygroundActive(): boolean {
+  if (typeof window === 'undefined') return false;
+  return new URLSearchParams(window.location.search).get('playground') === 'combat';
+}
 
 function levelBadgeColor(level: number): string {
   if (level >= 180) return 'var(--priority-critical)';
@@ -18,6 +24,13 @@ function levelBadgeColor(level: number): string {
 }
 
 export default function App() {
+  if (isCombatPlaygroundActive()) {
+    return <CombatCardPlayground />;
+  }
+  return <AppMain />;
+}
+
+function AppMain() {
   const { dungeons } = useDungeons();
   const [query, setQuery] = useState('');
   const { results, setQuery: setDebouncedQuery } = useSearch(dungeons);
