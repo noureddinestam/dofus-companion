@@ -284,7 +284,7 @@
       },
       "virusTotal": {
         "title": "VirusTotal",
-        "body": "Chaque asset est soumis à VirusTotal (70+ moteurs antivirus). Le badge s'affiche ici dès que les SHA256 sont publiés."
+        "body": "Chaque asset est soumis à VirusTotal (70+ moteurs antivirus). Le badge ci-dessous affiche le résultat en temps réel. Il est fréquent qu'un installeur open source sans certificat EV soit flaggé par 2 à 5 moteurs heuristiques (Microsoft Wacatac.B!ml, DeepInstinct, Arctic Wolf, SecureAge) — ce sont des faux-positifs machine learning, pas des signatures. Ils disparaissent avec la réputation ou un certificat EV. Une demande de review a été soumise à Microsoft pour Wacatac.B!ml."
       },
       "smartScreen": {
         "title": "Windows SmartScreen",

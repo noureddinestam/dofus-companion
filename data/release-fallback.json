@@ -8,7 +8,8 @@
       "name": "Dofus.Companion_0.4.0_x64-setup.exe",
       "size": 3345608,
       "downloadUrl": "https://github.com/noureddinestam/dofus-companion/releases/download/v0.4.0/Dofus.Companion_0.4.0_x64-setup.exe",
-      "kind": "nsis"
+      "kind": "nsis",
+      "sha256": "1b90670bc9cbffe7cee0bce867fa3a0809fb3ac0f11d8503608074d0c451c4a7"
     },
     {
       "name": "Dofus.Companion_0.4.0_x64_en-US.msi",
