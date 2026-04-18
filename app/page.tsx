@@ -3,6 +3,7 @@ import { ValueProps } from "@/components/landing/ValueProps";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { RoadmapTeaser } from "@/components/landing/RoadmapTeaser";
+import { Credits } from "@/components/landing/Credits";
 import { SupportBlock } from "@/components/landing/SupportBlock";
 import { getLatestRelease, pickPrimaryAsset } from "@/lib/release";
 import { env } from "@/lib/env";
@@ -34,6 +35,7 @@ export default async function HomePage() {
       <FeaturesSection />
       <HowItWorks />
       <RoadmapTeaser />
+      <Credits />
       <SupportBlock />
     </>
   );

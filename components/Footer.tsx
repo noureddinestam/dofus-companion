@@ -16,6 +16,7 @@ const FOOTER_COLS: ReadonlyArray<{
       { href: "/roadmap", key: "roadmap" },
       { href: "/security", key: "security" },
       { href: "/faq", key: "faq" },
+      { href: "/#credits", key: "credits" },
     ],
   },
   {

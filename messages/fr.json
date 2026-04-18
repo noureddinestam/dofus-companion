@@ -124,6 +124,22 @@
     "ctaStar": "Star le repo",
     "microCopy": "Merci."
   },
+  "credits": {
+    "eyebrow": "Remerciements",
+    "title": "Ceux qui ont rendu ça possible",
+    "items": [
+      {
+        "role": "Idée & vision gameplay",
+        "name": "Kamil F.",
+        "body": "L'overlay Dofus Companion n'existerait pas sans Kamil. Fan de Dofus de longue date, il a imaginé l'outil et porté la vision : ce qu'un joueur endgame veut vraiment lire en plein combat, et ce qu'il ne veut surtout pas. Toute la logique « 3 à 6 bullets actionnables » vient de lui."
+      },
+      {
+        "role": "Exécution",
+        "name": "noureddinestam + Claude",
+        "body": "Vibe-coded : Noureddine guide, Claude tape le code, itération rapide par conversation. De la landing à l'overlay Tauri, tout le repo a été construit dans ce tempo."
+      }
+    ]
+  },
   "footer": {
     "tagline": "Overlay Windows open source. Licence MIT.",
     "columns": {
@@ -136,6 +152,7 @@
       "roadmap": "Roadmap",
       "security": "Sécurité",
       "faq": "FAQ",
+      "credits": "Remerciements",
       "github": "GitHub",
       "issues": "Issues",
       "releases": "Releases",
