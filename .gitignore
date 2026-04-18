@@ -10,4 +10,6 @@ scraper/output/CHANGELOG-DATA.md
 # Données générées par le scraper — committées pour offline-first :
 #   app/src/data/dungeons.json + fuse-index.json
 app/src/data/dungeons.legacy.json
+app/src/data/dungeons.pre-*.json
+scraper/output/MIGRATION-*.md
 .claude/

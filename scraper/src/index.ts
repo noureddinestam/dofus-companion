@@ -47,6 +47,8 @@ const ARGS = new Set(process.argv.slice(2));
 const NO_LLM = ARGS.has('--no-llm');
 const DRY_RUN = ARGS.has('--dry-run');
 const GEN_ISSUES = ARGS.has('--gen-issues');
+const ONLY_BOSS_REFACTOR = ARGS.has('--only-boss-refactor');
+const DRY_RUN_COST = ARGS.has('--dry-run-cost');
 
 mkdirSync(OUTPUT_DIR, { recursive: true });
 
@@ -315,6 +317,12 @@ async function buildDungeon(
 }
 
 async function main() {
+  if (ONLY_BOSS_REFACTOR || DRY_RUN_COST) {
+    const { runBossMigration } = await import('./migrate/v04-to-v05-boss.ts');
+    await runBossMigration({ dryRun: DRY_RUN, dryRunCost: DRY_RUN_COST });
+    return;
+  }
+
   const llmEnabled = !NO_LLM && (hasApiKey() || DRY_RUN);
   const llmStatus = NO_LLM
     ? 'OFF (--no-llm)'
