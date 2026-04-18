@@ -55,19 +55,22 @@ export function TitleBar({ query, onQueryChange, searchRef }: TitleBarProps) {
         ))}
       </div>
 
-      <span
+      <svg
         data-tauri-drag-region
-        style={{
-          color: 'var(--accent)',
-          fontSize: 13,
-          fontWeight: 700,
-          letterSpacing: '0.04em',
-          flexShrink: 0,
-          cursor: 'move',
-        }}
+        width="18"
+        height="22"
+        viewBox="0 0 32 32"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Dofus Companion"
+        style={{ flexShrink: 0, cursor: 'move' }}
       >
-        DC
-      </span>
+        <title>Dofus Companion</title>
+        <path
+          d="M 16 3.5 C 22.5 3.5 26 8.5 26 14.5 C 26 21.5 22 28.5 16 28.5 C 10 28.5 6 21.5 6 14.5 C 6 8.5 9.5 3.5 16 3.5 Z"
+          fill="var(--accent)"
+        />
+        <rect x="9" y="15" width="14" height="7" rx="1.6" fill="var(--bg-base)" />
+      </svg>
 
       <div style={{ flex: 1, position: 'relative', cursor: 'text' }} data-tauri-drag-region="false">
         <span
