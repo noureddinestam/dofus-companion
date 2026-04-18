@@ -1,72 +1,106 @@
+import { useEffect, useRef } from 'react';
 import type { Monster } from '../types/dungeon';
 import { ELEMENT_ICON } from '../types/dungeon';
 import { useI18n } from '../i18n/useI18n';
+import { isCombatCardEmpty } from '../types/combat-card';
+import { CombatCardView } from './CombatCardView';
 
 interface MonsterRowProps {
   monster: Monster;
   isBoss?: boolean;
+  /** When true, scroll this row into view on mount and play a brief highlight pulse. */
+  highlighted?: boolean;
 }
 
-export function MonsterRow({ monster, isBoss = false }: MonsterRowProps) {
+export function MonsterRow({ monster, isBoss = false, highlighted = false }: MonsterRowProps) {
   const { t } = useI18n();
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!highlighted) return;
+    const el = rootRef.current;
+    if (!el) return;
+    el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }, [highlighted]);
+
+  // Boss card is rendered by DungeonCard (via CombatCardView full mode) — here we
+  // only render the row header to keep a single source of truth for boss combat.
+  const showCompactCard = !isBoss && !isCombatCardEmpty(monster.combat);
 
   return (
     <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8,
-        padding: '7px 10px',
-        borderBottom: '1px solid var(--border-subtle)',
-        background: isBoss ? 'rgba(232,181,71,0.05)' : 'transparent',
-      }}
+      ref={rootRef}
+      className={highlighted ? 'monster-row monster-row--highlighted' : 'monster-row'}
     >
-      <span
+      <div
         style={{
-          fontWeight: isBoss ? 700 : 600,
-          color: isBoss ? 'var(--accent)' : 'var(--text-primary)',
-          fontSize: 13,
-          flex: 1,
-          minWidth: 0,
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          padding: '7px 10px',
+          borderBottom: '1px solid var(--border-subtle)',
+          background: isBoss ? 'rgba(232,181,71,0.05)' : 'transparent',
         }}
       >
-        {monster.name}
-      </span>
-
-      {monster.family && monster.family !== 'Inconnu' && (
-        <span style={{ color: 'var(--text-muted)', fontSize: 10, flexShrink: 0 }}>
-          {monster.family}
-        </span>
-      )}
-
-      <span
-        style={{
-          color: 'var(--text-secondary)',
-          fontSize: 11,
-          flexShrink: 0,
-          fontVariantNumeric: 'tabular-nums',
-        }}
-      >
-        {t.element.levelShort(monster.level)}
-      </span>
-
-      {monster.hp && (
         <span
           style={{
-            color: 'var(--text-muted)',
-            fontSize: 10,
+            fontWeight: isBoss ? 700 : 600,
+            color: isBoss ? 'var(--accent)' : 'var(--text-primary)',
+            fontSize: 13,
+            flex: 1,
+            minWidth: 0,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {monster.name}
+        </span>
+
+        {showCompactCard && (
+          <span
+            aria-hidden
+            title={t.combat.dangers}
+            style={{ fontSize: 11, color: 'var(--combat-dangers-accent)', flexShrink: 0 }}
+          >
+            ⚡
+          </span>
+        )}
+
+        {monster.family && monster.family !== 'Inconnu' && (
+          <span style={{ color: 'var(--text-muted)', fontSize: 10, flexShrink: 0 }}>
+            {monster.family}
+          </span>
+        )}
+
+        <span
+          style={{
+            color: 'var(--text-secondary)',
+            fontSize: 11,
             flexShrink: 0,
             fontVariantNumeric: 'tabular-nums',
           }}
         >
-          {t.element.hpValue(monster.hp)}
+          {t.element.levelShort(monster.level)}
         </span>
-      )}
 
-      <ElementBadges weak={monster.weakElement} resist={monster.resistElement} />
+        {monster.hp && (
+          <span
+            style={{
+              color: 'var(--text-muted)',
+              fontSize: 10,
+              flexShrink: 0,
+              fontVariantNumeric: 'tabular-nums',
+            }}
+          >
+            {t.element.hpValue(monster.hp)}
+          </span>
+        )}
+
+        <ElementBadges weak={monster.weakElement} resist={monster.resistElement} />
+      </div>
+
+      {showCompactCard && <CombatCardView card={monster.combat} compact />}
     </div>
   );
 }
