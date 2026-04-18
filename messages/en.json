@@ -1,332 +1,330 @@
 {
   "nav": {
-    "features": "Fonctionnalités",
+    "features": "Features",
     "changelog": "Changelog",
     "faq": "FAQ",
-    "support": "Soutenir",
+    "support": "Support",
     "github": "GitHub"
   },
   "hero": {
-    "eyebrow": "Overlay Windows · Open source · MIT",
-    "titleLead": "L'overlay Dofus qui tient dans",
+    "eyebrow": "Windows overlay · Open source · MIT",
+    "titleLead": "The Dofus overlay that fits behind",
     "titleAccent": "Alt+D",
     "titleTrail": ".",
-    "subtitle": "185 donjons, stratégies bilingues FR/EN, version actionnable lisible en 10 secondes. Pas d'Alt+Tab, pas de pub, pas de tracking.",
-    "ctaPrimaryPrefix": "Télécharger pour Windows",
-    "ctaSecondary": "Voir sur GitHub",
-    "microCopy": "Windows 10/11 · WebView2 requis (inclus sur W11) · Compatible Dofus 2.x et 3.x"
+    "subtitle": "185 dungeons, bilingual FR/EN strategies, a short form you can read in 10 seconds. No Alt+Tab, no ads, no tracking.",
+    "ctaPrimaryPrefix": "Download for Windows",
+    "ctaSecondary": "View on GitHub",
+    "microCopy": "Windows 10/11 · WebView2 required (bundled on W11) · Works with Dofus 2.x and 3.x"
   },
   "mockOverlay": {
-    "hotkeyHint": "Appuie sur",
+    "hotkeyHint": "Press",
     "hotkey": "Alt+D",
-    "searchPlaceholder": "Rechercher un boss ou un donjon…",
-    "searchValue": "transporteur",
-    "resultTitle": "Le Transporteur Scellé",
-    "resultSubtitle": "Incarnam des Songes · 200",
-    "resultTagShort": "Version courte · FR",
+    "searchPlaceholder": "Search a boss or dungeon…",
+    "searchValue": "transporter",
+    "resultTitle": "The Sealed Transporter",
+    "resultSubtitle": "Incarnam of Dreams · 200",
+    "resultTagShort": "Short version · EN",
     "resultBullets": [
-      "Bloquer la régénération turn 1 avec Rayon Ralenti.",
-      "Ne jamais frapper l'ombre pendant le bouclier.",
-      "Dispell avant la charge, sinon wipe."
+      "Block regeneration on turn 1 with Slow Ray.",
+      "Never hit the shadow while the shield is up.",
+      "Dispel before the charge or it's a wipe."
     ]
   },
   "valueProps": {
-    "sectionTitle": "Trois choses qui changent ta run",
+    "sectionTitle": "Three things that change your run",
     "items": [
       {
         "icon": "bolt",
-        "title": "Instantané",
-        "body": "Alt+D global, ouvert en moins de 150 ms. Zéro alt-tab, zéro sortie du jeu."
+        "title": "Instant",
+        "body": "Global Alt+D, open in under 150 ms. Zero alt-tab, zero game switch."
       },
       {
         "icon": "target",
-        "title": "Actionnable",
-        "body": "3 à 6 bullets colorés par boss. Pensé pour être lu en pleine action, pas en lecture passive."
+        "title": "Actionable",
+        "body": "3 to 6 colored bullets per boss. Designed to be read mid-fight, not in passive reading."
       },
       {
         "icon": "shield",
         "title": "Transparent",
-        "body": "Chaque phrase a une source traçable — officielle, communauté, ou LLM avec citation. Zéro hallucination tolérée."
+        "body": "Every sentence is traceable — official, community, or LLM with a citation. Zero hallucinations tolerated."
       }
     ]
   },
   "features": {
-    "sectionEyebrow": "Fonctionnalités",
-    "sectionTitle": "Conçu pour les joueurs endgame",
+    "sectionEyebrow": "Features",
+    "sectionTitle": "Built for endgame players",
     "items": [
       {
-        "title": "Deux vues par boss",
-        "body": "Version actionnable pour la pleine action, version détaillée quand tu veux comprendre un cycle. Tu passes de l'une à l'autre au clavier."
+        "title": "Two views per boss",
+        "body": "Actionable for mid-fight, detailed when you want to understand a cycle. Keyboard toggle between them."
       },
       {
-        "title": "FR ⇄ EN en un clic",
-        "body": "Toggle de langue instantané avec Ctrl+L. Les deux langues sont équivalentes — pas de contenu dégradé en EN."
+        "title": "FR ⇄ EN in one click",
+        "body": "Instant language toggle with Ctrl+L. Both languages are on par — no second-class EN content."
       },
       {
-        "title": "Données vérifiées",
-        "body": "Chaque phrase porte un badge de provenance : officielle Ankama, communauté consolidée, ou LLM avec citation de la source. Rien n'est inventé."
+        "title": "Verified data",
+        "body": "Every line carries a provenance badge: official Ankama, consolidated community, or LLM with a source citation. Nothing is made up."
       },
       {
-        "title": "Couverture endgame 160+",
-        "body": "114 donjons au-delà du niveau 160, dont 100 avec stratégie complète. Mise à jour continue via PR publiques."
+        "title": "Endgame coverage 160+",
+        "body": "114 dungeons above level 160, 100 of them with a full strategy. Continuously updated via public PRs."
       }
     ]
   },
   "howItWorks": {
-    "eyebrow": "Comment ça marche",
-    "title": "Trois étapes, zéro friction",
+    "eyebrow": "How it works",
+    "title": "Three steps, zero friction",
     "steps": [
       {
         "n": "01",
-        "title": "Télécharge l'installeur",
-        "body": "3,3 Mo, signé Tauri, depuis GitHub Releases."
+        "title": "Download the installer",
+        "body": "3.3 MB, Tauri-signed, from GitHub Releases."
       },
       {
         "n": "02",
-        "title": "Lance le setup",
-        "body": "Accepte WebView2 si demandé — composant Microsoft standard, inclus sur Windows 11."
+        "title": "Run the setup",
+        "body": "Accept WebView2 if prompted — standard Microsoft component, bundled on Windows 11."
       },
       {
         "n": "03",
-        "title": "Alt+D en jeu",
-        "body": "Par-dessus Dofus. Cherche, lis, joue. Pas de compte, pas d'envoi de données."
+        "title": "Alt+D in-game",
+        "body": "On top of Dofus. Search, read, play. No account, no data sent."
       }
     ]
   },
   "roadmap": {
     "eyebrow": "Roadmap",
-    "title": "Publique, versionnée, par PR",
-    "subtitle": "Les issues les plus upvotées passent en priorité. Tout est tracé.",
+    "title": "Public, versioned, PR-driven",
+    "subtitle": "Most up-voted issues ship first. Everything is tracked.",
+    "cta": "View the roadmap",
     "columns": [
       {
-        "label": "En cours",
+        "label": "In progress",
         "version": "v0.4",
-        "body": "Coverage endgame, i18n EN, workflow contributeurs."
+        "body": "Endgame coverage, EN i18n, contributor workflow."
       },
       {
-        "label": "Prochain",
+        "label": "Next",
         "version": "v0.5",
-        "body": "Vue builds, recherche avancée, mode low-latency."
+        "body": "Builds view, advanced search, low-latency mode."
       },
       {
         "label": "Community asks",
-        "version": "Ouvert",
-        "body": "Suggère, upvote, discute. Les demandes populaires passent d'abord."
+        "version": "Open",
+        "body": "Suggest, upvote, discuss. Popular requests move up."
       }
     ]
   },
   "support": {
-    "eyebrow": "Soutenir",
-    "title": "Projet maintenu par une personne, sur son temps libre",
-    "body": "Si l'outil t'aide, un sponsor ou un star au repo aide énormément.",
+    "eyebrow": "Support",
+    "title": "Maintained by one person in their spare time",
+    "body": "If the tool helps you, a sponsor or a star on the repo makes a real difference.",
     "ctaSponsor": "GitHub Sponsors",
-    "ctaStar": "Star le repo",
-    "microCopy": "Merci."
+    "ctaStar": "Star the repo",
+    "microCopy": "Thank you."
   },
   "footer": {
-    "tagline": "Overlay Windows open source. Licence MIT.",
+    "tagline": "Open source Windows overlay. MIT license.",
     "columns": {
-      "project": "Projet",
+      "project": "Project",
       "code": "Code",
-      "legal": "Légal"
+      "legal": "Legal"
     },
     "links": {
       "changelog": "Changelog",
       "roadmap": "Roadmap",
-      "security": "Sécurité",
+      "security": "Security",
       "faq": "FAQ",
       "github": "GitHub",
       "issues": "Issues",
       "releases": "Releases",
-      "contribute": "Contribuer",
-      "privacy": "Confidentialité",
-      "terms": "CGU",
-      "licenses": "Licences OSS"
+      "contribute": "Contribute",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "licenses": "OSS licenses"
     }
   },
   "disclaimer": {
-    "body": "Dofus Companion est une application <strong>non-officielle</strong>, créée par des fans pour des fans. <strong>Dofus®</strong> est une marque déposée d'<strong>Ankama Games</strong>. Ce projet n'est ni approuvé ni affilié à Ankama. Aucune lecture mémoire ni automatisation du jeu — cet outil est un overlay d'information uniquement."
+    "body": "Dofus Companion is an <strong>unofficial</strong> application, built by fans for fans. <strong>Dofus®</strong> is a registered trademark of <strong>Ankama Games</strong>. This project is neither endorsed by nor affiliated with Ankama. No memory reading, no game automation — this is an information overlay only."
   },
   "notFound": {
-    "code": "Erreur 404",
-    "title": "Cette salle est vide. Aucun boss à l'horizon.",
-    "body": "La page que vous cherchez n'existe pas, ou le lien a été déplacé.",
-    "back": "Retour à l'accueil"
+    "code": "Error 404",
+    "title": "This room is empty. No boss in sight.",
+    "body": "The page you're looking for doesn't exist, or the link has moved.",
+    "back": "Back to home"
   },
   "download": {
-    "eyebrow": "Télécharger",
-    "title": "Dofus Companion pour Windows",
-    "subtitle": "Open source, signé Tauri, sans tracker.",
+    "eyebrow": "Download",
+    "title": "Dofus Companion for Windows",
+    "subtitle": "Open source, Tauri-signed, no tracker.",
     "os": {
       "windows": {
-        "label": "Windows détecté",
-        "body": "L'installeur NSIS ci-dessous est recommandé."
+        "label": "Windows detected",
+        "body": "The NSIS installer below is recommended."
       },
       "mac": {
-        "label": "macOS détecté",
-        "body": "Pas encore supporté — une version Mac est prévue."
+        "label": "macOS detected",
+        "body": "Not yet supported — a Mac version is planned."
       },
       "linux": {
-        "label": "Linux détecté",
-        "body": "Pas encore supporté — une version Linux arrivera après la Mac."
+        "label": "Linux detected",
+        "body": "Not yet supported — a Linux version will come after Mac."
       },
       "mobile": {
-        "label": "Téléphone détecté",
-        "body": "Les binaires sont pour Windows. Télécharge depuis ton PC."
+        "label": "Phone detected",
+        "body": "The binaries are for Windows. Download from your PC."
       },
       "unknown": {
-        "label": "Télécharger",
-        "body": "Choisis le format adapté à ton usage."
+        "label": "Download",
+        "body": "Pick the format that fits your use case."
       }
     },
     "cards": {
       "nsis": {
-        "title": "Installeur NSIS",
-        "tag": "Recommandé",
-        "body": "Auto-update intégré, installation rapide, désinstallation propre."
+        "title": "NSIS installer",
+        "tag": "Recommended",
+        "body": "Built-in auto-update, quick install, clean uninstall."
       },
       "msi": {
-        "title": "Package MSI",
+        "title": "MSI package",
         "tag": "Admins",
-        "body": "Pour déploiement GPO, Chocolatey, MDM."
+        "body": "For GPO deployment, Chocolatey, MDM."
       },
-      "download": "Télécharger"
+      "download": "Download"
     },
     "sha256": {
       "label": "SHA256",
-      "pending": "Sera publié à la prochaine release (SHA256SUMS.txt)",
-      "copy": "Copier",
-      "copied": "Copié"
+      "pending": "Will be published with the next release (SHA256SUMS.txt)",
+      "copy": "Copy",
+      "copied": "Copied"
     },
     "verify": {
-      "title": "Vérifier l'intégrité du fichier (PowerShell)",
-      "body": "Ouvre PowerShell dans le dossier de téléchargement et compare l'empreinte :",
+      "title": "Verify file integrity (PowerShell)",
+      "body": "Open PowerShell in the download folder and compare the hash:",
       "commandTemplate": "Get-FileHash .\\{asset} -Algorithm SHA256"
     },
     "notes": {
-      "title": "Notes de version",
-      "read": "Lire les notes complètes"
+      "title": "Release notes",
+      "read": "Read the full notes"
     },
     "previous": {
-      "title": "Autres versions",
-      "body": "Toutes les releases et leurs assets sont archivés sur GitHub.",
-      "link": "Voir toutes les releases"
+      "title": "Other versions",
+      "body": "Every release and its assets are archived on GitHub.",
+      "link": "See all releases"
     }
   },
   "smartScreen": {
     "eyebrow": "Windows SmartScreen",
-    "title": "Si Windows affiche un avertissement, voici pourquoi et quoi faire",
-    "body": "L'app est open source et signée avec la signature Tauri (pour l'auto-updater), mais sans certificat EV Windows. Tant que l'app n'a pas assez de téléchargements réputés, SmartScreen peut afficher \"Windows a protégé votre PC\".",
-    "steps": [
-      "Cliquer sur « Informations complémentaires »",
-      "Cliquer sur « Exécuter quand même »"
-    ],
-    "microCopy": "Tu peux vérifier l'empreinte SHA256 avant d'exécuter, depuis le bloc PowerShell ci-dessous.",
-    "moreLink": "En savoir plus sur SmartScreen"
+    "title": "If Windows shows a warning, here's why and what to do",
+    "body": "The app is open source and signed with the Tauri signature (for the auto-updater), but without a Windows EV certificate. Until the app has enough reputation-building downloads, SmartScreen may show \"Windows protected your PC\".",
+    "steps": ["Click \"More info\"", "Click \"Run anyway\""],
+    "microCopy": "You can verify the SHA256 hash before running, from the PowerShell block below.",
+    "moreLink": "Learn more about SmartScreen"
   },
   "virusTotal": {
     "label": "VirusTotal",
-    "clean": "0 détection",
-    "flagged": "détections",
-    "pending": "Pas encore analysé",
-    "unavailable": "Analyse indisponible",
-    "reportLink": "Voir le rapport",
-    "engines": "moteurs antivirus",
-    "notSubmitted": "Le fichier n'a pas encore été soumis à VirusTotal."
+    "clean": "0 detections",
+    "flagged": "detections",
+    "pending": "Not yet analyzed",
+    "unavailable": "Scan unavailable",
+    "reportLink": "View the report",
+    "engines": "antivirus engines",
+    "notSubmitted": "The file has not been submitted to VirusTotal yet."
   },
   "security": {
-    "eyebrow": "Sécurité",
-    "title": "Sécurité et transparence",
-    "subtitle": "Ce que l'app fait, ce qu'elle ne fait pas, et comment le vérifier toi-même.",
+    "eyebrow": "Security",
+    "title": "Security and transparency",
+    "subtitle": "What the app does, what it doesn't, and how to verify it yourself.",
     "sections": {
       "behavior": {
-        "title": "Ce que l'app fait et ne fait pas",
+        "title": "What the app does and doesn't",
         "positive": {
-          "heading": "Ce qu'elle fait",
+          "heading": "What it does",
           "items": [
-            "Lit des fichiers JSON locaux (les données des donjons).",
-            "Affiche une fenêtre par-dessus Dofus.",
-            "Vérifie GitHub Releases pour l'auto-update (HTTPS, signature Ed25519)."
+            "Reads local JSON files (the dungeon data).",
+            "Displays a window on top of Dofus.",
+            "Checks GitHub Releases for auto-update (HTTPS, Ed25519 signature)."
           ]
         },
         "negative": {
-          "heading": "Ce qu'elle ne fait pas",
+          "heading": "What it doesn't",
           "items": [
-            "Aucune lecture de la mémoire du process Dofus (respect ToS Ankama).",
-            "Aucune simulation d'input clavier ou souris (ce n'est pas un bot).",
-            "Aucune lecture de packets réseau Dofus.",
-            "Aucune télémétrie, aucun analytics, aucun tracking.",
-            "Aucun envoi de données personnelles."
+            "No memory reading of the Dofus process (Ankama ToS-compliant).",
+            "No keyboard or mouse input simulation (not a bot).",
+            "No Dofus network packet reading.",
+            "No telemetry, no analytics, no tracking.",
+            "No personal data sent out."
           ]
         }
       },
       "fingerprints": {
-        "title": "Empreintes SHA256",
-        "body": "Les SHA256 des assets seront publiés dans une release ultérieure (fichier SHA256SUMS.txt attaché). En attendant, tu peux vérifier localement depuis PowerShell."
+        "title": "SHA256 fingerprints",
+        "body": "Asset SHA256 hashes will be published in an upcoming release (SHA256SUMS.txt attached). In the meantime, you can verify locally from PowerShell."
       },
       "virusTotal": {
         "title": "VirusTotal",
-        "body": "Chaque asset est soumis à VirusTotal (70+ moteurs antivirus). Le badge s'affiche ici dès que les SHA256 sont publiés."
+        "body": "Each asset is submitted to VirusTotal (70+ antivirus engines). The badge lights up here as soon as SHA256 hashes are published."
       },
       "smartScreen": {
         "title": "Windows SmartScreen",
-        "body": "SmartScreen bloque les exécutables sans réputation suffisante. L'app est signée Tauri mais sans certificat EV Windows. L'avertissement disparaîtra avec assez de téléchargements ou via un certificat EV. Si tu préfères, tu peux compiler depuis la source.",
-        "alt": "Compiler depuis la source"
+        "body": "SmartScreen blocks executables without enough reputation. The app is Tauri-signed but lacks a Windows EV certificate. The warning will disappear with enough downloads or via an EV certificate. If you'd rather, you can build from source.",
+        "alt": "Build from source"
       },
       "audit": {
-        "title": "Audit open source",
+        "title": "Open source audit",
         "items": [
           {
             "label": "Code",
-            "body": "100 % public sur GitHub, licence MIT.",
-            "cta": "Voir le repo",
+            "body": "100% public on GitHub, MIT license.",
+            "cta": "View the repo",
             "href": "https://github.com/noureddinestam/dofus-companion"
           },
           {
             "label": "Build",
-            "body": "Reproductible via GitHub Actions, signé Tauri.",
-            "cta": "Voir release.yml",
+            "body": "Reproducible via GitHub Actions, Tauri-signed.",
+            "cta": "View release.yml",
             "href": "https://github.com/noureddinestam/dofus-companion/blob/main/.github/workflows/release.yml"
           }
         ]
       },
       "report": {
-        "title": "Signaler une vulnérabilité",
-        "body": "Ouvre un Security Advisory sur GitHub. Réponse sous 72h, fix et disclosure coordonné.",
-        "cta": "Ouvrir un Security Advisory",
+        "title": "Report a vulnerability",
+        "body": "Open a Security Advisory on GitHub. Response within 72h, coordinated fix and disclosure.",
+        "cta": "Open a Security Advisory",
         "href": "https://github.com/noureddinestam/dofus-companion/security/advisories/new"
       }
     }
   },
   "changelog": {
     "eyebrow": "Changelog",
-    "title": "Historique des releases",
-    "subtitle": "Chaque version, ses changements, et les liens vers les notes complètes et les binaires.",
-    "empty": "Pas encore de release publiée.",
-    "viewNotes": "Notes complètes",
-    "downloads": "Téléchargements",
-    "unavailable": "Impossible de charger les releases depuis GitHub — réessaie plus tard.",
-    "fullHistory": "Voir toutes les releases sur GitHub"
+    "title": "Release history",
+    "subtitle": "Every version, its changes, and links to the full notes and binaries.",
+    "empty": "No releases published yet.",
+    "viewNotes": "Full notes",
+    "downloads": "Downloads",
+    "unavailable": "Couldn't load releases from GitHub — try again later.",
+    "fullHistory": "See all releases on GitHub"
   },
   "faq": {
     "eyebrow": "FAQ",
-    "title": "Questions fréquentes",
-    "subtitle": "Légal, installation, utilisation, données, contribution.",
+    "title": "Frequently asked questions",
+    "subtitle": "Legal, installation, usage, data, contributing.",
     "categories": [
       {
-        "title": "Légal & ToS Ankama",
+        "title": "Legal & Ankama ToS",
         "items": [
           {
-            "q": "Est-ce qu'Ankama autorise cet outil ?",
-            "a": "Dofus Companion respecte les ToS d'Ankama : pas de lecture de la mémoire du process, pas d'automatisation clavier/souris, pas de lecture de packets réseau. C'est un overlay d'information — tu cherches, tu lis, tu joues. Pas affilié à Ankama, pas approuvé par Ankama."
+            "q": "Does Ankama allow this tool?",
+            "a": "Dofus Companion respects Ankama's ToS: no process memory reading, no keyboard/mouse automation, no network packet reading. It's an information overlay — you search, you read, you play. Not affiliated with Ankama, not endorsed by Ankama."
           },
           {
-            "q": "Risque de ban ?",
-            "a": "L'app n'interagit pas avec Dofus. Aucun cas de ban connu lié à un overlay d'information. Ceci dit, Ankama reste seul juge — à tes risques."
+            "q": "Risk of ban?",
+            "a": "The app doesn't interact with Dofus. No known ban cases linked to an information overlay. That said, Ankama is the sole judge — at your own risk."
           },
           {
-            "q": "Différence avec un bot ?",
-            "a": "Un bot joue à ta place (macros, automation, lecture mémoire). Dofus Companion affiche des stratégies par-dessus la fenêtre de jeu. Tu lis, tu appliques toi-même."
+            "q": "Difference from a bot?",
+            "a": "A bot plays for you (macros, automation, memory reading). Dofus Companion displays strategies on top of the game window. You read, you apply them yourself."
           }
         ]
       },
@@ -334,154 +332,154 @@
         "title": "Installation",
         "items": [
           {
-            "q": "Windows SmartScreen bloque le setup. Que faire ?",
-            "a": "C'est normal — l'app n'a pas encore de certificat EV Windows. Clique « Informations complémentaires » puis « Exécuter quand même ». Tu peux vérifier l'empreinte SHA256 avant, depuis la page /download."
+            "q": "Windows SmartScreen blocks the setup. What now?",
+            "a": "That's normal — the app doesn't have a Windows EV certificate yet. Click \"More info\" then \"Run anyway\". You can verify the SHA256 hash first, from the /download page."
           },
           {
-            "q": "Mon antivirus signale un faux positif",
-            "a": "Vérifie l'empreinte SHA256 du fichier sur /download et compare avec le rapport VirusTotal. Si 0 détection sur VirusTotal, c'est un faux positif local — signale-le à ton éditeur antivirus."
+            "q": "My antivirus flags a false positive",
+            "a": "Check the file's SHA256 on /download and compare with the VirusTotal report. If 0 detections on VirusTotal, it's a local false positive — report it to your antivirus vendor."
           },
           {
-            "q": "Où sont stockées mes données ?",
-            "a": "Dans %APPDATA%\\Dofus Companion (Windows). Données JSON locales uniquement — rien n'est envoyé à un serveur."
+            "q": "Where is my data stored?",
+            "a": "In %APPDATA%\\Dofus Companion (Windows). Local JSON data only — nothing is sent to a server."
           }
         ]
       },
       {
-        "title": "Utilisation",
+        "title": "Usage",
         "items": [
           {
-            "q": "Le hotkey Alt+D ne marche pas",
-            "a": "Vérifie qu'aucune autre app (Discord, AutoHotkey, OBS) n'utilise le même raccourci. Tu peux changer le hotkey dans les paramètres de l'app."
+            "q": "The Alt+D hotkey doesn't work",
+            "a": "Check that no other app (Discord, AutoHotkey, OBS) is using the same shortcut. You can change the hotkey in the app's settings."
           },
           {
-            "q": "L'overlay disparaît en plein écran exclusif",
-            "a": "Dofus en fullscreen exclusif cache les overlays Windows. Bascule Dofus en « Fenêtre sans bord » dans les paramètres graphiques du jeu."
+            "q": "The overlay disappears in exclusive fullscreen",
+            "a": "Dofus in exclusive fullscreen hides Windows overlays. Switch Dofus to \"Borderless window\" in the game's graphics settings."
           },
           {
-            "q": "Comment changer le raccourci ?",
-            "a": "Clic droit sur l'icône de l'app → Paramètres → Raccourci global. Toute combinaison libre fonctionne."
+            "q": "How do I change the shortcut?",
+            "a": "Right-click the app icon → Settings → Global shortcut. Any free combination works."
           }
         ]
       },
       {
-        "title": "Données et confidentialité",
+        "title": "Data and privacy",
         "items": [
           {
-            "q": "Mes données sont envoyées où ?",
-            "a": "Nulle part. L'app lit des JSON locaux et vérifie GitHub Releases pour l'auto-update (HTTPS + signature Ed25519). Aucune télémétrie, aucun analytics, aucun tracking."
+            "q": "Where is my data sent?",
+            "a": "Nowhere. The app reads local JSON files and checks GitHub Releases for auto-update (HTTPS + Ed25519 signature). No telemetry, no analytics, no tracking."
           },
           {
-            "q": "Comment désinstaller proprement ?",
-            "a": "Panneau de configuration Windows → Applications → Dofus Companion → Désinstaller. L'installeur NSIS supprime le dossier de données. Pour MSI : même chose via Apps & fonctionnalités."
+            "q": "How do I uninstall cleanly?",
+            "a": "Windows Control Panel → Apps → Dofus Companion → Uninstall. The NSIS installer removes the data folder. For MSI: same thing via Apps & features."
           },
           {
-            "q": "Les stratégies sont-elles à jour ?",
-            "a": "Mise à jour continue via PR publiques. Chaque phrase porte un badge de provenance (officielle, communauté, LLM + citation). Tu peux signaler une erreur via GitHub Issues."
+            "q": "Are the strategies up to date?",
+            "a": "Continuously updated via public PRs. Every sentence carries a provenance badge (official, community, LLM + citation). You can report an error via GitHub Issues."
           }
         ]
       },
       {
-        "title": "Contribuer",
+        "title": "Contributing",
         "items": [
           {
-            "q": "Comment signaler une erreur dans une stratégie ?",
-            "a": "Ouvre une Issue sur GitHub avec le nom du boss et ce qui est incorrect. Voir la page Contribuer."
+            "q": "How do I report a mistake in a strategy?",
+            "a": "Open an Issue on GitHub with the boss name and what's incorrect. See the Contribute page."
           },
           {
-            "q": "Comment traduire ou ajouter une langue ?",
-            "a": "EN est déjà couvert. Pour une autre langue, ouvre une Discussion GitHub — on évalue ensemble avant de lancer."
+            "q": "How do I translate or add a language?",
+            "a": "EN is already covered. For another language, open a GitHub Discussion — we'll scope it together first."
           }
         ]
       }
     ]
   },
   "contribute": {
-    "eyebrow": "Contribuer",
-    "title": "Le projet avance avec toi",
-    "subtitle": "Code, données, rapports — tout passe par GitHub, tracé, versionné.",
+    "eyebrow": "Contribute",
+    "title": "The project moves forward with you",
+    "subtitle": "Code, data, reports — everything goes through GitHub, tracked and versioned.",
     "paths": [
       {
         "title": "Code",
-        "body": "Fork, PR, issue. Convention Commits. README à la racine du repo pour le setup local.",
-        "cta": "Voir le repo",
+        "body": "Fork, PR, issue. Conventional Commits. README at the repo root for local setup.",
+        "cta": "View the repo",
         "href": "https://github.com/noureddinestam/dofus-companion"
       },
       {
-        "title": "Données",
-        "body": "Corriger ou enrichir les stratégies de donjons. Workflow documenté dans DATA-CONTRIBUTING.md.",
-        "cta": "Lire le guide",
+        "title": "Data",
+        "body": "Fix or enrich dungeon strategies. Workflow documented in DATA-CONTRIBUTING.md.",
+        "cta": "Read the guide",
         "href": "https://github.com/noureddinestam/dofus-companion/blob/main/DATA-CONTRIBUTING.md"
       },
       {
-        "title": "Rapport de bug",
-        "body": "Template d'issue dédié avec les infos utiles : version, OS, hotkey, étapes de reproduction.",
-        "cta": "Ouvrir une issue",
+        "title": "Bug report",
+        "body": "Dedicated issue template with the useful info: version, OS, hotkey, repro steps.",
+        "cta": "Open an issue",
         "href": "https://github.com/noureddinestam/dofus-companion/issues/new/choose"
       },
       {
         "title": "Discussion",
-        "body": "Une idée ? Une question qui ne rentre pas dans une issue ? Les Discussions GitHub sont faites pour ça.",
-        "cta": "Ouvrir une discussion",
+        "body": "An idea? A question that doesn't fit an issue? GitHub Discussions is the place.",
+        "cta": "Open a discussion",
         "href": "https://github.com/noureddinestam/dofus-companion/discussions"
       }
     ]
   },
   "supportPage": {
-    "eyebrow": "Soutenir",
-    "title": "Projet maintenu par une personne, sur son temps libre",
-    "body": "Si Dofus Companion t'aide, un sponsor GitHub ou une étoile au repo fait une vraie différence.",
+    "eyebrow": "Support",
+    "title": "Maintained by one person in their spare time",
+    "body": "If Dofus Companion helps you, a GitHub sponsor or a star on the repo makes a real difference.",
     "ctaSponsor": "GitHub Sponsors",
-    "ctaStar": "Star le repo",
+    "ctaStar": "Star the repo",
     "starCtaHref": "https://github.com/noureddinestam/dofus-companion",
     "sponsorHref": "https://github.com/sponsors/noureddinestam",
-    "thanks": "Merci."
+    "thanks": "Thank you."
   },
   "legal": {
     "privacy": {
-      "eyebrow": "Légal",
-      "title": "Politique de confidentialité",
+      "eyebrow": "Legal",
+      "title": "Privacy policy",
       "sections": [
         {
-          "heading": "Quelles données collectons-nous ?",
-          "body": "Aucune. L'application locale ne collecte, ne stocke et n'envoie aucune donnée personnelle. Les JSON de stratégies sont lus uniquement depuis ton disque local."
+          "heading": "What data do we collect?",
+          "body": "None. The local application doesn't collect, store, or send any personal data. The strategy JSON files are read only from your local disk."
         },
         {
-          "heading": "Cookies ?",
-          "body": "Aucun cookie sur ce site. Aucun tracker, aucun analytics."
+          "heading": "Cookies?",
+          "body": "No cookies on this site. No tracker, no analytics."
         },
         {
-          "heading": "Logs serveur",
-          "body": "Les logs d'accès standard de Vercel (IP, user-agent, chemin, code statut) sont conservés selon leur politique par défaut. Nous ne les consultons ni ne les exportons."
+          "heading": "Server logs",
+          "body": "Vercel's standard access logs (IP, user-agent, path, status code) are retained per their default policy. We neither consult nor export them."
         },
         {
           "heading": "Contact",
-          "body": "Pour toute question relative à la vie privée, ouvre une Discussion ou un Security Advisory sur GitHub."
+          "body": "For any privacy-related question, open a Discussion or a Security Advisory on GitHub."
         }
       ]
     },
     "terms": {
-      "eyebrow": "Légal",
-      "title": "Conditions d'utilisation",
+      "eyebrow": "Legal",
+      "title": "Terms of use",
       "sections": [
         {
-          "heading": "Licence",
-          "body": "Dofus Companion est distribué sous licence MIT. Tu peux l'utiliser, le modifier et le redistribuer sous les termes de la licence (voir LICENSE dans le repo)."
+          "heading": "License",
+          "body": "Dofus Companion is distributed under the MIT license. You may use, modify, and redistribute it under the license terms (see LICENSE in the repo)."
         },
         {
-          "heading": "Garantie",
-          "body": "Le logiciel est fourni « tel quel », sans garantie d'aucune sorte. Usage à tes risques."
+          "heading": "Warranty",
+          "body": "The software is provided \"as is\", without warranty of any kind. Use at your own risk."
         },
         {
-          "heading": "Marque Dofus",
-          "body": "Dofus® est une marque déposée d'Ankama Games. Dofus Companion est une application non-officielle, créée par des fans pour des fans, non affiliée à Ankama."
+          "heading": "Dofus trademark",
+          "body": "Dofus® is a registered trademark of Ankama Games. Dofus Companion is an unofficial application, built by fans for fans, not affiliated with Ankama."
         }
       ]
     },
     "licenses": {
-      "eyebrow": "Légal",
-      "title": "Licences des dépendances",
-      "body": "Dofus Companion s'appuie sur des projets open source. Dépendances majeures et leurs licences :",
+      "eyebrow": "Legal",
+      "title": "Dependency licenses",
+      "body": "Dofus Companion relies on open source projects. Major dependencies and their licenses:",
       "items": [
         {
           "name": "Next.js",
@@ -524,7 +522,7 @@
           "href": "https://github.com/tauri-apps/tauri"
         }
       ],
-      "footer": "Liste complète dans le package.json du repo."
+      "footer": "Full list in the repo's package.json."
     }
   }
 }

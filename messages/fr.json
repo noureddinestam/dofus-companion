@@ -97,6 +97,7 @@
     "eyebrow": "Roadmap",
     "title": "Publique, versionnée, par PR",
     "subtitle": "Les issues les plus upvotées passent en priorité. Tout est tracé.",
+    "cta": "Voir la roadmap",
     "columns": [
       {
         "label": "En cours",
