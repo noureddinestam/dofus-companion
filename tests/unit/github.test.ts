@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { shapeRelease } from "@/lib/github";
+import { parseSha256Sums, shapeRelease } from "@/lib/github";
 
 const RAW_RELEASE = {
   tag_name: "v0.4.0",
@@ -81,8 +81,58 @@ describe("shapeRelease", () => {
       assets: [
         { name: "latest.json", size: 1, browser_download_url: "x" },
         { name: "anything.sig", size: 1, browser_download_url: "x" },
+        { name: "SHA256SUMS.txt", size: 1, browser_download_url: "x" },
       ],
     });
     expect(shaped.assets).toHaveLength(0);
+  });
+
+  it("attaches sha256 to matching assets when a map is provided", () => {
+    const shaped = shapeRelease(RAW_RELEASE, {
+      "Dofus.Companion_0.4.0_x64-setup.exe": "a".repeat(64),
+      "Dofus.Companion_0.4.0_x64_en-US.msi": "b".repeat(64),
+    });
+    const setup = shaped.assets.find((a) => a.name.endsWith("-setup.exe"));
+    const msi = shaped.assets.find((a) => a.name.endsWith(".msi"));
+    expect(setup?.sha256).toBe("a".repeat(64));
+    expect(msi?.sha256).toBe("b".repeat(64));
+  });
+
+  it("leaves sha256 undefined when the map does not cover the asset", () => {
+    const shaped = shapeRelease(RAW_RELEASE, {});
+    expect(shaped.assets.every((a) => a.sha256 === undefined)).toBe(true);
+  });
+});
+
+describe("parseSha256Sums", () => {
+  it("parses a standard sha256sum(1) file with two-space separator", () => {
+    const hash =
+      "5c20062e5fc8ebd59626e9a08c8794f24c30b8be0d67a92f60ead09feecd2503";
+    const text = `${hash}  Dofus.Companion_0.4.0_x64-setup.exe`;
+    expect(parseSha256Sums(text)).toEqual({
+      "Dofus.Companion_0.4.0_x64-setup.exe": hash,
+    });
+  });
+
+  it("handles multiple lines, CRLF, and BSD-style asterisk prefix", () => {
+    const a = "a".repeat(64);
+    const b = "b".repeat(64);
+    const text = `${a}  file.exe\r\n${b} *other.msi\r\n\r\n# comment line\n`;
+    expect(parseSha256Sums(text)).toEqual({
+      "file.exe": a,
+      "other.msi": b,
+    });
+  });
+
+  it("returns empty object on empty or malformed input", () => {
+    expect(parseSha256Sums("")).toEqual({});
+    expect(parseSha256Sums("not a hash\nnope\n")).toEqual({});
+  });
+
+  it("lowercases hashes regardless of input casing", () => {
+    const hash = "ABCDEF0123456789".repeat(4);
+    expect(parseSha256Sums(`${hash}  file.exe`)["file.exe"]).toBe(
+      hash.toLowerCase(),
+    );
   });
 });

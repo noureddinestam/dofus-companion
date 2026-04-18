@@ -48,12 +48,12 @@ export default async function DownloadPage() {
       </div>
 
       <div className="mb-10 grid gap-4 md:grid-cols-2">
-        {nsis && <AssetCard asset={nsis} highlighted />}
-        {msi && <AssetCard asset={msi} />}
+        {nsis && <AssetCard asset={nsis} sha256={nsis.sha256} highlighted />}
+        {msi && <AssetCard asset={msi} sha256={msi.sha256} />}
       </div>
 
       <div className="mb-12 flex flex-wrap items-center gap-3">
-        <VirusTotalBadge />
+        <VirusTotalBadge sha256={nsis?.sha256} />
         <a
           href={release.notesUrl}
           target="_blank"
