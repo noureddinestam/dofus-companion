@@ -90,6 +90,44 @@
   border-top: 1px solid var(--border-subtle);
 }
 
+.combat-card--compact {
+  gap: 4px;
+  padding: 4px 8px 4px 20px;
+  background: rgba(255, 255, 255, 0.015);
+}
+.combat-card--compact .combat-card__block {
+  padding: 4px 6px;
+}
+.combat-card--compact .combat-card__title {
+  font-size: 9px;
+  margin-bottom: 2px;
+}
+.combat-card--compact .combat-card__bullet {
+  font-size: 11px;
+  line-height: 1.35;
+}
+.combat-card--compact .combat-card__bullet-dot {
+  margin-top: 6px;
+}
+.combat-card--compact .combat-card__provenance {
+  display: none;
+}
+
+.monster-row--highlighted > div:first-child {
+  animation: monster-row-pulse 2s ease-out 1;
+}
+
+@keyframes monster-row-pulse {
+  0%, 40% {
+    background: rgba(232, 181, 71, 0.18);
+    box-shadow: inset 3px 0 0 var(--accent);
+  }
+  100% {
+    background: transparent;
+    box-shadow: inset 3px 0 0 transparent;
+  }
+}
+
 .combat-card__legacy {
   margin-top: 6px;
   padding: 6px 8px;

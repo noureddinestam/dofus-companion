@@ -11,6 +11,8 @@ interface CombatCardViewProps {
   legacyStrategies?: string[];
   /** Optional footer slot (e.g. custom legacy notes). Rendered under provenance. */
   footer?: ReactNode;
+  /** Compact variant for inline rendering under a MonsterRow. */
+  compact?: boolean;
 }
 
 const BLOCK_EMOJI: Record<CombatBlockKey, string> = {
@@ -20,7 +22,7 @@ const BLOCK_EMOJI: Record<CombatBlockKey, string> = {
   tips: '💡',
 };
 
-export function CombatCardView({ card, legacyStrategies, footer }: CombatCardViewProps) {
+export function CombatCardView({ card, legacyStrategies, footer, compact }: CombatCardViewProps) {
   const { t } = useI18n();
 
   // Silence rule : un monstre lambda (card === null) ou card entièrement vide → aucun rendu.
@@ -38,7 +40,7 @@ export function CombatCardView({ card, legacyStrategies, footer }: CombatCardVie
   const firstBullet = firstBulletOf(card!);
 
   return (
-    <div className="combat-card">
+    <div className={compact ? 'combat-card combat-card--compact' : 'combat-card'}>
       {COMBAT_BLOCK_ORDER.map((key) => {
         const bullets = card![key];
         if (bullets.length === 0) return null;
