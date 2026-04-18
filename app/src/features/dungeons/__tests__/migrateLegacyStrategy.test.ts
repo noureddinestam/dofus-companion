@@ -24,6 +24,7 @@ function makeDungeon(overrides: Partial<Dungeon['boss']> = {}): Dungeon {
         resistElement: null,
         source: 'dofusdb',
         sourceUrl: 'https://dofusdb.fr/fr/database/monsters/1',
+        combat: null,
       },
     ],
     boss: {
@@ -41,6 +42,7 @@ function makeDungeon(overrides: Partial<Dungeon['boss']> = {}): Dungeon {
       strategy: null,
       strategies: null,
       phases: [],
+      combat: null,
       ...overrides,
     },
     externalGuideUrl: null,

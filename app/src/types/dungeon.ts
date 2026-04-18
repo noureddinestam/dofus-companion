@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { CombatCardSchema } from './combat-card';
 import {
   AnchorSchema,
   ProvenanceSchema,
@@ -77,6 +78,8 @@ export const MonsterSchema = z.object({
   resistElement: ElementEnum.nullable(),
   source: z.enum(['dofusdb', 'fandom-en', 'fandom-fr']),
   sourceUrl: z.string().url(),
+  // v0.5 Combat Cards — null = monstre lambda (aucun changement UI).
+  combat: CombatCardSchema.nullable().default(null),
 });
 
 // LEGACY v0.3 — conservé pour backward-compat.
@@ -100,6 +103,9 @@ export const BossSchema = MonsterSchema.extend({
       }),
     )
     .default([]),
+  // v0.5 transition — snapshot textuel des strategies v0.4 par boss.
+  // Rempli par la migration en Phase B, retiré en v0.6.
+  legacyStrategies: z.array(z.string()).optional(),
 });
 
 export const DungeonSchema = z.object({
