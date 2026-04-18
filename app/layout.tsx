@@ -2,8 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { KerubimUnlock } from "@/components/easter-eggs/KerubimUnlock";
 import { env } from "@/lib/env";
-import { getLocale } from "@/lib/messages";
+import { getLocale, getMessages } from "@/lib/messages";
 import "./globals.css";
 
 const inter = Inter({
@@ -69,7 +70,7 @@ export const viewport: Viewport = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const locale = await getLocale();
+  const [locale, m] = await Promise.all([getLocale(), getMessages()]);
   return (
     <html
       lang={locale}
@@ -79,6 +80,11 @@ export default async function RootLayout({
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <KerubimUnlock
+          alt={m.kerubim.alt}
+          firstUnlock={m.kerubim.firstUnlock}
+          reUnlock={m.kerubim.reUnlock}
+        />
       </body>
     </html>
   );
