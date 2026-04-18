@@ -76,6 +76,12 @@ export interface UiStrings {
     noShortCta: string;
     fallbackLang: (availableLang: string) => string;
   };
+  combat: {
+    unlock: string;
+    constraints: string;
+    dangers: string;
+    tips: string;
+  };
 }
 
 export type Lang = 'fr' | 'en';
@@ -156,6 +162,12 @@ const fr: UiStrings = {
     fallbackLang: (availableLang) =>
       `Disponible uniquement en ${availableLang} · traduction à venir`,
   },
+  combat: {
+    unlock: 'DÉLOCK',
+    constraints: 'CONTRAINTES',
+    dangers: 'DANGERS',
+    tips: 'INFOS UTILES',
+  },
 };
 
 const en: UiStrings = {
@@ -233,6 +245,12 @@ const en: UiStrings = {
     noShortCta: 'Show detailed version',
     fallbackLang: (availableLang) =>
       `Available only in ${availableLang} · translation coming soon`,
+  },
+  combat: {
+    unlock: 'UNLOCK',
+    constraints: 'CONSTRAINTS',
+    dangers: 'DANGERS',
+    tips: 'TIPS',
   },
 };
 
