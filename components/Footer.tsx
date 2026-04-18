@@ -50,11 +50,27 @@ const FOOTER_COLS: ReadonlyArray<{
   },
 ];
 
+// Deterministic hash→index so the same deploy always shows the same flavor
+// line (stable SSR, no hydration mismatch).
+function pickLineIndex(seed: string, count: number): number {
+  if (count <= 0) return 0;
+  let h = 0;
+  for (let i = 0; i < seed.length; i += 1) {
+    h = (h * 31 + seed.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h) % count;
+}
+
 export async function Footer() {
   const m = await getMessages();
   const t = m.footer;
   const buildHash = env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? "local";
-  const buildDate = new Date().toISOString().slice(0, 10);
+  const buildLines = t.buildLines;
+  const lineTemplate =
+    buildLines[pickLineIndex(buildHash, buildLines.length)] ??
+    buildLines[0] ??
+    "build {hash}";
+  const flavorLine = lineTemplate.replace("{hash}", buildHash);
 
   return (
     <footer className="border-border/60 mt-24 border-t">
@@ -104,9 +120,8 @@ export async function Footer() {
           ))}
         </div>
         <AnkamaDisclaimer className="mt-10" />
-        <p className="text-muted mt-6 font-mono text-xs">
-          build <span className="text-foreground/80">{buildHash}</span> ·{" "}
-          {buildDate}
+        <p className="text-muted mt-6 font-mono text-xs italic">
+          v0.4.1 · {flavorLine}
         </p>
       </div>
     </footer>
