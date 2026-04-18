@@ -11,8 +11,12 @@
     "titleLead": "L'overlay Dofus qui tient dans",
     "titleAccent": "Alt+D",
     "titleTrail": ".",
-    "subtitle": "185 donjons. Stratégies bilingues FR/EN. 3 à 6 bullets lisibles entre deux tours. Zéro Alt+Tab, zéro pub, zéro pixel qui traque.",
+    "subtitle": "{count} donjons. Stratégies bilingues FR/EN. 3 à 6 bullets lisibles entre deux tours. Zéro Alt+Tab, zéro pub, zéro pixel qui traque.",
+    "dungeonCount": "185",
+    "dungeonHoverHint": "dont 42 attendent ta PR",
+    "dungeonHoverCta": "Contribuer",
     "ctaPrimaryPrefix": "Télécharger pour Windows",
+    "ctaPrimaryReveal": "Oui, c'est le même fichier.",
     "ctaSecondary": "Voir sur GitHub",
     "microCopy": "Windows 10/11 · Compatible Dofus 2.x et 3.x · Signé Tauri, vérifié VirusTotal"
   },
@@ -172,11 +176,19 @@
   "disclaimer": {
     "body": "Dofus Companion est une application <strong>non-officielle</strong>, créée par des fans pour des fans. <strong>Dofus®</strong> est une marque déposée d'<strong>Ankama Games</strong>. Ce projet n'est ni approuvé ni affilié à Ankama. Aucune lecture mémoire ni automatisation du jeu — cet outil est un overlay d'information uniquement."
   },
+  "kerubim": {
+    "alt": "Kerubim, vieux chat-marchand Dofus",
+    "firstUnlock": "Tiens, un jeune curieux. J'avais raison de garder cette rune.",
+    "reUnlock": "Oui, oui, j'avais bien vu la première fois."
+  },
   "notFound": {
-    "code": "Erreur 404",
-    "title": "Cette salle est vide. Aucun boss à l'horizon.",
-    "body": "La page que vous cherchez n'existe pas, ou le lien a été déplacé.",
-    "back": "Retour à l'accueil"
+    "code": "404 · Cette page est invisible.",
+    "title": "Un Sram a dû la taclecter.",
+    "body": "Peut-être qu'elle existait avant, peut-être jamais. En attendant :",
+    "back": "Accueil",
+    "changelog": "Changelog",
+    "faq": "FAQ",
+    "meta": "Si tu pensais trouver un easter egg ici, c'est raté. Ou gagné."
   },
   "download": {
     "eyebrow": "Télécharger",
@@ -208,15 +220,19 @@
       "nsis": {
         "title": "Installeur NSIS",
         "tag": "Recommandé",
-        "body": "Auto-update intégré, installation rapide, désinstallation propre."
+        "body": "Auto-update intégré, installation rapide, désinstallation propre.",
+        "microWeight": "3,2 Mo. Plus léger qu'un set d'équipement niveau 50."
       },
       "msi": {
         "title": "Package MSI",
         "tag": "Admins",
-        "body": "Pour déploiement GPO, Chocolatey, MDM."
+        "body": "Pour déploiement GPO, Chocolatey, MDM.",
+        "microWeight": "4,6 Mo. Déployable via GPO ou Chocolatey."
       },
       "download": "Télécharger"
     },
+    "smartScreenQuip": "Windows regarde ton exécutable comme un Sram regarde un perco : avec suspicion. Voilà comment lui expliquer qu'on est là pour aider.",
+    "verifyMicroIntro": "Pour les vrais paranos — et ils ont raison d'exister.",
     "sha256": {
       "label": "SHA256",
       "pending": "Sera publié à la prochaine release (SHA256SUMS.txt)",
@@ -261,8 +277,8 @@
   },
   "security": {
     "eyebrow": "Sécurité",
-    "title": "Sécurité et transparence",
-    "subtitle": "Ce que l'app fait, ce qu'elle ne fait pas, et comment le vérifier toi-même.",
+    "title": "Ce qui entre, ce qui sort, ce qui reste chez toi.",
+    "subtitle": "L'app en 3 listes honnêtes. Liste verte — ce qu'elle fait. Liste rouge — ce qu'elle ne fait pas. Liste jaune — ce que Windows te dira quand même.",
     "sections": {
       "behavior": {
         "title": "Ce que l'app fait et ne fait pas",
@@ -326,7 +342,7 @@
   "changelog": {
     "eyebrow": "Changelog",
     "title": "Historique des releases",
-    "subtitle": "Chaque version, ses changements, et les liens vers les notes complètes et les binaires.",
+    "subtitle": "Toutes les versions. Hashes Git cliquables. Rien de caché, rien de glorifié.",
     "empty": "Pas encore de release publiée.",
     "viewNotes": "Notes complètes",
     "downloads": "Téléchargements",
@@ -339,7 +355,7 @@
     "subtitle": "Légal, installation, utilisation, données, contribution.",
     "categories": [
       {
-        "title": "Légal & ToS Ankama",
+        "title": "Est-ce qu'Ankama est au courant ?",
         "items": [
           {
             "q": "Est-ce qu'Ankama autorise cet outil ?",
@@ -356,7 +372,7 @@
         ]
       },
       {
-        "title": "Installation",
+        "title": "Setup — les 3 trucs qui peuvent mal tourner",
         "items": [
           {
             "q": "Windows SmartScreen bloque le setup. Que faire ?",
@@ -373,7 +389,7 @@
         ]
       },
       {
-        "title": "Utilisation",
+        "title": "Quand Alt+D ne répond pas",
         "items": [
           {
             "q": "Le hotkey Alt+D ne marche pas",
@@ -390,7 +406,7 @@
         ]
       },
       {
-        "title": "Données et confidentialité",
+        "title": "Vie privée — c'est simple, on ne collecte rien",
         "items": [
           {
             "q": "Mes données sont envoyées où ?",
@@ -407,7 +423,7 @@
         ]
       },
       {
-        "title": "Contribuer",
+        "title": "Tu as trouvé une erreur ? Tant mieux.",
         "items": [
           {
             "q": "Comment signaler une erreur dans une stratégie ?",
@@ -423,8 +439,8 @@
   },
   "contribute": {
     "eyebrow": "Contribuer",
-    "title": "Le projet avance avec toi",
-    "subtitle": "Code, données, rapports — tout passe par GitHub, tracé, versionné.",
+    "title": "La commu corrige. C'est comme ça que l'app s'améliore.",
+    "subtitle": "Une stratégie fausse, un boss manquant, une traduction maladroite — ouvre une issue, ou balance une PR. Le workflow est documenté, les templates sont prêts. Pas de CLA, pas de gatekeeping.",
     "paths": [
       {
         "title": "Code",

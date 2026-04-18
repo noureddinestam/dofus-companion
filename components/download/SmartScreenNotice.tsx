@@ -4,6 +4,7 @@ import { getMessages } from "@/lib/messages";
 export async function SmartScreenNotice() {
   const m = await getMessages();
   const t = m.smartScreen;
+  const quip = m.download.smartScreenQuip;
   return (
     <section className="border-border/70 bg-card/30 rounded-lg border p-6 sm:p-8">
       <p className="text-gold mb-2 font-mono text-[11px] tracking-[0.15em] uppercase">
@@ -26,6 +27,9 @@ export async function SmartScreenNotice() {
           </li>
         ))}
       </ol>
+      <p className="text-muted mb-4 max-w-2xl text-xs leading-relaxed italic">
+        {quip}
+      </p>
       <p className="text-muted mb-4 font-mono text-[11px]">{t.microCopy}</p>
       <Link
         href="/security"

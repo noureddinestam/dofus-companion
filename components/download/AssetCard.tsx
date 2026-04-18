@@ -65,6 +65,9 @@ export async function AssetCard({
         <DownloadIcon className="h-4 w-4" />
         {t.download} {asset.name}
       </a>
+      <p className="text-muted font-mono text-[11px] italic">
+        {variant.microWeight}
+      </p>
     </article>
   );
 }

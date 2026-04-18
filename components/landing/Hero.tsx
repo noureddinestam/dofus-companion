@@ -4,6 +4,7 @@ import { getMessages } from "@/lib/messages";
 import { ArrowRightIcon } from "@/components/icons/InlineIcons";
 import { GithubIcon } from "@/components/icons/GithubIcon";
 import { FadeInUp } from "@/components/motion/FadeInUp";
+import { DungeonCountHover } from "@/components/easter-eggs/DungeonCountHover";
 import { DownloadCta } from "./DownloadCta";
 import { MockOverlay } from "./MockOverlay";
 
@@ -40,7 +41,20 @@ export async function Hero() {
           </FadeInUp>
           <FadeInUp delay={0.15}>
             <p className="text-muted max-w-xl text-base leading-relaxed text-balance sm:text-lg">
-              {t.subtitle}
+              {(() => {
+                const [before, after] = t.subtitle.split("{count}");
+                return (
+                  <>
+                    {before}
+                    <DungeonCountHover
+                      count={t.dungeonCount}
+                      hoverHint={t.dungeonHoverHint}
+                      ctaLabel={t.dungeonHoverCta}
+                    />
+                    {after}
+                  </>
+                );
+              })()}
             </p>
           </FadeInUp>
           <FadeInUp delay={0.25} className="flex flex-wrap items-center gap-3">
