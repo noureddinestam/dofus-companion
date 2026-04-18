@@ -9,7 +9,10 @@ import { useUpdater } from './hooks/useUpdater';
 import { useI18n } from './i18n/useI18n';
 import { useAppStore } from './store/appStore';
 import { CombatCardPlayground } from './features/combat/CombatCardPlayground';
+import { MonsterView } from './features/monsters/MonsterView';
 import type { Dungeon } from './types/dungeon';
+
+type AppMode = 'search' | 'monster';
 
 function isCombatPlaygroundActive(): boolean {
   if (typeof window === 'undefined') return false;
@@ -36,6 +39,7 @@ function AppMain() {
   const { results, setQuery: setDebouncedQuery } = useSearch(dungeons);
   const [selected, setSelected] = useState<Dungeon | null>(null);
   const [highlightedMonsterId, setHighlightedMonsterId] = useState<string | null>(null);
+  const [mode, setMode] = useState<AppMode>('search');
   const [focusIdx, setFocusIdx] = useState(0);
   const searchRef = useRef<HTMLInputElement>(null);
   const { update, install, dismiss } = useUpdater();
@@ -68,10 +72,26 @@ function AppMain() {
     setTimeout(() => searchRef.current?.focus(), 50);
   }, []);
 
+  const enterMonsterMode = useCallback(() => {
+    setSelected(null);
+    setHighlightedMonsterId(null);
+    setMode('monster');
+  }, []);
+
+  const exitMonsterMode = useCallback(() => {
+    setMode('search');
+    setTimeout(() => searchRef.current?.focus(), 50);
+  }, []);
+
+  const openDungeonFromMonsterView = useCallback((dungeon: Dungeon, monsterId: string) => {
+    setMode('search');
+    setSelected(dungeon);
+    setHighlightedMonsterId(monsterId);
+  }, []);
+
   useEffect(() => {
     const down = async (e: KeyboardEvent) => {
-      // Ctrl+L global : bascule langue (fonctionne même dans la fiche donjon)
-      // N'intercepte pas si focus sur input pour préserver la sélection d'URL native
+      // Ctrl+L global : bascule langue
       if (e.ctrlKey && e.key.toLowerCase() === 'l') {
         const inInput =
           document.activeElement instanceof HTMLInputElement ||
@@ -82,6 +102,20 @@ function AppMain() {
           return;
         }
       }
+
+      // Ctrl+M : bascule vue monstre dédiée (depuis n'importe quel mode)
+      if (e.ctrlKey && e.key.toLowerCase() === 'm') {
+        e.preventDefault();
+        if (mode === 'monster') {
+          exitMonsterMode();
+        } else {
+          enterMonsterMode();
+        }
+        return;
+      }
+
+      // Pendant qu'on est en mode monstre, MonsterView gère ses propres raccourcis.
+      if (mode === 'monster') return;
 
       if (selected) {
         const inInput =
@@ -137,7 +171,18 @@ function AppMain() {
 
     window.addEventListener('keydown', down);
     return () => window.removeEventListener('keydown', down);
-  }, [selected, results, focusIdx, goBack, openResult, toggleLang, toggleView]);
+  }, [
+    selected,
+    results,
+    focusIdx,
+    goBack,
+    openResult,
+    toggleLang,
+    toggleView,
+    mode,
+    enterMonsterMode,
+    exitMonsterMode,
+  ]);
 
   // Focus search on mount
   useEffect(() => {
@@ -149,12 +194,12 @@ function AppMain() {
     const win = getCurrentWindow();
     let unlisten: (() => void) | null = null;
     win.onFocusChanged(({ payload: focused }) => {
-      if (focused && !selected) {
+      if (focused && !selected && mode !== 'monster') {
         setTimeout(() => searchRef.current?.focus(), 60);
       }
     }).then((fn) => { unlisten = fn; });
     return () => { unlisten?.(); };
-  }, [selected]);
+  }, [selected, mode]);
 
   return (
     <div style={{
@@ -214,7 +259,13 @@ function AppMain() {
       )}
 
       <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
-        {selected ? (
+        {mode === 'monster' ? (
+          <MonsterView
+            dungeons={dungeons}
+            onExit={exitMonsterMode}
+            onOpenDungeon={openDungeonFromMonsterView}
+          />
+        ) : selected ? (
           <DungeonCard
             dungeon={selected}
             onBack={goBack}
@@ -230,7 +281,7 @@ function AppMain() {
         )}
       </div>
 
-      <Footer selected={selected} />
+      <Footer selected={selected} mode={mode} />
     </div>
   );
 }
@@ -355,22 +406,30 @@ function SearchView({
   );
 }
 
-function Footer({ selected }: { selected: Dungeon | null }) {
+function Footer({ selected, mode }: { selected: Dungeon | null; mode: AppMode }) {
   const { t } = useI18n();
-  const hints: Array<[string, string]> = selected
-    ? [
-        ['Backspace', t.dungeon.back],
-        ['V', t.footer.switchView],
-        ['Esc', t.footer.close],
-        ['Ctrl+L', t.footer.switchLang],
-      ]
-    : [
-        ['↑↓', t.footer.navigate],
-        ['Enter', t.footer.open],
-        ['Esc', t.footer.close],
-        ['/', t.footer.search],
-        ['Ctrl+L', t.footer.switchLang],
-      ];
+  const hints: Array<[string, string]> =
+    mode === 'monster'
+      ? [
+          ['↑↓', t.footer.navigate],
+          ['Enter', t.footer.open],
+          ['Backspace', t.dungeon.back],
+          ['Ctrl+M', t.footer.monsterView],
+        ]
+      : selected
+        ? [
+            ['Backspace', t.dungeon.back],
+            ['V', t.footer.switchView],
+            ['Ctrl+M', t.footer.monsterView],
+            ['Esc', t.footer.close],
+          ]
+        : [
+            ['↑↓', t.footer.navigate],
+            ['Enter', t.footer.open],
+            ['Ctrl+M', t.footer.monsterView],
+            ['/', t.footer.search],
+            ['Ctrl+L', t.footer.switchLang],
+          ];
 
   return (
     <div style={{
