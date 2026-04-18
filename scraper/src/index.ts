@@ -48,6 +48,7 @@ const NO_LLM = ARGS.has('--no-llm');
 const DRY_RUN = ARGS.has('--dry-run');
 const GEN_ISSUES = ARGS.has('--gen-issues');
 const ONLY_BOSS_REFACTOR = ARGS.has('--only-boss-refactor');
+const ONLY_MONSTERS = ARGS.has('--only-monsters');
 const DRY_RUN_COST = ARGS.has('--dry-run-cost');
 
 mkdirSync(OUTPUT_DIR, { recursive: true });
@@ -317,6 +318,12 @@ async function buildDungeon(
 }
 
 async function main() {
+  if (ONLY_MONSTERS) {
+    const { runMonsterMigration } = await import('./migrate/scrape-monster-cards.ts');
+    await runMonsterMigration({ dryRun: DRY_RUN, dryRunCost: DRY_RUN_COST });
+    return;
+  }
+
   if (ONLY_BOSS_REFACTOR || DRY_RUN_COST) {
     const { runBossMigration } = await import('./migrate/v04-to-v05-boss.ts');
     await runBossMigration({ dryRun: DRY_RUN, dryRunCost: DRY_RUN_COST });
