@@ -1,0 +1,20 @@
+{
+  "version": "v0.4.0",
+  "name": "Dofus Companion v0.4.0",
+  "publishedAt": "2026-04-18T00:50:07Z",
+  "notesUrl": "https://github.com/noureddinestam/dofus-companion/releases/tag/v0.4.0",
+  "assets": [
+    {
+      "name": "Dofus.Companion_0.4.0_x64-setup.exe",
+      "size": 3345608,
+      "downloadUrl": "https://github.com/noureddinestam/dofus-companion/releases/download/v0.4.0/Dofus.Companion_0.4.0_x64-setup.exe",
+      "kind": "nsis"
+    },
+    {
+      "name": "Dofus.Companion_0.4.0_x64_en-US.msi",
+      "size": 4882432,
+      "downloadUrl": "https://github.com/noureddinestam/dofus-companion/releases/download/v0.4.0/Dofus.Companion_0.4.0_x64_en-US.msi",
+      "kind": "msi"
+    }
+  ]
+}

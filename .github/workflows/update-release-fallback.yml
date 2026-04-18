@@ -1,0 +1,62 @@
+name: Update release fallback
+
+on:
+  # Triggered by the parent repo after a successful release.
+  repository_dispatch:
+    types: [new-release]
+  # Daily failsafe in case the dispatch was missed.
+  schedule:
+    - cron: "0 3 * * *"
+  # Manual trigger for testing.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-release-fallback
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Sync release-fallback.json
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch latest release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -fsSL \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/noureddinestam/dofus-companion/releases/latest \
+            > /tmp/raw.json
+
+      - name: Shape into fallback JSON
+        run: node scripts/shape-release.mjs /tmp/raw.json data/release-fallback.json
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/release-fallback.json
+          if git diff --staged --quiet; then
+            echo "No changes to fallback."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          VERSION=$(node -p "require('./data/release-fallback.json').version")
+          git commit -m "chore(data): sync release fallback to ${VERSION}"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Vercel deploy
+        if: steps.commit.outputs.changed == 'true' && env.VERCEL_DEPLOY_HOOK_URL != ''
+        env:
+          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: curl -fsSL -X POST "$VERCEL_DEPLOY_HOOK_URL"
