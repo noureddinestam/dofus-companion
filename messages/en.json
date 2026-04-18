@@ -124,6 +124,22 @@
     "ctaStar": "Star the repo",
     "microCopy": "Thank you."
   },
+  "credits": {
+    "eyebrow": "Credits",
+    "title": "The people who made this happen",
+    "items": [
+      {
+        "role": "Idea & gameplay vision",
+        "name": "Kamil F.",
+        "body": "Dofus Companion wouldn't exist without Kamil. A long-time Dofus fan, he came up with the tool and carried the vision: what an endgame player actually wants to read mid-fight, and what they definitely don't. The whole '3 to 6 actionable bullets' philosophy comes from him."
+      },
+      {
+        "role": "Execution",
+        "name": "noureddinestam + Claude",
+        "body": "Vibe-coded: Noureddine drives, Claude types the code, fast iteration by conversation. From the landing page to the Tauri overlay, the entire repo was built at that tempo."
+      }
+    ]
+  },
   "footer": {
     "tagline": "Open source Windows overlay. MIT license.",
     "columns": {
@@ -136,6 +152,7 @@
       "roadmap": "Roadmap",
       "security": "Security",
       "faq": "FAQ",
+      "credits": "Credits",
       "github": "GitHub",
       "issues": "Issues",
       "releases": "Releases",
