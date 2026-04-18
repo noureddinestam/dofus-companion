@@ -6,17 +6,17 @@
   "assets": [
     {
       "name": "Dofus.Companion_0.5.0_x64-setup.exe",
-      "size": 3425101,
+      "size": 3398478,
       "downloadUrl": "https://github.com/noureddinestam/dofus-companion/releases/download/v0.5.0/Dofus.Companion_0.5.0_x64-setup.exe",
       "kind": "nsis",
-      "sha256": "pending"
+      "sha256": "e01fcf7156cf3779773c3dd80480113f8ec68050eeb336404999173342600f37"
     },
     {
       "name": "Dofus.Companion_0.5.0_x64_en-US.msi",
-      "size": 4874240,
+      "size": 4837376,
       "downloadUrl": "https://github.com/noureddinestam/dofus-companion/releases/download/v0.5.0/Dofus.Companion_0.5.0_x64_en-US.msi",
       "kind": "msi",
-      "sha256": "pending"
+      "sha256": "75ef744b7e0610ca6e9937aa06c9bb0100c844fa0f73ea445b876c6f69d38924"
     }
   ]
 }
