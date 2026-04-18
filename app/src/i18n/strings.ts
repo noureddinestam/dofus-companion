@@ -35,15 +35,6 @@ export interface UiStrings {
     en: string;
     toggleHint: string;
   };
-  footer: {
-    navigate: string;
-    open: string;
-    close: string;
-    search: string;
-    sections: string;
-    switchView: string;
-    switchLang: string;
-  };
   titleBar: {
     dragHandle: string;
     hide: string;
@@ -86,6 +77,25 @@ export interface UiStrings {
   settings: {
     hideLambdas: string;
     hideLambdasHint: string;
+  };
+  monsterView: {
+    title: string;
+    searchPlaceholder: string;
+    empty: string;
+    emptyHint: string;
+    encounteredIn: (count: number) => string;
+    backToSearch: string;
+    noResults: string;
+  };
+  footer: {
+    navigate: string;
+    open: string;
+    close: string;
+    search: string;
+    sections: string;
+    switchView: string;
+    switchLang: string;
+    monsterView: string;
   };
 }
 
@@ -133,6 +143,7 @@ const fr: UiStrings = {
     sections: 'Sections',
     switchView: 'Vue',
     switchLang: 'Langue',
+    monsterView: 'Monstres',
   },
   titleBar: {
     dragHandle: 'Glisser pour déplacer',
@@ -178,6 +189,16 @@ const fr: UiStrings = {
     hideLambdas: 'Masquer lambdas',
     hideLambdasHint: 'Cacher les monstres sans mécanique',
   },
+  monsterView: {
+    title: 'MONSTRES',
+    searchPlaceholder: 'Rechercher un monstre…',
+    empty: 'Aucun monstre sélectionné',
+    emptyHint: 'Tapez pour filtrer, ↑↓ pour naviguer, Entrée pour voir la fiche',
+    encounteredIn: (count) =>
+      count === 1 ? 'Rencontré dans 1 donjon' : `Rencontré dans ${count} donjons`,
+    backToSearch: 'Retour recherche',
+    noResults: 'Aucun monstre ne correspond',
+  },
 };
 
 const en: UiStrings = {
@@ -222,6 +243,7 @@ const en: UiStrings = {
     sections: 'Sections',
     switchView: 'View',
     switchLang: 'Lang',
+    monsterView: 'Monsters',
   },
   titleBar: {
     dragHandle: 'Drag to move',
@@ -266,6 +288,16 @@ const en: UiStrings = {
   settings: {
     hideLambdas: 'Hide lambdas',
     hideLambdasHint: 'Hide monsters without mechanics',
+  },
+  monsterView: {
+    title: 'MONSTERS',
+    searchPlaceholder: 'Search a monster…',
+    empty: 'No monster selected',
+    emptyHint: 'Type to filter, ↑↓ to navigate, Enter to open',
+    encounteredIn: (count) =>
+      count === 1 ? 'Encountered in 1 dungeon' : `Encountered in ${count} dungeons`,
+    backToSearch: 'Back to search',
+    noResults: 'No matching monster',
   },
 };
 
