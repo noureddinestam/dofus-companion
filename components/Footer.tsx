@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AnkamaDisclaimer } from "@/components/AnkamaDisclaimer";
+import { LogoMark } from "@/components/brand/LogoMark";
 import { env } from "@/lib/env";
 import { getMessages, messages } from "@/lib/messages";
 
@@ -78,12 +79,7 @@ export async function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-sm font-semibold">
-              <span
-                aria-hidden
-                className="bg-gold/10 text-gold ring-gold/30 grid h-7 w-7 place-items-center rounded-md font-mono text-xs ring-1"
-              >
-                DC
-              </span>
+              <LogoMark className="h-6 w-6 shrink-0" />
               Dofus Companion
             </div>
             <p className="text-muted text-sm leading-relaxed">{t.tagline}</p>
