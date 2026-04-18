@@ -83,6 +83,10 @@ export interface UiStrings {
     tips: string;
     legacyNotes: string;
   };
+  settings: {
+    hideLambdas: string;
+    hideLambdasHint: string;
+  };
 }
 
 export type Lang = 'fr' | 'en';
@@ -170,6 +174,10 @@ const fr: UiStrings = {
     tips: 'INFOS UTILES',
     legacyNotes: 'Notes legacy v0.4',
   },
+  settings: {
+    hideLambdas: 'Masquer lambdas',
+    hideLambdasHint: 'Cacher les monstres sans mécanique',
+  },
 };
 
 const en: UiStrings = {
@@ -254,6 +262,10 @@ const en: UiStrings = {
     dangers: 'DANGERS',
     tips: 'TIPS',
     legacyNotes: 'v0.4 legacy notes',
+  },
+  settings: {
+    hideLambdas: 'Hide lambdas',
+    hideLambdasHint: 'Hide monsters without mechanics',
   },
 };
 

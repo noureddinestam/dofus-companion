@@ -12,11 +12,13 @@ interface AppState {
   isVisible: boolean;
   lang: Lang;
   strategyView: StrategyView;
+  hideLambdas: boolean;
   setQuery: (q: string) => void;
   selectDungeon: (d: Dungeon | null) => void;
   setVisible: (v: boolean) => void;
   setLang: (l: Lang) => void;
   setStrategyView: (v: StrategyView) => void;
+  setHideLambdas: (v: boolean) => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -27,11 +29,13 @@ export const useAppStore = create<AppState>()(
       isVisible: true,
       lang: detectSystemLang(),
       strategyView: 'short',
+      hideLambdas: false,
       setQuery: (query) => set({ query }),
       selectDungeon: (selectedDungeon) => set({ selectedDungeon }),
       setVisible: (isVisible) => set({ isVisible }),
       setLang: (lang) => set({ lang }),
       setStrategyView: (strategyView) => set({ strategyView }),
+      setHideLambdas: (hideLambdas) => set({ hideLambdas }),
     }),
     {
       name: 'dofus-companion-store',
@@ -39,6 +43,7 @@ export const useAppStore = create<AppState>()(
         query: state.query,
         lang: state.lang,
         strategyView: state.strategyView,
+        hideLambdas: state.hideLambdas,
       }),
     },
   ),
