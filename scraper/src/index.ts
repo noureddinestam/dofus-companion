@@ -49,7 +49,17 @@ const DRY_RUN = ARGS.has('--dry-run');
 const GEN_ISSUES = ARGS.has('--gen-issues');
 const ONLY_BOSS_REFACTOR = ARGS.has('--only-boss-refactor');
 const ONLY_MONSTERS = ARGS.has('--only-monsters');
+const AUDIT = ARGS.has('--audit');
 const DRY_RUN_COST = ARGS.has('--dry-run-cost');
+
+function valueAfter(flag: string): string | undefined {
+  const args = process.argv.slice(2);
+  const i = args.indexOf(flag);
+  if (i >= 0 && i + 1 < args.length) return args[i + 1];
+  return undefined;
+}
+const AUDIT_BUG = valueAfter('--bug') as 'ambiguity' | 'cross-entity' | 'ordering' | undefined;
+const AUDIT_BOSS = valueAfter('--boss');
 
 mkdirSync(OUTPUT_DIR, { recursive: true });
 
@@ -318,6 +328,17 @@ async function buildDungeon(
 }
 
 async function main() {
+  if (AUDIT) {
+    const { runAudit } = await import('./audit/index.ts');
+    await runAudit({
+      bug: AUDIT_BUG,
+      entityId: AUDIT_BOSS,
+      dryRun: DRY_RUN,
+      dryRunCost: DRY_RUN_COST,
+    });
+    return;
+  }
+
   if (ONLY_MONSTERS) {
     const { runMonsterMigration } = await import('./migrate/scrape-monster-cards.ts');
     await runMonsterMigration({ dryRun: DRY_RUN, dryRunCost: DRY_RUN_COST });
