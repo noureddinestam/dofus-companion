@@ -115,10 +115,9 @@ export async function fetchBossStrategy(
   const wikitext = parse.parse.wikitext['*'];
   const sections = parse.parse.sections ?? [];
 
-  // Chercher une section "Strategy" / "Strategies" / "Tactics"
-  const stratSection = sections.find((s) =>
-    /^(strategy|strategies|tactics|tips)$/i.test(s.line.trim()),
-  );
+  // Sections candidates, du plus spécifique au plus général
+  const STRATEGY_PATTERN = /^(strategy|strategies|tactics|tips|combat|mechanics|mechanic|gameplay|notes)$/i;
+  const stratSection = sections.find((s) => STRATEGY_PATTERN.test(s.line.trim()));
   if (!stratSection) return null;
 
   const raw = extractSectionWikitext(wikitext, stratSection.line);

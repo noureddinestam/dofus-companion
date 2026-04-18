@@ -7,6 +7,7 @@ import { fetchBossStrategyFr } from './sources/fandom-fr.ts';
 import { sleep } from './cache.ts';
 import { validateDungeons } from './validate.ts';
 import { diffDungeons, loadPreviousDungeons, generateChangelog } from './diff.ts';
+import { collectMissing, renderMissingMarkdown } from './report/missing.ts';
 import { hasApiKey } from './llm/client.ts';
 import { translate } from './llm/translate.ts';
 import { summarize } from './llm/summarize.ts';
@@ -30,6 +31,7 @@ const OUTPUT_DIR = join(process.cwd(), 'output');
 const OUTPUT_JSON = join(OUTPUT_DIR, 'dungeons.json');
 const OUTPUT_FUSE = join(OUTPUT_DIR, 'fuse-index.json');
 const OUTPUT_CHANGELOG = join(OUTPUT_DIR, 'CHANGELOG-DATA.md');
+const OUTPUT_MISSING = join(OUTPUT_DIR, 'MISSING.md');
 const APP_DATA_DIR = resolve(process.cwd(), '../app/src/data');
 const APP_DATA = join(APP_DATA_DIR, 'dungeons.json');
 const APP_FUSE = join(APP_DATA_DIR, 'fuse-index.json');
@@ -402,6 +404,10 @@ async function main() {
 
   const changelog = generateChangelog(diff, DATA_VERSION, new Date().toISOString().slice(0, 10));
   writeFileSync(OUTPUT_CHANGELOG, changelog);
+
+  // Audit : liste les donjons sans stratégie complète (long+short × fr+en)
+  const missing = collectMissing(valid);
+  writeFileSync(OUTPUT_MISSING, renderMissingMarkdown(missing, valid.length));
 
   try {
     copyFileSync(OUTPUT_JSON, APP_DATA);
