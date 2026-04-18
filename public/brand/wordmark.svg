@@ -1,0 +1,11 @@
+<svg width="600" height="120" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dofus Companion">
+  <title>Dofus Companion</title>
+  <g transform="translate(60, 60)">
+    <path d="M 0 -42 C 26 -42 40 -22 40 3 C 40 30 25 42 0 42 C -25 42 -40 30 -40 3 C -40 -22 -14 -42 0 -42 Z" fill="#E8B547"/>
+    <path d="M -27 -24 C -17 -33 2 -34 12 -28" fill="none" stroke="#F5C65E" stroke-width="2" stroke-linecap="round"/>
+    <rect x="-25" y="-2" width="50" height="24" rx="4.5" fill="#0C0E12"/>
+    <text x="0" y="15" text-anchor="middle" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#E8B547" letter-spacing="0.4">Alt D</text>
+  </g>
+  <text x="120" y="58" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="34" font-weight="600" fill="#F5F2ED" letter-spacing="-0.5">Dofus Companion</text>
+  <text x="120" y="84" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" fill="#A8ADB8" letter-spacing="0.1">Overlay Windows · Alt+D</text>
+</svg>

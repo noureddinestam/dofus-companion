@@ -1,0 +1,7 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dofus Companion">
+  <title>Dofus Companion</title>
+  <path d="M 128 26 C 180 26 208 66 208 116 C 208 170 178 226 128 226 C 78 226 48 170 48 116 C 48 66 76 26 128 26 Z" fill="#E8B547"/>
+  <path d="M 74 68 C 94 48 124 44 144 56" fill="none" stroke="#F5C65E" stroke-width="4" stroke-linecap="round"/>
+  <rect x="74" y="122" width="108" height="54" rx="10" fill="#0C0E12"/>
+  <text x="128" y="159" text-anchor="middle" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#E8B547" letter-spacing="0.8">Alt D</text>
+</svg>
