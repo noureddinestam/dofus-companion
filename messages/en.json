@@ -281,7 +281,7 @@
       },
       "virusTotal": {
         "title": "VirusTotal",
-        "body": "Each asset is submitted to VirusTotal (70+ antivirus engines). The badge lights up here as soon as SHA256 hashes are published."
+        "body": "Each asset is submitted to VirusTotal (70+ antivirus engines). The badge below shows the live result. It's common for an unsigned open source installer to be flagged by 2–5 heuristic engines (Microsoft Wacatac.B!ml, DeepInstinct, Arctic Wolf, SecureAge) — these are machine-learning false positives, not signatures. They fade with reputation or an EV certificate. A false-positive review for Wacatac.B!ml has been submitted to Microsoft."
       },
       "smartScreen": {
         "title": "Windows SmartScreen",
