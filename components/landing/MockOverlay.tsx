@@ -1,9 +1,41 @@
-import { getMessages } from "@/lib/messages";
+import heroDungeon from "@/data/hero-dungeon.json";
+import { getLocale, getMessages } from "@/lib/messages";
 import { SearchIcon } from "@/components/icons/InlineIcons";
 
+type Severity = "critical" | "danger" | "caution" | "info";
+
+const SEVERITY_DOT: Record<Severity, string> = {
+  critical: "bg-rose-400",
+  danger: "bg-gold",
+  caution: "bg-amber-300",
+  info: "bg-muted",
+};
+
+function formatMeta(template: string, min: number, max: number, count: number) {
+  return template
+    .replace("{min}", String(min))
+    .replace("{max}", String(max))
+    .replace("{count}", String(count));
+}
+
 export async function MockOverlay() {
-  const m = await getMessages();
+  const [m, locale] = await Promise.all([getMessages(), getLocale()]);
   const t = m.mockOverlay;
+  const short = heroDungeon.short[locale];
+  const name = heroDungeon.name[locale];
+  const levelMin = heroDungeon.levelRange[0] ?? 0;
+  const levelMax = heroDungeon.levelRange[1] ?? 0;
+  const meta = formatMeta(
+    t.metaTemplate,
+    levelMin,
+    levelMax,
+    heroDungeon.monsterCount,
+  );
+  const sourceHost = new URL(short.provenance.baseSourceUrl).host.replace(
+    /^www\./,
+    "",
+  );
+
   return (
     <div
       aria-label="Dofus Companion overlay preview"
@@ -35,32 +67,47 @@ export async function MockOverlay() {
               aria-hidden
               className="text-muted font-mono text-[10px] tracking-[0.15em] uppercase"
             >
-              3 · 15 · 185
+              {t.searchCounter}
             </span>
           </label>
           <div className="border-gold/25 bg-gold/[0.04] rounded-md border px-4 py-3">
             <div className="mb-1 flex items-baseline justify-between gap-3">
-              <p className="text-foreground text-sm font-semibold">
-                {t.resultTitle}
-              </p>
-              <p className="text-muted font-mono text-[11px]">
-                {t.resultSubtitle}
-              </p>
+              <p className="text-foreground text-sm font-semibold">{name}</p>
+              <p className="text-muted font-mono text-[11px]">{meta}</p>
             </div>
             <p className="text-gold mb-3 font-mono text-[10px] tracking-[0.15em] uppercase">
-              {t.resultTagShort}
+              {t.shortLabel}
             </p>
             <ul className="text-foreground/90 space-y-1.5 text-[13px] leading-relaxed">
-              {t.resultBullets.map((bullet, i) => (
+              {short.bullets.map((bullet, i) => (
                 <li key={i} className="flex gap-2">
                   <span
                     aria-hidden
-                    className="bg-gold mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
+                    className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${
+                      SEVERITY_DOT[bullet.severity as Severity] ??
+                      SEVERITY_DOT.danger
+                    }`}
                   />
-                  {bullet}
+                  {bullet.text}
                 </li>
               ))}
             </ul>
+            <p className="border-gold/15 text-muted mt-3 border-t pt-2 font-mono text-[10px]">
+              {t.sourceLabel} ·{" "}
+              <a
+                href={short.provenance.baseSourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold/80 hover:text-gold underline-offset-2 hover:underline"
+              >
+                {sourceHost}
+              </a>
+            </p>
+          </div>
+          <div className="text-muted flex items-center justify-between gap-3 pt-1 font-mono text-[10px] tracking-[0.15em] uppercase">
+            <span>{t.keyhintBack}</span>
+            <span>{t.keyhintView}</span>
+            <span>{t.keyhintClose}</span>
           </div>
         </div>
       </div>
