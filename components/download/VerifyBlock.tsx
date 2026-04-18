@@ -9,6 +9,7 @@ export async function VerifyBlock({ assetName }: VerifyBlockProps) {
   const m = await getMessages();
   const t = m.download.verify;
   const tCopy = m.download.sha256;
+  const intro = m.download.verifyMicroIntro;
   const command = t.commandTemplate.replace("{asset}", assetName);
   return (
     <section className="space-y-4">
@@ -17,6 +18,7 @@ export async function VerifyBlock({ assetName }: VerifyBlockProps) {
         <p className="text-muted mt-2 max-w-2xl text-sm leading-relaxed">
           {t.body}
         </p>
+        <p className="text-muted mt-2 text-xs italic">{intro}</p>
       </div>
       <CodeBlock
         code={command}
