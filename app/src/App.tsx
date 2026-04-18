@@ -4,7 +4,7 @@ import './styles/globals.css';
 import { TitleBar } from './components/TitleBar';
 import { DungeonCard } from './components/DungeonCard';
 import { useDungeons } from './features/dungeons/useDungeons';
-import { useSearch } from './features/search/useSearch';
+import { useSearch, type SearchResult } from './features/search/useSearch';
 import { useUpdater } from './hooks/useUpdater';
 import { useI18n } from './i18n/useI18n';
 import { useAppStore } from './store/appStore';
@@ -35,6 +35,7 @@ function AppMain() {
   const [query, setQuery] = useState('');
   const { results, setQuery: setDebouncedQuery } = useSearch(dungeons);
   const [selected, setSelected] = useState<Dungeon | null>(null);
+  const [highlightedMonsterId, setHighlightedMonsterId] = useState<string | null>(null);
   const [focusIdx, setFocusIdx] = useState(0);
   const searchRef = useRef<HTMLInputElement>(null);
   const { update, install, dismiss } = useUpdater();
@@ -55,13 +56,15 @@ function AppMain() {
     [setDebouncedQuery],
   );
 
-  const openDungeon = useCallback((d: Dungeon) => {
-    setSelected(d);
+  const openResult = useCallback((r: SearchResult) => {
+    setSelected(r.dungeon);
+    setHighlightedMonsterId(r.matchedMonsterId);
     searchRef.current?.blur();
   }, []);
 
   const goBack = useCallback(() => {
     setSelected(null);
+    setHighlightedMonsterId(null);
     setTimeout(() => searchRef.current?.focus(), 50);
   }, []);
 
@@ -127,14 +130,14 @@ function AppMain() {
 
         case 'Enter':
           e.preventDefault();
-          if (results[focusIdx]) openDungeon(results[focusIdx]);
+          if (results[focusIdx]) openResult(results[focusIdx]);
           break;
       }
     };
 
     window.addEventListener('keydown', down);
     return () => window.removeEventListener('keydown', down);
-  }, [selected, results, focusIdx, goBack, openDungeon, toggleLang, toggleView]);
+  }, [selected, results, focusIdx, goBack, openResult, toggleLang, toggleView]);
 
   // Focus search on mount
   useEffect(() => {
@@ -212,12 +215,16 @@ function AppMain() {
 
       <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
         {selected ? (
-          <DungeonCard dungeon={selected} onBack={goBack} />
+          <DungeonCard
+            dungeon={selected}
+            onBack={goBack}
+            highlightedMonsterId={highlightedMonsterId}
+          />
         ) : (
           <SearchView
             results={results}
             focusIdx={focusIdx}
-            onSelect={openDungeon}
+            onSelect={openResult}
             onHover={setFocusIdx}
           />
         )}
@@ -234,9 +241,9 @@ function SearchView({
   onSelect,
   onHover,
 }: {
-  results: Dungeon[];
+  results: SearchResult[];
   focusIdx: number;
-  onSelect: (d: Dungeon) => void;
+  onSelect: (r: SearchResult) => void;
   onHover: (i: number) => void;
 }) {
   const rowRef = useRef<HTMLDivElement>(null);
@@ -266,13 +273,17 @@ function SearchView({
 
   return (
     <div ref={rowRef} style={{ height: '100%', overflowY: 'auto' }}>
-      {results.map((d, i) => {
+      {results.map((r, i) => {
+        const d = r.dungeon;
         const isFocused = i === focusIdx;
+        const matchedMonster = r.matchedMonsterId
+          ? d.monsters.find((m) => m.id === r.matchedMonsterId)
+          : null;
         return (
           <div
-            key={d.id}
+            key={`${d.id}-${r.matchedMonsterId ?? 'boss'}`}
             data-idx={i}
-            onClick={() => onSelect(d)}
+            onClick={() => onSelect(r)}
             onMouseEnter={() => onHover(i)}
             style={{
               display: 'flex',
@@ -319,7 +330,13 @@ function SearchView({
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
               }}>
-                {t.dungeon.bossPrefix} {d.boss.name}
+                {matchedMonster ? (
+                  <span style={{ color: 'var(--accent)' }}>↳ {matchedMonster.name}</span>
+                ) : (
+                  <>
+                    {t.dungeon.bossPrefix} {d.boss.name}
+                  </>
+                )}
               </div>
             </div>
 
