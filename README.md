@@ -1,22 +1,29 @@
 # Dofus Companion
 
-Overlay Windows pour Dofus — 185 donjons factuels, stratégies bilingues FR/EN, vue Actionnable pour combat.
+Overlay Windows pour Dofus — 185 donjons factuels, **Combat Cards 4 blocs** bilingues FR/EN, lisibles en combat.
 
-**Alt+D** pour afficher/masquer. Cherchez un donjon, consultez la stratégie en 10 secondes ou le pavé détaillé, tout en restant en jeu.
+**Alt+D** pour afficher/masquer. Cherchez un donjon ou un monstre (**Ctrl+M**), lisez la fiche en < 3 secondes, tout en restant en jeu.
 
 ## Fonctionnalités
 
 - **185 donjons** couverts (endgame 160+ prioritaire) avec stats factuelles DofusDB
-- **Stratégies bilingues FR/EN** : natif Fandom quand dispo, LLM ancré sinon (zéro hallucination)
-- **2 vues** par fiche : **Actionnable** (3-6 bullets colorés, lisibles en combat) et **Détaillée** (pavé complet)
-- **Traçabilité totale** : chaque texte porte une provenance cliquable (source native, synthèse IA ancrée, ou contribution communautaire)
-- Overlay transparent toujours au premier plan, drag depuis la barre de titre, position haut-droite par défaut
-- Tray icon, raccourci global Alt+D (toggle propre sur Windows)
-- Mise à jour automatique via GitHub Releases
+- **Combat Cards v0.5** — structure fixe 4 blocs sur **141 boss + 129 monstres notables** :
+  - 🔓 **DÉLOCK** : étapes actionnables pour gagner
+  - ⚠️ **CONTRAINTES** : règles à respecter en permanence
+  - ❌ **DANGERS** : punitions concrètes si erreur
+  - 💡 **INFOS UTILES** : résistances et astuces secondaires
+- **Règle du silence** : un monstre sans mécanique ne montre **aucune** card (pas de bruit visuel)
+- **Vue monstre dédiée** (**Ctrl+M**) : liste filtrée + fiche plein écran + sauts vers tous les donjons du monstre
+- **Recherche par monstre** : taper « dompteuse » ouvre le donjon avec la fiche surlignée
+- **Toggle masquer lambdas** : ne voir que les mobs à mécanique dans un donjon
+- **Stratégies bilingues FR/EN** ancrées Fandom ou LLM verbatim (zéro hallucination)
+- **Traçabilité totale** : chaque bullet porte une provenance cliquable (native, LLM ancrée, ou community)
+- Overlay transparent toujours au premier plan, drag depuis la barre de titre
+- Tray icon, raccourci global Alt+D, auto-update via GitHub Releases
 
 ## Installation
 
-1. Téléchargez `Dofus Companion_0.4.0_x64-setup.exe` depuis la [dernière release](../../releases/latest)
+1. Téléchargez `Dofus Companion_0.5.0_x64-setup.exe` depuis la [dernière release](../../releases/latest)
 2. Lancez le setup (acceptez WebView2 si demandé — composant Microsoft standard inclus dans Windows 11)
 3. L'application démarre dans la barre système — appuyez **Alt+D** pour l'ouvrir
 
@@ -27,28 +34,29 @@ Overlay Windows pour Dofus — 185 donjons factuels, stratégies bilingues FR/EN
 | Touche | Action |
 |--------|--------|
 | **Alt+D** | Afficher / Masquer l'overlay (global) |
+| **Ctrl+M** | Basculer vue monstre dédiée (search + fiche) |
 | ↑ ↓ | Naviguer dans les résultats |
-| Enter | Ouvrir le donjon |
+| Enter | Ouvrir le donjon ou le monstre |
 | Backspace / Esc | Retour / Fermer |
 | `/` | Focus barre de recherche |
 | **Ctrl+L** | Basculer langue FR ⇄ EN |
-| **V** ou **Tab** | Basculer vue Actionnable ⇄ Détaillée (dans une fiche) |
+| **V** ou **Tab** | Basculer vue Actionnable ⇄ Détaillée (boss non migrés v0.4) |
 
 ## Données
 
 Sources factuelles fusionnées par le scraper (`pnpm scrape`) :
 
-| Source | Contenu | Couverture |
+| Source | Contenu | Couverture v0.5 |
 |--------|---------|-----------|
 | [DofusDB](https://dofusdb.fr) | Stats : niveaux, PV, résistances, monstres | 185 donjons (100 %) |
-| [Wiki Fandom EN](https://dofuswiki.fandom.com) | Stratégies boss en anglais | 143 donjons (77 %) |
-| [Wiki Fandom FR](https://dofus.fandom.com/fr) | Stratégies boss en français | 0 (wiki quasi-vide sur les donjons) |
-| LLM `claude-sonnet-4-5` | Traduction EN → FR + synthèse bullets actionnables | 132 long.fr, 128 short.en, 124 short.fr |
-| Contributions communautaires | Via PR (`docs/DATA-CONTRIBUTING.md`) | Nouveau en v0.4 |
+| [Wiki Fandom EN + FR](https://dofuswiki.fandom.com) | Stratégies boss + pages monstres | 143 boss + 83 monstres |
+| LLM `claude-sonnet-4-5` | Extraction Combat Cards 4 blocs ancrées | **141 boss + 129 monstres** |
+| Boss-mention fallback | Paragraphes de boss strategies mentionnant un monstre | 58 monstres supplémentaires |
+| Contributions communautaires | Via PR (`docs/COMBAT-CARDS-CONTRIBUTING.md`) | Ouvert à tous |
 
-**Anti-hallucination** : chaque texte LLM est ancré verbatim dans un texte source. Les bullets dont l'ancre ne passe pas la similarité ≥ 0.75 sont rejetés automatiquement — pas de short bâclée. Les donjons sans source exploitable restent `null` (jamais d'invention).
+**Anti-hallucination v0.5** : chaque bullet d'une Combat Card est ancrée verbatim dans le texte source Fandom (similarité ≥ 0.75). Les bullets dont l'ancre échoue sont rejetées automatiquement. Aucune bullet ne peut apparaître dans deux blocs. Les monstres sans source exploitable restent `combat: null` (zéro invention, zéro changement visuel).
 
-Pour les 42 donjons sans stratégie automatique (Expéditions 200, content récent) : voir [`scraper/output/MISSING.md`](scraper/output/MISSING.md) et contribuer via [`docs/DATA-CONTRIBUTING.md`](docs/DATA-CONTRIBUTING.md).
+Pour les donjons ou monstres sans card : voir [`scraper/output/MISSING.md`](scraper/output/MISSING.md) et contribuer via [`docs/COMBAT-CARDS-CONTRIBUTING.md`](docs/COMBAT-CARDS-CONTRIBUTING.md).
 
 ## Développement
 
@@ -64,25 +72,32 @@ cd dofus-companion
 pnpm install
 pnpm dev              # lance l'overlay en mode dev (hot-reload)
 pnpm typecheck        # vérif TS sur app + scraper
-pnpm test             # Vitest (app + scraper, 67 tests)
+pnpm test             # Vitest (app + scraper, 105 tests)
 pnpm lint
 ```
 
 ### Régénérer les données
 
 ```bash
-pnpm scrape                   # run complet (DofusDB + Fandom + LLM si clé dispo)
-pnpm scrape --no-llm          # skip LLM (pas besoin d'ANTHROPIC_API_KEY)
-pnpm scrape --dry-run         # utilise uniquement le cache disque
-pnpm scrape --gen-issues      # génère scraper/output/ISSUES.md (templates GitHub Issues)
+pnpm scrape                              # run complet v0.4 (DofusDB + Fandom + LLM)
+pnpm scrape --no-llm                     # skip LLM (pas besoin d'ANTHROPIC_API_KEY)
+pnpm scrape --dry-run                    # utilise uniquement le cache disque
+pnpm scrape --gen-issues                 # génère scraper/output/ISSUES.md
+
+# v0.5 Combat Cards :
+pnpm --filter scraper scrape --only-boss-refactor --dry-run-cost
+pnpm --filter scraper scrape --only-boss-refactor
+pnpm --filter scraper scrape --only-monsters --dry-run-cost
+pnpm --filter scraper scrape --only-monsters
 ```
 
-Pour activer les traductions et synthèses LLM :
+Pour activer les extractions LLM :
 
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
-pnpm scrape
-# → ~5-10 min + coût ~2-3 € pour un rebuild complet
+pnpm --filter scraper scrape --only-boss-refactor   # ~€2 sur 143 boss
+pnpm --filter scraper scrape --only-monsters        # ~€2 sur 141 monstres éligibles
+# → Cache disque activé : tous les reruns sont gratuits.
 ```
 
 ### Build Windows
@@ -117,25 +132,32 @@ git push origin v0.x.y
 dofus-companion/
 ├── app/                  # Tauri 2 + React 19 + TypeScript
 │   ├── src/
-│   │   ├── i18n/         # Dict FR/EN + hook useI18n (Phase A)
-│   │   ├── types/dungeon.ts   # Zod schemas (bilingue bundle, provenance)
+│   │   ├── i18n/              # Dict FR/EN + hook useI18n
+│   │   ├── types/
+│   │   │   ├── combat-card.ts # v0.5 schema 4 blocs
+│   │   │   ├── provenance.ts  # Shared provenance schema
+│   │   │   └── dungeon.ts     # Monster/Boss/Dungeon
 │   │   ├── features/
-│   │   │   ├── dungeons/      # useDungeons + adapter legacy
-│   │   │   └── strategy/      # resolveStrategy + Short/Long views
-│   │   └── components/   # TitleBar, DungeonCard, BossPanel, BulletRow, …
-│   └── src-tauri/        # Backend Rust (Alt+D, tray, updater, window-state)
+│   │   │   ├── combat/        # derivePriority + playground
+│   │   │   ├── dungeons/      # resolveBossView + legacy adapter
+│   │   │   ├── monsters/      # monsterIndex + MonsterView (Ctrl+M)
+│   │   │   ├── search/        # Fuse + jump-to-monster
+│   │   │   └── strategy/      # v0.4 legacy views
+│   │   └── components/        # TitleBar, DungeonCard, CombatCardView, …
+│   └── src-tauri/             # Backend Rust (Alt+D, tray, updater)
 ├── scraper/
 │   ├── src/
-│   │   ├── sources/      # dofusdb, fandom (EN), fandom-fr
-│   │   ├── llm/          # Anthropic SDK wrapper, translate, summarize
-│   │   ├── prompts/      # translate-v1.md, summarize-v1.md (versionnés)
-│   │   ├── validate/     # fuzzy anchors + glossary coverage
-│   │   ├── i18n/glossary.json   # 149 paires EN→FR canoniques
-│   │   └── report/       # MISSING.md, ISSUES.md generators
-│   └── output/           # Artefacts après pnpm scrape
+│   │   ├── sources/           # dofusdb, fandom, fandom-fr, fandom-monster
+│   │   ├── llm/               # Anthropic SDK, translate, summarize, extract-combat-card
+│   │   ├── prompts/           # translate-v1.md, summarize-v1.md, extract-combat-card-v1.md
+│   │   ├── migrate/           # v04-to-v05-boss, scrape-monster-cards
+│   │   ├── validate/          # anchors, glossary, combat-card
+│   │   └── report/            # MISSING.md, ISSUES.md
+│   └── output/                # Artefacts après pnpm scrape
 └── docs/
-    ├── DATA-CONTRIBUTING.md    # Workflow de contribution community
-    └── I18N-AND-STRATEGY.md    # Les 3 niveaux de provenance
+    ├── DATA-CONTRIBUTING.md          # v0.4 strategies contribution
+    ├── COMBAT-CARDS-CONTRIBUTING.md  # v0.5 combat card contribution
+    └── I18N-AND-STRATEGY.md          # Provenance levels
 ```
 
 ## Licence
