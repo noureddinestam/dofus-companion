@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getLocale, getMessages } from "@/lib/messages";
 import { GithubIcon } from "@/components/icons/GithubIcon";
 import { LangSwitcher } from "@/components/LangSwitcher";
+import { LogoMark } from "@/components/brand/LogoMark";
 
 const NAV_LINKS = [
   { href: "/#features", key: "features" },
@@ -20,12 +21,7 @@ export async function Nav() {
           href="/"
           className="flex items-center gap-2 text-sm font-semibold tracking-tight"
         >
-          <span
-            aria-hidden
-            className="bg-gold/10 text-gold ring-gold/30 grid h-7 w-7 place-items-center rounded-md font-mono text-xs ring-1"
-          >
-            DC
-          </span>
+          <LogoMark className="h-7 w-7 shrink-0" />
           <span>Dofus Companion</span>
         </Link>
         <div className="flex items-center gap-4">
