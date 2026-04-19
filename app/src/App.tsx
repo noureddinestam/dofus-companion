@@ -3,18 +3,25 @@ import { getCurrentWindow } from '@tauri-apps/api/window';
 import './styles/globals.css';
 import { TitleBar } from './components/TitleBar';
 import { DungeonCard } from './components/DungeonCard';
+import { SettingsPanel } from './components/SettingsPanel';
 import { useDungeons } from './features/dungeons/useDungeons';
 import { useSearch, type SearchResult } from './features/search/useSearch';
 import { useUpdater } from './hooks/useUpdater';
 import { useFirstRun } from './hooks/useFirstRun';
 import { useStartupNotification } from './hooks/useStartupNotification';
+import { useOverlayPresentation } from './hooks/useOverlayPresentation';
+import { useLangSync } from './hooks/useLangSync';
+import { useSettings } from './features/settings/useSettings';
 import { useI18n } from './i18n/useI18n';
 import { useAppStore } from './store/appStore';
 import { CombatCardPlayground } from './features/combat/CombatCardPlayground';
 import { SettingsPanelPlayground } from './features/settings/SettingsPanelPlayground';
 import { MonsterView } from './features/monsters/MonsterView';
 import { WelcomeOverlay } from './components/WelcomeOverlay';
+import pkg from '../package.json';
 import type { Dungeon } from './types/dungeon';
+
+const APP_VERSION: string = pkg.version;
 
 type AppMode = 'search' | 'monster';
 
@@ -47,19 +54,34 @@ function AppMain() {
   const [highlightedMonsterId, setHighlightedMonsterId] = useState<string | null>(null);
   const [mode, setMode] = useState<AppMode>('search');
   const [focusIdx, setFocusIdx] = useState(0);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
   const { update, install, dismiss } = useUpdater();
   const { isFirstRun, completeFirstRun } = useFirstRun();
-  const { t, toggleLang } = useI18n();
+  const { settings, updateAppearance } = useSettings();
+  const { t } = useI18n();
+
+  useOverlayPresentation(settings);
+  useLangSync(settings);
 
   useStartupNotification({
     title: 'Dofus Companion',
     body: 'Ouvert en arrière-plan · Alt+D pour afficher',
+    enabled: settings?.notifications.showStartupToast ?? true,
     // We skip the toast while the welcome overlay is up — the user already
     // sees the app. After dismissal the hook does nothing further because
     // its timer fires once at mount.
     isOverlayVisible: () => isFirstRun === true,
   });
+
+  const openSettings = useCallback(() => setSettingsOpen(true), []);
+  const closeSettings = useCallback(() => setSettingsOpen(false), []);
+
+  const toggleLangPersisted = useCallback(() => {
+    if (!settings) return;
+    const next = settings.appearance.lang === 'fr' ? 'en' : 'fr';
+    void updateAppearance({ lang: next });
+  }, [settings, updateAppearance]);
   const strategyView = useAppStore((s) => s.strategyView);
   const setStrategyView = useAppStore((s) => s.setStrategyView);
 
@@ -114,7 +136,7 @@ function AppMain() {
           document.activeElement instanceof HTMLTextAreaElement;
         if (!inInput) {
           e.preventDefault();
-          toggleLang();
+          toggleLangPersisted();
           return;
         }
       }
@@ -193,7 +215,7 @@ function AppMain() {
     focusIdx,
     goBack,
     openResult,
-    toggleLang,
+    toggleLangPersisted,
     toggleView,
     mode,
     enterMonsterMode,
@@ -227,7 +249,12 @@ function AppMain() {
       border: '1px solid var(--border-default)',
       overflow: 'hidden',
     }}>
-      <TitleBar query={query} onQueryChange={handleQueryChange} searchRef={searchRef} />
+      <TitleBar
+        query={query}
+        onQueryChange={handleQueryChange}
+        searchRef={searchRef}
+        onOpenSettings={openSettings}
+      />
 
       {update && (
         <div style={{
@@ -300,6 +327,8 @@ function AppMain() {
       <Footer selected={selected} mode={mode} />
 
       {isFirstRun === true && <WelcomeOverlay onDismiss={completeFirstRun} />}
+
+      <SettingsPanel open={settingsOpen} onClose={closeSettings} appVersion={APP_VERSION} />
     </div>
   );
 }
