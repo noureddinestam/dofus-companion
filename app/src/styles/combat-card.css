@@ -128,12 +128,12 @@
   padding: 4px 6px;
 }
 .combat-card--compact .combat-card__title {
-  font-size: 9px;
+  font-size: 10px;
   margin-bottom: 2px;
 }
 .combat-card--compact .combat-card__bullet {
-  font-size: 11px;
-  line-height: 1.35;
+  font-size: 12px;
+  line-height: 1.4;
 }
 .combat-card--compact .combat-card__bullet-dot {
   margin-top: 6px;
