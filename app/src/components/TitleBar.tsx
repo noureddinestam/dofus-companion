@@ -1,14 +1,15 @@
 import { getCurrentWindow } from '@tauri-apps/api/window';
-import { LangToggle } from './LangToggle';
 import { useI18n } from '../i18n/useI18n';
 
 interface TitleBarProps {
   query: string;
   onQueryChange: (q: string) => void;
   searchRef: React.RefObject<HTMLInputElement | null>;
+  /** Opens the v0.5.3 settings panel. Rendered next to the close cross. */
+  onOpenSettings: () => void;
 }
 
-export function TitleBar({ query, onQueryChange, searchRef }: TitleBarProps) {
+export function TitleBar({ query, onQueryChange, searchRef, onOpenSettings }: TitleBarProps) {
   const { t } = useI18n();
   const hide = () => getCurrentWindow().hide();
 
@@ -109,11 +110,36 @@ export function TitleBar({ query, onQueryChange, searchRef }: TitleBarProps) {
         />
       </div>
 
-      <LangToggle />
+      <button
+        type="button"
+        onClick={onOpenSettings}
+        title={t.settings.panel.openAria}
+        aria-label={t.settings.panel.openAria}
+        className="title-bar__icon-btn"
+        style={{
+          background: 'transparent',
+          border: 'none',
+          color: 'var(--text-muted)',
+          cursor: 'pointer',
+          padding: '4px 6px',
+          borderRadius: 'var(--radius-sm)',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+          lineHeight: 0,
+        }}
+        onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-primary)')}
+        onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-muted)')}
+      >
+        <GearIcon />
+      </button>
 
       <button
+        type="button"
         onClick={hide}
         title={t.titleBar.hide}
+        aria-label={t.titleBar.hide}
         style={{
           background: 'transparent',
           border: 'none',
@@ -125,11 +151,30 @@ export function TitleBar({ query, onQueryChange, searchRef }: TitleBarProps) {
           lineHeight: 1,
           flexShrink: 0,
         }}
-        onMouseEnter={(e) => ((e.target as HTMLElement).style.color = 'var(--text-primary)')}
-        onMouseLeave={(e) => ((e.target as HTMLElement).style.color = 'var(--text-muted)')}
+        onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-primary)')}
+        onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-muted)')}
       >
         ✕
       </button>
     </div>
+  );
+}
+
+function GearIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0A1.65 1.65 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+    </svg>
   );
 }

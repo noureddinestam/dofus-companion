@@ -1,7 +1,12 @@
 :root {
-  --bg-base: rgba(12, 14, 18, 0.95);
-  --bg-elevated: rgba(22, 25, 32, 0.98);
-  --bg-hover: rgba(35, 39, 48, 1);
+  /* v0.5.3 — opacity is driven by settings.appearance.opacity. The alpha
+   * multipliers below are clamped 0.5..1 in React; the theme tokens keep
+   * their original alpha values because the overlay as a whole gets its
+   * transparency via the --bg-base/--bg-elevated/--bg-hover chain. */
+  --overlay-opacity: 1;
+  --bg-base: rgba(12, 14, 18, calc(0.95 * var(--overlay-opacity)));
+  --bg-elevated: rgba(22, 25, 32, calc(0.98 * var(--overlay-opacity)));
+  --bg-hover: rgba(35, 39, 48, var(--overlay-opacity));
 
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-default: rgba(255, 255, 255, 0.12);
@@ -34,4 +39,22 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
+
+  /* Density tokens — comfortable is the v0.5.0 baseline.
+   * Compact reduces vertical rhythm while keeping readability. */
+  --density-row-py: 7px;
+  --density-row-px: 10px;
+  --density-block-py: 6px;
+  --density-block-px: 8px;
+  --density-gap: 6px;
+  --density-font-bullet: 12px;
+}
+
+:root.density-compact {
+  --density-row-py: 4px;
+  --density-row-px: 8px;
+  --density-block-py: 4px;
+  --density-block-px: 6px;
+  --density-gap: 3px;
+  --density-font-bullet: 11px;
 }

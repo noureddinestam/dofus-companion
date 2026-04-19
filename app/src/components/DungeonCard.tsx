@@ -2,6 +2,7 @@ import { openUrl } from '@tauri-apps/plugin-opener';
 import type { Dungeon } from '../types/dungeon';
 import { useI18n } from '../i18n/useI18n';
 import { useAppStore } from '../store/appStore';
+import { useSettings } from '../features/settings/useSettings';
 import { StrategyShortView } from '../features/strategy/StrategyShortView';
 import { resolveBossView } from '../features/dungeons/resolveBossView';
 import { MonsterRow } from './MonsterRow';
@@ -19,14 +20,20 @@ interface DungeonCardProps {
 export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCardProps) {
   const { t } = useI18n();
   const strategyView = useAppStore((s) => s.strategyView);
-  const hideLambdas = useAppStore((s) => s.hideLambdas);
-  const setHideLambdas = useAppStore((s) => s.setHideLambdas);
+  const { settings, updateMonstersDisplay } = useSettings();
+  // v0.5.3: the "hide lambdas" preference lives in settings; the v0.5.2
+  // header checkbox stays as a shortcut UI and writes through to the
+  // settings file. `showLambdaMonsters` defaults to false (silence rule).
+  const showLambdaMonsters = settings?.monstersDisplay.showLambdaMonsters ?? false;
+  const setShowLambdaMonsters = (value: boolean) => {
+    void updateMonstersDisplay({ showLambdaMonsters: value });
+  };
   const bossView = resolveBossView(dungeon.boss);
   // Monstres triés par niveau décroissant (plus dangereux en premier)
   const sortedMonsters = [...dungeon.monsters].sort((a, b) => b.level - a.level);
-  const visibleMonsters = hideLambdas
-    ? sortedMonsters.filter((m) => m.combat !== null)
-    : sortedMonsters;
+  const visibleMonsters = showLambdaMonsters
+    ? sortedMonsters
+    : sortedMonsters.filter((m) => m.combat !== null);
   const hiddenLambdaCount = sortedMonsters.length - visibleMonsters.length;
 
   return (
@@ -118,8 +125,8 @@ export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCa
           >
             <input
               type="checkbox"
-              checked={hideLambdas}
-              onChange={(e) => setHideLambdas(e.target.checked)}
+              checked={!showLambdaMonsters}
+              onChange={(e) => setShowLambdaMonsters(!e.target.checked)}
               style={{ margin: 0, cursor: 'pointer' }}
             />
             {t.settings.hideLambdas}

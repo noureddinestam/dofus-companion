@@ -75,10 +75,52 @@ export interface UiStrings {
     legacyNotes: string;
     unlockContext: string;
     unlockActions: string;
+    lambdaPlaceholder: string;
   };
   settings: {
     hideLambdas: string;
     hideLambdasHint: string;
+    panel: {
+      title: string;
+      closeAria: string;
+      openAria: string;
+      sectionAppearance: string;
+      sectionContent: string;
+      sectionMonsters: string;
+      sectionShortcuts: string;
+      sectionNotifications: string;
+      sectionAbout: string;
+      langLabel: string;
+      langFr: string;
+      langEn: string;
+      opacityLabel: string;
+      opacityHint: string;
+      densityLabel: string;
+      densityComfortable: string;
+      densityCompact: string;
+      themeLabel: string;
+      themeSystem: string;
+      themeLight: string;
+      themeDark: string;
+      showUnlockBlock: string;
+      showUnlockContext: string;
+      showUnlockActions: string;
+      showDangersBlock: string;
+      showTipsBlock: string;
+      showLambdaMonsters: string;
+      showLambdaMonstersHint: string;
+      showProvenanceBadge: string;
+      showProvenanceBadgeHint: string;
+      primaryShortcut: string;
+      primaryShortcutHint: string;
+      shortcutCustomizationSoon: string;
+      showStartupToast: string;
+      showStartupToastHint: string;
+      aboutVersion: (v: string) => string;
+      aboutChangelog: string;
+      aboutWebsite: string;
+      aboutCredits: string;
+    };
   };
   monsterView: {
     title: string;
@@ -201,10 +243,52 @@ const fr: UiStrings = {
     legacyNotes: 'Notes legacy v0.4',
     unlockContext: 'Contexte',
     unlockActions: 'Actions',
+    lambdaPlaceholder: 'Pas de mécanique notable',
   },
   settings: {
     hideLambdas: 'Masquer lambdas',
     hideLambdasHint: 'Cacher les monstres sans mécanique',
+    panel: {
+      title: 'Paramètres',
+      closeAria: 'Fermer les paramètres',
+      openAria: 'Ouvrir les paramètres',
+      sectionAppearance: 'Apparence',
+      sectionContent: 'Contenu des fiches',
+      sectionMonsters: 'Monstres',
+      sectionShortcuts: 'Raccourcis',
+      sectionNotifications: 'Notifications',
+      sectionAbout: 'À propos',
+      langLabel: 'Langue',
+      langFr: 'Français',
+      langEn: 'English',
+      opacityLabel: 'Opacité',
+      opacityHint: 'Transparence de la fenêtre au-dessus de Dofus',
+      densityLabel: 'Densité',
+      densityComfortable: 'Confortable',
+      densityCompact: 'Compact',
+      themeLabel: 'Thème',
+      themeSystem: 'Système',
+      themeLight: 'Clair',
+      themeDark: 'Sombre',
+      showUnlockBlock: 'Afficher le bloc 🔓 DÉLOCK',
+      showUnlockContext: 'Sous-bloc « Contexte »',
+      showUnlockActions: 'Sous-bloc « Actions »',
+      showDangersBlock: 'Afficher le bloc ❌ DANGERS',
+      showTipsBlock: 'Afficher le bloc 💡 INFOS UTILES',
+      showLambdaMonsters: 'Afficher les monstres sans mécanique',
+      showLambdaMonstersHint: 'Désactive la règle du silence',
+      showProvenanceBadge: 'Afficher le badge de provenance',
+      showProvenanceBadgeHint: 'Source Fandom, LLM, communauté',
+      primaryShortcut: 'Raccourci principal',
+      primaryShortcutHint: 'Afficher / masquer l\'overlay',
+      shortcutCustomizationSoon: 'Personnalisation à venir',
+      showStartupToast: 'Notification au démarrage',
+      showStartupToastHint: 'Toast système · Alt+D pour afficher',
+      aboutVersion: (v) => `Version ${v}`,
+      aboutChangelog: 'Changelog',
+      aboutWebsite: 'Site web',
+      aboutCredits: 'Crédits',
+    },
   },
   monsterView: {
     title: 'MONSTRES',
@@ -316,10 +400,52 @@ const en: UiStrings = {
     legacyNotes: 'v0.4 legacy notes',
     unlockContext: 'Context',
     unlockActions: 'Actions',
+    lambdaPlaceholder: 'No notable mechanic',
   },
   settings: {
     hideLambdas: 'Hide lambdas',
     hideLambdasHint: 'Hide monsters without mechanics',
+    panel: {
+      title: 'Settings',
+      closeAria: 'Close settings',
+      openAria: 'Open settings',
+      sectionAppearance: 'Appearance',
+      sectionContent: 'Card content',
+      sectionMonsters: 'Monsters',
+      sectionShortcuts: 'Shortcuts',
+      sectionNotifications: 'Notifications',
+      sectionAbout: 'About',
+      langLabel: 'Language',
+      langFr: 'Français',
+      langEn: 'English',
+      opacityLabel: 'Opacity',
+      opacityHint: 'Window transparency on top of Dofus',
+      densityLabel: 'Density',
+      densityComfortable: 'Comfortable',
+      densityCompact: 'Compact',
+      themeLabel: 'Theme',
+      themeSystem: 'System',
+      themeLight: 'Light',
+      themeDark: 'Dark',
+      showUnlockBlock: 'Show 🔓 UNLOCK block',
+      showUnlockContext: '"Context" subsection',
+      showUnlockActions: '"Actions" subsection',
+      showDangersBlock: 'Show ❌ DANGERS block',
+      showTipsBlock: 'Show 💡 TIPS block',
+      showLambdaMonsters: 'Show monsters without mechanics',
+      showLambdaMonstersHint: 'Turn off the silence rule',
+      showProvenanceBadge: 'Show the provenance badge',
+      showProvenanceBadgeHint: 'Fandom, LLM, or community source',
+      primaryShortcut: 'Primary shortcut',
+      primaryShortcutHint: 'Show / hide the overlay',
+      shortcutCustomizationSoon: 'Custom shortcuts coming soon',
+      showStartupToast: 'Startup notification',
+      showStartupToastHint: 'System toast · Alt+D to show',
+      aboutVersion: (v) => `Version ${v}`,
+      aboutChangelog: 'Changelog',
+      aboutWebsite: 'Website',
+      aboutCredits: 'Credits',
+    },
   },
   monsterView: {
     title: 'MONSTERS',

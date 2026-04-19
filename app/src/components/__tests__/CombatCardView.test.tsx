@@ -12,20 +12,55 @@ import {
   FIXTURE_MONSTER_LAMBDA,
 } from '../../features/combat/devFixtures';
 import type { CombatCard } from '../../types/combat-card';
+import type { Settings } from '../../features/settings/schema';
+
+const SETTINGS_MIRROR_KEY = 'dofus-companion-settings-v3';
+
+function seedSettings(overrides: Partial<Settings['contentDisplay']> = {}, monstersOverrides: Partial<Settings['monstersDisplay']> = {}) {
+  const settings: Settings = {
+    version: 3,
+    hasCompletedFirstRun: true,
+    appearance: { lang: 'fr', opacity: 0.95, density: 'comfortable', theme: 'system' },
+    contentDisplay: {
+      showUnlockBlock: true,
+      showUnlockContext: true,
+      showUnlockActions: true,
+      showDangersBlock: true,
+      showTipsBlock: true,
+      ...overrides,
+    },
+    monstersDisplay: {
+      showLambdaMonsters: false,
+      showProvenanceBadge: true,
+      ...monstersOverrides,
+    },
+    notifications: { showStartupToast: true },
+  };
+  localStorage.setItem(SETTINGS_MIRROR_KEY, JSON.stringify(settings));
+}
 
 let container: HTMLDivElement | null = null;
 let root: Root | null = null;
 
-function render(card: CombatCard | null): string {
+function render(card: CombatCard | null, compact = false): string {
   if (!container) {
     container = document.createElement('div');
     document.body.appendChild(container);
     root = createRoot(container);
   }
   act(() => {
-    root!.render(<CombatCardView card={card} />);
+    root!.render(<CombatCardView card={card} compact={compact} />);
   });
   return container.innerHTML;
+}
+
+async function flushSettings(): Promise<void> {
+  // useSettings() loads asynchronously — wait one microtask tick so any
+  // state update driven by localStorage mirror is applied.
+  await act(async () => {
+    await Promise.resolve();
+    await Promise.resolve();
+  });
 }
 
 describe('CombatCardView', () => {
@@ -102,5 +137,64 @@ describe('CombatCardView', () => {
     const html = render(FIXTURE_BOSS_SYLARGH);
     expect(html).toContain('Kill the 3 pawns');
     expect(html).not.toContain('Tuer les 3 pions');
+  });
+
+  it('hides the DANGERS block when showDangersBlock=false', async () => {
+    seedSettings({ showDangersBlock: false });
+    render(FIXTURE_BOSS_SYLARGH);
+    await flushSettings();
+    expect(container!.innerHTML).toContain('DÉLOCK');
+    expect(container!.innerHTML).not.toContain('DANGERS');
+    expect(container!.innerHTML).toContain('INFOS UTILES');
+  });
+
+  it('hides the unlock Context subsection when showUnlockContext=false', async () => {
+    seedSettings({ showUnlockContext: false });
+    render(FIXTURE_BOSS_SYLARGH);
+    await flushSettings();
+    // Sylargh fixture has 1 context + 3 action bullets.
+    expect(container!.innerHTML).not.toContain('Sylargh se ressuscite au centre');
+    expect(container!.innerHTML).toContain('Éloigner Sylargh du centre');
+  });
+
+  it('parent-wins: hiding the unlock block also hides its subsections', async () => {
+    seedSettings({ showUnlockBlock: false });
+    render(FIXTURE_BOSS_SYLARGH);
+    await flushSettings();
+    expect(container!.innerHTML).not.toContain('DÉLOCK');
+    expect(container!.innerHTML).not.toContain('Éloigner Sylargh');
+    expect(container!.innerHTML).toContain('DANGERS');
+  });
+
+  it('renders nothing when every visible block is toggled off', async () => {
+    seedSettings({
+      showUnlockBlock: false,
+      showDangersBlock: false,
+      showTipsBlock: false,
+    });
+    render(FIXTURE_BOSS_SYLARGH);
+    await flushSettings();
+    expect(container!.innerHTML).toBe('');
+  });
+
+  it('renders a lambda placeholder in compact mode when showLambdaMonsters=true', async () => {
+    seedSettings({}, { showLambdaMonsters: true });
+    render(null, true);
+    await flushSettings();
+    expect(container!.innerHTML).toContain('Pas de mécanique notable');
+  });
+
+  it('silence rule applies in compact mode when showLambdaMonsters=false', async () => {
+    seedSettings({}, { showLambdaMonsters: false });
+    render(null, true);
+    await flushSettings();
+    expect(container!.innerHTML).toBe('');
+  });
+
+  it('hides the provenance badge when showProvenanceBadge=false', async () => {
+    seedSettings({}, { showProvenanceBadge: false });
+    render(FIXTURE_BOSS_SYLARGH);
+    await flushSettings();
+    expect(container!.innerHTML).not.toContain('combat-card__provenance');
   });
 });

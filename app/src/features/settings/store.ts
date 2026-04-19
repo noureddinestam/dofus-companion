@@ -10,10 +10,15 @@ import {
  * still works in a browser dev preview (no Tauri runtime) by falling back
  * to an in-memory copy + localStorage mirror — the flags never reach disk
  * in that mode but the React tree renders.
+ *
+ * v0.5.3: the settings file now holds the full `Settings` object (v3) —
+ * appearance, contentDisplay, monstersDisplay, notifications. We write
+ * those as nested objects via `set('appearance', value)` rather than
+ * flattening, so the migration code stays symmetrical on read.
  */
 
 const SETTINGS_FILE = 'settings.json';
-const WEB_MIRROR_KEY = 'dofus-companion-settings-v2';
+const WEB_MIRROR_KEY = 'dofus-companion-settings-v3';
 
 type PluginStore = {
   get: (key: string) => Promise<unknown>;
@@ -68,12 +73,28 @@ function writeWebMirror(s: Settings): void {
   }
 }
 
+const STORE_KEYS = [
+  'version',
+  'hasCompletedFirstRun',
+  'appearance',
+  'contentDisplay',
+  'monstersDisplay',
+  'notifications',
+] as const;
+
 async function readFromPluginStore(store: PluginStore): Promise<Settings | null> {
   try {
-    const version = await store.get('version');
-    const hasCompletedFirstRun = await store.get('hasCompletedFirstRun');
-    if (version == null && hasCompletedFirstRun == null) return null;
-    const migrated = migrateRawSettings({ version, hasCompletedFirstRun });
+    const bag: Record<string, unknown> = {};
+    let anyPresent = false;
+    for (const key of STORE_KEYS) {
+      const value = await store.get(key);
+      if (value != null) {
+        anyPresent = true;
+        bag[key] = value;
+      }
+    }
+    if (!anyPresent) return null;
+    const migrated = migrateRawSettings(bag);
     const parsed = SettingsSchema.safeParse(migrated);
     return parsed.success ? parsed.data : null;
   } catch (err) {
@@ -85,6 +106,10 @@ async function readFromPluginStore(store: PluginStore): Promise<Settings | null>
 async function writeToPluginStore(store: PluginStore, s: Settings): Promise<void> {
   await store.set('version', s.version);
   await store.set('hasCompletedFirstRun', s.hasCompletedFirstRun);
+  await store.set('appearance', s.appearance);
+  await store.set('contentDisplay', s.contentDisplay);
+  await store.set('monstersDisplay', s.monstersDisplay);
+  await store.set('notifications', s.notifications);
   await store.save();
 }
 
@@ -125,7 +150,7 @@ export async function saveSettings(next: Settings): Promise<void> {
   writeWebMirror(parsed);
 }
 
-/** Convenience: flip a single field and persist. */
+/** Convenience: flip a top-level field and persist. */
 export async function patchSettings(patch: Partial<Settings>): Promise<Settings> {
   const current = await loadSettings();
   const next: Settings = SettingsSchema.parse({ ...current, ...patch });
