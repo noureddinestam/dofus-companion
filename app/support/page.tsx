@@ -5,6 +5,7 @@ import {
   HeartIcon,
   StarIcon,
 } from "@/components/icons/InlineIcons";
+import { BuyMeACoffeeButton } from "@/components/support/BuyMeACoffeeButton";
 
 type IconName = "coffee" | "heart" | "star";
 const ICONS: Record<IconName, React.ComponentType<{ className?: string }>> = {
@@ -76,6 +77,9 @@ export default async function SupportPage() {
                 <Icon className="h-4 w-4" />
                 {tier.ctaLabel}
               </a>
+              {tier.bmcButtonText && (
+                <BuyMeACoffeeButton text={tier.bmcButtonText} />
+              )}
               {tier.qrImage && (
                 <div className="border-border/60 mt-auto flex flex-col items-center gap-2 rounded-lg border bg-white p-3">
                   {/* eslint-disable-next-line @next/next/no-img-element */}

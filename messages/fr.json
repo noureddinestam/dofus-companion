@@ -531,6 +531,7 @@
         "href": "https://buymeacoffee.com/dofuscompanion",
         "icon": "coffee",
         "variant": "primary",
+        "bmcButtonText": "Offre un café",
         "qrImage": "/support/buymeacoffee-qr.png",
         "qrLabel": "Ou scanne le QR depuis ton téléphone"
       },
