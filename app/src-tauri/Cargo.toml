@@ -1,6 +1,6 @@
 [package]
 name = "dofus-companion"
-version = "0.5.4"
+version = "0.5.5"
 description = "Dofus Companion — overlay de donjons pour joueurs Dofus"
 authors = []
 edition = "2021"

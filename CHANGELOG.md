@@ -1,5 +1,55 @@
 # Changelog
 
+## v0.5.5 — Polish & Theme (2026-04-19)
+
+Visual polish pass: the white rectangle behind the overlay is finally
+gone, the density toggle actually does something, a Dofus-flavoured
+light theme ships, plus a handful of small UX wins.
+
+### Added
+
+- **Light theme** — parchment/cream palette with deeper gold accent,
+  evoking a Dofus tome. Paired with a warmer dark palette (baseline
+  browns + gold trim instead of the previous cool grey). Theme switches
+  live between System / Light / Dark, and System mode follows
+  `prefers-color-scheme` so the overlay tracks the OS.
+- **Reposition arrow** in the top bar (right of the gear icon) — one
+  click snaps the window back to the top-right corner. Reuses the
+  existing tray "Repositionner" action; tooltip explains the behaviour.
+- **Full keyboard-shortcut list** in the settings panel. Nine entries
+  (Alt+D, Ctrl+M, Ctrl+L, ↑↓, Enter, /, V, Backspace, Esc) with
+  translated descriptions replace the single static Alt+D row.
+
+### Fixed
+
+- **White rectangle behind the overlay** — `windows[].transparent: true`
+  only makes the native window transparent; the underlying WKWebView /
+  WebView2 kept a default opaque paint surface that became visible the
+  moment overlay opacity dropped below 1.0. Forced to RGBA(0,0,0,0) at
+  setup via `set_background_color`, with `macOSPrivateApi: true` to
+  unlock the macOS path. Closes the known issue filed in v0.5.4.
+- **Density toggle was a no-op** on the boss card and most of the app.
+  35 inline padding literals across 11 files were migrated to
+  role-based `--density-pad-*` tokens; the compact variant shrinks the
+  whole overlay by ~35–50% so the setting has a visible, coherent
+  effect everywhere.
+
+### Removed
+
+- Footer hint for `Ctrl+L`. Language is configured from the settings
+  panel now; the shortcut itself still works.
+
+### Behavior
+
+No schema change, no new permissions, no migration. Your v0.5.4
+preferences are preserved on auto-update.
+
+### Tests
+
+153 (up from 147). New coverage around `useThemeSync` including the
+system-preference listener, explicit light/dark selection, and the
+matchMedia-unavailable fallback.
+
 ## v0.5.4 — Critical Hotfix (2026-04-19)
 
 Three bugs shipped in v0.5.3 are fixed here, plus a handful of visual
