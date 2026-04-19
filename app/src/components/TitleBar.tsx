@@ -1,5 +1,17 @@
-import { getCurrentWindow } from '@tauri-apps/api/window';
+import { currentMonitor, getCurrentWindow, PhysicalPosition } from '@tauri-apps/api/window';
 import { useI18n } from '../i18n/useI18n';
+
+/** Matches the Rust `position_top_right` helper in lib.rs (20px edge margin). */
+const EDGE_MARGIN = 20;
+
+async function repositionTopRight(): Promise<void> {
+  const win = getCurrentWindow();
+  const monitor = await currentMonitor();
+  if (!monitor) return;
+  const outerSize = await win.outerSize();
+  const x = monitor.size.width - outerSize.width - EDGE_MARGIN;
+  await win.setPosition(new PhysicalPosition(Math.max(0, x), EDGE_MARGIN));
+}
 
 interface TitleBarProps {
   query: string;
@@ -112,6 +124,30 @@ export function TitleBar({ query, onQueryChange, searchRef, onOpenSettings }: Ti
 
       <button
         type="button"
+        onClick={() => void repositionTopRight()}
+        title={t.titleBar.reposition}
+        aria-label={t.titleBar.reposition}
+        style={{
+          background: 'transparent',
+          border: 'none',
+          color: 'var(--text-muted)',
+          cursor: 'pointer',
+          padding: 'var(--density-pad-icon-btn)',
+          borderRadius: 'var(--radius-sm)',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+          lineHeight: 0,
+        }}
+        onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-primary)')}
+        onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-muted)')}
+      >
+        <RepositionIcon />
+      </button>
+
+      <button
+        type="button"
         onClick={onOpenSettings}
         title={t.settings.panel.openAria}
         aria-label={t.settings.panel.openAria}
@@ -157,6 +193,25 @@ export function TitleBar({ query, onQueryChange, searchRef, onOpenSettings }: Ti
         ✕
       </button>
     </div>
+  );
+}
+
+function RepositionIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M8 16 L16 8" />
+      <path d="M10 8 L16 8 L16 14" />
+    </svg>
   );
 }
 

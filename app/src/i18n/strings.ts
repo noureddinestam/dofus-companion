@@ -38,6 +38,7 @@ export interface UiStrings {
   titleBar: {
     dragHandle: string;
     hide: string;
+    reposition: string;
   };
   update: {
     available: (v: string) => string;
@@ -204,6 +205,7 @@ const fr: UiStrings = {
   titleBar: {
     dragHandle: 'Glisser pour déplacer',
     hide: 'Masquer (Esc)',
+    reposition: 'Repositionner en haut à droite',
   },
   update: {
     available: (v) => `↑ v${v} disponible`,
@@ -361,6 +363,7 @@ const en: UiStrings = {
   titleBar: {
     dragHandle: 'Drag to move',
     hide: 'Hide (Esc)',
+    reposition: 'Reposition to top-right',
   },
   update: {
     available: (v) => `↑ v${v} available`,
