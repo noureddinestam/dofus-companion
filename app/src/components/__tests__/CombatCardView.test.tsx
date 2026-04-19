@@ -50,32 +50,31 @@ describe('CombatCardView', () => {
   });
 
   it('renders nothing when every block is empty', () => {
-    const empty: CombatCard = { unlock: [], constraints: [], dangers: [], tips: [] };
+    const empty: CombatCard = { unlock: [], dangers: [], tips: [] };
     expect(render(empty)).toBe('');
   });
 
-  it('renders the 4 blocks in fixed order for a full boss card (FR)', () => {
+  it('renders the 3 v0.5.1 blocks in fixed order for a full boss card (FR)', () => {
     const html = render(FIXTURE_BOSS_SYLARGH);
     expect(html).toContain('DÉLOCK');
-    expect(html).toContain('CONTRAINTES');
+    expect(html).not.toContain('CONTRAINTES');
     expect(html).toContain('DANGERS');
     expect(html).toContain('INFOS UTILES');
     const idxUnlock = html.indexOf('DÉLOCK');
-    const idxConstraints = html.indexOf('CONTRAINTES');
     const idxDangers = html.indexOf('DANGERS');
     const idxTips = html.indexOf('INFOS UTILES');
-    expect(idxUnlock).toBeLessThan(idxConstraints);
-    expect(idxConstraints).toBeLessThan(idxDangers);
+    expect(idxUnlock).toBeLessThan(idxDangers);
     expect(idxDangers).toBeLessThan(idxTips);
   });
 
   it('omits empty blocks but preserves order for partial card', () => {
+    // FIXTURE_MONSTER_COUNTER has unlock (1 context) + dangers, no tips.
     const html = render(FIXTURE_MONSTER_COUNTER);
-    expect(html).not.toContain('DÉLOCK');
-    expect(html).not.toContain('INFOS UTILES');
-    expect(html).toContain('CONTRAINTES');
+    expect(html).toContain('DÉLOCK');
     expect(html).toContain('DANGERS');
-    expect(html.indexOf('CONTRAINTES')).toBeLessThan(html.indexOf('DANGERS'));
+    expect(html).not.toContain('INFOS UTILES');
+    expect(html).not.toContain('CONTRAINTES');
+    expect(html.indexOf('DÉLOCK')).toBeLessThan(html.indexOf('DANGERS'));
   });
 
   it('switches to EN titles when lang is en', () => {
@@ -84,7 +83,7 @@ describe('CombatCardView', () => {
     });
     const html = render(FIXTURE_BOSS_SYLARGH);
     expect(html).toContain('UNLOCK');
-    expect(html).toContain('CONSTRAINTS');
+    expect(html).not.toContain('CONSTRAINTS');
     expect(html).toContain('DANGERS');
     expect(html).toContain('TIPS');
     expect(html).not.toContain('DÉLOCK');

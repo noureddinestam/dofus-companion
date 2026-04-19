@@ -1,11 +1,18 @@
-import type { Bullet, CombatCard } from '../../types/combat-card';
+import type { Bullet, BulletKind, CombatCard } from '../../types/combat-card';
 
 const FANDOM_FR_URL = 'https://dofus-fr.fandom.com/wiki/Dompteuse_Perturb%C3%A9e';
 const FANDOM_EN_URL = 'https://dofuswiki.fandom.com/wiki/Sylargh';
 
-function nativeFrBullet(fr: string, en: string, severity: Bullet['severity'], mechanicType: Bullet['mechanicType'] = null): Bullet {
+function nativeFrBullet(
+  fr: string,
+  en: string,
+  severity: Bullet['severity'],
+  mechanicType: Bullet['mechanicType'] = null,
+  kind: BulletKind = 'action',
+): Bullet {
   return {
     text: { fr, en },
+    kind,
     mechanicType,
     severity,
     provenance: {
@@ -17,9 +24,16 @@ function nativeFrBullet(fr: string, en: string, severity: Bullet['severity'], me
   };
 }
 
-function nativeEnBullet(fr: string, en: string, severity: Bullet['severity'], mechanicType: Bullet['mechanicType'] = null): Bullet {
+function nativeEnBullet(
+  fr: string,
+  en: string,
+  severity: Bullet['severity'],
+  mechanicType: Bullet['mechanicType'] = null,
+  kind: BulletKind = 'action',
+): Bullet {
   return {
     text: { fr, en },
+    kind,
     mechanicType,
     severity,
     provenance: {
@@ -31,26 +45,31 @@ function nativeEnBullet(fr: string, en: string, severity: Bullet['severity'], me
   };
 }
 
-/** Fixture 1 — Boss lourd, 4 blocs remplis (Sylargh-like). */
+/** Fixture 1 — Boss lourd, v0.5.1 shape (unlock context+action + dangers + tips). */
 export const FIXTURE_BOSS_SYLARGH: CombatCard = {
   unlock: [
     nativeEnBullet(
-      'Tuer les 3 pions avant d\'attaquer Sylargh',
+      'Sylargh se ressuscite au centre — le sortir de cette zone coupe la mécanique',
+      'Sylargh revives at the centre — pulling him out cuts the mechanic',
+      'danger',
+      'reviver',
+      'context',
+    ),
+    nativeEnBullet(
+      'Éloigner Sylargh du centre dès le tour 1',
+      'Pull Sylargh away from centre at turn 1',
+      'critical',
+      'reviver',
+    ),
+    nativeEnBullet(
+      "Tuer les 3 pions avant d'attaquer Sylargh",
       'Kill the 3 pawns before attacking Sylargh',
       'critical',
       'chain-summon',
     ),
     nativeEnBullet(
-      'Éloigner Sylargh du centre pour couper la résurrection',
-      'Pull Sylargh away from center to cut the resurrection',
-      'danger',
-      'reviver',
-    ),
-  ],
-  constraints: [
-    nativeEnBullet(
-      'Garder 1 joueur en portée 6+ pour interrompre',
-      'Keep 1 ally at range 6+ to interrupt',
+      'Garder 1 joueur en portée 6+ pour interrompre les invocations',
+      'Keep 1 ally at range 6+ to interrupt summons',
       'caution',
       'zone-control',
     ),
@@ -64,24 +83,24 @@ export const FIXTURE_BOSS_SYLARGH: CombatCard = {
     ),
   ],
   tips: [
-    nativeEnBullet('Faible à l\'air, résiste au feu', 'Weak to air, resists fire', null),
+    nativeEnBullet("Faible à l'air, résiste au feu", 'Weak to air, resists fire', null),
   ],
 };
 
-/** Fixture 2 — Monstre notable counter-damage (Dompteuse-like), 2 blocs. */
+/** Fixture 2 — Monstre notable counter-damage, v0.5.1 shape (unlock context + dangers). */
 export const FIXTURE_MONSTER_COUNTER: CombatCard = {
-  unlock: [],
-  constraints: [
+  unlock: [
     nativeFrBullet(
-      'Ne pas la frapper plus de 2× dans un même tour',
-      'Do not hit her more than 2× per turn',
+      'La Dompteuse punit les frappes répétées par un retour de dégâts',
+      'The Tamer punishes repeated hits with a damage return',
       'danger',
       'counter-damage',
+      'context',
     ),
   ],
   dangers: [
     nativeFrBullet(
-      '3 tours d\'inactivité + retour de dégâts si > 2 frappes/tour',
+      "3 tours d'inactivité + retour de dégâts si > 2 frappes/tour",
       '3 turns of inactivity + retaliation damage if > 2 hits/turn',
       'critical',
       'counter-damage',

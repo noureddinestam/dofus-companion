@@ -73,6 +73,8 @@ export interface UiStrings {
     dangers: string;
     tips: string;
     legacyNotes: string;
+    unlockContext: string;
+    unlockActions: string;
   };
   settings: {
     hideLambdas: string;
@@ -184,6 +186,8 @@ const fr: UiStrings = {
     dangers: 'DANGERS',
     tips: 'INFOS UTILES',
     legacyNotes: 'Notes legacy v0.4',
+    unlockContext: 'Contexte',
+    unlockActions: 'Actions',
   },
   settings: {
     hideLambdas: 'Masquer lambdas',
@@ -284,6 +288,8 @@ const en: UiStrings = {
     dangers: 'DANGERS',
     tips: 'TIPS',
     legacyNotes: 'v0.4 legacy notes',
+    unlockContext: 'Context',
+    unlockActions: 'Actions',
   },
   settings: {
     hideLambdas: 'Hide lambdas',

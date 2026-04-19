@@ -74,6 +74,35 @@
   line-height: 1.4;
 }
 
+.combat-card__bullets--numbered {
+  list-style: decimal;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.combat-card__bullet--numbered {
+  display: list-item;
+  padding-left: 2px;
+  margin-bottom: 2px;
+}
+
+.combat-card__subsection {
+  margin-top: 4px;
+}
+
+.combat-card__subsection:first-of-type {
+  margin-top: 2px;
+}
+
+.combat-card__subsection-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 2px 0;
+}
+
 .combat-card__bullet-dot {
   flex-shrink: 0;
   width: 4px;
