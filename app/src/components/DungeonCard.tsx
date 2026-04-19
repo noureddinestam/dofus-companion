@@ -75,7 +75,7 @@ export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCa
             </h2>
             <div
               style={{
-                color: 'var(--text-secondary)',
+                color: 'var(--text-primary)',
                 fontSize: 11,
                 marginTop: 3,
                 display: 'flex',
@@ -142,7 +142,7 @@ export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCa
         <div
           style={{
             padding: '4px 10px 6px',
-            color: 'var(--text-muted)',
+            color: 'var(--text-primary)',
             fontSize: 10,
             fontWeight: 700,
             letterSpacing: '0.08em',
