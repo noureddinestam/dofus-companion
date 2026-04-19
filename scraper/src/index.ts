@@ -52,6 +52,7 @@ const ONLY_MONSTERS = ARGS.has('--only-monsters');
 const AUDIT = ARGS.has('--audit');
 const MIGRATE_SCHEMA = ARGS.has('--migrate-schema');
 const REGENERATE_FLAGGED = ARGS.has('--regenerate-flagged');
+const DEDUP_BLOCKS = ARGS.has('--dedup-blocks');
 const DRY_RUN_COST = ARGS.has('--dry-run-cost');
 
 function valueAfter(flag: string): string | undefined {
@@ -330,6 +331,12 @@ async function buildDungeon(
 }
 
 async function main() {
+  if (DEDUP_BLOCKS) {
+    const { runDedupCrossBlock } = await import('./migrate/dedup-cross-block-v051.ts');
+    await runDedupCrossBlock();
+    return;
+  }
+
   if (REGENERATE_FLAGGED) {
     const { runRegenerateFlagged } = await import('./migrate/regenerate-flagged-v051.ts');
     await runRegenerateFlagged({ dryRun: DRY_RUN, dryRunCost: DRY_RUN_COST });
