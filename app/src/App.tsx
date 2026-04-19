@@ -11,15 +11,18 @@ import { useStartupNotification } from './hooks/useStartupNotification';
 import { useI18n } from './i18n/useI18n';
 import { useAppStore } from './store/appStore';
 import { CombatCardPlayground } from './features/combat/CombatCardPlayground';
+import { SettingsPanelPlayground } from './features/settings/SettingsPanelPlayground';
 import { MonsterView } from './features/monsters/MonsterView';
 import { WelcomeOverlay } from './components/WelcomeOverlay';
 import type { Dungeon } from './types/dungeon';
 
 type AppMode = 'search' | 'monster';
 
-function isCombatPlaygroundActive(): boolean {
-  if (typeof window === 'undefined') return false;
-  return new URLSearchParams(window.location.search).get('playground') === 'combat';
+function playgroundMode(): 'combat' | 'settings' | null {
+  if (typeof window === 'undefined') return null;
+  const value = new URLSearchParams(window.location.search).get('playground');
+  if (value === 'combat' || value === 'settings') return value;
+  return null;
 }
 
 function levelBadgeColor(level: number): string {
@@ -30,9 +33,9 @@ function levelBadgeColor(level: number): string {
 }
 
 export default function App() {
-  if (isCombatPlaygroundActive()) {
-    return <CombatCardPlayground />;
-  }
+  const pg = playgroundMode();
+  if (pg === 'combat') return <CombatCardPlayground />;
+  if (pg === 'settings') return <SettingsPanelPlayground />;
   return <AppMain />;
 }
 
