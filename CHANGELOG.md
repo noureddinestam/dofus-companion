@@ -1,5 +1,64 @@
 # Changelog
 
+## v0.5.3 — Settings Menu (2026-04-19)
+
+L'icône **engrenage** remplace le toggle FR/EN dans le top bar et ouvre
+un panneau **Paramètres** glissant (60 % de largeur). Toutes les options
+s'appliquent **immédiatement sans relancer l'app**.
+
+### Sections du panneau
+
+- **Apparence** : langue (FR/EN), opacité (50–100 %), densité
+  (confortable / compact), thème (préparé pour v0.6 — `system` par défaut).
+- **Contenu** : toggles par bloc des combat cards — Délock (+ sous-sections
+  Contexte / Actions), Dangers, Infos utiles. Règle parent-gagnant : couper
+  un bloc coupe ses sous-sections en cascade.
+- **Monstres** : afficher les monstres lambdas (sans mécanique), afficher
+  le badge de provenance.
+- **Raccourcis** : rappel clavier non-éditable (Alt+D, Ctrl+M, Ctrl+L, V).
+- **Notifications** : opt-out du toast Windows de démarrage.
+- **À propos** : version courante, lien changelog, lien site, crédits.
+
+### Persistance
+
+- Nouveau schéma `settings.json` **v3** (Zod) avec migration **v2 → v3**
+  idempotente. Les v0.5.2 users gardent leur `hasCompletedFirstRun` ; tout
+  le reste est initialisé par `.default()` de Zod.
+- La langue, auparavant portée uniquement par le store Zustand, est
+  désormais miroitée dans `settings.appearance.lang` (source de vérité).
+  Ctrl+L écrit à travers `updateAppearance({ lang })` — panneau, raccourci
+  et logique interne restent alignés.
+- Le toggle « Masquer lambdas » du header DungeonCard écrit dans
+  `monstersDisplay.showLambdaMonsters` (inversé) : un seul fichier pour
+  toutes les vues.
+
+### Sous le capot
+
+- `useSettings()` : hook async qui retourne `null` puis `Settings`,
+  exposant `update` + `updateAppearance` / `updateContentDisplay` /
+  `updateMonstersDisplay` / `updateNotifications`.
+- `useOverlayPresentation(settings)` : applique `--overlay-opacity` et la
+  classe `density-compact` sur `<html>`.
+- `useLangSync(settings)` : miroir mono-directionnel settings → store
+  Zustand i18n. Pas de boucle infinie : le panneau écrit dans settings,
+  le hook lit settings et pousse dans le store si différent.
+- `SettingsPanel` : pure React avec focus trap maison (Tab/Shift+Tab
+  wrap), fermeture sur Escape / clic backdrop / croix. ~40 clés i18n
+  (FR/EN) pour chaque label, description et aria.
+- Suppression de `LangToggle.tsx` (remplacé par l'engrenage).
+
+### Tests
+
+- 35 nouveaux tests (schema v3 + migrate, store, useSettings,
+  useOverlayPresentation, useLangSync, SettingsPanel, TitleBar gear,
+  CombatCardView respect des toggles). **131/131 verts** au total.
+
+### Budget LLM
+
+- €0 (aucun appel LLM dans cette release — UI + hooks uniquement).
+
+---
+
 ## v0.5.2 — First-Run Fix (2026-04-19)
 
 Patch d'urgence onboarding — **pas de feature**. Corrige le bug où l'overlay
