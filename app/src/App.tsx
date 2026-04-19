@@ -11,6 +11,7 @@ import { useFirstRun } from './hooks/useFirstRun';
 import { useStartupNotification } from './hooks/useStartupNotification';
 import { useOverlayPresentation } from './hooks/useOverlayPresentation';
 import { useLangSync } from './hooks/useLangSync';
+import { useThemeSync } from './hooks/useThemeSync';
 import { useSettings } from './features/settings/useSettings';
 import { useI18n } from './i18n/useI18n';
 import { localizedName } from './i18n/localized';
@@ -64,6 +65,7 @@ function AppMain() {
 
   useOverlayPresentation(settings);
   useLangSync(settings);
+  useThemeSync(settings);
 
   useStartupNotification({
     title: 'Dofus Companion',

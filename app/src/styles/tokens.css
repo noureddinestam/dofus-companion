@@ -4,16 +4,21 @@
    * their original alpha values because the overlay as a whole gets its
    * transparency via the --bg-base/--bg-elevated/--bg-hover chain. */
   --overlay-opacity: 1;
-  --bg-base: rgba(12, 14, 18, calc(0.95 * var(--overlay-opacity)));
-  --bg-elevated: rgba(22, 25, 32, calc(0.98 * var(--overlay-opacity)));
-  --bg-hover: rgba(35, 39, 48, var(--overlay-opacity));
 
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-default: rgba(255, 255, 255, 0.12);
+  /* v0.5.5 — Dofus-inspired dark palette baseline (warm browns + gold).
+   * Overridden by `:root.theme-light` for parchment mode; `:root.theme-dark`
+   * mirrors the baseline and exists so the system-preference path can opt in
+   * explicitly without relying on the default. */
+  --bg-base: rgba(20, 15, 10, calc(0.95 * var(--overlay-opacity)));
+  --bg-elevated: rgba(32, 26, 20, calc(0.98 * var(--overlay-opacity)));
+  --bg-hover: rgba(50, 40, 28, var(--overlay-opacity));
 
-  --text-primary: #f2f3f5;
-  --text-secondary: #a8adb8;
-  --text-muted: #6b7280;
+  --border-subtle: rgba(232, 181, 71, 0.08);
+  --border-default: rgba(232, 181, 71, 0.18);
+
+  --text-primary: #f2ead8;
+  --text-secondary: #c4b89c;
+  --text-muted: #8a7d68;
 
   --accent: #e8b547;
   --accent-hover: #f5c65e;
@@ -88,4 +93,54 @@
   --density-pad-chip-pill: 0 3px;
   --density-pad-cell: 4px 10px;
   --density-font-bullet: 11px;
+}
+
+/* Dark — explicit class used when the user picks "Sombre" or when
+ * `system` resolves to dark via the useThemeSync hook. Values mirror
+ * the `:root` defaults so adding this class is always safe. */
+:root.theme-dark {
+  --bg-base: rgba(20, 15, 10, calc(0.95 * var(--overlay-opacity)));
+  --bg-elevated: rgba(32, 26, 20, calc(0.98 * var(--overlay-opacity)));
+  --bg-hover: rgba(50, 40, 28, var(--overlay-opacity));
+
+  --border-subtle: rgba(232, 181, 71, 0.08);
+  --border-default: rgba(232, 181, 71, 0.18);
+
+  --text-primary: #f2ead8;
+  --text-secondary: #c4b89c;
+  --text-muted: #8a7d68;
+
+  --accent: #e8b547;
+  --accent-hover: #f5c65e;
+}
+
+/* Light — parchment palette evoking the Dofus tome/scroll aesthetic.
+ * Applied by useThemeSync when the user picks "Clair" or when `system`
+ * resolves to light. Accent shifts to a richer gold for contrast on
+ * cream background; priority colors also deepened. */
+:root.theme-light {
+  --bg-base: rgba(244, 237, 225, calc(0.95 * var(--overlay-opacity)));
+  --bg-elevated: rgba(249, 243, 232, calc(0.98 * var(--overlay-opacity)));
+  --bg-hover: rgba(232, 218, 192, var(--overlay-opacity));
+
+  --border-subtle: rgba(107, 88, 66, 0.14);
+  --border-default: rgba(107, 88, 66, 0.28);
+
+  --text-primary: #3a2b1a;
+  --text-secondary: #6b5842;
+  --text-muted: #978570;
+
+  --accent: #c28418;
+  --accent-hover: #a46e12;
+
+  --priority-critical: #c92a2a;
+  --priority-danger: #d97706;
+  --priority-caution: #b45309;
+  --priority-manageable: #15803d;
+
+  --element-air: #15803d;
+  --element-eau: #1d4ed8;
+  --element-feu: #b91c1c;
+  --element-terre: #78350f;
+  --element-neutre: #57534e;
 }
