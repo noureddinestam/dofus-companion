@@ -31,6 +31,7 @@ function populatedCard(): CombatCard {
     dangers: [
       {
         text: { fr: 'Ressuscite les adjacents', en: 'Resurrects adjacent' },
+        kind: 'action',
         mechanicType: 'reviver',
         severity: 'danger',
         provenance: {

@@ -241,7 +241,7 @@ async function extractOneMonster(
   }
   stats.withNonEmptyCard++;
   stats.bulletsByBlock.unlock += result.report.card.unlock.length;
-  stats.bulletsByBlock.constraints += result.report.card.constraints.length;
+  stats.bulletsByBlock.constraints += result.report.card.constraints?.length ?? 0;
   stats.bulletsByBlock.dangers += result.report.card.dangers.length;
   stats.bulletsByBlock.tips += result.report.card.tips.length;
   return result.report.card;

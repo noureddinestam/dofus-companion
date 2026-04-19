@@ -6,7 +6,7 @@ export function derivePriority(card: CombatCard | null): CombatPriority {
   if (!card) return 'manageable';
   const bullets = [
     ...card.unlock,
-    ...card.constraints,
+    ...(card.constraints ?? []),
     ...card.dangers,
     ...card.tips,
   ];

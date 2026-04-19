@@ -164,7 +164,7 @@ async function migrateOneBoss(
   }
   stats.bossWithNonEmptyCard++;
   stats.bulletsByBlock.unlock += card.unlock.length;
-  stats.bulletsByBlock.constraints += card.constraints.length;
+  stats.bulletsByBlock.constraints += card.constraints?.length ?? 0;
   stats.bulletsByBlock.dangers += card.dangers.length;
   stats.bulletsByBlock.tips += card.tips.length;
 

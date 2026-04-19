@@ -1,6 +1,6 @@
 import { fuzzyContains, ANCHOR_MIN_SIMILARITY } from './anchors.ts';
 import {
-  COMBAT_BLOCK_ORDER,
+  COMBAT_BLOCK_ORDER_LEGACY,
   MechanicTypeEnum,
   CombatSeverityEnum,
   type Anchor,
@@ -110,7 +110,10 @@ function validateOneBullet(
 
   return {
     ok: true,
-    bullet: { text: { fr, en }, mechanicType, severity },
+    // v0.5 prompt does not emit `kind`; default every bullet to 'action'. The
+    // v0.5.1 migration reassigns `kind` for unlock bullets that used to live
+    // in constraints (those become kind='context').
+    bullet: { text: { fr, en }, kind: 'action', mechanicType, severity },
     anchor: { bulletIndex: 0, quote: quote.slice(0, 300), similarity },
   };
 }
@@ -143,13 +146,14 @@ export function validateCombatCardResponse(
   const rejectReasons: string[] = [];
   const card: CombatCard = { unlock: [], constraints: [], dangers: [], tips: [] };
 
-  for (const block of COMBAT_BLOCK_ORDER) {
+  for (const block of COMBAT_BLOCK_ORDER_LEGACY) {
     const rawBlock = raw[block];
     if (rawBlock == null) continue;
     if (!isBulletArray(rawBlock)) {
       rejectReasons.push(`block ${block} is not an array`);
       continue;
     }
+    const bucket = card[block] ?? [];
     for (const rawBullet of rawBlock) {
       const result = validateOneBullet(rawBullet as RawBulletCandidate, options.sourceText, block, seenTexts);
       if (!result.ok) {
@@ -163,19 +167,23 @@ export function validateCombatCardResponse(
         baseSourceUrl: options.sourceUrl,
         model: options.model,
         promptVersion: options.promptVersion,
-        anchors: [{ ...result.anchor, bulletIndex: card[block].length }],
+        anchors: [{ ...result.anchor, bulletIndex: bucket.length }],
         generatedAt: options.generatedAt,
       };
-      card[block].push({
+      bucket.push({
         ...result.bullet,
         provenance,
       });
       anchors.push({ ...result.anchor, bulletIndex: anchors.length });
     }
+    (card as Record<CombatBlockKey, Bullet[]>)[block] = bucket;
   }
 
   const totalBullets =
-    card.unlock.length + card.constraints.length + card.dangers.length + card.tips.length;
+    card.unlock.length +
+    (card.constraints?.length ?? 0) +
+    card.dangers.length +
+    card.tips.length;
 
   if (totalBullets === 0) {
     return {

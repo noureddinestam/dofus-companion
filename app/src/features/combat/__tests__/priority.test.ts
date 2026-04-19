@@ -5,6 +5,7 @@ import type { Bullet, CombatCard, CombatSeverity } from '../../../types/combat-c
 function makeBullet(severity: CombatSeverity | null = null): Bullet {
   return {
     text: { fr: 'bullet fr test', en: 'bullet en test' },
+    kind: 'action',
     mechanicType: null,
     severity,
     provenance: {

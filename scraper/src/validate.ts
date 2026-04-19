@@ -106,6 +106,9 @@ export const MechanicTypeEnum = z.enum([
 
 export const CombatSeverityEnum = z.enum(['critical', 'danger', 'caution']);
 
+/** v0.5.1 — context bullets precede action bullets inside unlock[]. */
+export const BulletKindEnum = z.enum(['context', 'action']);
+
 export const LocalizedBulletTextSchema = z.object({
   fr: z.string().min(3).max(160),
   en: z.string().min(3).max(160),
@@ -113,17 +116,37 @@ export const LocalizedBulletTextSchema = z.object({
 
 export const BulletSchema = z.object({
   text: LocalizedBulletTextSchema,
+  kind: BulletKindEnum.default('action'),
   mechanicType: MechanicTypeEnum.nullable().default(null),
   severity: CombatSeverityEnum.nullable().default(null),
   provenance: ProvenanceSchema,
 });
 
-export const CombatCardSchema = z.object({
-  unlock: z.array(BulletSchema).default([]),
-  constraints: z.array(BulletSchema).default([]),
-  dangers: z.array(BulletSchema).default([]),
-  tips: z.array(BulletSchema).default([]),
-});
+export const CombatCardSchema = z
+  .object({
+    unlock: z.array(BulletSchema).default([]),
+    dangers: z.array(BulletSchema).default([]),
+    tips: z.array(BulletSchema).default([]),
+    // v0.5 legacy — kept optional through v0.5.1 so old datasets parse; dropped in v0.6.
+    constraints: z.array(BulletSchema).optional(),
+  })
+  .superRefine((card, ctx) => {
+    let seenAction = false;
+    for (let i = 0; i < card.unlock.length; i++) {
+      const bullet = card.unlock[i];
+      if (bullet.kind === 'action') {
+        seenAction = true;
+        continue;
+      }
+      if (bullet.kind === 'context' && seenAction) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `unlock bullet ${i} is kind='context' but follows an action bullet — all context bullets must precede all action bullets`,
+          path: ['unlock', i, 'kind'],
+        });
+      }
+    }
+  });
 
 // ========== Monster / Boss / Dungeon ==========
 
@@ -198,11 +221,20 @@ export type Dungeon = z.infer<typeof DungeonSchema>;
 export type BossStrategyLegacy = z.infer<typeof BossStrategyLegacySchema>;
 export type MechanicType = z.infer<typeof MechanicTypeEnum>;
 export type CombatSeverity = z.infer<typeof CombatSeverityEnum>;
+export type BulletKind = z.infer<typeof BulletKindEnum>;
 export type Bullet = z.infer<typeof BulletSchema>;
 export type CombatCard = z.infer<typeof CombatCardSchema>;
 export type CombatBlockKey = 'unlock' | 'constraints' | 'dangers' | 'tips';
 
-export const COMBAT_BLOCK_ORDER: readonly CombatBlockKey[] = [
+/** v0.5.1 render order — constraints dropped from the UI. */
+export const COMBAT_BLOCK_ORDER: readonly Exclude<CombatBlockKey, 'constraints'>[] = [
+  'unlock',
+  'dangers',
+  'tips',
+] as const;
+
+/** Full block order including legacy constraints — used by migration + audit tooling. */
+export const COMBAT_BLOCK_ORDER_LEGACY: readonly CombatBlockKey[] = [
   'unlock',
   'constraints',
   'dangers',
@@ -211,9 +243,10 @@ export const COMBAT_BLOCK_ORDER: readonly CombatBlockKey[] = [
 
 export function isCombatCardEmpty(card: CombatCard | null): boolean {
   if (!card) return true;
+  const constraintsCount = card.constraints?.length ?? 0;
   return (
     card.unlock.length === 0 &&
-    card.constraints.length === 0 &&
+    constraintsCount === 0 &&
     card.dangers.length === 0 &&
     card.tips.length === 0
   );

@@ -83,7 +83,7 @@ describe('dungeons.json v0.3 + migration', () => {
         monstersWithCombat++;
         const totalBullets =
           m.combat.unlock.length +
-          m.combat.constraints.length +
+          (m.combat.constraints?.length ?? 0) +
           m.combat.dangers.length +
           m.combat.tips.length;
         expect(totalBullets).toBeGreaterThan(0);
@@ -106,7 +106,8 @@ describe('dungeons.json v0.3 + migration', () => {
       for (const m of d.monsters) {
         if (!m.combat) continue;
         for (const block of ['unlock', 'constraints', 'dangers', 'tips'] as const) {
-          for (const bullet of m.combat[block]) {
+          const bullets = m.combat[block] ?? [];
+          for (const bullet of bullets) {
             if (bullet.mechanicType) types.add(bullet.mechanicType);
           }
         }
@@ -128,7 +129,7 @@ describe('dungeons.json v0.3 + migration', () => {
       withCombat++;
       const totalBullets =
         d.boss.combat.unlock.length +
-        d.boss.combat.constraints.length +
+        (d.boss.combat.constraints?.length ?? 0) +
         d.boss.combat.dangers.length +
         d.boss.combat.tips.length;
       expect(totalBullets).toBeGreaterThan(0);

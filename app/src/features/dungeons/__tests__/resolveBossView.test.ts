@@ -41,6 +41,7 @@ describe('resolveBossView', () => {
       dangers: [
         {
           text: { fr: 'Ressuscite les pions adjacents', en: 'Resurrects adjacent pawns' },
+          kind: 'action',
           mechanicType: 'reviver',
           severity: 'danger',
           provenance: {
