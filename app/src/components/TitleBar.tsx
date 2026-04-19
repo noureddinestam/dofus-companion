@@ -1,16 +1,14 @@
-import { currentMonitor, getCurrentWindow, PhysicalPosition } from '@tauri-apps/api/window';
+import { getCurrentWindow } from '@tauri-apps/api/window';
+import { invoke } from '@tauri-apps/api/core';
 import { useI18n } from '../i18n/useI18n';
 
-/** Matches the Rust `position_top_right` helper in lib.rs (20px edge margin). */
-const EDGE_MARGIN = 20;
-
+/**
+ * Reuses the Rust `reset_position` helper so the title-bar arrow button
+ * behaves exactly like the tray "Repositionner" entry — same geometry,
+ * same unminimize/show/always-on-top/focus chain.
+ */
 async function repositionTopRight(): Promise<void> {
-  const win = getCurrentWindow();
-  const monitor = await currentMonitor();
-  if (!monitor) return;
-  const outerSize = await win.outerSize();
-  const x = monitor.size.width - outerSize.width - EDGE_MARGIN;
-  await win.setPosition(new PhysicalPosition(Math.max(0, x), EDGE_MARGIN));
+  await invoke('reposition_top_right');
 }
 
 interface TitleBarProps {
@@ -124,30 +122,6 @@ export function TitleBar({ query, onQueryChange, searchRef, onOpenSettings }: Ti
 
       <button
         type="button"
-        onClick={() => void repositionTopRight()}
-        title={t.titleBar.reposition}
-        aria-label={t.titleBar.reposition}
-        style={{
-          background: 'transparent',
-          border: 'none',
-          color: 'var(--text-muted)',
-          cursor: 'pointer',
-          padding: 'var(--density-pad-icon-btn)',
-          borderRadius: 'var(--radius-sm)',
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-          lineHeight: 0,
-        }}
-        onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-primary)')}
-        onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-muted)')}
-      >
-        <RepositionIcon />
-      </button>
-
-      <button
-        type="button"
         onClick={onOpenSettings}
         title={t.settings.panel.openAria}
         aria-label={t.settings.panel.openAria}
@@ -169,6 +143,30 @@ export function TitleBar({ query, onQueryChange, searchRef, onOpenSettings }: Ti
         onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-muted)')}
       >
         <GearIcon />
+      </button>
+
+      <button
+        type="button"
+        onClick={() => void repositionTopRight()}
+        title={t.titleBar.reposition}
+        aria-label={t.titleBar.reposition}
+        style={{
+          background: 'transparent',
+          border: 'none',
+          color: 'var(--text-muted)',
+          cursor: 'pointer',
+          padding: 'var(--density-pad-icon-btn)',
+          borderRadius: 'var(--radius-sm)',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+          lineHeight: 0,
+        }}
+        onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-primary)')}
+        onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-muted)')}
+      >
+        <RepositionIcon />
       </button>
 
       <button

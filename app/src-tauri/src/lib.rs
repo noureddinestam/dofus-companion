@@ -81,9 +81,17 @@ fn reset_position<R: Runtime>(app: &tauri::AppHandle<R>) {
     let _ = window.set_focus();
 }
 
+/// Exposed to the frontend so the title-bar arrow button triggers the exact
+/// same behavior as the tray's "Repositionner" menu item.
+#[tauri::command]
+fn reposition_top_right<R: Runtime>(app: tauri::AppHandle<R>) {
+    reset_position(&app);
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler![reposition_top_right])
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_process::init())
         .plugin(tauri_plugin_updater::Builder::new().build())
