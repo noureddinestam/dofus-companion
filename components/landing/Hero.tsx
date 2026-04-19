@@ -6,7 +6,6 @@ import { GithubIcon } from "@/components/icons/GithubIcon";
 import { FadeInUp } from "@/components/motion/FadeInUp";
 import { DungeonCountHover } from "@/components/easter-eggs/DungeonCountHover";
 import { DownloadCta } from "./DownloadCta";
-import { MockOverlay } from "./MockOverlay";
 
 function DownloadCtaSkeleton({ label }: { label: string }) {
   return (
@@ -79,7 +78,25 @@ export async function Hero() {
           </FadeInUp>
         </div>
         <FadeInUp delay={0.2} className="md:justify-self-end">
-          <MockOverlay />
+          <div
+            className="border-border/60 bg-card/40 relative overflow-hidden rounded-xl border shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]"
+            style={{
+              aspectRatio: "520 / 720",
+              width: "100%",
+              maxWidth: 440,
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/screenshots/combat-card-dark.png"
+              alt="Dofus Companion, stratégie Klime en Songes Infinis, combat card en 3 blocs"
+              width={520}
+              height={720}
+              loading="eager"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-contain"
+            />
+          </div>
         </FadeInUp>
       </div>
     </section>
