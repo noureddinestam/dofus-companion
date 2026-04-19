@@ -17,6 +17,13 @@ html, body, #root {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Mask the Tauri 2 webview corner artifact on Windows: the native window
+ * paints a solid rectangle that peeks through the rounded app frame. Rounding
+ * the top-level surfaces makes the webview clip itself to the same radius. */
+html, body {
+  border-radius: var(--radius-lg);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
