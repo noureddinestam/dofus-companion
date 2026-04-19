@@ -148,7 +148,9 @@
   "support": {
     "eyebrow": "Support",
     "title": "We put the hours in so this exists.",
-    "body": "Free, no ads, no account, and we want it to stay that way. If the overlay helps you in a dungeon, a sponsor or a GitHub star keeps the time we put in going.",
+    "body": "Free, no ads, no account, and we want it to stay that way. If the overlay helps you in a dungeon, a coffee, a sponsor or a GitHub star keeps the time we put in going.",
+    "ctaCoffee": "Buy us a coffee",
+    "coffeeHref": "https://buymeacoffee.com/dofuscompanion",
     "ctaSponsor": "GitHub Sponsors",
     "ctaStar": "Star the repo",
     "microCopy": "Thank you."
@@ -517,22 +519,35 @@
     "eyebrow": "Support",
     "title": "No ogrines, no subscription, no cosmetic shop",
     "subtitle": "Dofus Companion is maintained on spare time. If the tool genuinely helps, here's how to give a hand.",
-    "starCtaHref": "https://github.com/noureddinestam/dofus-companion",
-    "sponsorHref": "https://github.com/sponsors/noureddinestam",
     "tiers": [
       {
-        "tag": "Free",
-        "title": "Star & share",
-        "body": "Zero euros. One click. Helps the Windows SmartScreen reputation (the more of us, the less often the blue screen hits the next user).",
-        "ctaLabel": "Star the repo",
-        "ctaVariant": "outline"
+        "tag": "One-off",
+        "title": "Buy us a coffee",
+        "body": "One-time payment via Buy Me a Coffee, starting at 3 €. Fast, no account to create, no recurrence. The most direct way to say thanks.",
+        "ctaLabel": "Buy Me a Coffee",
+        "href": "https://buymeacoffee.com/dofuscompanion",
+        "icon": "coffee",
+        "variant": "primary",
+        "qrImage": "/support/buymeacoffee-qr.png",
+        "qrLabel": "Or scan the QR from your phone"
       },
       {
         "tag": "Recurring",
         "title": "GitHub Sponsors",
-        "body": "Monthly, via your GitHub account. Long-term goal: fund a Windows EV certificate to remove the SmartScreen warning for everyone, once and for all.",
+        "body": "Monthly, via your GitHub account. Long-term goal: fund a Windows EV certificate to remove the SmartScreen warning for everyone.",
         "ctaLabel": "Sponsor the project",
-        "ctaVariant": "primary"
+        "href": "https://github.com/sponsors/noureddinestam",
+        "icon": "heart",
+        "variant": "secondary"
+      },
+      {
+        "tag": "Free",
+        "title": "Star & share",
+        "body": "Zero euros, one click. Helps the Windows SmartScreen reputation: the more of us, the less often the blue screen hits the next user.",
+        "ctaLabel": "Star the repo",
+        "href": "https://github.com/noureddinestam/dofus-companion",
+        "icon": "star",
+        "variant": "outline"
       }
     ],
     "transparency": {

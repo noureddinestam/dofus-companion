@@ -128,6 +128,18 @@ export function CloseIcon(props: IconProps) {
   );
 }
 
+export function CoffeeIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+      <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8Z" />
+      <path d="M7 3v3" />
+      <path d="M11 3v3" />
+      <path d="M15 3v3" />
+    </Icon>
+  );
+}
+
 export function MoonIcon(props: IconProps) {
   return (
     <Icon {...props}>

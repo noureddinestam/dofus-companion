@@ -148,7 +148,9 @@
   "support": {
     "eyebrow": "Soutenir",
     "title": "On a charbonné pour que ça existe.",
-    "body": "Gratuit, sans pub, sans compte, et on veut que ça le reste. Si l'overlay t'aide en donjon, un sponsor ou une étoile GitHub soutient le temps qu'on y met.",
+    "body": "Gratuit, sans pub, sans compte, et on veut que ça le reste. Si l'overlay t'aide en donjon, un café, un sponsor ou une étoile GitHub soutient le temps qu'on y met.",
+    "ctaCoffee": "Offre un café",
+    "coffeeHref": "https://buymeacoffee.com/dofuscompanion",
     "ctaSponsor": "GitHub Sponsors",
     "ctaStar": "Star le repo",
     "microCopy": "Merci."
@@ -520,22 +522,35 @@
     "eyebrow": "Soutenir",
     "title": "Pas d'ogrines, pas d'abonnement, pas de cosmetic shop",
     "subtitle": "Dofus Companion est maintenu sur du temps libre. Si l'outil te sert vraiment, voilà comment donner un coup de pouce.",
-    "starCtaHref": "https://github.com/noureddinestam/dofus-companion",
-    "sponsorHref": "https://github.com/sponsors/noureddinestam",
     "tiers": [
       {
-        "tag": "Gratuit",
-        "title": "Star & partage",
-        "body": "Zéro euro. Un clic. Ça aide la réputation Windows SmartScreen (plus on est nombreux, moins l'écran bleu apparaît pour les suivants).",
-        "ctaLabel": "Star le repo",
-        "ctaVariant": "outline"
+        "tag": "Ponctuel",
+        "title": "Offre un café",
+        "body": "Paiement unique via Buy Me a Coffee, à partir de 3 €. Rapide, pas de compte à créer, pas de récurrence. Le moyen le plus direct de dire merci.",
+        "ctaLabel": "Buy Me a Coffee",
+        "href": "https://buymeacoffee.com/dofuscompanion",
+        "icon": "coffee",
+        "variant": "primary",
+        "qrImage": "/support/buymeacoffee-qr.png",
+        "qrLabel": "Ou scanne le QR depuis ton téléphone"
       },
       {
         "tag": "Récurrent",
         "title": "GitHub Sponsors",
-        "body": "Mensuel, via ton compte GitHub. Objectif long terme : couvrir un certificat EV Windows pour supprimer l'avertissement SmartScreen une bonne fois.",
+        "body": "Mensuel, via ton compte GitHub. Objectif long terme : couvrir un certificat EV Windows pour supprimer l'avertissement SmartScreen pour tout le monde.",
         "ctaLabel": "Sponsor le projet",
-        "ctaVariant": "primary"
+        "href": "https://github.com/sponsors/noureddinestam",
+        "icon": "heart",
+        "variant": "secondary"
+      },
+      {
+        "tag": "Gratuit",
+        "title": "Star & partage",
+        "body": "Zéro euro, un clic. Ça aide la réputation Windows SmartScreen : plus on est nombreux, moins l'écran bleu apparaît pour les suivants.",
+        "ctaLabel": "Star le repo",
+        "href": "https://github.com/noureddinestam/dofus-companion",
+        "icon": "star",
+        "variant": "outline"
       }
     ],
     "transparency": {

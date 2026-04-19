@@ -1,5 +1,9 @@
 import { getMessages } from "@/lib/messages";
-import { HeartIcon, StarIcon } from "@/components/icons/InlineIcons";
+import {
+  CoffeeIcon,
+  HeartIcon,
+  StarIcon,
+} from "@/components/icons/InlineIcons";
 
 export async function SupportBlock() {
   const m = await getMessages();
@@ -19,10 +23,19 @@ export async function SupportBlock() {
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <a
-              href="https://github.com/sponsors/noureddinestam"
+              href={t.coffeeHref}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gold text-background hover:bg-gold-soft inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-transform hover:-translate-y-0.5"
+            >
+              <CoffeeIcon className="h-4 w-4" />
+              {t.ctaCoffee}
+            </a>
+            <a
+              href="https://github.com/sponsors/noureddinestam"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-gold/40 text-gold hover:bg-gold/10 hover:border-gold/70 inline-flex items-center gap-2 rounded-md border px-4 py-2.5 text-sm font-semibold transition-colors"
             >
               <HeartIcon className="h-4 w-4" />
               {t.ctaSponsor}
