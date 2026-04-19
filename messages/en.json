@@ -499,21 +499,21 @@
       },
       {
         "title": "Data",
-        "body": "Fix or enrich dungeon strategies. Workflow documented in DATA-CONTRIBUTING.md.",
+        "body": "Fix or enrich dungeon strategies. Workflow documented in docs/DATA-CONTRIBUTING.md.",
         "cta": "Read the guide",
-        "href": "https://github.com/noureddinestam/dofus-companion/blob/main/DATA-CONTRIBUTING.md"
+        "href": "https://github.com/noureddinestam/dofus-companion/blob/main/docs/DATA-CONTRIBUTING.md"
+      },
+      {
+        "title": "Combat cards",
+        "body": "Dedicated guide to propose or fix a combat card (unlock, dangers, tips). Format, sources, examples.",
+        "cta": "Read the guide",
+        "href": "https://github.com/noureddinestam/dofus-companion/blob/main/docs/COMBAT-CARDS-CONTRIBUTING.md"
       },
       {
         "title": "Bug report",
         "body": "Dedicated issue template with the useful info: version, OS, hotkey, repro steps.",
         "cta": "Open an issue",
         "href": "https://github.com/noureddinestam/dofus-companion/issues/new/choose"
-      },
-      {
-        "title": "Discussion",
-        "body": "An idea? A question that doesn't fit an issue? GitHub Discussions is the place.",
-        "cta": "Open a discussion",
-        "href": "https://github.com/noureddinestam/dofus-companion/discussions"
       }
     ]
   },
@@ -556,7 +556,7 @@
     "transparency": {
       "title": "Where does the support actually go?",
       "body": "Donations cover the LLM costs for regenerating strategies, a possible Windows EV certificate (the comfort tier for the whole community), the domain name, and the dev's coffee. Nothing fancy, nothing extravagant.",
-      "microCopy": "Everything is declared in the commits. No off-the-record wallet, no merch, no sponsored collabs."
+      "microCopy": "Everything is declared in the commits. No off-the-record wallet, no sponsored collabs."
     },
     "noPerks": {
       "title": "No perks, no early access, no VIP Discord",

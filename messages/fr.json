@@ -502,21 +502,21 @@
       },
       {
         "title": "Données",
-        "body": "Corriger ou enrichir les stratégies de donjons. Workflow documenté dans DATA-CONTRIBUTING.md.",
+        "body": "Corriger ou enrichir les stratégies de donjons. Workflow documenté dans docs/DATA-CONTRIBUTING.md.",
         "cta": "Lire le guide",
-        "href": "https://github.com/noureddinestam/dofus-companion/blob/main/DATA-CONTRIBUTING.md"
+        "href": "https://github.com/noureddinestam/dofus-companion/blob/main/docs/DATA-CONTRIBUTING.md"
+      },
+      {
+        "title": "Combat cards",
+        "body": "Guide dédié pour proposer ou corriger une combat card (déblocage, dangers, infos utiles). Format, sources, exemples.",
+        "cta": "Lire le guide",
+        "href": "https://github.com/noureddinestam/dofus-companion/blob/main/docs/COMBAT-CARDS-CONTRIBUTING.md"
       },
       {
         "title": "Rapport de bug",
         "body": "Template d'issue dédié avec les infos utiles : version, OS, hotkey, étapes de reproduction.",
         "cta": "Ouvrir une issue",
         "href": "https://github.com/noureddinestam/dofus-companion/issues/new/choose"
-      },
-      {
-        "title": "Discussion",
-        "body": "Une idée ? Une question qui ne rentre pas dans une issue ? Les Discussions GitHub sont faites pour ça.",
-        "cta": "Ouvrir une discussion",
-        "href": "https://github.com/noureddinestam/dofus-companion/discussions"
       }
     ]
   },
@@ -559,7 +559,7 @@
     "transparency": {
       "title": "Où va concrètement le soutien ?",
       "body": "Les dons couvrent les coûts LLM pour régénérer les stratégies, un éventuel certificat EV Windows (le palier confort pour toute la commu), le nom de domaine, et le café du dev. Rien de luxueux, rien d'extravagant.",
-      "microCopy": "Tout est déclaré dans les commits. Pas de wallet off-the-record, pas de goodies, pas de collaborations sponsorisées."
+      "microCopy": "Tout est déclaré dans les commits. Pas de wallet off-the-record, pas de collaborations sponsorisées."
     },
     "noPerks": {
       "title": "Pas de perks, pas d'early access, pas de Discord VIP",
