@@ -50,6 +50,7 @@ const GEN_ISSUES = ARGS.has('--gen-issues');
 const ONLY_BOSS_REFACTOR = ARGS.has('--only-boss-refactor');
 const ONLY_MONSTERS = ARGS.has('--only-monsters');
 const AUDIT = ARGS.has('--audit');
+const MIGRATE_SCHEMA = ARGS.has('--migrate-schema');
 const DRY_RUN_COST = ARGS.has('--dry-run-cost');
 
 function valueAfter(flag: string): string | undefined {
@@ -328,6 +329,12 @@ async function buildDungeon(
 }
 
 async function main() {
+  if (MIGRATE_SCHEMA) {
+    const { runSchemaMigration } = await import('./migrate/v05-to-v051.ts');
+    await runSchemaMigration();
+    return;
+  }
+
   if (AUDIT) {
     const { runAudit } = await import('./audit/index.ts');
     await runAudit({
