@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import type { Dungeon } from '../../types/dungeon';
 import { ELEMENT_ICON } from '../../types/dungeon';
 import { useI18n } from '../../i18n/useI18n';
+import { localizedName } from '../../i18n/localized';
 import { CombatCardView } from '../../components/CombatCardView';
 import {
   buildMonsterIndex,
@@ -24,7 +25,7 @@ function levelColor(level: number): string {
 }
 
 export function MonsterView({ dungeons, onExit, onOpenDungeon }: MonsterViewProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [query, setQuery] = useState('');
   const [focusIdx, setFocusIdx] = useState(0);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -222,7 +223,7 @@ export function MonsterView({ dungeons, onExit, onOpenDungeon }: MonsterViewProp
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  {m.name}
+                  {localizedName(m, lang)}
                 </span>
                 {m.weakElement && (
                   <span style={{ fontSize: 11 }} aria-hidden>
@@ -250,7 +251,7 @@ function MonsterDetail({
   onBack: () => void;
   onOpenDungeon: (d: Dungeon) => void;
 }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const m = entry.monster;
 
   return (
@@ -282,7 +283,7 @@ function MonsterDetail({
                 lineHeight: 1.2,
               }}
             >
-              {m.name}
+              {localizedName(m, lang)}
             </h2>
             <div
               style={{
@@ -296,7 +297,9 @@ function MonsterDetail({
               }}
             >
               <span style={{ color: levelColor(m.level) }}>{t.element.levelShort(m.level)}</span>
-              {m.family && m.family !== 'Inconnu' && <span>{m.family}</span>}
+              {m.family && m.family !== 'Inconnu' && (
+                <span>{localizedName({ name: m.family, nameEn: m.familyEn }, lang)}</span>
+              )}
               {m.hp && <span>{t.element.hpValue(m.hp)}</span>}
               {m.weakElement && (
                 <span>
@@ -364,7 +367,7 @@ function MonsterDetail({
             >
               {d.recommendedLevel}
             </span>
-            <span style={{ flex: 1, minWidth: 0, fontWeight: 600 }}>{d.name}</span>
+            <span style={{ flex: 1, minWidth: 0, fontWeight: 600 }}>{localizedName(d, lang)}</span>
             <span style={{ color: 'var(--accent)', fontSize: 10 }}>↗</span>
           </button>
         ))}

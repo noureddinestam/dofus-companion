@@ -1,6 +1,7 @@
 import { openUrl } from '@tauri-apps/plugin-opener';
 import type { Dungeon } from '../types/dungeon';
 import { useI18n } from '../i18n/useI18n';
+import { localizedName } from '../i18n/localized';
 import { useAppStore } from '../store/appStore';
 import { useSettings } from '../features/settings/useSettings';
 import { StrategyShortView } from '../features/strategy/StrategyShortView';
@@ -18,7 +19,7 @@ interface DungeonCardProps {
 }
 
 export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCardProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const strategyView = useAppStore((s) => s.strategyView);
   const { settings, updateMonstersDisplay } = useSettings();
   // v0.5.3: the "hide lambdas" preference lives in settings; the v0.5.2
@@ -70,7 +71,7 @@ export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCa
                 margin: 0,
               }}
             >
-              {dungeon.name}
+              {localizedName(dungeon, lang)}
             </h2>
             <div
               style={{

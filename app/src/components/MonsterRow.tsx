@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import type { Monster } from '../types/dungeon';
 import { ELEMENT_ICON } from '../types/dungeon';
 import { useI18n } from '../i18n/useI18n';
+import { localizedName } from '../i18n/localized';
 import { isCombatCardEmpty } from '../types/combat-card';
 import { CombatCardView } from './CombatCardView';
 
@@ -13,7 +14,7 @@ interface MonsterRowProps {
 }
 
 export function MonsterRow({ monster, isBoss = false, highlighted = false }: MonsterRowProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export function MonsterRow({ monster, isBoss = false, highlighted = false }: Mon
             whiteSpace: 'nowrap',
           }}
         >
-          {monster.name}
+          {localizedName(monster, lang)}
         </span>
 
         {showCompactCard && (
@@ -69,7 +70,7 @@ export function MonsterRow({ monster, isBoss = false, highlighted = false }: Mon
 
         {monster.family && monster.family !== 'Inconnu' && (
           <span style={{ color: 'var(--text-muted)', fontSize: 10, flexShrink: 0 }}>
-            {monster.family}
+            {localizedName({ name: monster.family, nameEn: monster.familyEn }, lang)}
           </span>
         )}
 

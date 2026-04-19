@@ -13,6 +13,7 @@ import { useOverlayPresentation } from './hooks/useOverlayPresentation';
 import { useLangSync } from './hooks/useLangSync';
 import { useSettings } from './features/settings/useSettings';
 import { useI18n } from './i18n/useI18n';
+import { localizedName } from './i18n/localized';
 import { useAppStore } from './store/appStore';
 import { CombatCardPlayground } from './features/combat/CombatCardPlayground';
 import { SettingsPanelPlayground } from './features/settings/SettingsPanelPlayground';
@@ -345,7 +346,7 @@ function SearchView({
   onHover: (i: number) => void;
 }) {
   const rowRef = useRef<HTMLDivElement>(null);
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   // Scroll focused item into view
   useEffect(() => {
@@ -418,7 +419,7 @@ function SearchView({
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
               }}>
-                {d.name}
+                {localizedName(d, lang)}
               </div>
               <div style={{
                 color: 'var(--text-muted)',
@@ -429,10 +430,10 @@ function SearchView({
                 textOverflow: 'ellipsis',
               }}>
                 {matchedMonster ? (
-                  <span style={{ color: 'var(--accent)' }}>↳ {matchedMonster.name}</span>
+                  <span style={{ color: 'var(--accent)' }}>↳ {localizedName(matchedMonster, lang)}</span>
                 ) : (
                   <>
-                    {t.dungeon.bossPrefix} {d.boss.name}
+                    {t.dungeon.bossPrefix} {localizedName(d.boss, lang)}
                   </>
                 )}
               </div>
