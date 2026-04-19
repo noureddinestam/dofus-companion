@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-import { loadSettings, patchSettings } from './store';
+import { useEffect } from 'react';
+import { useSettingsStore } from './settingsStore';
 import type {
   Appearance,
   ContentDisplay,
@@ -9,13 +9,13 @@ import type {
 } from './schema';
 
 /**
- * React binding for the persisted settings. Reads the store once on mount
- * (async) and exposes setters that both persist to disk and update local
- * state so every consumer re-renders immediately — this is the "toggle
- * takes effect without relaunch" promise of the v0.5.3 brief.
+ * React binding for the persisted settings. Thin adapter over the shared
+ * Zustand store in `settingsStore.ts` — all consumers read the same object
+ * so a toggle mutation in the settings panel is visible in the overlay card
+ * within the same render tick.
  *
- * `null` while the store is being loaded so consumers can avoid flashing
- * defaults during the first tick.
+ * `settings` is `null` until the first hydrate resolves, matching the
+ * v0.5.3 API; consumers already handle that loading tick.
  */
 export interface UseSettingsResult {
   settings: Settings | null;
@@ -27,54 +27,17 @@ export interface UseSettingsResult {
 }
 
 export function useSettings(): UseSettingsResult {
-  const [settings, setSettings] = useState<Settings | null>(null);
+  const settings = useSettingsStore((s) => s.settings);
+  const hydrate = useSettingsStore((s) => s.hydrate);
+  const update = useSettingsStore((s) => s.update);
+  const updateAppearance = useSettingsStore((s) => s.updateAppearance);
+  const updateContentDisplay = useSettingsStore((s) => s.updateContentDisplay);
+  const updateMonstersDisplay = useSettingsStore((s) => s.updateMonstersDisplay);
+  const updateNotifications = useSettingsStore((s) => s.updateNotifications);
 
   useEffect(() => {
-    let cancelled = false;
-    loadSettings().then((s) => {
-      if (!cancelled) setSettings(s);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  const update = useCallback(async (patch: Partial<Settings>) => {
-    const next = await patchSettings(patch);
-    setSettings(next);
-  }, []);
-
-  const updateAppearance = useCallback(
-    async (patch: Partial<Appearance>) => {
-      if (!settings) return;
-      await update({ appearance: { ...settings.appearance, ...patch } });
-    },
-    [settings, update],
-  );
-
-  const updateContentDisplay = useCallback(
-    async (patch: Partial<ContentDisplay>) => {
-      if (!settings) return;
-      await update({ contentDisplay: { ...settings.contentDisplay, ...patch } });
-    },
-    [settings, update],
-  );
-
-  const updateMonstersDisplay = useCallback(
-    async (patch: Partial<MonstersDisplay>) => {
-      if (!settings) return;
-      await update({ monstersDisplay: { ...settings.monstersDisplay, ...patch } });
-    },
-    [settings, update],
-  );
-
-  const updateNotifications = useCallback(
-    async (patch: Partial<Notifications>) => {
-      if (!settings) return;
-      await update({ notifications: { ...settings.notifications, ...patch } });
-    },
-    [settings, update],
-  );
+    void hydrate();
+  }, [hydrate]);
 
   return {
     settings,

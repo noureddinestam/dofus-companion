@@ -3,6 +3,7 @@ import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { SettingsPanel } from '../SettingsPanel';
 import { useAppStore } from '../../store/appStore';
+import { resetSettingsStoreForTests } from '../../features/settings/settingsStore';
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -30,6 +31,7 @@ async function flush(): Promise<void> {
 describe('SettingsPanel', () => {
   beforeEach(() => {
     localStorage.clear();
+    resetSettingsStoreForTests();
     useAppStore.setState({ lang: 'fr' });
   });
 

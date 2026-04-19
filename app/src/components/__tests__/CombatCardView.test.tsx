@@ -13,6 +13,7 @@ import {
 } from '../../features/combat/devFixtures';
 import type { CombatCard } from '../../types/combat-card';
 import type { Settings } from '../../features/settings/schema';
+import { resetSettingsStoreForTests } from '../../features/settings/settingsStore';
 
 const SETTINGS_MIRROR_KEY = 'dofus-companion-settings-v3';
 
@@ -66,6 +67,7 @@ async function flushSettings(): Promise<void> {
 describe('CombatCardView', () => {
   beforeEach(() => {
     localStorage.clear();
+    resetSettingsStoreForTests();
     useAppStore.setState({ lang: 'fr', strategyView: 'short' });
   });
 

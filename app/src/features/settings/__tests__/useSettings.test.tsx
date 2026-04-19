@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { useSettings } from '../useSettings';
+import { resetSettingsStoreForTests } from '../settingsStore';
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -33,6 +34,7 @@ async function flush(): Promise<void> {
 describe('useSettings', () => {
   beforeEach(() => {
     localStorage.clear();
+    resetSettingsStoreForTests();
   });
 
   afterEach(() => {
