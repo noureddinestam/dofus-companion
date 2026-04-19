@@ -1,5 +1,63 @@
 # Changelog
 
+## v0.5.4 — Critical Hotfix (2026-04-19)
+
+Three bugs shipped in v0.5.3 are fixed here, plus a handful of visual
+polish items uncovered during verification. Auto-update recommended.
+
+### Fixed
+
+- **Window drag** — clicking the top bar (or any `data-tauri-drag-region`)
+  now moves the window. Tauri 2's granular permission model didn't include
+  `core:window:allow-start-dragging` in `core:default`, so every drag region
+  was silently ignored. Permission added explicitly.
+- **Settings live apply** — toggling language, opacity, density, content
+  blocks or monster-display flags in the settings panel now propagates
+  instantly across the overlay. Each `useSettings()` caller was creating
+  its own React `useState`; state is now centralized in a Zustand store
+  (`settingsStore.ts`) and `useSettings` is a thin adapter above it. Added
+  a multi-consumer integration test that would have caught the bug.
+- **Dungeon / boss / monster name localization** — switching to English
+  via Ctrl+L or the settings panel now translates the dungeon list titles,
+  the open dungeon header, boss names, monster names, and the family
+  label (e.g. "Cuirassés" → "Plated"). New pure helper `localizedName`
+  falls back to the FR canonical name when `nameEn` / `familyEn` is null,
+  undefined, empty or whitespace.
+
+### Polish
+
+- Monster compact combat-card fonts bumped for readability (title
+  9px→10px, bullet 11px→12px, line-height 1.35→1.4).
+- DungeonCard header subtitle (`Lv.XXX–XXX · N monsters + boss`) and
+  monsters section title (`MONSTERS (N) — by level descending`) lifted
+  from muted / secondary to primary text colour so they stay legible at
+  low overlay opacity.
+- Rounded `html` / `body` to the same radius as the app root to mask a
+  webview corner artifact visible when opacity is turned down.
+- Default overlay opacity lowered from 95% to 90% for fresh installs.
+  Existing users keep their persisted value.
+- v0.4 legacy strategy notes (untranslated in the data) now display an
+  "FR only" badge in EN mode — placeholder until the LLM translation pass.
+
+### Known issue
+
+- On some setups a solid rectangle is still painted behind the rounded
+  frame when overlay opacity is reduced. Root cause is the underlying
+  WebView2 / WKWebView paint surface, not CSS. Investigation deferred to
+  v0.5.5 so this hotfix can ship the four blocking items first.
+
+### Behavior
+
+No schema change, no LLM spend, no migration needed. Your v0.5.3
+preferences (language, opacity, density, toggles) are preserved on
+auto-update.
+
+### Tests
+
+131 → 147 (all green). New unit + integration coverage around
+`localizedName`, the zustand settings store, and cross-consumer
+reactivity.
+
 ## v0.5.3 — Settings Menu (2026-04-19)
 
 L'icône **engrenage** remplace le toggle FR/EN dans le top bar et ouvre
