@@ -40,21 +40,52 @@
   --radius-md: 8px;
   --radius-lg: 12px;
 
-  /* Density tokens — comfortable is the v0.5.0 baseline.
-   * Compact reduces vertical rhythm while keeping readability. */
-  --density-row-py: 7px;
-  --density-row-px: 10px;
-  --density-block-py: 6px;
-  --density-block-px: 8px;
-  --density-gap: 6px;
+  /* v0.5.5 density tokens — role-based padding shorthands. Every inline
+   * `padding: '...'` in TSX consumes one of these so switching to
+   * `density-compact` shrinks the whole overlay without touching components. */
+  --density-pad-header: 10px 12px 8px;
+  --density-pad-header-sm: 8px 10px 6px;
+  --density-pad-section: 4px 10px 6px;
+  --density-pad-topbar: 10px 12px;
+  --density-pad-row: 7px 10px;
+  --density-pad-row-sm: 6px 10px;
+  --density-pad-row-lg: 9px 12px;
+  --density-pad-item: 8px 12px;
+  --density-pad-block: 8px 10px;
+  --density-pad-block-asym: 6px 10px 2px;
+  --density-pad-footer: 10px 10px 4px;
+  --density-pad-search: 6px 8px 6px 28px;
+  --density-pad-alert: 5px 10px;
+  --density-pad-alert-wide: 5px 12px;
+  --density-pad-icon-btn: 4px 6px;
+  --density-pad-backbtn: 1px 4px;
+  --density-pad-chip: 3px 8px;
+  --density-pad-chip-sm: 2px 6px;
+  --density-pad-chip-pill: 1px 5px;
+  --density-pad-cell: 6px 12px;
   --density-font-bullet: 12px;
 }
 
 :root.density-compact {
-  --density-row-py: 4px;
-  --density-row-px: 8px;
-  --density-block-py: 4px;
-  --density-block-px: 6px;
-  --density-gap: 3px;
+  --density-pad-header: 6px 10px 4px;
+  --density-pad-header-sm: 5px 8px 3px;
+  --density-pad-section: 2px 8px 3px;
+  --density-pad-topbar: 6px 10px;
+  --density-pad-row: 4px 8px;
+  --density-pad-row-sm: 3px 8px;
+  --density-pad-row-lg: 6px 10px;
+  --density-pad-item: 4px 10px;
+  --density-pad-block: 5px 8px;
+  --density-pad-block-asym: 4px 8px 1px;
+  --density-pad-footer: 6px 8px 2px;
+  --density-pad-search: 4px 6px 4px 22px;
+  --density-pad-alert: 3px 8px;
+  --density-pad-alert-wide: 3px 10px;
+  --density-pad-icon-btn: 2px 4px;
+  --density-pad-backbtn: 0 2px;
+  --density-pad-chip: 2px 6px;
+  --density-pad-chip-sm: 1px 4px;
+  --density-pad-chip-pill: 0 3px;
+  --density-pad-cell: 4px 10px;
   --density-font-bullet: 11px;
 }

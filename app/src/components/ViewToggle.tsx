@@ -52,7 +52,7 @@ function ViewButton({
         background: active ? 'var(--bg-hover)' : 'transparent',
         color: active ? 'var(--accent)' : 'var(--text-muted)',
         border: 'none',
-        padding: '3px 8px',
+        padding: 'var(--density-pad-chip)',
         fontSize: 10,
         fontWeight: 700,
         cursor: active ? 'default' : 'pointer',

@@ -28,7 +28,7 @@ export function BulletRow({ bullet }: { bullet: ActionableBullet }) {
         display: 'flex',
         alignItems: 'flex-start',
         gap: 10,
-        padding: '6px 10px',
+        padding: 'var(--density-pad-row-sm)',
         borderLeft: `2px solid ${SEVERITY_COLOR[bullet.severity]}`,
         background: isCritical ? 'rgba(239,68,68,0.07)' : 'transparent',
         borderRadius: '0 var(--radius-sm) var(--radius-sm) 0',

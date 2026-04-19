@@ -115,7 +115,7 @@ export function MonsterView({ dungeons, onExit, onOpenDungeon }: MonsterViewProp
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div style={{ padding: '8px 10px 6px', flexShrink: 0 }}>
+      <div style={{ padding: 'var(--density-pad-header-sm)', flexShrink: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
           <button
             onClick={onExit}
@@ -125,7 +125,7 @@ export function MonsterView({ dungeons, onExit, onOpenDungeon }: MonsterViewProp
               border: 'none',
               color: 'var(--text-muted)',
               cursor: 'pointer',
-              padding: '1px 4px',
+              padding: 'var(--density-pad-backbtn)',
               fontSize: 14,
               lineHeight: 1,
             }}
@@ -154,7 +154,7 @@ export function MonsterView({ dungeons, onExit, onOpenDungeon }: MonsterViewProp
           placeholder={t.monsterView.searchPlaceholder}
           style={{
             width: '100%',
-            padding: '6px 10px',
+            padding: 'var(--density-pad-row-sm)',
             background: 'var(--bg-hover)',
             border: '1px solid var(--border-default)',
             borderRadius: 'var(--radius-sm)',
@@ -192,7 +192,7 @@ export function MonsterView({ dungeons, onExit, onOpenDungeon }: MonsterViewProp
                   display: 'flex',
                   alignItems: 'center',
                   gap: 10,
-                  padding: '8px 12px',
+                  padding: 'var(--density-pad-item)',
                   cursor: 'pointer',
                   background: isFocused ? 'var(--bg-hover)' : 'transparent',
                   borderBottom: '1px solid var(--border-subtle)',
@@ -256,7 +256,7 @@ function MonsterDetail({
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div style={{ padding: '10px 12px 8px', flexShrink: 0 }}>
+      <div style={{ padding: 'var(--density-pad-header)', flexShrink: 0 }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
           <button
             onClick={onBack}
@@ -266,7 +266,7 @@ function MonsterDetail({
               border: 'none',
               color: 'var(--text-muted)',
               cursor: 'pointer',
-              padding: '1px 4px',
+              padding: 'var(--density-pad-backbtn)',
               fontSize: 14,
               lineHeight: 1,
             }}
@@ -322,7 +322,7 @@ function MonsterDetail({
         <div
           style={{
             margin: '10px 10px 4px',
-            padding: '6px 10px',
+            padding: 'var(--density-pad-row-sm)',
             color: 'var(--text-muted)',
             fontSize: 10,
             fontWeight: 700,
@@ -342,7 +342,7 @@ function MonsterDetail({
               alignItems: 'center',
               gap: 10,
               width: '100%',
-              padding: '8px 12px',
+              padding: 'var(--density-pad-item)',
               background: 'transparent',
               border: 'none',
               borderBottom: '1px solid var(--border-subtle)',

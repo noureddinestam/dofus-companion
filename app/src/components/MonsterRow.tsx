@@ -38,7 +38,7 @@ export function MonsterRow({ monster, isBoss = false, highlighted = false }: Mon
           display: 'flex',
           alignItems: 'center',
           gap: 8,
-          padding: '7px 10px',
+          padding: 'var(--density-pad-row)',
           borderBottom: '1px solid var(--border-subtle)',
           background: isBoss ? 'rgba(232,181,71,0.05)' : 'transparent',
         }}

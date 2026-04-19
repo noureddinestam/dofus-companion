@@ -19,7 +19,7 @@ export function BossPanel({ boss }: BossPanelProps) {
   return (
     <div>
       {boss.phases.length > 0 && (
-        <div style={{ padding: '6px 10px 2px' }}>
+        <div style={{ padding: 'var(--density-pad-block-asym)' }}>
           {boss.phases.map((phase, i) => {
             const trigger =
               lang === 'en' && phase.triggerEn ? phase.triggerEn : phase.trigger;
@@ -50,7 +50,7 @@ export function BossPanel({ boss }: BossPanelProps) {
         <div
           style={{
             margin: '6px 10px 0',
-            padding: '8px 10px',
+            padding: 'var(--density-pad-block)',
             background: 'var(--bg-hover)',
             borderRadius: 'var(--radius-sm)',
             borderLeft: '2px solid var(--accent)',
@@ -71,7 +71,7 @@ export function BossPanel({ boss }: BossPanelProps) {
           {resolved.fellBack && (
             <div
               style={{
-                padding: '3px 7px',
+                padding: 'var(--density-pad-chip)',
                 marginBottom: 6,
                 borderRadius: 'var(--radius-sm)',
                 background: 'rgba(250,204,21,0.08)',
@@ -103,7 +103,7 @@ export function BossPanel({ boss }: BossPanelProps) {
         <div
           style={{
             margin: '6px 10px 0',
-            padding: '7px 10px',
+            padding: 'var(--density-pad-row)',
             borderRadius: 'var(--radius-sm)',
             background: 'var(--bg-hover)',
             color: 'var(--text-muted)',

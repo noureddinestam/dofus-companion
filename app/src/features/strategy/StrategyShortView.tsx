@@ -20,7 +20,7 @@ export function StrategyShortView({ bundle }: StrategyShortViewProps) {
       <div
         style={{
           margin: '6px 10px',
-          padding: '10px 12px',
+          padding: 'var(--density-pad-topbar)',
           borderRadius: 'var(--radius-sm)',
           background: 'var(--bg-hover)',
           display: 'flex',
@@ -40,7 +40,7 @@ export function StrategyShortView({ bundle }: StrategyShortViewProps) {
             color: '#0c0e12',
             border: 'none',
             borderRadius: 3,
-            padding: '3px 9px',
+            padding: 'var(--density-pad-chip)',
             fontSize: 10,
             fontWeight: 700,
             cursor: 'pointer',
@@ -55,11 +55,11 @@ export function StrategyShortView({ bundle }: StrategyShortViewProps) {
   const otherLangLabel = resolved.effectiveLang === 'fr' ? 'FR' : 'EN';
 
   return (
-    <div style={{ padding: '6px 10px' }}>
+    <div style={{ padding: 'var(--density-pad-row-sm)' }}>
       {resolved.fellBack && (
         <div
           style={{
-            padding: '4px 8px',
+            padding: 'var(--density-pad-chip)',
             marginBottom: 6,
             borderRadius: 'var(--radius-sm)',
             background: 'rgba(250,204,21,0.08)',

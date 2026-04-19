@@ -36,7 +36,7 @@ export function SettingsPanelPlayground() {
           color: '#0c0e12',
           border: 'none',
           borderRadius: 4,
-          padding: '6px 12px',
+          padding: 'var(--density-pad-cell)',
           fontSize: 12,
           fontWeight: 700,
           cursor: open ? 'default' : 'pointer',

@@ -40,7 +40,7 @@ export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCa
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       {/* Header */}
-      <div style={{ padding: '10px 12px 8px', flexShrink: 0 }}>
+      <div style={{ padding: 'var(--density-pad-header)', flexShrink: 0 }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 4 }}>
           <button
             onClick={onBack}
@@ -50,7 +50,7 @@ export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCa
               border: 'none',
               color: 'var(--text-muted)',
               cursor: 'pointer',
-              padding: '1px 4px',
+              padding: 'var(--density-pad-backbtn)',
               fontSize: 14,
               flexShrink: 0,
               lineHeight: 1,
@@ -141,7 +141,7 @@ export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCa
         {/* Monsters section */}
         <div
           style={{
-            padding: '4px 10px 6px',
+            padding: 'var(--density-pad-section)',
             color: 'var(--text-primary)',
             fontSize: 10,
             fontWeight: 700,
@@ -165,7 +165,7 @@ export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCa
         {/* Boss header toujours affiché */}
         <div
           style={{
-            padding: '6px 10px',
+            padding: 'var(--density-pad-row-sm)',
             background: 'rgba(232,181,71,0.08)',
             borderTop: '1px solid rgba(232,181,71,0.2)',
             display: 'flex',
@@ -201,7 +201,7 @@ export function DungeonCard({ dungeon, onBack, highlightedMonsterId }: DungeonCa
         {/* Source credit */}
         <div
           style={{
-            padding: '10px 10px 4px',
+            padding: 'var(--density-pad-footer)',
             color: 'var(--text-muted)',
             fontSize: 10,
             display: 'flex',
