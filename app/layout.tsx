@@ -26,7 +26,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Dofus Companion — l'overlay Dofus qui tient dans Alt+D",
+    default: "Dofus Companion, l'overlay Dofus qui tient dans Alt+D",
     template: "%s · Dofus Companion",
   },
   description: DESCRIPTION,
@@ -42,13 +42,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     siteName: "Dofus Companion",
-    title: "Dofus Companion — l'overlay Dofus qui tient dans Alt+D",
+    title: "Dofus Companion, l'overlay Dofus qui tient dans Alt+D",
     description: DESCRIPTION,
     url: SITE_URL,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dofus Companion — l'overlay Dofus qui tient dans Alt+D",
+    title: "Dofus Companion, l'overlay Dofus qui tient dans Alt+D",
     description: DESCRIPTION,
   },
   alternates: {
@@ -71,12 +71,28 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const [locale, m] = await Promise.all([getLocale(), getMessages()]);
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Dofus Companion",
+    url: SITE_URL,
+    logo: `${SITE_URL}/icon.svg`,
+    sameAs: ["https://github.com/noureddinestam/dofus-companion"],
+    founder: [
+      { "@type": "Person", name: "Noureddine", jobTitle: "Développement" },
+      { "@type": "Person", name: "Kamil", jobTitle: "Idée et vision gameplay" },
+    ],
+  };
   return (
     <html
       lang={locale}
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />

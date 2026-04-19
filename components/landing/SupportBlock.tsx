@@ -1,10 +1,5 @@
-import Link from "next/link";
 import { getMessages } from "@/lib/messages";
-import {
-  ArrowRightIcon,
-  HeartIcon,
-  StarIcon,
-} from "@/components/icons/InlineIcons";
+import { HeartIcon, StarIcon } from "@/components/icons/InlineIcons";
 
 export async function SupportBlock() {
   const m = await getMessages();
@@ -43,13 +38,6 @@ export async function SupportBlock() {
             </a>
           </div>
           <p className="text-muted mt-6 font-mono text-[11px]">{t.microCopy}</p>
-          <Link
-            href="/support"
-            className="group text-gold hover:text-gold-soft mt-4 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
-          >
-            {t.detailsLink}
-            <ArrowRightIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </Link>
         </div>
       </div>
     </section>

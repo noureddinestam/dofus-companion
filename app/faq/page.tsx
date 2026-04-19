@@ -1,16 +1,55 @@
 import type { Metadata } from "next";
 import { getMessages, messages } from "@/lib/messages";
+import { env } from "@/lib/env";
 
 export const metadata: Metadata = {
-  title: messages.faq.title,
-  description: messages.faq.subtitle,
+  title: messages.faq.meta.title,
+  description: messages.faq.meta.description,
+  alternates: { canonical: "/faq" },
+  openGraph: {
+    title: messages.faq.meta.title,
+    description: messages.faq.meta.description,
+    url: `${env.NEXT_PUBLIC_SITE_URL}/faq`,
+    type: "article",
+  },
 };
 
 export default async function FaqPage() {
   const m = await getMessages();
   const t = m.faq;
+  const siteUrl = env.NEXT_PUBLIC_SITE_URL;
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: t.title, item: `${siteUrl}/faq` },
+    ],
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: t.categories.flatMap((cat) =>
+      cat.items.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    ),
+  };
+
   return (
     <div className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <header className="mb-12 max-w-2xl">
         <p className="text-gold mb-3 font-mono text-xs tracking-[0.2em] uppercase">
           {t.eyebrow}

@@ -127,3 +127,53 @@ export function CloseIcon(props: IconProps) {
     </Icon>
   );
 }
+
+export function MoonIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+    </Icon>
+  );
+}
+
+export function CogIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H10a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V10a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" />
+    </Icon>
+  );
+}
+
+export function KeyboardIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <rect x="2" y="6" width="20" height="12" rx="2" />
+      <path d="M6 10h.01" />
+      <path d="M10 10h.01" />
+      <path d="M14 10h.01" />
+      <path d="M18 10h.01" />
+      <path d="M7 14h10" />
+    </Icon>
+  );
+}
+
+export function LayersIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+      <path d="M2 13l10 5 10-5" />
+    </Icon>
+  );
+}
+
+export function ScrollIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M8 3h10a2 2 0 0 1 2 2v12a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z" />
+      <path d="M4 6a3 3 0 0 0 3 3h11" />
+      <path d="M9 13h7" />
+      <path d="M9 17h5" />
+    </Icon>
+  );
+}

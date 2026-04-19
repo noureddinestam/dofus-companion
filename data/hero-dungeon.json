@@ -1,5 +1,5 @@
 {
-  "_note": "Baked snapshot from the v0.5 dataset — 4-block Combat Card for Transporteur de Sylargh (Laboratoire de Sylargh). Kept in sync manually so the hero demo never depends on a live fetch. Every bullet below must appear verbatim in the parent dataset for the 'zero hallucination' promise to hold.",
+  "_note": "Baked snapshot from the v0.5 dataset, 4-block Combat Card for Transporteur de Sylargh (Laboratoire de Sylargh). Kept in sync manually so the hero demo never depends on a live fetch. Every bullet below must appear verbatim in the parent dataset for the 'zero hallucination' promise to hold.",
   "name": { "fr": "Transporteur de Sylargh", "en": "Sylargh's Carrier" },
   "slug": "laboratoire-de-sylargh",
   "levelRange": [180, 210],

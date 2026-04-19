@@ -1,22 +1,22 @@
 {
-  "version": "v0.5.3",
-  "name": "Dofus Companion v0.5.3",
-  "publishedAt": "2026-04-19T02:42:28Z",
-  "notesUrl": "https://github.com/noureddinestam/dofus-companion/releases/tag/v0.5.3",
+  "version": "v0.5.0",
+  "name": "Dofus Companion v0.5.0, Combat Cards",
+  "publishedAt": "2026-04-19T00:00:00Z",
+  "notesUrl": "https://github.com/noureddinestam/dofus-companion/releases/tag/v0.5.0",
   "assets": [
     {
-      "name": "Dofus.Companion_0.5.3_x64-setup.exe",
-      "size": 3545095,
-      "downloadUrl": "https://github.com/noureddinestam/dofus-companion/releases/download/v0.5.3/Dofus.Companion_0.5.3_x64-setup.exe",
+      "name": "Dofus.Companion_0.5.0_x64-setup.exe",
+      "size": 3398478,
+      "downloadUrl": "https://github.com/noureddinestam/dofus-companion/releases/download/v0.5.0/Dofus.Companion_0.5.0_x64-setup.exe",
       "kind": "nsis",
-      "sha256": "68a59a91dfd28a54d7d3fa518cc2ea21c635fed02c5cbbb850d311cef78de74e"
+      "sha256": "e01fcf7156cf3779773c3dd80480113f8ec68050eeb336404999173342600f37"
     },
     {
-      "name": "Dofus.Companion_0.5.3_x64_en-US.msi",
-      "size": 5058560,
-      "downloadUrl": "https://github.com/noureddinestam/dofus-companion/releases/download/v0.5.3/Dofus.Companion_0.5.3_x64_en-US.msi",
+      "name": "Dofus.Companion_0.5.0_x64_en-US.msi",
+      "size": 4837376,
+      "downloadUrl": "https://github.com/noureddinestam/dofus-companion/releases/download/v0.5.0/Dofus.Companion_0.5.0_x64_en-US.msi",
       "kind": "msi",
-      "sha256": "0634d48e2340e0b2b4bc6cc16980f9616fe1c2ea4b324803e402059eeef44f22"
+      "sha256": "75ef744b7e0610ca6e9937aa06c9bb0100c844fa0f73ea445b876c6f69d38924"
     }
   ]
 }

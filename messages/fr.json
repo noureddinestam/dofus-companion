@@ -9,11 +9,11 @@
     "closeMenu": "Fermer le menu"
   },
   "hero": {
-    "eyebrow": "Overlay Windows · Open source · Pas une pub, pas un bot",
+    "eyebrow": "Pensé pour les Songes Infinis · Windows · Open source",
     "titleLead": "L'overlay Dofus qui tient dans",
     "titleAccent": "Alt+D",
     "titleTrail": ".",
-    "subtitle": "{count} donjons. Combat Cards 4 blocs bilingues FR/EN. Scanner entre deux tours, pas de mental mapping. Zéro Alt+Tab, zéro pub, zéro pixel qui traque.",
+    "subtitle": "{count} donjons endgame, 800+ monstres indexés. Fiches en trois blocs lisibles entre deux tours. Hors-ligne, aucun compte, aucune lecture du jeu.",
     "dungeonCount": "185",
     "dungeonHoverHint": "dont 42 attendent ta PR",
     "dungeonHoverCta": "Contribuer",
@@ -39,48 +39,65 @@
     "keyhintClose": "Esc Fermer"
   },
   "valueProps": {
-    "sectionTitle": "Trois choses qui changent ta run",
+    "sectionTitle": "Trois garanties avant la première run",
     "items": [
       {
+        "icon": "shield",
+        "title": "Aucun risque pour ton compte",
+        "body": "Ne lit pas la mémoire du jeu. Ne simule aucun input. Ne touche pas au client Dofus. Code MIT vérifiable ligne à ligne sur GitHub."
+      },
+      {
         "icon": "bolt",
-        "title": "Instantané",
-        "body": "Alt+D. Fenêtre ouverte en 150 ms, au-dessus de Dofus, pas à côté. Tu reviens au combat sans avoir perdu un tour."
+        "title": "Lisible en 10 secondes",
+        "body": "Alt+D, fenêtre ouverte en 150 ms. Trois blocs fixes : ce qu'il faut débloquer, ce qui te tue, ce qui aide. Tu scannes, tu refermes, tu joues."
       },
       {
         "icon": "target",
-        "title": "Combat Cards",
-        "body": "Quatre blocs, ordre fixe : déverrouiller, contraintes, dangers, infos. Tu scannes, tu joues. Pas de pavé à lire, pas de toggle à mémoriser."
-      },
-      {
-        "icon": "shield",
-        "title": "Traçable",
-        "body": "Chaque phrase porte une source cliquable. Fandom EN, Fandom FR, DofusDB, ou IA avec citation du texte source. Rien d'inventé."
+        "title": "Hors-ligne et gratuit",
+        "body": "Aucun compte, aucune pub, aucun tracker. L'app lit des JSON locaux, affiche une fenêtre, point. Marche sans connexion, pour toujours."
       }
     ]
   },
   "features": {
     "sectionEyebrow": "Fonctionnalités",
-    "sectionTitle": "Conçu pour les joueurs endgame",
+    "sectionTitle": "Tout ce que l'overlay t'apporte",
+    "cta": "Découvre le Companion en détail",
     "items": [
       {
-        "title": "Une card, quatre blocs, zéro choix.",
-        "body": "🔓 DÉLOCK · ⚠️ CONTRAINTES · ❌ DANGERS · 💡 INFOS. Tu scannes dans cet ordre, toujours. Les anciennes notes v0.4 restent accessibles en un clic sous chaque card."
+        "icon": "search",
+        "anchor": "search",
+        "title": "Recherche instantanée",
+        "body": "Tape quelques lettres, flèches pour naviguer, Entrée pour ouvrir. 185 donjons, 800+ monstres indexés."
       },
       {
-        "title": "Ctrl+M, mode monstre.",
-        "body": "Tape un nom, tu tombes sur sa card + tous les donjons où il apparaît. En Songes Infinis, tu identifies un add en 3 secondes clavier."
+        "icon": "target",
+        "anchor": "combat-cards",
+        "title": "Combat cards, 3 blocs fixes",
+        "body": "Débloquer, ce qui te tue, ce qui aide. Lisible entre deux tours, sourcé Fandom + DofusDB, rien d'inventé."
       },
       {
-        "title": "FR ⇄ EN, Ctrl+L.",
-        "body": "Les deux langues ont le même niveau de détail. Pas de version EN dégradée, pas de FR rédigé à la va-vite. Quand on a dû traduire, la citation source est cliquable."
+        "icon": "shield",
+        "anchor": "monsters",
+        "title": "Vue monstres dédiée",
+        "body": "Ctrl+M, tape un nom, sa fiche s'ouvre. Pensé pour identifier un add de Songes Infinis en 3 secondes."
       },
       {
-        "title": "Trois sources, zéro invention.",
-        "body": "Stratégies Fandom. Stats DofusDB. Extraction LLM avec ancre verbatim dans le texte source, rejet automatique si la citation ne matche pas. Si aucune source fiable, on laisse vide — jamais d'à-peu-près."
+        "icon": "cog",
+        "anchor": "settings",
+        "title": "Paramètres fins",
+        "body": "Opacité, densité, thème parchemin ou sombre, langue FR/EN. Chaque réglage s'applique en live."
       },
       {
-        "title": "185 donjons. Règle du silence.",
-        "body": "141 boss + 129 monstres notables avec card. Les lambdas sans mécanique restent invisibles. Zéro bruit, zéro pavé creux. Tu ne vois que ce qui peut te tuer."
+        "icon": "layers",
+        "anchor": "density",
+        "title": "Mode compact",
+        "body": "Pour les écrans 13 pouces ou les setups où Dofus prend déjà toute la place."
+      },
+      {
+        "icon": "keyboard",
+        "anchor": "shortcuts",
+        "title": "Tout au clavier",
+        "body": "Neuf raccourcis couvrent chaque action. Alt+D, Ctrl+M, Ctrl+L, et la liste complète dans les paramètres."
       }
     ]
   },
@@ -96,7 +113,7 @@
       {
         "n": "02",
         "title": "Lance le setup",
-        "body": "Si Windows SmartScreen râle, c'est normal — on explique pourquoi sur la page Sécurité. Empreinte SHA256 affichée pour les paranos (et ils ont raison)."
+        "body": "Si Windows SmartScreen râle, c'est normal, on explique pourquoi sur la page Sécurité. Empreinte SHA256 affichée pour les paranos (et ils ont raison)."
       },
       {
         "n": "03",
@@ -130,11 +147,10 @@
   },
   "support": {
     "eyebrow": "Soutenir",
-    "title": "Projet solo, temps libre, pas de plan B.",
-    "body": "Pas de monétisation. Pas d'ogrines. Pas de pub. Si l'outil t'aide, un sponsor, une étoile, ou juste le partage à ta guilde — chacun compte.",
+    "title": "On a charbonné pour que ça existe.",
+    "body": "Gratuit, sans pub, sans compte, et on veut que ça le reste. Si l'overlay t'aide en donjon, un sponsor ou une étoile GitHub soutient le temps qu'on y met.",
     "ctaSponsor": "GitHub Sponsors",
     "ctaStar": "Star le repo",
-    "detailsLink": "Détails sur ce que couvrent les dons",
     "microCopy": "Merci."
   },
   "credits": {
@@ -143,13 +159,13 @@
     "items": [
       {
         "role": "Idée & vision gameplay",
-        "name": "Kamil F.",
-        "body": "Dofusien depuis 2010. C'est lui qui a défini exactement ce qu'un joueur endgame veut lire en plein combat, et surtout ce qu'il ne veut pas lire. Toute la logique « quatre blocs fixes, pas une page Wikipédia » vient de ses nuits en Songes Infinis."
+        "name": "Kamil",
+        "body": "Dofusien depuis 2010. A défini précisément ce qu'un joueur endgame veut lire en plein combat, et surtout ce qu'il ne veut pas lire. La logique « quatre blocs fixes, pas une page Wikipédia » vient de ses nuits en Songes Infinis."
       },
       {
-        "role": "Exécution",
-        "name": "noureddinestam + Claude",
-        "body": "Vibe-coded. Noureddine pilote, Claude tape le code, les PR s'enchaînent en conversation. De la landing page à l'overlay Tauri en passant par le scraper bilingue — tout le monorepo a été construit comme ça."
+        "role": "Développement",
+        "name": "Noureddine",
+        "body": "Monte le monorepo de A à Z : landing, overlay Tauri, scraper bilingue, auto-update. Code solo, features livrées quand elles sont prêtes, pas à date fixe."
       }
     ]
   },
@@ -185,7 +201,7 @@
     }
   },
   "disclaimer": {
-    "body": "Dofus Companion est une application <strong>non-officielle</strong>, créée par des fans pour des fans. <strong>Dofus®</strong> est une marque déposée d'<strong>Ankama Games</strong>. Ce projet n'est ni approuvé ni affilié à Ankama. Aucune lecture mémoire ni automatisation du jeu — cet outil est un overlay d'information uniquement."
+    "body": "Dofus Companion est une application <strong>non-officielle</strong>, créée par des fans pour des fans. <strong>Dofus®</strong> est une marque déposée d'<strong>Ankama Games</strong>. Ce projet n'est ni approuvé ni affilié à Ankama. Aucune lecture mémoire ni automatisation du jeu, cet outil est un overlay d'information uniquement."
   },
   "kerubim": {
     "alt": "Kerubim, vieux chat-marchand Dofus",
@@ -212,11 +228,11 @@
       },
       "mac": {
         "label": "macOS détecté",
-        "body": "Pas encore supporté — une version Mac est prévue."
+        "body": "Pas encore supporté, une version Mac est prévue."
       },
       "linux": {
         "label": "Linux détecté",
-        "body": "Pas encore supporté — une version Linux arrivera après la Mac."
+        "body": "Pas encore supporté, une version Linux arrivera après la Mac."
       },
       "mobile": {
         "label": "Téléphone détecté",
@@ -243,7 +259,7 @@
       "download": "Télécharger"
     },
     "smartScreenQuip": "Windows regarde ton exécutable comme un Sram regarde un perco : avec suspicion. Voilà comment lui expliquer qu'on est là pour aider.",
-    "verifyMicroIntro": "Pour les vrais paranos — et ils ont raison d'exister.",
+    "verifyMicroIntro": "Pour les vrais paranos, et ils ont raison d'exister.",
     "sha256": {
       "label": "SHA256",
       "pending": "Sera publié à la prochaine release (SHA256SUMS.txt)",
@@ -289,7 +305,7 @@
   "security": {
     "eyebrow": "Sécurité",
     "title": "Ce qui entre, ce qui sort, ce qui reste chez toi.",
-    "subtitle": "L'app en 3 listes honnêtes. Liste verte — ce qu'elle fait. Liste rouge — ce qu'elle ne fait pas. Liste jaune — ce que Windows te dira quand même.",
+    "subtitle": "L'app en 3 listes honnêtes. Liste verte, ce qu'elle fait. Liste rouge, ce qu'elle ne fait pas. Liste jaune, ce que Windows te dira quand même.",
     "sections": {
       "behavior": {
         "title": "Ce que l'app fait et ne fait pas",
@@ -318,7 +334,7 @@
       },
       "virusTotal": {
         "title": "VirusTotal",
-        "body": "Chaque asset est soumis à VirusTotal (70+ moteurs antivirus). Le badge ci-dessous affiche le résultat en temps réel et lie vers le rapport complet. Un installeur open source sans certificat EV peut occasionnellement déclencher un faux-positif sur un moteur heuristique (machine learning) — ça n'affecte pas l'intégrité du binaire, et ça se résout avec la réputation du projet ou un certificat EV."
+        "body": "Chaque asset est soumis à VirusTotal (70+ moteurs antivirus). Le badge ci-dessous affiche le résultat en temps réel et lie vers le rapport complet. Un installeur open source sans certificat EV peut occasionnellement déclencher un faux-positif sur un moteur heuristique (machine learning), ça n'affecte pas l'intégrité du binaire, et ça se résout avec la réputation du projet ou un certificat EV."
       },
       "smartScreen": {
         "title": "Windows SmartScreen",
@@ -357,24 +373,45 @@
     "empty": "Pas encore de release publiée.",
     "viewNotes": "Notes complètes",
     "downloads": "Téléchargements",
-    "unavailable": "Impossible de charger les releases depuis GitHub — réessaie plus tard.",
+    "unavailable": "Impossible de charger les releases depuis GitHub, réessaie plus tard.",
     "fullHistory": "Voir toutes les releases sur GitHub"
   },
   "faq": {
+    "meta": {
+      "title": "FAQ, stratégie Klime, Songes Infinis, risque de ban",
+      "description": "Réponses aux questions sur Dofus Companion : stratégie Klime en Songes Infinis, risque de ban, installation Windows, vie privée, désinstallation. Overlay open source, aucune lecture mémoire, 0 tracker."
+    },
     "eyebrow": "FAQ",
     "title": "Questions fréquentes",
-    "subtitle": "Légal, installation, utilisation, données, contribution.",
+    "subtitle": "Songes Infinis, légal, installation, utilisation, données, contribution.",
     "categories": [
+      {
+        "title": "Songes Infinis et stratégies de boss",
+        "items": [
+          {
+            "q": "Comment battre Klime en Songes Infinis ?",
+            "a": "Klime est un boss niveau 220 des Salons privés de Klime, rencontre fréquente en Songes Infinis. Sa mécanique principale : tous les personnages doivent finir leur tour sur un glyphe blanc, sinon état pacifique 1 tour (ou mort instantanée en expédition Bravoure). Pour retirer son invulnérabilité, il faut pousser un allié, un monstre ou une invocation sur Klime. Attendre le début du tour 3 minimum avant de tenter. Klime et les monstres génèrent un glyphe blanc sur leur case de départ, durée 2 tours. Astuce : tuer les monstres avant leur tour retarde la mécanique de glyphe. En expédition Audacieuse, l'échange de position est limité à 10 fois par tour par ennemi. Les fiches complètes sont disponibles dans Dofus Companion (Alt+D, tape « Klime »)."
+          },
+          {
+            "q": "Comment Dofus Companion aide en Songes Infinis ?",
+            "a": "Les Songes Infinis te jettent dans des salles aléatoires avec boss et adds de donjons différents. Impossible de tout mémoriser. Dofus Companion sert deux usages en Songes : ouvrir la fiche d'un boss (Klime, Sylargh, Missiz Frizz, Nileza, Comte Harebourg, Merkator, Protozorreur, etc.) entre deux tours pour relire sa stratégie (Alt+D, tape le nom, flèches, Entrée), ou ouvrir la vue monstres dédiée (Ctrl+M) pour identifier un add inconnu en trois secondes clavier. 185 donjons endgame couverts, 800+ monstres indexés avec élément faible, PV et donjon d'origine. L'overlay reste toujours au-dessus de Dofus, aucun Alt+Tab, aucune perte de focus."
+          },
+          {
+            "q": "Quels autres boss de Songes sont couverts ?",
+            "a": "Tous les boss niveau 180+ apparaissant en Songes Infinis ont leur fiche : Sylargh (Transporteur), Missiz Frizz (Forgefroide), Nileza (Laboratoire), Comte Harebourg (Donjon du Comte), Merkator (Aquadôme), Roi Nidas (Palais), Reine des Voleurs (Trône de la Cour Sombre), Protozorreur (Ventre de la Baleine), Vortex (Œil), Chaloeil (Défi), Capitaine Meno (Vaisseau), Larve de Koutoulou (Temple), et d'autres. La liste complète est dans la recherche de l'app."
+          }
+        ]
+      },
       {
         "title": "Est-ce qu'Ankama est au courant ?",
         "items": [
           {
             "q": "Est-ce qu'Ankama autorise cet outil ?",
-            "a": "Dofus Companion respecte les ToS d'Ankama : pas de lecture de la mémoire du process, pas d'automatisation clavier/souris, pas de lecture de packets réseau. C'est un overlay d'information — tu cherches, tu lis, tu joues. Pas affilié à Ankama, pas approuvé par Ankama."
+            "a": "Dofus Companion respecte les ToS d'Ankama : pas de lecture de la mémoire du process, pas d'automatisation clavier/souris, pas de lecture de packets réseau. C'est un overlay d'information, tu cherches, tu lis, tu joues. Pas affilié à Ankama, pas approuvé par Ankama."
           },
           {
             "q": "Risque de ban ?",
-            "a": "L'app n'interagit pas avec Dofus. Aucun cas de ban connu lié à un overlay d'information. Ceci dit, Ankama reste seul juge — à tes risques."
+            "a": "L'app n'interagit pas avec Dofus. Aucun cas de ban connu lié à un overlay d'information. Ceci dit, Ankama reste seul juge, à tes risques."
           },
           {
             "q": "Différence avec un bot ?",
@@ -383,19 +420,19 @@
         ]
       },
       {
-        "title": "Setup — les 3 trucs qui peuvent mal tourner",
+        "title": "Setup, les 3 trucs qui peuvent mal tourner",
         "items": [
           {
             "q": "Windows SmartScreen bloque le setup. Que faire ?",
-            "a": "C'est normal — l'app n'a pas encore de certificat EV Windows. Clique « Informations complémentaires » puis « Exécuter quand même ». Tu peux vérifier l'empreinte SHA256 avant, depuis la page /download."
+            "a": "C'est normal, l'app n'a pas encore de certificat EV Windows. Clique « Informations complémentaires » puis « Exécuter quand même ». Tu peux vérifier l'empreinte SHA256 avant, depuis la page /download."
           },
           {
             "q": "Mon antivirus signale un faux positif",
-            "a": "Vérifie l'empreinte SHA256 du fichier sur /download et compare avec le rapport VirusTotal. Si 0 détection sur VirusTotal, c'est un faux positif local — signale-le à ton éditeur antivirus."
+            "a": "Vérifie l'empreinte SHA256 du fichier sur /download et compare avec le rapport VirusTotal. Si 0 détection sur VirusTotal, c'est un faux positif local, signale-le à ton éditeur antivirus."
           },
           {
             "q": "Où sont stockées mes données ?",
-            "a": "Dans %APPDATA%\\Dofus Companion (Windows). Données JSON locales uniquement — rien n'est envoyé à un serveur."
+            "a": "Dans %APPDATA%\\Dofus Companion (Windows). Données JSON locales uniquement, rien n'est envoyé à un serveur."
           }
         ]
       },
@@ -417,7 +454,7 @@
         ]
       },
       {
-        "title": "Vie privée — c'est simple, on ne collecte rien",
+        "title": "Vie privée, c'est simple, on ne collecte rien",
         "items": [
           {
             "q": "Mes données sont envoyées où ?",
@@ -442,7 +479,7 @@
           },
           {
             "q": "Comment traduire ou ajouter une langue ?",
-            "a": "EN est déjà couvert. Pour une autre langue, ouvre une Discussion GitHub — on évalue ensemble avant de lancer."
+            "a": "EN est déjà couvert. Pour une autre langue, ouvre une Discussion GitHub, on évalue ensemble avant de lancer."
           }
         ]
       }
@@ -451,7 +488,7 @@
   "contribute": {
     "eyebrow": "Contribuer",
     "title": "La commu corrige. C'est comme ça que l'app s'améliore.",
-    "subtitle": "Une stratégie fausse, un boss manquant, une traduction maladroite — ouvre une issue, ou balance une PR. Le workflow est documenté, les templates sont prêts. Pas de CLA, pas de gatekeeping.",
+    "subtitle": "Une stratégie fausse, un boss manquant, une traduction maladroite, ouvre une issue, ou balance une PR. Le workflow est documenté, les templates sont prêts. Pas de CLA, pas de gatekeeping.",
     "paths": [
       {
         "title": "Code",
@@ -508,15 +545,15 @@
     },
     "noPerks": {
       "title": "Pas de perks, pas d'early access, pas de Discord VIP",
-      "body": "L'app reste 100 % gratuite et identique pour tout le monde. Les sponsors ne reçoivent pas de features en plus, pas de stratégies en avant-première, pas de bouton magique. Tu soutiens l'open source — ou tu ne le fais pas, et c'est très bien aussi. Pas de mauvaise conscience."
+      "body": "L'app reste 100 % gratuite et identique pour tout le monde. Les sponsors ne reçoivent pas de features en plus, pas de stratégies en avant-première, pas de bouton magique. Tu soutiens l'open source, ou tu ne le fais pas, et c'est très bien aussi. Pas de mauvaise conscience."
     },
     "alternatives": {
       "title": "Tu ne peux pas donner ? Fais ça à la place.",
       "items": [
-        "Star le repo — 1 seconde, utile pour la réputation SmartScreen.",
-        "Ouvre une issue si tu trouves un bug — c'est précieux.",
-        "Corrige une stratégie via PR — on a un template prêt.",
-        "Parle de l'app à ta guilde — le meilleur marketing possible."
+        "Star le repo, 1 seconde, utile pour la réputation SmartScreen.",
+        "Ouvre une issue si tu trouves un bug, c'est précieux.",
+        "Corrige une stratégie via PR, on a un template prêt.",
+        "Parle de l'app à ta guilde, le meilleur marketing possible."
       ]
     }
   },
@@ -608,6 +645,110 @@
         }
       ],
       "footer": "Liste complète dans le package.json du repo."
+    }
+  },
+  "decouvre": {
+    "meta": {
+      "title": "Découvre le Companion, stratégies Klime et Songes Infinis",
+      "description": "Tour complet de Dofus Companion. Exemple concret : stratégie Klime (Salons privés, Songes Infinis). Recherche instantanée, combat cards 3 blocs, vue monstres dédiée, 185 donjons endgame. Bilingue FR/EN, hors-ligne, open source."
+    },
+    "hero": {
+      "eyebrow": "Tour du Companion",
+      "title": "Ton tome de donjons, ouvert au bon chapitre.",
+      "subtitle": "Voilà ce que l'overlay te pose sur l'écran. Chaque capture est l'app telle qu'elle tourne chez toi.",
+      "backToHome": "← Retour à l'accueil"
+    },
+    "toggle": {
+      "ariaLabel": "Thème des captures ci-dessous",
+      "prefix": "Aperçu",
+      "dark": "Sombre",
+      "light": "Parchemin"
+    },
+    "nav": {
+      "label": "Fonctionnalités",
+      "search": "Recherche",
+      "combatCards": "Combat cards",
+      "monsters": "Vue monstres",
+      "settings": "Paramètres",
+      "density": "Densité",
+      "shortcuts": "Raccourcis",
+      "security": "Sécurité"
+    },
+    "features": {
+      "search": {
+        "eyebrow": "Recherche instantanée",
+        "title": "185 donjons sous ton clavier.",
+        "body": "Tape les premières lettres du nom du donjon ou d'un monstre. L'overlay filtre au fur et à mesure, navigue aux flèches, ouvre avec Entrée. Pas de menu, pas de clic, pas de perte de temps.",
+        "bullets": [
+          "Alt+D ouvre et ferme l'overlay, même au milieu d'un combat",
+          "185 donjons endgame + 800+ monstres indexés",
+          "Filtrage tolérant aux fautes de frappe (fuzzy search)"
+        ],
+        "alt": "Écran de recherche avec la liste des donjons"
+      },
+      "combatCards": {
+        "eyebrow": "Combat cards",
+        "title": "Trois blocs. Pas de pavé à lire.",
+        "body": "Exemple de la capture ci-contre : la stratégie de Klime (Salons privés, boss 200+ et rencontre fréquente en Songes Infinis). DÉLOCK te dit qu'il faut finir son tour sur un glyphe blanc et qu'un allié doit être poussé sur Klime pour retirer son invulnérabilité. DANGERS liste l'état pacifique et la mort instantanée en Bravoure. INFOS rappelle que Klime génère un glyphe à son pied. Tout tient en quelques lignes, lisible entre deux tours.",
+        "bullets": [
+          "Contenu sourcé Fandom FR/EN + DofusDB, avec citation verbatim quand l'IA est utilisée",
+          "Aucune information inventée : si une mécanique manque, le bloc reste vide",
+          "Bilingue FR/EN avec le même niveau de détail dans les deux langues, pratique quand tes mates jouent en anglais"
+        ],
+        "alt": "Dofus Companion — stratégie Klime en Songes Infinis : Débloquer, Dangers, Infos utiles dans une combat card"
+      },
+      "monsters": {
+        "eyebrow": "Vue monstres dédiée",
+        "title": "Ctrl+M, tu vois qui est en face.",
+        "body": "C'est la fonctionnalité pensée pour les Songes Infinis. Tu tombes sur Harrogant, Cuirboule ou Peunch dans une salle ? Ctrl+M, tape le nom, tu as leur fiche avec élément faible, PV, famille et donjon d'origine. Trois secondes clavier, tu sais qui tacle, qui pousse, qui se soigne.",
+        "bullets": [
+          "800+ monstres avec élément faible et points de vie",
+          "Filtrage des monstres lambda sans mécanique notable, règle du silence",
+          "Accès direct au donjon d'origine depuis chaque fiche, utile quand un add viendra te faire mal en Songes"
+        ],
+        "alt": "Dofus Companion — vue monstres Songes Infinis triée par niveau, identification rapide des adds"
+      },
+      "settings": {
+        "eyebrow": "Paramètres",
+        "title": "L'overlay s'adapte à ton setup.",
+        "body": "Opacité pour voir Dofus derrière, densité compacte pour les petits écrans, thème parchemin ou sombre, langue FR/EN, affichage fin des blocs. Chaque réglage s'applique immédiatement, aucun relancement.",
+        "bullets": [
+          "Opacité réglable 50 % → 100 %, applique en live",
+          "Densité confortable / compact pour compresser le rythme vertical",
+          "Thème parchemin (Dofus light) ou sombre (brun + or)"
+        ],
+        "alt": "Panneau de paramètres ouvert, section Apparence"
+      },
+      "density": {
+        "eyebrow": "Densité compacte",
+        "title": "Pour les écrans 13 pouces.",
+        "body": "Quand tu joues sur laptop ou que ta fenêtre Dofus prend déjà toute la place, passe l'overlay en mode compact : paddings divisés par deux, espacements resserrés, même lisibilité. Le toggle est dans les paramètres.",
+        "alt": "Aperçu du mode densité compacte"
+      },
+      "shortcuts": {
+        "eyebrow": "Raccourcis clavier",
+        "title": "Pensé pour un joueur PC.",
+        "body": "Neuf raccourcis pour tout faire au clavier. Alt+D pour appeler l'overlay, Ctrl+M pour la vue monstres, V pour basculer de la vue actionnable à la détaillée, / pour sauter dans la recherche. Tout est listé dans les paramètres.",
+        "alt": "Panneau Paramètres ouvert sur la section Raccourcis"
+      },
+      "security": {
+        "eyebrow": "Sécurité",
+        "title": "Aucun risque pour ton compte.",
+        "body": "Dofus Companion est un overlay d'information. Il ne lit pas la mémoire du jeu, ne modifie rien, ne simule aucun input. Le code est open source sous licence MIT, tu peux tout inspecter sur GitHub.",
+        "bullets": [
+          "Ne lit jamais la mémoire du client Dofus",
+          "Aucune automatisation, aucun macro, aucun bot",
+          "Fonctionne hors-ligne, zéro serveur, zéro tracker",
+          "Code vérifiable ligne à ligne sur GitHub"
+        ],
+        "githubLink": "Voir le code sur GitHub →",
+        "faqLink": "Questions fréquentes sur la sécurité"
+      }
+    },
+    "cta": {
+      "eyebrow": "Prêt pour ta prochaine run ?",
+      "title": "Télécharge et commence.",
+      "body": "Windows 10 ou 11. Installation en moins d'une minute, auto-update activé. Gratuit, sans compte, sans publicité."
     }
   }
 }
