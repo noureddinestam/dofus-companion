@@ -6,6 +6,7 @@ import { LogoMark } from "@/components/brand/LogoMark";
 import { MobileNav } from "@/components/MobileNav";
 
 const NAV_LINKS = [
+  { href: "/decouvre", key: "companion" },
   { href: "/#features", key: "features" },
   { href: "/changelog", key: "changelog" },
   { href: "/faq", key: "faq" },
