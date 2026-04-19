@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getMessages, messages } from "@/lib/messages";
+import { getLocale, getMessages, messages } from "@/lib/messages";
 import { env } from "@/lib/env";
 import { FeatureBlock } from "@/components/decouvre/FeatureBlock";
 import { ThemeToggleButton } from "@/components/decouvre/ThemeToggleButton";
@@ -22,10 +22,18 @@ export const metadata: Metadata = {
 };
 
 export default async function DecouvrePage() {
-  const m = await getMessages();
+  const [m, locale] = await Promise.all([getMessages(), getLocale()]);
   const t = m.decouvre;
   const f = t.features;
   const siteUrl = env.NEXT_PUBLIC_SITE_URL;
+  /** Captures are bound to the UI language — the overlay screenshot itself
+   *  shows FR or EN strings. Keep the path consistent everywhere. */
+  const img = (slug: string, theme: "dark" | "light") =>
+    `/screenshots/${slug}-${theme}-${locale}.png`;
+  const pair = (slug: string) => ({
+    darkSrc: img(slug, "dark"),
+    lightSrc: img(slug, "light"),
+  });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -112,11 +120,7 @@ export default async function DecouvrePage() {
           title={f.search.title}
           body={f.search.body}
           bullets={f.search.bullets}
-          paired={{
-            darkSrc: "/screenshots/search-dark.png",
-            lightSrc: "/screenshots/search-light.png",
-            alt: f.search.alt,
-          }}
+          paired={{ ...pair("search"), alt: f.search.alt }}
         />
 
         <FeatureBlock
@@ -126,11 +130,7 @@ export default async function DecouvrePage() {
           title={f.combatCards.title}
           body={f.combatCards.body}
           bullets={f.combatCards.bullets}
-          paired={{
-            darkSrc: "/screenshots/combat-card-dark.png",
-            lightSrc: "/screenshots/combat-card-light.png",
-            alt: f.combatCards.alt,
-          }}
+          paired={{ ...pair("combat-card"), alt: f.combatCards.alt }}
         />
 
         <FeatureBlock
@@ -139,11 +139,7 @@ export default async function DecouvrePage() {
           title={f.monsters.title}
           body={f.monsters.body}
           bullets={f.monsters.bullets}
-          paired={{
-            darkSrc: "/screenshots/monster-view-dark.png",
-            lightSrc: "/screenshots/monster-view-light.png",
-            alt: f.monsters.alt,
-          }}
+          paired={{ ...pair("monster-view"), alt: f.monsters.alt }}
         />
 
         <FeatureBlock
@@ -153,11 +149,7 @@ export default async function DecouvrePage() {
           title={f.settings.title}
           body={f.settings.body}
           bullets={f.settings.bullets}
-          paired={{
-            darkSrc: "/screenshots/settings-panel-dark.png",
-            lightSrc: "/screenshots/settings-panel-light.png",
-            alt: f.settings.alt,
-          }}
+          paired={{ ...pair("settings-panel"), alt: f.settings.alt }}
         />
 
         <FeatureBlock
@@ -165,10 +157,7 @@ export default async function DecouvrePage() {
           eyebrow={f.density.eyebrow}
           title={f.density.title}
           body={f.density.body}
-          single={{
-            src: "/screenshots/density-compact.png",
-            alt: f.density.alt,
-          }}
+          paired={{ ...pair("density-compact"), alt: f.density.alt }}
         />
 
         <FeatureBlock
@@ -177,10 +166,7 @@ export default async function DecouvrePage() {
           eyebrow={f.shortcuts.eyebrow}
           title={f.shortcuts.title}
           body={f.shortcuts.body}
-          single={{
-            src: "/screenshots/shortcuts.png",
-            alt: f.shortcuts.alt,
-          }}
+          paired={{ ...pair("shortcuts"), alt: f.shortcuts.alt }}
         />
 
         <section

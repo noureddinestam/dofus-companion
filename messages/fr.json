@@ -20,7 +20,8 @@
     "ctaPrimaryPrefix": "Télécharger pour Windows",
     "ctaPrimaryReveal": "Oui, c'est le même fichier.",
     "ctaSecondary": "Voir sur GitHub",
-    "microCopy": "Windows 10/11 · Compatible Dofus 2.x et 3.x · Signé Tauri, vérifié VirusTotal"
+    "microCopy": "Windows 10/11 · Compatible Dofus 2.x et 3.x · Signé Tauri, vérifié VirusTotal",
+    "heroImageAlt": "Dofus Companion ouvert sur la stratégie Klime en Songes Infinis, combat card en trois blocs : Débloquer, Dangers, Infos utiles"
   },
   "mockOverlay": {
     "hotkey": "Alt+D",
@@ -91,7 +92,7 @@
         "icon": "layers",
         "anchor": "density",
         "title": "Mode compact",
-        "body": "Pour les écrans 13 pouces ou les setups où Dofus prend déjà toute la place."
+        "body": "Pour les petits écrans ou les setups où Dofus prend déjà toute la place."
       },
       {
         "icon": "keyboard",
@@ -737,7 +738,7 @@
       },
       "density": {
         "eyebrow": "Densité compacte",
-        "title": "Pour les écrans 13 pouces.",
+        "title": "Pour les petits écrans.",
         "body": "Quand tu joues sur laptop ou que ta fenêtre Dofus prend déjà toute la place, passe l'overlay en mode compact : paddings divisés par deux, espacements resserrés, même lisibilité. Le toggle est dans les paramètres.",
         "alt": "Aperçu du mode densité compacte"
       },

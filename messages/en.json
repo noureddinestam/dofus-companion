@@ -20,7 +20,8 @@
     "ctaPrimaryPrefix": "Download for Windows",
     "ctaPrimaryReveal": "Yes, it's the same file.",
     "ctaSecondary": "View on GitHub",
-    "microCopy": "Windows 10/11 · Works with Dofus 2.x and 3.x · Tauri-signed, VirusTotal-verified"
+    "microCopy": "Windows 10/11 · Works with Dofus 2.x and 3.x · Tauri-signed, VirusTotal-verified",
+    "heroImageAlt": "Dofus Companion open on Klime's Infinite Dreams strategy, three-block combat card: Unlock, Dangers, Tips"
   },
   "mockOverlay": {
     "hotkey": "Alt+D",
@@ -734,7 +735,7 @@
       },
       "density": {
         "eyebrow": "Compact density",
-        "title": "For 13-inch screens.",
+        "title": "For small screens.",
         "body": "When you're on a laptop or Dofus already fills the window, switch the overlay to compact mode: paddings halved, tighter spacing, same legibility. The toggle lives in Settings.",
         "alt": "Preview of compact density mode"
       },

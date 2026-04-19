@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import { getMessages } from "@/lib/messages";
+import { getLocale, getMessages } from "@/lib/messages";
 import { ArrowRightIcon } from "@/components/icons/InlineIcons";
 import { GithubIcon } from "@/components/icons/GithubIcon";
 import { FadeInUp } from "@/components/motion/FadeInUp";
@@ -16,8 +16,9 @@ function DownloadCtaSkeleton({ label }: { label: string }) {
 }
 
 export async function Hero() {
-  const m = await getMessages();
+  const [m, locale] = await Promise.all([getMessages(), getLocale()]);
   const t = m.hero;
+  const heroShot = `/screenshots/combat-card-dark-${locale}.png`;
   return (
     <section className="border-border/60 relative overflow-hidden border-b">
       <div
@@ -78,24 +79,30 @@ export async function Hero() {
           </FadeInUp>
         </div>
         <FadeInUp delay={0.2} className="md:justify-self-end">
-          <div
-            className="border-border/60 bg-card/40 relative overflow-hidden rounded-xl border shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]"
-            style={{
-              aspectRatio: "520 / 720",
-              width: "100%",
-              maxWidth: 440,
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/screenshots/combat-card-dark.png"
-              alt="Dofus Companion, stratégie Klime en Songes Infinis, combat card en 3 blocs"
-              width={520}
-              height={720}
-              loading="eager"
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-contain"
+          <div className="relative">
+            <div
+              aria-hidden
+              className="bg-gold/20 absolute -inset-6 -z-10 rounded-[32px] blur-3xl"
             />
+            <div
+              className="border-border/60 bg-card/40 relative overflow-hidden rounded-xl border shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)]"
+              style={{
+                aspectRatio: "520 / 720",
+                width: "100%",
+                maxWidth: 440,
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={heroShot}
+                alt={t.heroImageAlt}
+                width={520}
+                height={720}
+                loading="eager"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-contain"
+              />
+            </div>
           </div>
         </FadeInUp>
       </div>
