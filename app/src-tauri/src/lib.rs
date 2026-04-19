@@ -6,8 +6,11 @@ use tauri::{
     Manager, PhysicalPosition, Runtime, WebviewWindow,
 };
 use tauri_plugin_global_shortcut::{Code, GlobalShortcutExt, Modifiers, Shortcut, ShortcutState};
+use tauri_plugin_store::StoreExt;
 
 const EDGE_MARGIN: i32 = 20;
+const SETTINGS_STORE_FILE: &str = "settings.json";
+const FIRST_RUN_KEY: &str = "hasCompletedFirstRun";
 
 fn position_top_right<R: Runtime>(window: &WebviewWindow<R>) {
     let Some(monitor) = window.current_monitor().ok().flatten() else { return };
@@ -16,6 +19,33 @@ fn position_top_right<R: Runtime>(window: &WebviewWindow<R>) {
     let x = (screen.width as i32) - (win.width as i32) - EDGE_MARGIN;
     let y = EDGE_MARGIN;
     let _ = window.set_position(PhysicalPosition::new(x.max(0), y));
+}
+
+/// Centre la fenêtre sur le moniteur courant. Utilisé au premier lancement pour
+/// que le welcome overlay soit immédiatement lisible, avant que l'utilisateur
+/// n'ait défini une position persistée via tauri-plugin-window-state.
+fn center_on_monitor<R: Runtime>(window: &WebviewWindow<R>) {
+    let Some(monitor) = window.current_monitor().ok().flatten() else { return };
+    let screen = monitor.size();
+    let win = window.outer_size().unwrap_or_default();
+    let x = ((screen.width as i32) - (win.width as i32)) / 2;
+    let y = ((screen.height as i32) - (win.height as i32)) / 2;
+    let _ = window.set_position(PhysicalPosition::new(x.max(0), y.max(0)));
+}
+
+/// Lit `hasCompletedFirstRun` depuis le settings store. Si le fichier n'existe
+/// pas encore, ou si la clé est absente, retourne `false` — les users frais
+/// verront le welcome, les users v0.5.1 qui auto-update ont leur flag posé
+/// côté JS au tout premier chargement via la heuristique localStorage.
+fn is_first_run<R: Runtime>(app: &tauri::AppHandle<R>) -> bool {
+    let store = match app.store(SETTINGS_STORE_FILE) {
+        Ok(s) => s,
+        Err(_) => return true,
+    };
+    match store.get(FIRST_RUN_KEY) {
+        Some(serde_json::Value::Bool(true)) => false,
+        _ => true,
+    }
 }
 
 /// Toggle robuste — gère les cas minimisée, cachée, non-focalisée.
@@ -59,6 +89,8 @@ pub fn run() {
         .plugin(tauri_plugin_updater::Builder::new().build())
         .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(tauri_plugin_global_shortcut::Builder::new().build())
+        .plugin(tauri_plugin_store::Builder::default().build())
+        .plugin(tauri_plugin_notification::init())
         .setup(|app| {
             let handle_shortcut = app.handle().clone();
             let shortcut = Shortcut::new(Some(Modifiers::ALT), Code::KeyD);
@@ -113,6 +145,18 @@ pub fn run() {
                 let pos = window.outer_position().unwrap_or_default();
                 if pos.x < 100 && pos.y < 100 {
                     position_top_right(&window);
+                }
+            }
+
+            // v0.5.2 first-run : si aucun flag `hasCompletedFirstRun` n'a été
+            // posé dans le store (ni par le user sur v0.5.2+, ni par la
+            // heuristique de migration v0.5.1), on force l'affichage centré
+            // de la fenêtre pour déclencher le WelcomeOverlay côté JS.
+            if is_first_run(&app.handle()) {
+                if let Some(window) = app.get_webview_window("main") {
+                    center_on_monitor(&window);
+                    let _ = window.show();
+                    let _ = window.set_focus();
                 }
             }
 
