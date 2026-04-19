@@ -1,5 +1,115 @@
 # Changelog
 
+## v0.5.1 — Combat Cards Cleanup (2026-04-19)
+
+Patch de qualité sur v0.5.0 — **pas de nouvelle feature**. Refonte structurelle
+des fiches de combat : **4 blocs → 3 blocs**. Le bloc `CONTRAINTES` fusionne
+dans `DÉLOCK` via une nouvelle distinction par `kind` :
+**`context`** (règles permanentes, en tête) puis **`action`** (étapes ordonnées).
+
+### Structure v0.5.1
+
+```
+🔓 DÉLOCK
+   Contexte : règles permanentes (non ordonnées)
+   Actions  : étapes numérotées 1, 2, 3…
+❌ DANGERS
+   Punitions concrètes
+💡 INFOS UTILES
+   Résistances et optimisations
+```
+
+Scan plus rapide : le joueur lit DÉLOCK de haut en bas sans cross-référencer un
+bloc CONTRAINTES séparé.
+
+### Ce qui est corrigé
+
+1. **Classification DÉLOCK ⇄ CONTRAINTES floue** → bloc unique avec sous-sections
+   Context + Actions clairement séparées.
+2. **Ordre d'exécution illogique** → contraintes d'ordre Zod : toute `context`
+   précède toute `action` dans `unlock[]` (rejet au parse si violé).
+3. **Contamination cross-entity** (bullets de mobs sur la card du boss) → gate
+   `scraper/src/validate/cross-entity.ts` bloquant, obligatoire sur toute
+   régénération future. Rapport final : **0 % de contamination** sur le
+   dataset livré.
+
+### Migration flow
+
+Cinq passes déterministes puis LLM, chacune idempotente :
+
+1. **Audit read-only** (`pnpm scrape --audit`) chiffre l'ampleur des 3 bugs sur
+   le dataset v0.5.0. Ambigüité 8.2 % initialement.
+2. **Migration schéma** (`pnpm scrape --migrate-schema`) fusionne 415 bullets
+   `constraints` en `unlock.context`, plus heuristique de permanence
+   (« pendant N tours », « toujours », « every turn ») qui reclasse 59 bullets
+   supplémentaires en `context`.
+3. **Régénération LLM ciblée** (`pnpm scrape --regenerate-flagged`) sur les
+   100 entités flagguées, avec prompt `extract-combat-card-v2` + gate
+   cross-entity obligatoire. 83 cards remplacées, 632 bullets acceptés,
+   21 rejetés, **0 contaminés**.
+4. **Dédoublonnage cross-block** (`pnpm scrape --dedup-blocks`) Dice ≥ 0.80
+   retire 36 bullets dupliqués entre blocs (ex. le glyphe du Comte Harebourg
+   répété dans `unlock` et `dangers` sur 15 mobs).
+
+### Métriques finales
+
+| | v0.5.0 | v0.5.1 |
+|---|---|---|
+| Ambigüité DÉLOCK ⇄ CONTRAINTES | 8.2 % (27 entités) | **5.8 %** (19 entités) |
+| Contamination cross-entity | 0 % (bien) | **0 %** (verrouillé via gate) |
+| Règle du silence | OK | OK |
+| Schéma strict sur ordre unlock | non | **oui** (Zod superRefine) |
+
+### UI
+
+- `CombatCardView` rend maintenant `unlock` avec sous-sections **Contexte**
+  (bulleted) + **Actions** (numérotées 1, 2, 3…). Les sous-titres
+  n'apparaissent que si les deux kinds coexistent.
+- i18n : nouvelles clés `t.combat.unlockContext` et `t.combat.unlockActions`
+  FR + EN.
+- Le bloc `CONTRAINTES` disparaît du rendu. `constraints` reste toléré en Zod
+  (`optional`) pendant une release pour la migration ; suppression prévue
+  en v0.6.
+
+### Migration automatique
+
+- **Côté app** (`app/src/features/combat/migrate.ts`) : au chargement de
+  `dungeons.json`, tout card v0.5.0 passé en auto-update est transformé à la
+  volée — les utilisateurs n'ont rien à faire.
+- **Côté scraper** : migration déterministe one-shot + heuristique de
+  permanence, sauvegarde `dungeons.pre-v051-schema.json` créée.
+
+### Scraper
+
+- Nouveau prompt versionné `extract-combat-card-v2` avec scope d'entité
+  strict, phrasing positif obligatoire pour les actions, et output 3 blocs.
+- Nouveau validateur `validate/combat-card-v2.ts` : rejette actions avec
+  négation, enforce l'ordre context-avant-action, bannit constraints.
+- Nouveau module `audit/` (ambiguity detector, cross-entity detector,
+  ordering judge) + CLI `pnpm scrape --audit`.
+- Nouveaux flags CLI : `--audit`, `--audit --bug <kind>`, `--audit --boss <id>`,
+  `--migrate-schema`, `--regenerate-flagged`, `--dedup-blocks`.
+
+### Tests
+
+- **128 tests verts** (74 app + 54 scraper) dont 8 nouveaux sur
+  `migrateCardV05ToV051`, 8 sur `detectAmbiguityFlags`, 6 sur
+  `detectCrossEntityFlagsForDungeon`.
+
+### Coût LLM
+
+- **€1.22** pour la régénération Phase 4 sur Sonnet 4.5. Reruns à 0 € via
+  cache disque.
+
+### Breaking changes côté schéma
+
+- Aucun pour l'utilisateur final (auto-update transparent).
+- `Bullet.kind` devient requis (`'context' | 'action'`, défaut `'action'`).
+- `CombatCard.constraints` devient `optional` (préparation v0.6 suppression).
+- `CombatCard.unlock` enforce l'invariant « context avant action ».
+
+---
+
 ## v0.5.0 — Combat Cards (2026-04-19)
 
 Refonte structurelle de toutes les fiches de combat selon un format **4 blocs fixe** : 🔓 DÉLOCK → ⚠️ CONTRAINTES → ❌ DANGERS → 💡 INFOS UTILES. Un joueur scanne, il ne lit plus.

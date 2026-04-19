@@ -72,7 +72,7 @@ cd dofus-companion
 pnpm install
 pnpm dev              # lance l'overlay en mode dev (hot-reload)
 pnpm typecheck        # vérif TS sur app + scraper
-pnpm test             # Vitest (app + scraper, 105 tests)
+pnpm test             # Vitest (app + scraper, 128 tests)
 pnpm lint
 ```
 
@@ -89,6 +89,13 @@ pnpm --filter scraper scrape --only-boss-refactor --dry-run-cost
 pnpm --filter scraper scrape --only-boss-refactor
 pnpm --filter scraper scrape --only-monsters --dry-run-cost
 pnpm --filter scraper scrape --only-monsters
+
+# v0.5.1 Combat Cards Cleanup :
+pnpm --filter scraper scrape --audit                       # diagnostic read-only
+pnpm --filter scraper scrape --migrate-schema              # fuse constraints into unlock.context (no LLM)
+pnpm --filter scraper scrape --regenerate-flagged --dry-run-cost
+pnpm --filter scraper scrape --regenerate-flagged          # LLM regen on audit-flagged entities only
+pnpm --filter scraper scrape --dedup-blocks                # drop cross-block Dice-duplicate bullets (no LLM)
 ```
 
 Pour activer les extractions LLM :
