@@ -75,6 +75,7 @@ export interface UiStrings {
     legacyNotes: string;
     unlockContext: string;
     unlockActions: string;
+    lambdaPlaceholder: string;
   };
   settings: {
     hideLambdas: string;
@@ -242,6 +243,7 @@ const fr: UiStrings = {
     legacyNotes: 'Notes legacy v0.4',
     unlockContext: 'Contexte',
     unlockActions: 'Actions',
+    lambdaPlaceholder: 'Pas de mécanique notable',
   },
   settings: {
     hideLambdas: 'Masquer lambdas',
@@ -398,6 +400,7 @@ const en: UiStrings = {
     legacyNotes: 'v0.4 legacy notes',
     unlockContext: 'Context',
     unlockActions: 'Actions',
+    lambdaPlaceholder: 'No notable mechanic',
   },
   settings: {
     hideLambdas: 'Hide lambdas',

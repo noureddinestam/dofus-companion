@@ -6,7 +6,12 @@ import {
   partitionUnlock,
 } from '../types/combat-card';
 import { useI18n } from '../i18n/useI18n';
+import { useSettings } from '../features/settings/useSettings';
 import { ProvenanceBadge } from '../features/strategy/ProvenanceBadge';
+import type {
+  ContentDisplay,
+  MonstersDisplay,
+} from '../features/settings/schema';
 
 type RenderedBlockKey = 'unlock' | 'dangers' | 'tips';
 
@@ -27,11 +32,57 @@ const BLOCK_EMOJI: Record<RenderedBlockKey, string> = {
   tips: '💡',
 };
 
+const DEFAULT_CONTENT_DISPLAY: ContentDisplay = {
+  showUnlockBlock: true,
+  showUnlockContext: true,
+  showUnlockActions: true,
+  showDangersBlock: true,
+  showTipsBlock: true,
+};
+
+const DEFAULT_MONSTERS_DISPLAY: MonstersDisplay = {
+  showLambdaMonsters: false,
+  showProvenanceBadge: true,
+};
+
+/**
+ * Whether any v0.5.3 content toggle would hide a given block. Called both
+ * to decide whether to render a block and, when compact and card is
+ * otherwise empty, whether to render a lambda placeholder.
+ */
+function isBlockVisible(
+  key: RenderedBlockKey,
+  contentDisplay: ContentDisplay,
+): boolean {
+  switch (key) {
+    case 'unlock':
+      return contentDisplay.showUnlockBlock;
+    case 'dangers':
+      return contentDisplay.showDangersBlock;
+    case 'tips':
+      return contentDisplay.showTipsBlock;
+  }
+}
+
 export function CombatCardView({ card, legacyStrategies, footer, compact }: CombatCardViewProps) {
   const { t } = useI18n();
+  const { settings } = useSettings();
+  const contentDisplay = settings?.contentDisplay ?? DEFAULT_CONTENT_DISPLAY;
+  const monstersDisplay = settings?.monstersDisplay ?? DEFAULT_MONSTERS_DISPLAY;
 
-  // Silence rule : un monstre lambda (card === null) ou card entièrement vide → aucun rendu.
-  if (isCombatCardEmpty(card)) return null;
+  // Silence rule : un monstre lambda (card === null) ou card entièrement vide → aucun rendu
+  // ... sauf si l'utilisateur a explicitement demandé à voir les lambdas ET qu'on est en mode compact,
+  // auquel cas on affiche un placeholder discret.
+  if (isCombatCardEmpty(card)) {
+    if (compact && monstersDisplay.showLambdaMonsters) {
+      return (
+        <div className="combat-card combat-card--compact combat-card--lambda">
+          <span className="combat-card__lambda-label">{t.combat.lambdaPlaceholder}</span>
+        </div>
+      );
+    }
+    return null;
+  }
 
   const blockLabels: Record<RenderedBlockKey, string> = {
     unlock: t.combat.unlock,
@@ -40,43 +91,52 @@ export function CombatCardView({ card, legacyStrategies, footer, compact }: Comb
   };
 
   const unlockPartition = partitionUnlock(card!);
+  const visibleContext = contentDisplay.showUnlockContext ? unlockPartition.context : [];
+  const visibleAction = contentDisplay.showUnlockActions ? unlockPartition.action : [];
   const showUnlockSubLabels =
-    unlockPartition.context.length > 0 && unlockPartition.action.length > 0;
+    visibleContext.length > 0 && visibleAction.length > 0;
 
-  // Provenance globale : on prend le premier bullet trouvé dans l'ordre des blocs.
   const firstBullet = firstBulletOf(card!);
+  const noBlocksVisible = COMBAT_BLOCK_ORDER.every((key) => {
+    if (!isBlockVisible(key, contentDisplay)) return true;
+    if (key === 'unlock') {
+      return visibleContext.length === 0 && visibleAction.length === 0;
+    }
+    return card![key].length === 0;
+  });
+  if (noBlocksVisible) return null;
 
   return (
     <div className={compact ? 'combat-card combat-card--compact' : 'combat-card'}>
       {COMBAT_BLOCK_ORDER.map((key) => {
+        if (!isBlockVisible(key, contentDisplay)) return null;
         if (key === 'unlock') {
-          const total = unlockPartition.context.length + unlockPartition.action.length;
-          if (total === 0) return null;
+          if (visibleContext.length === 0 && visibleAction.length === 0) return null;
           return (
             <div key={key} className="combat-card__block combat-card__block--unlock">
               <div className="combat-card__title combat-card__title--unlock">
                 <span aria-hidden>{BLOCK_EMOJI.unlock}</span>
                 <span>{blockLabels.unlock}</span>
               </div>
-              {unlockPartition.context.length > 0 && (
+              {visibleContext.length > 0 && (
                 <div className="combat-card__subsection">
                   {showUnlockSubLabels && (
                     <p className="combat-card__subsection-label">{t.combat.unlockContext}</p>
                   )}
                   <div className="combat-card__bullets">
-                    {unlockPartition.context.map((b, i) => (
+                    {visibleContext.map((b, i) => (
                       <BulletLine key={`ctx-${i}`} bullet={b} />
                     ))}
                   </div>
                 </div>
               )}
-              {unlockPartition.action.length > 0 && (
+              {visibleAction.length > 0 && (
                 <div className="combat-card__subsection">
                   {showUnlockSubLabels && (
                     <p className="combat-card__subsection-label">{t.combat.unlockActions}</p>
                   )}
                   <ol className="combat-card__bullets combat-card__bullets--numbered">
-                    {unlockPartition.action.map((b, i) => (
+                    {visibleAction.map((b, i) => (
                       <BulletLine key={`act-${i}`} bullet={b} numbered />
                     ))}
                   </ol>
@@ -102,7 +162,7 @@ export function CombatCardView({ card, legacyStrategies, footer, compact }: Comb
         );
       })}
 
-      {firstBullet && (
+      {monstersDisplay.showProvenanceBadge && firstBullet && (
         <div className="combat-card__provenance">
           <ProvenanceBadge provenance={firstBullet.provenance} />
         </div>
