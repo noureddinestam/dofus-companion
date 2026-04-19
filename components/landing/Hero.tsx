@@ -78,19 +78,15 @@ export async function Hero() {
             </p>
           </FadeInUp>
         </div>
-        <FadeInUp delay={0.2} className="md:justify-self-end">
-          <div className="relative">
+        <FadeInUp delay={0.2} className="w-full max-w-[440px] md:justify-self-end">
+          <div className="relative w-full">
             <div
               aria-hidden
               className="bg-gold/20 absolute -inset-6 -z-10 rounded-[32px] blur-3xl"
             />
             <div
-              className="border-border/60 bg-card/40 relative overflow-hidden rounded-xl border shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)]"
-              style={{
-                aspectRatio: "520 / 720",
-                width: "100%",
-                maxWidth: 440,
-              }}
+              className="border-border/60 bg-card/40 relative w-full overflow-hidden rounded-xl border shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)]"
+              style={{ aspectRatio: "520 / 720" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
