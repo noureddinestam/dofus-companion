@@ -115,6 +115,14 @@ export interface UiStrings {
       showProvenanceBadgeHint: string;
       primaryShortcut: string;
       primaryShortcutHint: string;
+      shortcutToggleMonsterView: string;
+      shortcutToggleLang: string;
+      shortcutNavigate: string;
+      shortcutOpen: string;
+      shortcutFocusSearch: string;
+      shortcutSwitchView: string;
+      shortcutBack: string;
+      shortcutClose: string;
       shortcutCustomizationSoon: string;
       showStartupToast: string;
       showStartupToastHint: string;
@@ -283,6 +291,14 @@ const fr: UiStrings = {
       showProvenanceBadgeHint: 'Source Fandom, LLM, communauté',
       primaryShortcut: 'Raccourci principal',
       primaryShortcutHint: 'Afficher / masquer l\'overlay',
+      shortcutToggleMonsterView: 'Vue monstres dédiée',
+      shortcutToggleLang: 'Bascule FR / EN',
+      shortcutNavigate: 'Naviguer dans la liste',
+      shortcutOpen: 'Ouvrir le donjon focus',
+      shortcutFocusSearch: 'Focus sur la recherche',
+      shortcutSwitchView: 'Bascule Actionnable / Détaillée',
+      shortcutBack: 'Retour',
+      shortcutClose: 'Fermer / masquer',
       shortcutCustomizationSoon: 'Personnalisation à venir',
       showStartupToast: 'Notification au démarrage',
       showStartupToastHint: 'Toast système · Alt+D pour afficher',
@@ -441,6 +457,14 @@ const en: UiStrings = {
       showProvenanceBadgeHint: 'Fandom, LLM, or community source',
       primaryShortcut: 'Primary shortcut',
       primaryShortcutHint: 'Show / hide the overlay',
+      shortcutToggleMonsterView: 'Dedicated monsters view',
+      shortcutToggleLang: 'Toggle FR / EN',
+      shortcutNavigate: 'Navigate the list',
+      shortcutOpen: 'Open focused dungeon',
+      shortcutFocusSearch: 'Focus the search field',
+      shortcutSwitchView: 'Toggle Actionable / Detailed',
+      shortcutBack: 'Back',
+      shortcutClose: 'Close / hide',
       shortcutCustomizationSoon: 'Custom shortcuts coming soon',
       showStartupToast: 'Startup notification',
       showStartupToastHint: 'System toast · Alt+D to show',

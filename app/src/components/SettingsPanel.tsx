@@ -235,12 +235,45 @@ export function SettingsPanel({ open, onClose, appVersion }: SettingsPanelProps)
               <section className="settings-panel__section">
                 <h3 className="settings-panel__section-title">{tp.sectionShortcuts}</h3>
 
-                <div className="settings-panel__control settings-panel__control--static">
-                  <span>{tp.primaryShortcut}</span>
-                  <kbd>Alt+D</kbd>
-                  <small className="settings-panel__hint">{tp.primaryShortcutHint}</small>
-                  <small className="settings-panel__hint">{tp.shortcutCustomizationSoon}</small>
-                </div>
+                <ul className="settings-panel__shortcuts">
+                  <li className="settings-panel__shortcut">
+                    <kbd>Alt+D</kbd>
+                    <span>{tp.primaryShortcutHint}</span>
+                  </li>
+                  <li className="settings-panel__shortcut">
+                    <kbd>Ctrl+M</kbd>
+                    <span>{tp.shortcutToggleMonsterView}</span>
+                  </li>
+                  <li className="settings-panel__shortcut">
+                    <kbd>Ctrl+L</kbd>
+                    <span>{tp.shortcutToggleLang}</span>
+                  </li>
+                  <li className="settings-panel__shortcut">
+                    <kbd>↑↓</kbd>
+                    <span>{tp.shortcutNavigate}</span>
+                  </li>
+                  <li className="settings-panel__shortcut">
+                    <kbd>Enter</kbd>
+                    <span>{tp.shortcutOpen}</span>
+                  </li>
+                  <li className="settings-panel__shortcut">
+                    <kbd>/</kbd>
+                    <span>{tp.shortcutFocusSearch}</span>
+                  </li>
+                  <li className="settings-panel__shortcut">
+                    <kbd>V</kbd>
+                    <span>{tp.shortcutSwitchView}</span>
+                  </li>
+                  <li className="settings-panel__shortcut">
+                    <kbd>Backspace</kbd>
+                    <span>{tp.shortcutBack}</span>
+                  </li>
+                  <li className="settings-panel__shortcut">
+                    <kbd>Esc</kbd>
+                    <span>{tp.shortcutClose}</span>
+                  </li>
+                </ul>
+                <small className="settings-panel__hint">{tp.shortcutCustomizationSoon}</small>
               </section>
 
               <section className="settings-panel__section">

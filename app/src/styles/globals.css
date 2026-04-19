@@ -316,6 +316,34 @@ html, body {
   margin: 2px 0 6px;
 }
 
+.settings-panel__shortcuts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.settings-panel__shortcut {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+.settings-panel__shortcut kbd {
+  justify-self: start;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 1px 5px;
+}
+
 .settings-panel__version {
   color: var(--text-muted);
   font-size: 11px;
