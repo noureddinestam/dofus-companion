@@ -1,5 +1,57 @@
 # Changelog
 
+## v0.5.2 — First-Run Fix (2026-04-19)
+
+Patch d'urgence onboarding — **pas de feature**. Corrige le bug où l'overlay
+ne s'affichait pas au premier lancement sur une fresh install Windows.
+
+### Ce qui est corrigé
+
+L'overlay apparaît désormais **automatiquement centré** au tout premier
+lancement, avec un mini-écran de bienvenue : explication d'Alt+D, du
+champ de recherche, et de la promesse « tout est local, aucun tracker ».
+Un clic sur le CTA dismiss l'écran et pose un flag persistent
+(`hasCompletedFirstRun`) — l'utilisateur n'y est plus jamais confronté.
+
+Secondaire : **notification system Windows** envoyée au boot (3 s après
+lancement) si l'overlay n'est pas déjà visible. Titre « Dofus Companion »,
+body « Ouvert en arrière-plan · Alt+D pour afficher ». Optionnelle
+silencieusement si le plugin de notification n'est pas disponible ou si
+l'utilisateur refuse la permission — l'app ne crashe jamais dessus.
+
+### Migration v0.5.1 → v0.5.2 transparente
+
+Les utilisateurs v0.5.1 existants qui auto-update ne voient **pas** le
+welcome : la présence du store Zustand-persist v0.5.1 dans le localStorage
+du webview (présent dès le premier hydrate chez un vrai utilisateur) sert
+de signal « déjà onboardé », et pré-pose `hasCompletedFirstRun: true` à
+la première lecture du nouveau `settings.json`. Fresh installs gardent
+le flag à `false` et voient le welcome.
+
+### Sous le capot
+
+- Nouveaux plugins Tauri : `tauri-plugin-store` (persistance settings via
+  `%APPDATA%/com.dofus-companion.app/settings.json`) et
+  `tauri-plugin-notification` (toast Windows).
+- Nouveau module `features/settings/` avec schéma Zod versionné (v2),
+  migration idempotente, wrapper plugin-store + fallback localStorage
+  pour le dev preview web.
+- Hooks `useFirstRun` (tri-state `null` → `true/false` pour éviter tout
+  flash) et `useStartupNotification` (fail-safe sur plugin indisponible).
+- Rust : `setup()` lit `hasCompletedFirstRun` depuis le store ; si
+  absent/false, `window.show()` + centrage + focus.
+
+### Tests
+
+- 22 nouveaux tests (settings store / migrate, `useFirstRun`,
+  `WelcomeOverlay`). 96/96 verts au total.
+
+### Budget LLM
+
+- €0 (aucun appel LLM dans cette release).
+
+---
+
 ## v0.5.1 — Combat Cards Cleanup (2026-04-19)
 
 Patch de qualité sur v0.5.0 — **pas de nouvelle feature**. Refonte structurelle
