@@ -89,6 +89,19 @@ export interface UiStrings {
     backToSearch: string;
     noResults: string;
   };
+  welcome: {
+    title: string;
+    subtitle: string;
+    bulletHotkey: string;
+    bulletSearch: string;
+    bulletLocal: string;
+    cta: string;
+    closeAria: string;
+  };
+  startupToast: {
+    title: string;
+    body: string;
+  };
   footer: {
     navigate: string;
     open: string;
@@ -203,6 +216,19 @@ const fr: UiStrings = {
     backToSearch: 'Retour recherche',
     noResults: 'Aucun monstre ne correspond',
   },
+  welcome: {
+    title: '👋 Bienvenue dans Dofus Companion',
+    subtitle: "L'overlay est déjà ouvert — il se masque quand tu en as besoin.",
+    bulletHotkey: '⌨  Alt+D pour afficher/masquer (fonctionne même en combat)',
+    bulletSearch: '🔍 Tape un nom de donjon ou de monstre pour chercher',
+    bulletLocal: '⚡ Tout est local : aucun serveur, aucun tracker',
+    cta: "J'ai compris — c'est parti",
+    closeAria: 'Fermer',
+  },
+  startupToast: {
+    title: 'Dofus Companion',
+    body: 'Ouvert en arrière-plan · Alt+D pour afficher',
+  },
 };
 
 const en: UiStrings = {
@@ -304,6 +330,19 @@ const en: UiStrings = {
       count === 1 ? 'Encountered in 1 dungeon' : `Encountered in ${count} dungeons`,
     backToSearch: 'Back to search',
     noResults: 'No matching monster',
+  },
+  welcome: {
+    title: '👋 Welcome to Dofus Companion',
+    subtitle: 'The overlay is already open — hide it whenever you need.',
+    bulletHotkey: '⌨  Alt+D to show/hide (works mid-fight)',
+    bulletSearch: '🔍 Type a dungeon or monster name to search',
+    bulletLocal: '⚡ Everything is local: no server, no tracker',
+    cta: "Got it — let's go",
+    closeAria: 'Close',
+  },
+  startupToast: {
+    title: 'Dofus Companion',
+    body: 'Running in background · Alt+D to show',
   },
 };
 

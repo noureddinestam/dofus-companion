@@ -6,10 +6,13 @@ import { DungeonCard } from './components/DungeonCard';
 import { useDungeons } from './features/dungeons/useDungeons';
 import { useSearch, type SearchResult } from './features/search/useSearch';
 import { useUpdater } from './hooks/useUpdater';
+import { useFirstRun } from './hooks/useFirstRun';
+import { useStartupNotification } from './hooks/useStartupNotification';
 import { useI18n } from './i18n/useI18n';
 import { useAppStore } from './store/appStore';
 import { CombatCardPlayground } from './features/combat/CombatCardPlayground';
 import { MonsterView } from './features/monsters/MonsterView';
+import { WelcomeOverlay } from './components/WelcomeOverlay';
 import type { Dungeon } from './types/dungeon';
 
 type AppMode = 'search' | 'monster';
@@ -43,7 +46,17 @@ function AppMain() {
   const [focusIdx, setFocusIdx] = useState(0);
   const searchRef = useRef<HTMLInputElement>(null);
   const { update, install, dismiss } = useUpdater();
+  const { isFirstRun, completeFirstRun } = useFirstRun();
   const { t, toggleLang } = useI18n();
+
+  useStartupNotification({
+    title: 'Dofus Companion',
+    body: 'Ouvert en arrière-plan · Alt+D pour afficher',
+    // We skip the toast while the welcome overlay is up — the user already
+    // sees the app. After dismissal the hook does nothing further because
+    // its timer fires once at mount.
+    isOverlayVisible: () => isFirstRun === true,
+  });
   const strategyView = useAppStore((s) => s.strategyView);
   const setStrategyView = useAppStore((s) => s.setStrategyView);
 
@@ -282,6 +295,8 @@ function AppMain() {
       </div>
 
       <Footer selected={selected} mode={mode} />
+
+      {isFirstRun === true && <WelcomeOverlay onDismiss={completeFirstRun} />}
     </div>
   );
 }
