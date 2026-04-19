@@ -146,6 +146,13 @@ pub fn run() {
                 if pos.x < 100 && pos.y < 100 {
                     position_top_right(&window);
                 }
+
+                // v0.5.5 : fond webview réellement transparent. Le `transparent: true`
+                // dans tauri.conf.json rend la fenêtre native transparente mais pas
+                // la surface de peinture de WKWebView / WebView2 — elle garde son
+                // fond blanc par défaut, qu'on voyait apparaître dès que le slider
+                // opacité rendait le thème semi-transparent. On force RGBA(0,0,0,0).
+                let _ = window.set_background_color(Some(tauri::window::Color(0, 0, 0, 0)));
             }
 
             // v0.5.2 first-run : si aucun flag `hasCompletedFirstRun` n'a été
