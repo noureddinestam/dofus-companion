@@ -51,6 +51,7 @@ const ONLY_BOSS_REFACTOR = ARGS.has('--only-boss-refactor');
 const ONLY_MONSTERS = ARGS.has('--only-monsters');
 const AUDIT = ARGS.has('--audit');
 const MIGRATE_SCHEMA = ARGS.has('--migrate-schema');
+const REGENERATE_FLAGGED = ARGS.has('--regenerate-flagged');
 const DRY_RUN_COST = ARGS.has('--dry-run-cost');
 
 function valueAfter(flag: string): string | undefined {
@@ -329,6 +330,12 @@ async function buildDungeon(
 }
 
 async function main() {
+  if (REGENERATE_FLAGGED) {
+    const { runRegenerateFlagged } = await import('./migrate/regenerate-flagged-v051.ts');
+    await runRegenerateFlagged({ dryRun: DRY_RUN, dryRunCost: DRY_RUN_COST });
+    return;
+  }
+
   if (MIGRATE_SCHEMA) {
     const { runSchemaMigration } = await import('./migrate/v05-to-v051.ts');
     await runSchemaMigration();
