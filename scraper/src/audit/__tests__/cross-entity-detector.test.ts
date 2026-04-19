@@ -12,6 +12,7 @@ const ERADICATEUR_TEXT = `Ne pas rester en ligne des Éradicateurs. Ils tirent u
 function makeBullet(fr: string, en: string, quote: string): Bullet {
   return {
     text: { fr, en },
+    kind: 'action',
     mechanicType: null,
     severity: null,
     provenance: {

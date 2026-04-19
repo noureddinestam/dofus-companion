@@ -70,8 +70,8 @@ function matchesAny(text: string, patterns: readonly RegExp[]): boolean {
 type Signal =
   | { kind: 'duplicate'; withBlock: 'unlock' | 'constraints' | 'dangers' | 'tips'; withIndex: number; dice: number }
   | { kind: 'imperative-in-constraints'; matched: string }
-  | { kind: 'negation-in-unlock'; matched: string }
-  | { kind: 'permanent-in-unlock'; matched: string };
+  | { kind: 'negation-in-action'; matched: string }
+  | { kind: 'context-phrased-as-prohibition'; matched: string };
 
 function detectBulletSignals(
   bullet: Bullet,
@@ -86,8 +86,9 @@ function detectBulletSignals(
   //    bleed. Intra-block duplicates are a different bug class and out of scope here.
   for (const otherBlock of ['unlock', 'constraints', 'dangers', 'tips'] as const) {
     if (otherBlock === block) continue;
-    for (let i = 0; i < card[otherBlock].length; i++) {
-      const other = card[otherBlock][i];
+    const otherBullets = card[otherBlock] ?? [];
+    for (let i = 0; i < otherBullets.length; i++) {
+      const other = otherBullets[i];
       const ofr = normalize(other.text.fr);
       const dice = Math.max(diceCoefficient(nFr, ofr), diceCoefficient(nEn, normalize(other.text.en)));
       if (dice >= DICE_DUPLICATE_THRESHOLD) {
@@ -104,7 +105,9 @@ function detectBulletSignals(
     }
   }
 
-  // 2. Lexical — constraints that read like unlock actions.
+  // 2. Legacy v0.5 rule — action verb without negation in a still-populated
+  //    constraints block. After the v0.5.1 schema migration constraints should
+  //    be empty across the dataset, but we keep the check to catch regressions.
   if (block === 'constraints') {
     const hasNegation = matchesAny(nFr, NEGATION_PREFIXES_FR) || matchesAny(nEn, NEGATION_PREFIXES_EN);
     const hasPermanent = matchesAny(nFr, PERMANENT_WORDS_FR) || matchesAny(nEn, PERMANENT_WORDS_EN);
@@ -114,12 +117,20 @@ function detectBulletSignals(
     }
   }
 
-  // 3. Lexical — unlock bullets that read like permanent rules / forbidden actions.
+  // 3. Lexical — v0.5.1 kind-aware.
+  //    - An ACTION bullet that starts with a negation is almost certainly a
+  //      context rule mis-tagged (or a prohibition that belongs in dangers).
+  //    - A CONTEXT bullet phrased as a prohibition ("Ne pas …") reads poorly
+  //      in the "Contexte" subsection: it should be rewritten positively.
   if (block === 'unlock') {
     const hasNegation = matchesAny(nFr, NEGATION_PREFIXES_FR) || matchesAny(nEn, NEGATION_PREFIXES_EN);
-    const hasPermanent = matchesAny(nFr, PERMANENT_WORDS_FR) || matchesAny(nEn, PERMANENT_WORDS_EN);
-    if (hasNegation) signals.push({ kind: 'negation-in-unlock', matched: bullet.text.fr });
-    else if (hasPermanent) signals.push({ kind: 'permanent-in-unlock', matched: bullet.text.fr });
+    if (hasNegation) {
+      if (bullet.kind === 'action') {
+        signals.push({ kind: 'negation-in-action', matched: bullet.text.fr });
+      } else if (bullet.kind === 'context') {
+        signals.push({ kind: 'context-phrased-as-prohibition', matched: bullet.text.fr });
+      }
+    }
   }
 
   return signals;
@@ -165,26 +176,26 @@ function signalToFlag(
         suggestion: `Move to unlock with kind="action".`,
         details: { matchedText: signal.matched },
       };
-    case 'negation-in-unlock':
+    case 'negation-in-action':
       return {
         bug: 'ambiguity',
         severity: 'medium',
         entity,
         bullet: bulletPayload,
         signal: 1,
-        explanation: `Bullet starts with a negation but lives in unlock — v0.5.1 puts permanent rules in unlock.context, worded without "ne pas".`,
-        suggestion: `Rewrite as a positive context bullet ("Rester loin du centre" instead of "Ne pas rester au centre") or move the punition phrasing to dangers.`,
+        explanation: `Action bullet starts with a negation — actions should be positive verbs; prohibitions belong either in unlock.context (as a rule) or dangers (as a punition).`,
+        suggestion: `Retag kind='context' if it's a permanent rule, or rewrite as a positive action.`,
         details: { matchedText: signal.matched },
       };
-    case 'permanent-in-unlock':
+    case 'context-phrased-as-prohibition':
       return {
         bug: 'ambiguity',
         severity: 'low',
         entity,
         bullet: bulletPayload,
         signal: 1,
-        explanation: `Bullet uses a permanent-rule marker ("toujours" / "always") but is in unlock — likely belongs to unlock.context.`,
-        suggestion: `Move to unlock.context (it is a permanent rule, not an ordered action).`,
+        explanation: `Context bullet reads as a prohibition ("Ne pas …") — prefer a positive phrasing so the Contexte subsection reads as facts rather than rules.`,
+        suggestion: `Reword positively ("Rester loin du centre" instead of "Ne pas rester au centre").`,
         details: { matchedText: signal.matched },
       };
   }
@@ -193,8 +204,9 @@ function signalToFlag(
 function inspectCard(card: CombatCard, entity: CardFlag['entity']): CardFlag[] {
   const flags: CardFlag[] = [];
   for (const block of ['unlock', 'constraints', 'dangers', 'tips'] as const) {
-    for (let i = 0; i < card[block].length; i++) {
-      const b = card[block][i];
+    const bullets = card[block] ?? [];
+    for (let i = 0; i < bullets.length; i++) {
+      const b = bullets[i];
       for (const signal of detectBulletSignals(b, block, card)) {
         flags.push(signalToFlag(signal, b, block, i, entity));
       }

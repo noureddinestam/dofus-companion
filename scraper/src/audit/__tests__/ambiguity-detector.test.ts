@@ -2,9 +2,10 @@ import { describe, expect, it } from 'vitest';
 import { detectAmbiguityFlags } from '../ambiguity-detector.ts';
 import type { Bullet, CombatCard, Dungeon } from '../../validate.ts';
 
-function bullet(fr: string, en: string): Bullet {
+function bullet(fr: string, en: string, kind: Bullet['kind'] = 'action'): Bullet {
   return {
     text: { fr, en },
+    kind,
     mechanicType: null,
     severity: null,
     provenance: {
@@ -103,43 +104,51 @@ describe('detectAmbiguityFlags', () => {
     expect(flags.some((f) => f.explanation.includes('action verb'))).toBe(true);
   });
 
-  it('flags a negation prefix in unlock (FR)', () => {
+  it('flags an action bullet that starts with a negation (FR)', () => {
     const card: CombatCard = {
-      unlock: [bullet("Ne pas rester au centre", 'Do not stay centre')],
-      constraints: [],
+      unlock: [bullet("Ne pas rester au centre", 'Do not stay centre', 'action')],
       dangers: [],
       tips: [],
     };
     const flags = detectAmbiguityFlags([makeDungeon(card)]);
-    expect(flags.some((f) => f.explanation.includes('negation'))).toBe(true);
+    expect(flags.some((f) => f.explanation.includes('Action bullet'))).toBe(true);
   });
 
-  it('flags a negation prefix in unlock (EN)', () => {
+  it('flags an action bullet that starts with a negation (EN)', () => {
     const card: CombatCard = {
-      unlock: [bullet("Éviter de toucher les glyphes", "Don't touch the glyphs")],
-      constraints: [],
+      unlock: [bullet("Éviter de toucher les glyphes", "Don't touch the glyphs", 'action')],
       dangers: [],
       tips: [],
     };
     const flags = detectAmbiguityFlags([makeDungeon(card)]);
-    expect(flags.some((f) => f.explanation.includes('negation'))).toBe(true);
+    expect(flags.some((f) => f.explanation.includes('Action bullet'))).toBe(true);
   });
 
-  it('flags a permanent-rule marker in unlock ("toujours")', () => {
+  it('flags a context bullet phrased as a prohibition with lower severity', () => {
     const card: CombatCard = {
-      unlock: [bullet("Toujours rester hors de portée", 'Always stay out of range')],
-      constraints: [],
+      unlock: [bullet("Ne pas rester au centre", 'Do not stay centre', 'context')],
       dangers: [],
       tips: [],
     };
     const flags = detectAmbiguityFlags([makeDungeon(card)]);
-    expect(flags.some((f) => f.explanation.includes('permanent-rule'))).toBe(true);
+    const match = flags.find((f) => f.explanation.includes('Context bullet'));
+    expect(match).toBeDefined();
+    expect(match!.severity).toBe('low');
   });
 
-  it('does not flag a clean unlock bullet without negation or permanent markers', () => {
+  it('does not flag a permanent-rule context bullet ("toujours")', () => {
     const card: CombatCard = {
-      unlock: [bullet('Isoler les pions', 'Isolate the pawns')],
-      constraints: [],
+      unlock: [bullet("Toujours rester hors de portée", 'Always stay out of range', 'context')],
+      dangers: [],
+      tips: [],
+    };
+    const flags = detectAmbiguityFlags([makeDungeon(card)]);
+    expect(flags).toHaveLength(0);
+  });
+
+  it('does not flag a clean action bullet', () => {
+    const card: CombatCard = {
+      unlock: [bullet('Isoler les pions', 'Isolate the pawns', 'action')],
       dangers: [],
       tips: [],
     };

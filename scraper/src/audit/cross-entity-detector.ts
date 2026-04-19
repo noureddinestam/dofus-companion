@@ -190,8 +190,9 @@ function inspectCard(
 ): CardFlag[] {
   const flags: CardFlag[] = [];
   for (const block of ['unlock', 'constraints', 'dangers', 'tips'] as const) {
-    for (let i = 0; i < card[block].length; i++) {
-      const b = card[block][i];
+    const bullets = card[block] ?? [];
+    for (let i = 0; i < bullets.length; i++) {
+      const b = bullets[i];
       const quote = bulletAnchorQuote(b);
       if (!quote) continue;
       const contam = detectBulletContamination(ownerEntityId, quote, pagesInDungeon);
@@ -269,7 +270,7 @@ export async function detectCrossEntityFlags(
 function isCardEmpty(card: CombatCard): boolean {
   return (
     card.unlock.length === 0 &&
-    card.constraints.length === 0 &&
+    (card.constraints?.length ?? 0) === 0 &&
     card.dangers.length === 0 &&
     card.tips.length === 0
   );
