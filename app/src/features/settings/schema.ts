@@ -30,7 +30,7 @@ export type Theme = z.infer<typeof ThemeEnum>;
 
 export const AppearanceSchema = z.object({
   lang: LangEnum.default('fr'),
-  opacity: z.number().min(0.5).max(1).default(0.95),
+  opacity: z.number().min(0.5).max(1).default(0.9),
   density: DensityEnum.default('comfortable'),
   theme: ThemeEnum.default('system'),
 });

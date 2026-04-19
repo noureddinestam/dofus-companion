@@ -17,7 +17,7 @@ describe('initialSettingsFromLegacy', () => {
     expect(s.version).toBe(SETTINGS_SCHEMA_VERSION);
     expect(s.hasCompletedFirstRun).toBe(false);
     expect(s.appearance.lang).toBe('fr');
-    expect(s.appearance.opacity).toBe(0.95);
+    expect(s.appearance.opacity).toBe(0.9);
     expect(s.appearance.density).toBe('comfortable');
     expect(s.contentDisplay.showUnlockBlock).toBe(true);
     expect(s.monstersDisplay.showLambdaMonsters).toBe(false);
@@ -57,7 +57,7 @@ describe('migrateRawSettings', () => {
     const parsed = SettingsSchema.parse(migrateRawSettings(v2));
     expect(parsed.version).toBe(SETTINGS_SCHEMA_VERSION);
     expect(parsed.hasCompletedFirstRun).toBe(true);
-    expect(parsed.appearance.opacity).toBe(0.95);
+    expect(parsed.appearance.opacity).toBe(0.9);
     expect(parsed.contentDisplay.showDangersBlock).toBe(true);
     expect(parsed.monstersDisplay.showProvenanceBadge).toBe(true);
     expect(parsed.notifications.showStartupToast).toBe(true);

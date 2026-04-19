@@ -23,7 +23,7 @@ describe('settings store (web fallback)', () => {
     expect(s.hasCompletedFirstRun).toBe(false);
     expect(s.version).toBe(SETTINGS_SCHEMA_VERSION);
     expect(s.appearance.lang).toBe('fr');
-    expect(s.appearance.opacity).toBe(0.95);
+    expect(s.appearance.opacity).toBe(0.9);
     expect(s.contentDisplay.showUnlockBlock).toBe(true);
     expect(s.monstersDisplay.showLambdaMonsters).toBe(false);
     expect(s.notifications.showStartupToast).toBe(true);

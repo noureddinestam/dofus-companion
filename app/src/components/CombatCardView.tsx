@@ -65,7 +65,7 @@ function isBlockVisible(
 }
 
 export function CombatCardView({ card, legacyStrategies, footer, compact }: CombatCardViewProps) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const { settings } = useSettings();
   const contentDisplay = settings?.contentDisplay ?? DEFAULT_CONTENT_DISPLAY;
   const monstersDisplay = settings?.monstersDisplay ?? DEFAULT_MONSTERS_DISPLAY;
@@ -170,7 +170,14 @@ export function CombatCardView({ card, legacyStrategies, footer, compact }: Comb
 
       {legacyStrategies && legacyStrategies.length > 0 && (
         <details className="combat-card__legacy">
-          <summary>{t.combat.legacyNotes}</summary>
+          <summary>
+            {t.combat.legacyNotes}
+            {lang === 'en' && (
+              <span className="combat-card__legacy-fr-badge">
+                {t.combat.legacyNotesFrOnlyBadge}
+              </span>
+            )}
+          </summary>
           <div className="combat-card__legacy-body">
             {legacyStrategies.map((line, i) => (
               <p key={i}>{line}</p>

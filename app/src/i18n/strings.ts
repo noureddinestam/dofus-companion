@@ -73,6 +73,7 @@ export interface UiStrings {
     dangers: string;
     tips: string;
     legacyNotes: string;
+    legacyNotesFrOnlyBadge: string;
     unlockContext: string;
     unlockActions: string;
     lambdaPlaceholder: string;
@@ -241,6 +242,7 @@ const fr: UiStrings = {
     dangers: 'DANGERS',
     tips: 'INFOS UTILES',
     legacyNotes: 'Notes legacy v0.4',
+    legacyNotesFrOnlyBadge: 'FR uniquement',
     unlockContext: 'Contexte',
     unlockActions: 'Actions',
     lambdaPlaceholder: 'Pas de mécanique notable',
@@ -398,6 +400,7 @@ const en: UiStrings = {
     dangers: 'DANGERS',
     tips: 'TIPS',
     legacyNotes: 'v0.4 legacy notes',
+    legacyNotesFrOnlyBadge: 'FR only',
     unlockContext: 'Context',
     unlockActions: 'Actions',
     lambdaPlaceholder: 'No notable mechanic',
