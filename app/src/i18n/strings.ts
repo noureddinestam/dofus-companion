@@ -152,7 +152,6 @@ export interface UiStrings {
     search: string;
     sections: string;
     switchView: string;
-    switchLang: string;
     monsterView: string;
   };
 }
@@ -200,7 +199,6 @@ const fr: UiStrings = {
     search: 'Recherche',
     sections: 'Sections',
     switchView: 'Vue',
-    switchLang: 'Langue',
     monsterView: 'Monstres',
   },
   titleBar: {
@@ -358,7 +356,6 @@ const en: UiStrings = {
     search: 'Search',
     sections: 'Sections',
     switchView: 'View',
-    switchLang: 'Lang',
     monsterView: 'Monsters',
   },
   titleBar: {

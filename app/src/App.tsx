@@ -478,7 +478,6 @@ function Footer({ selected, mode }: { selected: Dungeon | null; mode: AppMode })
             ['Enter', t.footer.open],
             ['Ctrl+M', t.footer.monsterView],
             ['/', t.footer.search],
-            ['Ctrl+L', t.footer.switchLang],
           ];
 
   return (
