@@ -562,8 +562,8 @@
     ],
     "transparency": {
       "title": "Où va concrètement le soutien ?",
-      "body": "Les dons couvrent les coûts de régénération LLM des stratégies (environ 10 € par rebuild), l'hébergement du site, un certificat de signature Windows visé pour que SmartScreen arrête d'embêter les utilisateurs suivants, et le temps de dev. Chaque euro déclaré dans les commits. Pas de wallet parallèle, pas de partenariat sponsorisé non annoncé.",
-      "microCopy": "Tout est déclaré dans les commits. Pas de wallet off-the-record, pas de collaborations sponsorisées."
+      "body": "Les dons couvrent les frais techniques (régénération LLM des stratégies, hébergement, certificat de signature Windows visé) et le temps de dev.",
+      "microCopy": "Pas de sponsor payé non déclaré, pas de wallet parallèle."
     },
     "noPerks": {
       "title": "Ce qui ne changera pas",

@@ -559,8 +559,8 @@
     ],
     "transparency": {
       "title": "Where does the support actually go?",
-      "body": "Donations cover LLM regeneration costs for strategies (around 10 € per rebuild), site hosting, a Windows code-signing certificate we're aiming at so SmartScreen stops bothering every new user, and dev time. Every euro shows up in the commits. No side wallet, no quiet sponsorship deals.",
-      "microCopy": "Everything is declared in the commits. No off-the-record wallet, no sponsored collabs."
+      "body": "Donations cover technical costs (LLM strategy regeneration, hosting, a Windows code-signing certificate we're aiming at) and dev time.",
+      "microCopy": "No undisclosed paid sponsor, no side wallet."
     },
     "noPerks": {
       "title": "What won't change",
