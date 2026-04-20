@@ -123,7 +123,7 @@ export async function MockOverlay() {
                       </span>
                       {t.combatBlocks[key]}
                     </p>
-                    <ul className="space-y-1 text-[12.5px] leading-relaxed text-foreground/90">
+                    <ul className="text-foreground/90 space-y-1 text-[12.5px] leading-relaxed">
                       {bullets.map((bullet, i) => (
                         <li key={i} className="flex gap-2">
                           <span

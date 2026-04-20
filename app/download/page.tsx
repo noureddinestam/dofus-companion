@@ -43,7 +43,10 @@ export default async function DownloadPage() {
     totalTime: "PT1M",
     supply: [
       { "@type": "HowToSupply", name: "Windows 10 ou Windows 11" },
-      { "@type": "HowToSupply", name: "Connexion internet pour le téléchargement initial" },
+      {
+        "@type": "HowToSupply",
+        name: "Connexion internet pour le téléchargement initial",
+      },
     ],
     step: [
       {

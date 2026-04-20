@@ -78,7 +78,10 @@ export async function Hero() {
             </p>
           </FadeInUp>
         </div>
-        <FadeInUp delay={0.2} className="w-full max-w-[440px] md:justify-self-end">
+        <FadeInUp
+          delay={0.2}
+          className="w-full max-w-[440px] md:justify-self-end"
+        >
           <div className="relative w-full">
             <div
               aria-hidden

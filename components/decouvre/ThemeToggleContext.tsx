@@ -29,7 +29,9 @@ export function ThemeToggleProvider({ children }: { children: ReactNode }) {
 export function useScreenshotTheme(): ThemeToggleValue {
   const ctx = useContext(ThemeToggleContext);
   if (!ctx) {
-    throw new Error("useScreenshotTheme must be used inside ThemeToggleProvider");
+    throw new Error(
+      "useScreenshotTheme must be used inside ThemeToggleProvider",
+    );
   }
   return ctx;
 }

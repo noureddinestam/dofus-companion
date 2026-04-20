@@ -14,7 +14,9 @@ interface BuyMeACoffeeButtonProps {
  * after mount to control where the button lands. Strict-mount safe: the
  * effect clears the container on cleanup before re-appending.
  */
-export function BuyMeACoffeeButton({ text = "Buy me a coffee" }: BuyMeACoffeeButtonProps) {
+export function BuyMeACoffeeButton({
+  text = "Buy me a coffee",
+}: BuyMeACoffeeButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

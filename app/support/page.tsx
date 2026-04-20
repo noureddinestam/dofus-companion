@@ -52,8 +52,10 @@ export default async function SupportPage() {
       <section className="mb-14 grid gap-4 md:grid-cols-3">
         {t.tiers.map((tier) => {
           const Icon = ICONS[tier.icon as IconName] ?? HeartIcon;
-          const cardClass = TIER_CARD_STYLES[tier.variant] ?? TIER_CARD_STYLES.outline;
-          const ctaClass = TIER_CTA_STYLES[tier.variant] ?? TIER_CTA_STYLES.outline;
+          const cardClass =
+            TIER_CARD_STYLES[tier.variant] ?? TIER_CARD_STYLES.outline;
+          const ctaClass =
+            TIER_CTA_STYLES[tier.variant] ?? TIER_CTA_STYLES.outline;
           return (
             <article
               key={tier.tag}

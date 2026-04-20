@@ -91,7 +91,9 @@ export default async function RootLayout({
       <body className="flex min-h-full flex-col">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
         />
         <Nav />
         <main className="flex-1">{children}</main>

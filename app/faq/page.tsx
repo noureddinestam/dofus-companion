@@ -24,7 +24,12 @@ export default async function FaqPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-      { "@type": "ListItem", position: 2, name: t.title, item: `${siteUrl}/faq` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: t.title,
+        item: `${siteUrl}/faq`,
+      },
     ],
   };
 

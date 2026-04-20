@@ -90,7 +90,7 @@ export default async function DecouvrePage() {
 
       <nav
         aria-label={t.nav.label}
-        className="border-border/40 bg-background/85 sticky top-0 z-10 border-b backdrop-blur supports-[backdrop-filter]:bg-background/70"
+        className="border-border/40 bg-background/85 supports-[backdrop-filter]:bg-background/70 sticky top-0 z-10 border-b backdrop-blur"
       >
         <div className="mx-auto flex max-w-6xl gap-1.5 overflow-x-auto px-6 py-2.5 text-xs font-medium">
           {[
@@ -169,10 +169,7 @@ export default async function DecouvrePage() {
           paired={{ ...pair("shortcuts"), alt: f.shortcuts.alt }}
         />
 
-        <section
-          id="security"
-          className="scroll-mt-24 py-10 md:py-16"
-        >
+        <section id="security" className="scroll-mt-24 py-10 md:py-16">
           <div className="mx-auto flex max-w-3xl flex-col items-start gap-4 px-6">
             <p className="text-gold font-mono text-[11px] tracking-[0.22em] uppercase">
               {f.security.eyebrow}
