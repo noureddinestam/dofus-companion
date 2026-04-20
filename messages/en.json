@@ -14,7 +14,7 @@
     "titleLead": "The Dofus overlay that fits behind",
     "titleAccent": "Alt+D",
     "titleTrail": ".",
-    "subtitle": "{count} endgame dungeons, 800+ indexed monsters. Three-block cards readable between two turns. Offline, no account, no memory reading.",
+    "subtitle": "{count} endgame dungeons, 800+ indexed monsters. Three-block cards readable between two turns. Offline, no memory reading, open source on GitHub.",
     "dungeonCount": "185",
     "dungeonHoverHint": "42 still waiting for your PR",
     "dungeonHoverCta": "Contribute",
@@ -55,8 +55,8 @@
       },
       {
         "icon": "target",
-        "title": "Offline and free",
-        "body": "No account, no ads, no tracker. The app reads local JSON files, shows a window, that's it. Works without a connection, forever."
+        "title": "Offline and open source",
+        "body": "No tracker, no telemetry, no connection required. The overlay reads local JSON files, shows a window, that's it. This release is free to download and works offline."
       }
     ]
   },
@@ -150,7 +150,7 @@
   "support": {
     "eyebrow": "Support",
     "title": "We put the hours in so this exists.",
-    "body": "Free, no ads, no account, and we want it to stay that way. If the overlay helps you in a dungeon, a coffee, a sponsor or a GitHub star keeps the time we put in going.",
+    "body": "Free to download, open source overlay, zero tracker. If the tool saves you runs, a coffee, a sponsor or a GitHub star keeps the time we put in going.",
     "ctaCoffee": "Buy us a coffee",
     "coffeeHref": "https://buymeacoffee.com/dofuscompanion",
     "ctaSponsor": "GitHub Sponsors",
@@ -205,7 +205,7 @@
     }
   },
   "disclaimer": {
-    "body": "Dofus Companion is an <strong>unofficial</strong> application, built by fans for fans. <strong>Dofus®</strong> is a registered trademark of <strong>Ankama Games</strong>. This project is neither endorsed by nor affiliated with Ankama. No memory reading, no game automation, this is an information overlay only."
+    "body": "Dofus Companion is an <strong>unofficial</strong> application, maintained as open source by players. <strong>Dofus®</strong> is a registered trademark of <strong>Ankama Games</strong>. This project is neither endorsed by nor affiliated with Ankama. No memory reading, no game automation, this is an information overlay only."
   },
   "kerubim": {
     "alt": "Kerubim, Dofus' old merchant cat",
@@ -468,6 +468,10 @@
           {
             "q": "Are the strategies up to date?",
             "a": "Continuously updated via public PRs. Every sentence carries a provenance badge (official, community, LLM + citation). You can report an error via GitHub Issues."
+          },
+          {
+            "q": "Will the project always be free?",
+            "a": "The overlay core, search, combat cards, monster view, silence rule, keyboard shortcuts, stays open source under MIT, auditable on GitHub. For this release, the download and full usage are free. If we ever add advanced features that need dedicated infrastructure (multi-device sync, cloud storage, server-backed features), those additions could become paid. The core would stay open source."
           }
         ]
       },
@@ -519,8 +523,8 @@
   },
   "supportPage": {
     "eyebrow": "Support",
-    "title": "No ogrines, no subscription, no cosmetic shop",
-    "subtitle": "Dofus Companion is maintained on spare time. If the tool genuinely helps, here's how to give a hand.",
+    "title": "The core stays open source. Everything else is the time you can support.",
+    "subtitle": "Dofus Companion is built on spare time. The overlay itself, search, combat cards, monster view, everything you actually use in a dungeon, is open source under MIT. If the tool saves you runs, here's how to support the time we put in.",
     "tiers": [
       {
         "tag": "One-off",
@@ -544,7 +548,7 @@
         "variant": "secondary"
       },
       {
-        "tag": "Free",
+        "tag": "Zero cost",
         "title": "Star & share",
         "body": "Zero euros, one click. Helps the Windows SmartScreen reputation: the more of us, the less often the blue screen hits the next user.",
         "ctaLabel": "Star the repo",
@@ -555,12 +559,12 @@
     ],
     "transparency": {
       "title": "Where does the support actually go?",
-      "body": "Donations cover the LLM costs for regenerating strategies, a possible Windows EV certificate (the comfort tier for the whole community), the domain name, and the dev's coffee. Nothing fancy, nothing extravagant.",
+      "body": "Donations cover LLM regeneration costs for strategies (around 10 € per rebuild), site hosting, a Windows code-signing certificate we're aiming at so SmartScreen stops bothering every new user, and dev time. Every euro shows up in the commits. No side wallet, no quiet sponsorship deals.",
       "microCopy": "Everything is declared in the commits. No off-the-record wallet, no sponsored collabs."
     },
     "noPerks": {
-      "title": "No perks, no early access, no VIP Discord",
-      "body": "The app stays 100% free and identical for everyone. Sponsors don't get extra features, early-access strategies, or a magic button. You support open source, or you don't, and that's fine too. No guilt trip."
+      "title": "What won't change",
+      "body": "The overlay core, search, combat cards, monster view, silence rule, keyboard shortcuts, stays open source under MIT. Boss and monster strategies, whether generated or contributed by PR, stay accessible with no paywall.\n\nOn this release, a sponsor and a free user see the same app. A one-off donation funds the project, not a status."
     },
     "alternatives": {
       "title": "Can't donate? Do this instead.",
@@ -579,19 +583,11 @@
       "sections": [
         {
           "heading": "What data do we collect?",
-          "body": "None. The local application doesn't collect, store, or send any personal data. The strategy JSON files are read only from your local disk."
-        },
-        {
-          "heading": "Cookies?",
-          "body": "No cookies on this site. No tracker, no analytics."
-        },
-        {
-          "heading": "Server logs",
-          "body": "Vercel's standard access logs (IP, user-agent, path, status code) are retained per their default policy. We neither consult nor export them."
+          "body": "THE LOCAL APP\n\nThe overlay installed on your machine doesn't collect, store, or send any personal data. Strategy JSON files are read only from your local disk. Your settings (language, opacity, shortcuts) are stored in %APPDATA%\\Dofus Companion and never leave your machine.\n\nTHE WEB SITE\n\nThis site sets no cookies, embeds no tracker, runs no analytics. Standard hosting access logs from Vercel, IP, user-agent, path, HTTP status, are retained per Vercel's policy. We neither consult nor export them.\n\nFINANCIAL SUPPORT (OPTIONAL)\n\nIf you choose to support the project via Buy Me a Coffee or GitHub Sponsors, those platforms handle the payment under their own privacy policies:\n\n- Buy Me a Coffee, privacy policy: https://www.buymeacoffee.com/privacy-policy\n- GitHub, privacy policy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement\n\nWe only receive the donation amount and, if you provide one, the display name you chose. No payment information (card, address) is shared with us."
         },
         {
           "heading": "Contact",
-          "body": "For any privacy-related question, open a Discussion or a Security Advisory on GitHub."
+          "body": "For any privacy-related question:\n\n- Public discussion: https://github.com/noureddinestam/dofus-companion/discussions\n- Private report: https://github.com/noureddinestam/dofus-companion/security/advisories\n\nUnder the GDPR, you have the right to access, rectify, or delete the data concerning you. Since the app collects nothing, those rights apply only to data handled by the donation platforms listed above (through their own channels).\n\nLast updated: 2026-04-20"
         }
       ]
     },
@@ -601,7 +597,7 @@
       "sections": [
         {
           "heading": "License",
-          "body": "Dofus Companion is distributed under the MIT license. You may use, modify, and redistribute it under the license terms (see LICENSE in the repo)."
+          "body": "The source code of Dofus Companion is distributed under the MIT license. You may use, modify, and redistribute it under the license terms (see LICENSE in the repo). Strategy data (combat cards, monster sheets) is provided under the same license for v0.5; its status for later versions will be specified in the repository. Dofus Companion's trademarks, logos, and graphical assets remain the property of the project."
         },
         {
           "heading": "Warranty",
@@ -609,7 +605,19 @@
         },
         {
           "heading": "Dofus trademark",
-          "body": "Dofus® is a registered trademark of Ankama Games. Dofus Companion is an unofficial application, built by fans for fans, not affiliated with Ankama."
+          "body": "Dofus® is a registered trademark of Ankama Games. Dofus Companion is an unofficial application, maintained as open source by players. This project is neither endorsed by nor affiliated with Ankama."
+        },
+        {
+          "heading": "Changes to these terms",
+          "body": "These terms may evolve with the project. Any significant change will be announced in the site changelog, and the last-updated date below will be refreshed accordingly."
+        },
+        {
+          "heading": "Governing law",
+          "body": "These terms are governed by French law. Any dispute falls under the jurisdiction of the courts of Paris, France."
+        },
+        {
+          "heading": "Contact",
+          "body": "For any legal question: open a Discussion on GitHub, or a Security Advisory for sensitive matters.\n\nLast updated: 2026-04-20"
         }
       ]
     },
@@ -763,7 +771,7 @@
     "cta": {
       "eyebrow": "Ready for your next run?",
       "title": "Download and get going.",
-      "body": "Windows 10 or 11. Under a minute to install, auto-update enabled. Free, no account, no ads."
+      "body": "Windows 10 or 11. Under a minute to install, auto-update enabled. Free to download, source code on GitHub."
     }
   }
 }

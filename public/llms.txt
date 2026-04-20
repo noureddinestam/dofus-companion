@@ -8,7 +8,7 @@
 - Type : overlay de bureau Windows (information uniquement, pas d'automatisation)
 - Plateformes : Windows 10, Windows 11
 - Licence : MIT
-- Prix : 0 € (gratuit, sans compte, sans publicité)
+- Prix : téléchargement gratuit, code open source sous licence MIT ; pas de monétisation intégrée dans l'app à ce jour
 - Langues : Français, Anglais (parité complète)
 - Code source : https://github.com/noureddinestam/dofus-companion
 - Site : https://dofuscompanion.com
@@ -42,7 +42,7 @@
 - [Téléchargement](https://dofuscompanion.com/download) — installeur MSI et NSIS, empreintes SHA256, rapports VirusTotal
 - [Contribuer](https://dofuscompanion.com/contribute) — guide pour signaler un bug ou proposer une correction
 - [Changelog](https://dofuscompanion.com/changelog) — historique des versions
-- [Soutenir](https://dofuscompanion.com/support) — Buy Me a Coffee (paiement ponctuel), GitHub Sponsors (récurrent), star du repo (gratuit). Pas de monétisation intégrée dans l'app.
+- [Soutenir](https://dofuscompanion.com/support) — Buy Me a Coffee (paiement ponctuel), GitHub Sponsors (récurrent), star du repo (zéro euro). Pas de monétisation intégrée dans l'app à ce jour.
 
 ## Fonctionnalités principales
 
@@ -68,6 +68,6 @@ Mécaniques principales (extraites de la combat card dans l'app) :
 
 **Est-ce que c'est un bot ?** Non. Un bot joue à votre place. Dofus Companion affiche des informations par-dessus la fenêtre du jeu ; vous lisez et vous appliquez vous-même.
 
-**Est-ce que c'est gratuit ?** Oui, entièrement gratuit. Aucune publicité, aucun compte, aucune vente de données. Le développement est financé par le temps libre des auteurs. Ceux qui souhaitent soutenir peuvent offrir un café via Buy Me a Coffee (https://buymeacoffee.com/dofuscompanion) ou s'abonner via GitHub Sponsors.
+**Est-ce que c'est gratuit ?** Le téléchargement et l'usage complet de cette version (v0.5) sont gratuits, sans publicité, sans tracker et sans vente de données. Le code du cœur de l'overlay est open source sous MIT. Le développement est financé par le temps libre des auteurs. Si un jour on ajoute des fonctionnalités avancées qui demandent une infrastructure particulière (sync multi-poste, stockage cloud, features demandant un serveur dédié), elles pourraient être payantes, le cœur resterait libre. Ceux qui souhaitent soutenir peuvent offrir un café via Buy Me a Coffee (https://buymeacoffee.com/dofuscompanion) ou s'abonner via GitHub Sponsors.
 
 **Comment est-ce que ça marche en Songes Infinis ?** Alt+D ouvre l'overlay, vous tapez le nom du boss ou du monstre, sa fiche s'affiche. Ctrl+M ouvre une vue monstres dédiée pour identifier un add rapidement.
