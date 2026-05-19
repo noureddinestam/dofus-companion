@@ -6,8 +6,11 @@
     "dev": "pnpm --filter app tauri dev",
     "build": "pnpm --filter app tauri build",
     "lint": "pnpm --filter app lint && pnpm --filter scraper lint",
-    "typecheck": "pnpm --filter app typecheck && pnpm --filter scraper typecheck",
-    "test": "pnpm --filter app test && pnpm --filter scraper test",
-    "scrape": "pnpm --filter scraper scrape"
+    "typecheck": "pnpm --filter app typecheck && pnpm --filter scraper typecheck && pnpm --filter dofus-companion-web typecheck",
+    "test": "pnpm --filter app test && pnpm --filter scraper test && pnpm --filter dofus-companion-web test",
+    "scrape": "pnpm --filter scraper scrape",
+    "web:dev": "pnpm --filter dofus-companion-web dev",
+    "web:build": "pnpm --filter dofus-companion-web build",
+    "web:test": "pnpm --filter dofus-companion-web test"
   }
 }
