@@ -1,3 +1,5 @@
+[🇫🇷 FR](README.md) · [🇬🇧 EN](README.en.md)
+
 # Dofus Companion
 
 > Open source · MIT. Projet développé dans le cadre de l'engagement étudiant M2 de Noureddine S. et Elhadi L.
