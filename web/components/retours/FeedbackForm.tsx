@@ -51,8 +51,10 @@ export function FeedbackForm({ labels }: FeedbackFormProps) {
 
   function validate(): FieldErrors {
     const errs: FieldErrors = {};
-    if (subject.trim().length === 0) errs.subject = labels.errors.subjectRequired;
-    if (message.trim().length < 10) errs.message = labels.errors.messageRequired;
+    if (subject.trim().length === 0)
+      errs.subject = labels.errors.subjectRequired;
+    if (message.trim().length < 10)
+      errs.message = labels.errors.messageRequired;
     if (email.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errs.email = labels.errors.emailInvalid;
     }

@@ -14,7 +14,8 @@ import {
   pixelBasedPreset,
 } from "@react-email/components";
 
-const SITE_URL = process.env["NEXT_PUBLIC_SITE_URL"] ?? "https://dofuscompanion.com";
+const SITE_URL =
+  process.env["NEXT_PUBLIC_SITE_URL"] ?? "https://dofuscompanion.com";
 const LOGO_URL = `${SITE_URL}/brand/logo.png`;
 
 export type FeedbackType = "bug" | "suggestion" | "strategy" | "other";
@@ -26,7 +27,10 @@ const TYPE_LABELS: Record<FeedbackType, string> = {
   other: "Autre",
 };
 
-const TYPE_BADGE_COLORS: Record<FeedbackType, { bg: string; border: string; text: string }> = {
+const TYPE_BADGE_COLORS: Record<
+  FeedbackType,
+  { bg: string; border: string; text: string }
+> = {
   bug: { bg: "#3b1c1c", border: "#7d2929", text: "#fda4a4" },
   suggestion: { bg: "#1c2b3b", border: "#2e567a", text: "#a4c9fd" },
   strategy: { bg: "#3b2e1c", border: "#7d5e29", text: "#fdd8a4" },
@@ -85,9 +89,9 @@ export default function FeedbackReceivedEmail({
         }}
       >
         <Head />
-        <Body className="bg-background font-sans m-0 p-0">
+        <Body className="bg-background m-0 p-0 font-sans">
           <Preview>{previewText}</Preview>
-          <Container className="mx-auto max-w-[600px] py-10 px-6">
+          <Container className="mx-auto max-w-[600px] px-6 py-10">
             <Section className="mb-8">
               <table cellPadding={0} cellSpacing={0} border={0}>
                 <tr>
@@ -101,7 +105,7 @@ export default function FeedbackReceivedEmail({
                     />
                   </td>
                   <td style={{ verticalAlign: "middle" }}>
-                    <Text className="text-gold m-0 font-mono text-xs tracking-[0.22em] uppercase font-semibold">
+                    <Text className="text-gold m-0 font-mono text-xs font-semibold tracking-[0.22em] uppercase">
                       Dofus Companion
                     </Text>
                     <Text className="text-muted m-0 mt-1 text-[11px] tracking-wide">
@@ -121,7 +125,7 @@ export default function FeedbackReceivedEmail({
               }}
             >
               <Text
-                className="m-0 mb-3 inline-block rounded border-solid font-mono text-[11px] tracking-[0.18em] uppercase font-semibold"
+                className="m-0 mb-3 inline-block rounded border-solid font-mono text-[11px] font-semibold tracking-[0.18em] uppercase"
                 style={{
                   backgroundColor: badge.bg,
                   borderColor: badge.border,
@@ -134,16 +138,19 @@ export default function FeedbackReceivedEmail({
               </Text>
               <Heading
                 as="h1"
-                className="text-cream m-0 mb-6 text-2xl font-semibold leading-tight tracking-tight"
+                className="text-cream m-0 mb-6 text-2xl leading-tight font-semibold tracking-tight"
               >
                 {subject}
               </Heading>
 
-              <Hr className="border-solid border-border my-6 border-t-0 border-x-0 border-b" />
+              <Hr className="border-border my-6 border-x-0 border-t-0 border-b border-solid" />
 
               <table cellPadding={0} cellSpacing={0} border={0} width="100%">
                 <tr>
-                  <td width="120" style={{ verticalAlign: "top", paddingBottom: "8px" }}>
+                  <td
+                    width="120"
+                    style={{ verticalAlign: "top", paddingBottom: "8px" }}
+                  >
                     <Text className="text-muted m-0 font-mono text-[11px] tracking-[0.15em] uppercase">
                       Email
                     </Text>
@@ -152,40 +159,52 @@ export default function FeedbackReceivedEmail({
                     {email ? (
                       <Link
                         href={`mailto:${email}`}
-                        className="text-gold no-underline text-sm"
+                        className="text-gold text-sm no-underline"
                       >
                         {email}
                       </Link>
                     ) : (
-                      <Text className="text-cream/60 m-0 text-sm italic">non fourni</Text>
+                      <Text className="text-cream/60 m-0 text-sm italic">
+                        non fourni
+                      </Text>
                     )}
                   </td>
                 </tr>
                 <tr>
-                  <td width="120" style={{ verticalAlign: "top", paddingBottom: "8px" }}>
+                  <td
+                    width="120"
+                    style={{ verticalAlign: "top", paddingBottom: "8px" }}
+                  >
                     <Text className="text-muted m-0 font-mono text-[11px] tracking-[0.15em] uppercase">
                       Reçu le
                     </Text>
                   </td>
                   <td style={{ verticalAlign: "top", paddingBottom: "8px" }}>
-                    <Text className="text-cream m-0 text-sm">{formattedDate}</Text>
+                    <Text className="text-cream m-0 text-sm">
+                      {formattedDate}
+                    </Text>
                   </td>
                 </tr>
                 {ip && (
                   <tr>
-                    <td width="120" style={{ verticalAlign: "top", paddingBottom: "8px" }}>
+                    <td
+                      width="120"
+                      style={{ verticalAlign: "top", paddingBottom: "8px" }}
+                    >
                       <Text className="text-muted m-0 font-mono text-[11px] tracking-[0.15em] uppercase">
                         IP
                       </Text>
                     </td>
                     <td style={{ verticalAlign: "top", paddingBottom: "8px" }}>
-                      <Text className="text-cream/70 m-0 font-mono text-xs">{ip}</Text>
+                      <Text className="text-cream/70 m-0 font-mono text-xs">
+                        {ip}
+                      </Text>
                     </td>
                   </tr>
                 )}
               </table>
 
-              <Hr className="border-solid border-border my-6 border-t-0 border-x-0 border-b" />
+              <Hr className="border-border my-6 border-x-0 border-t-0 border-b border-solid" />
 
               <Text className="text-muted m-0 mb-2 font-mono text-[11px] tracking-[0.15em] uppercase">
                 Message
@@ -202,7 +221,7 @@ export default function FeedbackReceivedEmail({
               <Section className="mt-6 text-center">
                 <Link
                   href={`mailto:${email}?subject=Re%3A%20${encodeURIComponent(subject)}`}
-                  className="text-background bg-gold hover:bg-gold-soft inline-block rounded-md px-6 py-3 text-sm font-semibold no-underline box-border"
+                  className="text-background bg-gold hover:bg-gold-soft box-border inline-block rounded-md px-6 py-3 text-sm font-semibold no-underline"
                   style={{ backgroundColor: "#e8b547", color: "#0a0805" }}
                 >
                   Répondre à {email.split("@")[0]}

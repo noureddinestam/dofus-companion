@@ -31,14 +31,14 @@ npm run format:check  # Prettier check
 
 Copier `.env.example` → `.env.local`. Côté Vercel, définir par environnement (Preview + Production).
 
-| Clé                    | Utilité                                            | Scope   |
-| ---------------------- | -------------------------------------------------- | ------- |
-| `NEXT_PUBLIC_SITE_URL` | Metadata, OG, canonical                            | Public  |
-| `GITHUB_TOKEN`         | Rate-limit API GitHub (60→5000 req/h)              | Serveur |
-| `VIRUSTOTAL_API_KEY`   | Badge scan antivirus                               | Serveur |
-| `RESEND_API_KEY`       | Envoi du formulaire `/retours` via Resend          | Serveur |
-| `FEEDBACK_TO_EMAIL`    | Destinataire (défaut: contact@dofuscompanion.com)  | Serveur |
-| `FEEDBACK_FROM_EMAIL`  | Expéditeur (défaut: noreply@dofuscompanion.com)    | Serveur |
+| Clé                    | Utilité                                           | Scope   |
+| ---------------------- | ------------------------------------------------- | ------- |
+| `NEXT_PUBLIC_SITE_URL` | Metadata, OG, canonical                           | Public  |
+| `GITHUB_TOKEN`         | Rate-limit API GitHub (60→5000 req/h)             | Serveur |
+| `VIRUSTOTAL_API_KEY`   | Badge scan antivirus                              | Serveur |
+| `RESEND_API_KEY`       | Envoi du formulaire `/retours` via Resend         | Serveur |
+| `FEEDBACK_TO_EMAIL`    | Destinataire (défaut: contact@dofuscompanion.com) | Serveur |
+| `FEEDBACK_FROM_EMAIL`  | Expéditeur (défaut: noreply@dofuscompanion.com)   | Serveur |
 
 ## Licence
 

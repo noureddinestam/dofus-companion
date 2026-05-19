@@ -23,5 +23,6 @@ export const env = {
     "contact@dofuscompanion.com",
   ]),
   FEEDBACK_FROM_EMAIL:
-    read("FEEDBACK_FROM_EMAIL") ?? "Dofus Companion <noreply@dofuscompanion.com>",
+    read("FEEDBACK_FROM_EMAIL") ??
+    "Dofus Companion <noreply@dofuscompanion.com>",
 } as const;
