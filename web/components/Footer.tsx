@@ -21,6 +21,27 @@ const FOOTER_COLS: ReadonlyArray<{
     ],
   },
   {
+    titleKey: "code",
+    links: [
+      {
+        href: "https://github.com/noureddinestam/dofus-companion",
+        key: "github",
+        external: true,
+      },
+      {
+        href: "https://github.com/noureddinestam/dofus-companion/issues",
+        key: "issues",
+        external: true,
+      },
+      {
+        href: "https://github.com/noureddinestam/dofus-companion-releases/releases",
+        key: "releases",
+        external: true,
+      },
+      { href: "/contribute", key: "contribute" },
+    ],
+  },
+  {
     titleKey: "support",
     links: [
       { href: "/download", key: "download" },
@@ -63,7 +84,7 @@ export async function Footer() {
   return (
     <footer className="border-border/60 mt-24 border-t">
       <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-sm font-semibold">
               <LogoMark className="h-6 w-6 shrink-0" />

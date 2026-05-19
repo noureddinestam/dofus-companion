@@ -30,6 +30,9 @@ export async function Credits() {
             </li>
           ))}
         </ul>
+        <p className="text-muted mt-10 text-center font-mono text-[11px] tracking-[0.12em] uppercase">
+          {t.eduNote}
+        </p>
       </div>
     </section>
   );

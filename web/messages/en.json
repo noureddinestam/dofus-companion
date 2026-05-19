@@ -169,7 +169,8 @@
         "name": "Noureddine",
         "body": "Built the whole monorepo: landing page, Tauri overlay, bilingual scraper, update pipeline. Codes alongside Elhadi, features shipped when ready, not by quarter."
       }
-    ]
+    ],
+    "eduNote": "Open source project built as part of Noureddine S. and Elhadi L.'s M2 student engagement."
   },
   "footer": {
     "tagline": "Windows overlay for endgame. Independent.",
@@ -184,6 +185,7 @@
     ],
     "columns": {
       "project": "Project",
+      "code": "Code",
       "support": "Support",
       "legal": "Legal"
     },
@@ -193,6 +195,10 @@
       "security": "Security",
       "faq": "FAQ",
       "credits": "Credits",
+      "github": "GitHub",
+      "issues": "Issues",
+      "releases": "Releases",
+      "contribute": "Contribute",
       "download": "Download",
       "support": "Support",
       "feedback": "Feedback",
@@ -484,6 +490,37 @@
             "a": "EN is already covered. For another language, reach out via the Feedback page, we'll scope it together first."
           }
         ]
+      }
+    ]
+  },
+  "contribute": {
+    "eyebrow": "Contribute",
+    "title": "The community fixes. That's how the app improves.",
+    "subtitle": "Source code is open under MIT. A wrong strategy, a missing boss, a clunky translation: open an issue, or drop a PR. Workflow documented, templates ready. No CLA, no gatekeeping.",
+    "paths": [
+      {
+        "title": "Code",
+        "body": "Fork, PR, issue. Conventional Commits. README at the repo root for local setup.",
+        "cta": "View the repo",
+        "href": "https://github.com/noureddinestam/dofus-companion"
+      },
+      {
+        "title": "Data",
+        "body": "Fix or enrich dungeon strategies. Workflow documented in docs/DATA-CONTRIBUTING.md.",
+        "cta": "Read the guide",
+        "href": "https://github.com/noureddinestam/dofus-companion/blob/main/docs/DATA-CONTRIBUTING.md"
+      },
+      {
+        "title": "Combat cards",
+        "body": "Dedicated guide to propose or fix a combat card (unlock, dangers, tips). Format, sources, examples.",
+        "cta": "Read the guide",
+        "href": "https://github.com/noureddinestam/dofus-companion/blob/main/docs/COMBAT-CARDS-CONTRIBUTING.md"
+      },
+      {
+        "title": "Bug report",
+        "body": "Dedicated issue template with the useful info: version, OS, hotkey, repro steps.",
+        "cta": "Open an issue",
+        "href": "https://github.com/noureddinestam/dofus-companion/issues/new/choose"
       }
     ]
   },

@@ -1,6 +1,6 @@
 # Dofus Companion
 
-> Logiciel propriétaire. © 2026 Noureddine & Elhadi L. Tous droits réservés. Voir [Licence](#licence) ci-dessous.
+> Open source · MIT. Projet développé dans le cadre de l'engagement étudiant M2 de Noureddine S. et Elhadi L.
 
 Overlay Windows pour Dofus, 185 donjons factuels, **Combat Cards 4 blocs** bilingues FR/EN, lisibles en combat.
 
@@ -57,14 +57,14 @@ Sources factuelles fusionnées :
 
 **Anti-hallucination** : chaque bullet d'une Combat Card est ancrée verbatim dans le texte source Fandom (similarité ≥ 0.75). Les bullets dont l'ancre échoue sont rejetées automatiquement. Aucune bullet ne peut apparaître dans deux blocs. Les monstres sans source exploitable restent `combat: null`.
 
-## Retours et bug reports
+## Contribuer
 
-Les retours utilisateurs (bugs, suggestions, erreurs de stratégie) passent par la page **[Retours](https://dofuscompanion.com/retours)** sur le site officiel.
+Issue, PR, correction de stratégie : workflow documenté dans [`docs/DATA-CONTRIBUTING.md`](docs/DATA-CONTRIBUTING.md) et [`docs/COMBAT-CARDS-CONTRIBUTING.md`](docs/COMBAT-CARDS-CONTRIBUTING.md). Pas de CLA, pas de gatekeeping. Convention Commits côté commits.
+
+Pour les retours non-code (suggestions, bugs côté utilisateur sans repro technique), il y a aussi la page **[Retours](https://dofuscompanion.com/retours)** sur le site officiel.
 
 ## Licence
 
-**Logiciel propriétaire.** Copyright (c) 2026 Noureddine & Elhadi L. Tous droits réservés.
-
-Toute reproduction, modification, redistribution, décompilation ou rétro-ingénierie sans autorisation explicite est interdite. Les données de stratégies (combat cards, fiches monstres), marques, logos et éléments graphiques de Dofus Companion restent la propriété du projet.
+[MIT](LICENSE). Copyright (c) 2026 Noureddine Stamboul & Elhadi Latreche.
 
 Dofus Companion est une application **non-officielle**. Dofus® est une marque déposée d'Ankama Games. Ce projet n'est ni approuvé ni affilié à Ankama.

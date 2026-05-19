@@ -19,13 +19,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/contribute",
-        destination: "/retours",
-        permanent: true,
-      },
-      {
         source: "/contribuer",
-        destination: "/retours",
+        destination: "/contribute",
         permanent: true,
       },
     ];
