@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { env } from "@/lib/env";
 import { rateLimit } from "@/lib/rate-limit";
+import FeedbackReceivedEmail from "@/emails/feedback-received";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -76,22 +77,25 @@ export async function POST(req: Request) {
 
   const replyTo = email && email.length > 0 ? email : undefined;
   const emailSubject = `[Retours · ${type}] ${subject}`.slice(0, 200);
-  const textBody = [
-    `Type: ${type}`,
-    `Sujet: ${subject}`,
-    `Email: ${replyTo ?? "(non fourni)"}`,
-    `IP: ${ip}`,
-    "",
-    "Message:",
-    message,
-  ].join("\n");
+  const receivedAt = new Date().toLocaleString("fr-FR", {
+    dateStyle: "long",
+    timeStyle: "short",
+    timeZone: "Europe/Paris",
+  });
 
   try {
     const result = await resend.emails.send({
       from: env.FEEDBACK_FROM_EMAIL,
       to: env.FEEDBACK_TO_EMAIL,
       subject: emailSubject,
-      text: textBody,
+      react: FeedbackReceivedEmail({
+        type,
+        subject,
+        ...(replyTo ? { email: replyTo } : {}),
+        message,
+        ip,
+        receivedAt,
+      }),
       ...(replyTo ? { replyTo } : {}),
     });
     if (result.error) {
