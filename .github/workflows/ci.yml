@@ -1,10 +1,18 @@
-name: CI
+name: CI · App
 
 on:
   push:
     branches: [main, develop]
+    paths-ignore:
+      - 'web/**'
+      - '.github/workflows/ci-web.yml'
+      - '.github/workflows/update-release-fallback.yml'
   pull_request:
     branches: [main]
+    paths-ignore:
+      - 'web/**'
+      - '.github/workflows/ci-web.yml'
+      - '.github/workflows/update-release-fallback.yml'
 
 jobs:
   lint-typecheck:
@@ -20,12 +28,15 @@ jobs:
           cache: pnpm
       # --ignore-scripts évite le postinstall de @tauri-apps/cli qui appelle cargo
       - run: pnpm install --frozen-lockfile --ignore-scripts
-      - run: pnpm typecheck
-      - run: pnpm lint
+      - run: pnpm --filter app typecheck
+      - run: pnpm --filter scraper typecheck
+      - run: pnpm --filter app lint
+      - run: pnpm --filter scraper lint
 
   build-windows:
     runs-on: windows-latest
     needs: lint-typecheck
+    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
