@@ -1,0 +1,116 @@
+import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
+import { KerubimUnlock } from "@/components/easter-eggs/KerubimUnlock";
+import { env } from "@/lib/env";
+import { getLocale, getMessages } from "@/lib/messages";
+import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const SITE_URL = env.NEXT_PUBLIC_SITE_URL;
+const DESCRIPTION =
+  "Overlay Windows indépendant pour Dofus : 185 donjons, stratégies bilingues FR/EN, lisible en 10 secondes. Pas d'Alt+Tab, pas de pub, pas de tracking.";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Dofus Companion, l'overlay Dofus qui tient dans Alt+D",
+    template: "%s · Dofus Companion",
+  },
+  description: DESCRIPTION,
+  applicationName: "Dofus Companion",
+  authors: [{ name: "Noureddine" }, { name: "Elhadi L." }],
+  creator: "Noureddine & Elhadi L.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "Dofus Companion",
+    title: "Dofus Companion, l'overlay Dofus qui tient dans Alt+D",
+    description: DESCRIPTION,
+    url: SITE_URL,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dofus Companion, l'overlay Dofus qui tient dans Alt+D",
+    description: DESCRIPTION,
+  },
+  alternates: {
+    canonical: "/",
+    languages: {
+      fr: "/",
+      en: "/",
+      "x-default": "/",
+    },
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0c0e12",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default async function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  const [locale, m] = await Promise.all([getLocale(), getMessages()]);
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Dofus Companion",
+    url: SITE_URL,
+    logo: `${SITE_URL}/icon.svg`,
+    founder: [
+      {
+        "@type": "Person",
+        name: "Noureddine",
+        jobTitle: "Co-fondateur & co-développeur",
+      },
+      {
+        "@type": "Person",
+        name: "Elhadi L.",
+        jobTitle: "Co-fondateur & co-développeur",
+      },
+    ],
+  };
+  return (
+    <html
+      lang={locale}
+      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+    >
+      <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <Nav />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <KerubimUnlock
+          alt={m.kerubim.alt}
+          firstUnlock={m.kerubim.firstUnlock}
+          reUnlock={m.kerubim.reUnlock}
+        />
+      </body>
+    </html>
+  );
+}

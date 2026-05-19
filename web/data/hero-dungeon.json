@@ -1,0 +1,62 @@
+{
+  "_note": "Baked snapshot from the v0.5 dataset, 4-block Combat Card for Transporteur de Sylargh (Laboratoire de Sylargh). Kept in sync manually so the hero demo never depends on a live fetch. Every bullet below must appear verbatim in the parent dataset for the 'zero hallucination' promise to hold.",
+  "name": { "fr": "Transporteur de Sylargh", "en": "Sylargh's Carrier" },
+  "slug": "laboratoire-de-sylargh",
+  "levelRange": [180, 210],
+  "monsterCount": 5,
+  "combat": {
+    "unlock": [
+      {
+        "text": {
+          "fr": "Tuer les 3 zombies avant d'attaquer Sylargh",
+          "en": "Kill the 3 zombies before attacking Sylargh"
+        },
+        "severity": "critical",
+        "mechanicType": "chain-summon"
+      }
+    ],
+    "constraints": [
+      {
+        "text": {
+          "fr": "Rester sous 90 % PV pour éviter l'état pacifique",
+          "en": "Stay below 90% HP to avoid the pacifist state"
+        },
+        "severity": "danger",
+        "mechanicType": "debuffer"
+      }
+    ],
+    "dangers": [
+      {
+        "text": {
+          "fr": "Zombie tué déclenche 1000 dégâts feu sur zone 5",
+          "en": "Dead zombie triggers 1000 fire damage in a 5-cell area"
+        },
+        "severity": "critical",
+        "mechanicType": null
+      },
+      {
+        "text": {
+          "fr": "Morts ressuscitent à 10 % PV avec buff +300 dégâts 1 tour",
+          "en": "Dead monsters revive at 10% HP with +300 dmg buff for 1 turn"
+        },
+        "severity": "danger",
+        "mechanicType": "reviver"
+      }
+    ],
+    "tips": [
+      {
+        "text": {
+          "fr": "Tuer tous les monstres en même temps pour couper la chaîne de résurrections",
+          "en": "Kill all monsters at once to break the chain of revives"
+        },
+        "severity": null,
+        "mechanicType": null
+      }
+    ]
+  },
+  "provenance": {
+    "kind": "llm-grounded",
+    "baseSource": "fandom-en",
+    "baseSourceUrl": "https://dofuswiki.fandom.com/wiki/Sylargh"
+  }
+}

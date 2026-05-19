@@ -1,0 +1,770 @@
+{
+  "nav": {
+    "companion": "Companion",
+    "features": "Features",
+    "changelog": "Changelog",
+    "faq": "FAQ",
+    "support": "Support",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "hero": {
+    "eyebrow": "Built for Infinite Dreams · Windows · Independent",
+    "titleLead": "The Dofus overlay that fits behind",
+    "titleAccent": "Alt+D",
+    "titleTrail": ".",
+    "subtitle": "{count} endgame dungeons, 800+ indexed monsters. Three-block cards readable between two turns. Offline, no memory reading.",
+    "dungeonCount": "185",
+    "dungeonHoverHint": "coverage still expanding",
+    "dungeonHoverCta": "Explore",
+    "ctaPrimaryPrefix": "Download for Windows",
+    "ctaPrimaryReveal": "Yes, it's the same file.",
+    "ctaSecondary": "Take the tour",
+    "microCopy": "Windows 10/11 · Works with Dofus 2.x and 3.x · Tauri-signed, VirusTotal-verified",
+    "heroImageAlt": "Dofus Companion open on Klime's Infinite Dreams strategy, three-block combat card: Unlock, Dangers, Tips"
+  },
+  "mockOverlay": {
+    "hotkey": "Alt+D",
+    "searchValue": "transporter",
+    "searchCounter": "3 · 15 · 185",
+    "metaTemplate": "Lv. {min}–{max} · {count} monsters + boss",
+    "sourceLabel": "Source",
+    "combatBlocks": {
+      "unlock": "UNLOCK",
+      "constraints": "CONSTRAINTS",
+      "dangers": "DANGERS",
+      "tips": "TIPS"
+    },
+    "keyhintBack": "Backspace Back",
+    "keyhintMonster": "Ctrl+M Monsters",
+    "keyhintClose": "Esc Close"
+  },
+  "valueProps": {
+    "sectionTitle": "Three guarantees before your first run",
+    "items": [
+      {
+        "icon": "shield",
+        "title": "No risk for your account",
+        "body": "Doesn't read game memory. Doesn't simulate any input. Doesn't touch the Dofus client. Tauri-signed, VirusTotal-verified."
+      },
+      {
+        "icon": "bolt",
+        "title": "Readable in 10 seconds",
+        "body": "Alt+D, window open in 150 ms. Three fixed blocks: what to unlock, what kills you, what helps. You scan, you close, you play."
+      },
+      {
+        "icon": "target",
+        "title": "Offline, no server",
+        "body": "No tracker, no telemetry, no connection required. The overlay reads local JSON files, shows a window, that's it. This release is free to download and works offline."
+      }
+    ]
+  },
+  "features": {
+    "sectionEyebrow": "Features",
+    "sectionTitle": "Everything the overlay brings you",
+    "cta": "See the Companion in detail",
+    "items": [
+      {
+        "icon": "search",
+        "anchor": "search",
+        "title": "Instant search",
+        "body": "Type a few letters, arrow keys to navigate, Enter to open. 185 dungeons, 800+ monsters indexed."
+      },
+      {
+        "icon": "target",
+        "anchor": "combat-cards",
+        "title": "Combat cards, 3 fixed blocks",
+        "body": "Unlock, what kills you, what helps. Readable between two turns, sourced from Fandom + DofusDB, nothing invented."
+      },
+      {
+        "icon": "shield",
+        "anchor": "monsters",
+        "title": "Dedicated monsters view",
+        "body": "Ctrl+M, type a name, its card opens. Designed to identify an Infinite Dreams add in 3 seconds."
+      },
+      {
+        "icon": "cog",
+        "anchor": "settings",
+        "title": "Fine-grained settings",
+        "body": "Opacity, density, parchment or dark theme, FR/EN language. Every toggle applies live."
+      },
+      {
+        "icon": "layers",
+        "anchor": "density",
+        "title": "Compact mode",
+        "body": "For 13-inch screens or setups where Dofus already fills the window."
+      },
+      {
+        "icon": "keyboard",
+        "anchor": "shortcuts",
+        "title": "Keyboard-first",
+        "body": "Nine shortcuts cover every action. Alt+D, Ctrl+M, Ctrl+L, and the full list inside settings."
+      }
+    ]
+  },
+  "howItWorks": {
+    "eyebrow": "How it works",
+    "title": "Three steps, zero friction",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Download the installer",
+        "body": "3.2 MB, Tauri-signed, VirusTotal-verified. Official download from dofuscompanion.com."
+      },
+      {
+        "n": "02",
+        "title": "Run the setup",
+        "body": "If Windows SmartScreen complains, that's normal, the Security page explains why. SHA256 hash shown for the paranoid (rightfully so)."
+      },
+      {
+        "n": "03",
+        "title": "Alt+D in combat",
+        "body": "No account. No server ping. The app reads local JSON files, shows a window, that's it."
+      }
+    ]
+  },
+  "roadmap": {
+    "eyebrow": "Roadmap",
+    "title": "Public, versioned",
+    "subtitle": "The most-requested items ship first. Everything is tracked.",
+    "cta": "View the roadmap",
+    "columns": [
+      {
+        "label": "Shipped",
+        "version": "v0.5.0",
+        "body": "4-block Combat Cards (141 bosses + 129 monsters), dedicated monster view Ctrl+M, search by monster name."
+      },
+      {
+        "label": "Next",
+        "version": "v0.6",
+        "body": "Filter by mechanic archetype, enriched cards, broader coverage on level 200 Expeditions."
+      },
+      {
+        "label": "Player requests",
+        "version": "Open",
+        "body": "Suggest, discuss. Popular requests move up, via the Feedback page."
+      }
+    ]
+  },
+  "support": {
+    "eyebrow": "Support",
+    "title": "We put the hours in so this exists.",
+    "body": "Free to download, zero tracker. If the tool saves you runs, a coffee or a sponsor keeps the time we put in going.",
+    "ctaCoffee": "Buy us a coffee",
+    "coffeeHref": "https://buymeacoffee.com/dofuscompanion",
+    "ctaSponsor": "GitHub Sponsors",
+    "microCopy": "Thank you."
+  },
+  "credits": {
+    "eyebrow": "Credits",
+    "title": "The team behind Dofus Companion",
+    "items": [
+      {
+        "role": "Co-founder & co-developer",
+        "name": "Elhadi L.",
+        "body": "Dofusian since 2010. Defined exactly what an endgame player wants to read mid-fight, and, more importantly, what they don't. Co-develops the overlay and the cards. The \"four fixed blocks, not a Wikipedia page\" logic comes straight from his Infinite Dreams nights."
+      },
+      {
+        "role": "Co-founder & co-developer",
+        "name": "Noureddine",
+        "body": "Built the whole monorepo: landing page, Tauri overlay, bilingual scraper, update pipeline. Codes alongside Elhadi, features shipped when ready, not by quarter."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Windows overlay for endgame. Independent.",
+    "buildLines": [
+      "launched between two turns",
+      "built with 4 AP and 3 MP",
+      "Brokle not included",
+      "no Ecaflip was betrayed in this build",
+      "no tax collector parked here",
+      "this line changes, the app not so much",
+      "build {hash}, for the conspiracists"
+    ],
+    "columns": {
+      "project": "Project",
+      "support": "Support",
+      "legal": "Legal"
+    },
+    "links": {
+      "changelog": "Changelog",
+      "roadmap": "Roadmap",
+      "security": "Security",
+      "faq": "FAQ",
+      "credits": "Credits",
+      "download": "Download",
+      "support": "Support",
+      "feedback": "Feedback",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "licenses": "OSS licenses"
+    }
+  },
+  "disclaimer": {
+    "body": "Dofus Companion is an <strong>unofficial</strong> application built by Noureddine &amp; Elhadi L. <strong>Dofus®</strong> is a registered trademark of <strong>Ankama Games</strong>. This project is neither endorsed by nor affiliated with Ankama. No memory reading, no game automation: this is an information overlay only."
+  },
+  "kerubim": {
+    "alt": "Kerubim, Dofus' old merchant cat",
+    "firstUnlock": "Well, well. A curious one. I was right to keep that rune.",
+    "reUnlock": "Yes, yes, I saw you the first time."
+  },
+  "notFound": {
+    "code": "404 · This page is invisible.",
+    "title": "A Sram must have stolen it.",
+    "body": "Maybe it existed, maybe it never did. In the meantime:",
+    "back": "Home",
+    "changelog": "Changelog",
+    "faq": "FAQ",
+    "meta": "If you expected an easter egg here, you lost. Or won."
+  },
+  "download": {
+    "eyebrow": "Download",
+    "title": "Dofus Companion for Windows",
+    "subtitle": "Tauri-signed, VirusTotal-verified, no tracker.",
+    "os": {
+      "windows": {
+        "label": "Windows detected",
+        "body": "The NSIS installer below is recommended."
+      },
+      "mac": {
+        "label": "macOS detected",
+        "body": "Not yet supported, a Mac version is planned."
+      },
+      "linux": {
+        "label": "Linux detected",
+        "body": "Not yet supported, a Linux version will come after Mac."
+      },
+      "mobile": {
+        "label": "Phone detected",
+        "body": "The binaries are for Windows. Download from your PC."
+      },
+      "unknown": {
+        "label": "Download",
+        "body": "Pick the format that fits your use case."
+      }
+    },
+    "cards": {
+      "nsis": {
+        "title": "NSIS installer",
+        "tag": "Recommended",
+        "body": "Built-in auto-update, quick install, clean uninstall.",
+        "microWeight": "3.2 MB. Lighter than a level 50 armor set."
+      },
+      "msi": {
+        "title": "MSI package",
+        "tag": "Admins",
+        "body": "For GPO deployment, Chocolatey, MDM.",
+        "microWeight": "4.6 MB. Deployable via GPO or Chocolatey."
+      },
+      "download": "Download"
+    },
+    "smartScreenQuip": "Windows looks at your executable the way a Sram looks at a tax collector: suspicious. Here's how to tell it we're here to help.",
+    "verifyMicroIntro": "For the truly paranoid, and they're right to exist.",
+    "sha256": {
+      "label": "SHA256",
+      "pending": "Will be published with the next release (SHA256SUMS.txt)",
+      "copy": "Copy",
+      "copied": "Copied"
+    },
+    "verify": {
+      "title": "Verify file integrity (PowerShell)",
+      "body": "Open PowerShell in the download folder and compare the hash:",
+      "commandTemplate": "Get-FileHash .\\{asset} -Algorithm SHA256"
+    },
+    "notes": {
+      "title": "Release notes",
+      "read": "Read the full notes"
+    },
+    "previous": {
+      "title": "Other versions",
+      "body": "Every release and its assets are archived on the public releases channel.",
+      "link": "See all releases"
+    }
+  },
+  "smartScreen": {
+    "eyebrow": "Windows SmartScreen",
+    "title": "If Windows shows a warning, here's why and what to do",
+    "body": "The app is signed with the Tauri signature (for the auto-updater), but without a Windows EV certificate. Until the app has enough reputation-building downloads, SmartScreen may show \"Windows protected your PC\".",
+    "steps": ["Click \"More info\"", "Click \"Run anyway\""],
+    "microCopy": "You can verify the SHA256 hash before running, from the PowerShell block below.",
+    "moreLink": "Learn more about SmartScreen"
+  },
+  "virusTotal": {
+    "label": "VirusTotal",
+    "clean": "0 detections",
+    "flagged": "detections",
+    "pending": "Not yet analyzed",
+    "unavailable": "Scan unavailable",
+    "reportLink": "View the report",
+    "engines": "antivirus engines",
+    "notSubmitted": "The file has not been submitted to VirusTotal yet."
+  },
+  "security": {
+    "eyebrow": "Security",
+    "title": "What comes in, what goes out, what stays on your disk.",
+    "subtitle": "The app in 3 honest lists. Green, what it does. Red, what it doesn't. Yellow, what Windows will say anyway.",
+    "sections": {
+      "behavior": {
+        "title": "What the app does and doesn't",
+        "positive": {
+          "heading": "What it does",
+          "items": [
+            "Reads local JSON files (the dungeon data).",
+            "Displays a window on top of Dofus.",
+            "Checks the releases channel for auto-update (HTTPS, Ed25519 signature)."
+          ]
+        },
+        "negative": {
+          "heading": "What it doesn't",
+          "items": [
+            "No memory reading of the Dofus process (Ankama ToS-compliant).",
+            "No keyboard or mouse input simulation (not a bot).",
+            "No Dofus network packet reading.",
+            "No telemetry, no analytics, no tracking.",
+            "No personal data sent out."
+          ]
+        }
+      },
+      "fingerprints": {
+        "title": "SHA256 fingerprints",
+        "body": "Asset SHA256 hashes will be published in an upcoming release (SHA256SUMS.txt attached). In the meantime, you can verify locally from PowerShell."
+      },
+      "virusTotal": {
+        "title": "VirusTotal",
+        "body": "Each asset is submitted to VirusTotal (70+ antivirus engines). The badge below shows the live result and links to the full report. An independent installer without an EV certificate may occasionally trigger a false positive on a heuristic (machine learning) engine, this does not affect binary integrity, and clears with project reputation or an EV certificate."
+      },
+      "smartScreen": {
+        "title": "Windows SmartScreen",
+        "body": "SmartScreen blocks executables without enough reputation. The app is Tauri-signed but lacks a Windows EV certificate. The warning will disappear with enough downloads or via an EV certificate.",
+        "alt": ""
+      },
+      "guarantees": {
+        "title": "Technical guarantees",
+        "items": [
+          {
+            "label": "Tauri signature",
+            "body": "Each release is signed with the project's Ed25519 key, verified by the auto-updater."
+          },
+          {
+            "label": "SHA256 fingerprint",
+            "body": "Hash published with each release, verifiable in PowerShell before running."
+          },
+          {
+            "label": "VirusTotal",
+            "body": "Submitted on every release. Live badge on the Download page."
+          }
+        ]
+      },
+      "report": {
+        "title": "Report a vulnerability",
+        "body": "For any sensitive security report, reach out via the Feedback page with \"security\" in the subject. Response within 72h, coordinated fix and disclosure.",
+        "cta": "Feedback page",
+        "href": "/retours"
+      }
+    }
+  },
+  "changelog": {
+    "eyebrow": "Changelog",
+    "title": "Release history",
+    "subtitle": "Every version. Clickable Git hashes. Nothing hidden, nothing glorified.",
+    "empty": "No releases published yet.",
+    "viewNotes": "Full notes",
+    "downloads": "Downloads",
+    "unavailable": "Couldn't load releases, try again later.",
+    "fullHistory": "See all releases"
+  },
+  "faq": {
+    "meta": {
+      "title": "FAQ, Klime strategy, Infinite Dreams, ban risk",
+      "description": "Answers about Dofus Companion: Klime strategy for Infinite Dreams, ban risk, Windows install, privacy, uninstall. Independent overlay, no memory reading, 0 tracker."
+    },
+    "eyebrow": "FAQ",
+    "title": "Frequently asked questions",
+    "subtitle": "Infinite Dreams, legal, installation, usage, data, feedback.",
+    "categories": [
+      {
+        "title": "Infinite Dreams and boss strategies",
+        "items": [
+          {
+            "q": "How do you beat Klime in Infinite Dreams?",
+            "a": "Klime is a level 220 boss from Klime's Private Rooms, a recurring encounter in Infinite Dreams. Core mechanic: every character must end their turn on a white glyph, otherwise pacified state for 1 turn (or instant death in the Bravery expedition). To remove Klime's invulnerability, push an ally, a monster or a summon onto him. Wait until the start of turn 3 minimum before trying. Klime and the monsters generate a white glyph on their starting cell, lasting 2 turns. Tip: killing monsters before their turn delays the glyph mechanic. In the Daring expedition, position swap is limited to 10 times per turn per enemy. Full cards available inside Dofus Companion (Alt+D, type \"Klime\")."
+          },
+          {
+            "q": "How does Dofus Companion help in Infinite Dreams?",
+            "a": "Infinite Dreams drops you into random rooms with bosses and adds from different dungeons. You can't memorize all of it. Dofus Companion serves two purposes in Infinite Dreams: pull up a boss card (Klime, Sylargh, Missiz Frizz, Nileza, Count Harebourg, Merkator, Protozorreur, and more) between turns to re-read their strategy (Alt+D, type the name, arrows, Enter), or open the dedicated monsters view (Ctrl+M) to identify an unknown add in three keystrokes. 185 endgame dungeons covered, 800+ monsters indexed with weak element, HP and parent dungeon. The overlay stays above Dofus at all times, no Alt+Tab, no loss of focus."
+          },
+          {
+            "q": "Which other Infinite Dreams bosses are covered?",
+            "a": "Every level 180+ boss that appears in Infinite Dreams has a card: Sylargh (Transporter), Missiz Frizz (Frostforge), Nileza (Laboratory), Count Harebourg (Count's Dungeon), Merkator (Aquadome), King Nidas (Palace), Queen of Thieves (Dark Court Throne), Protozorreur (Whale's Belly), Vortex (Eye), Chaloeil (Challenge), Captain Meno (Ship), Koutoulou Larva (Temple), and more. The full list is inside the app's search."
+          }
+        ]
+      },
+      {
+        "title": "Did Ankama sign off on this?",
+        "items": [
+          {
+            "q": "Does Ankama allow this tool?",
+            "a": "Dofus Companion respects Ankama's ToS: no process memory reading, no keyboard/mouse automation, no network packet reading. It's an information overlay, you search, you read, you play. Not affiliated with Ankama, not endorsed by Ankama."
+          },
+          {
+            "q": "Risk of ban?",
+            "a": "The app doesn't interact with Dofus. No known ban cases linked to an information overlay. That said, Ankama is the sole judge, at your own risk."
+          },
+          {
+            "q": "Difference from a bot?",
+            "a": "A bot plays for you (macros, automation, memory reading). Dofus Companion displays strategies on top of the game window. You read, you apply them yourself."
+          }
+        ]
+      },
+      {
+        "title": "Setup, the 3 things that can go wrong",
+        "items": [
+          {
+            "q": "Windows SmartScreen blocks the setup. What now?",
+            "a": "That's normal, the app doesn't have a Windows EV certificate yet. Click \"More info\" then \"Run anyway\". You can verify the SHA256 hash first, from the /download page."
+          },
+          {
+            "q": "My antivirus flags a false positive",
+            "a": "Check the file's SHA256 on /download and compare with the VirusTotal report. If 0 detections on VirusTotal, it's a local false positive, report it to your antivirus vendor."
+          },
+          {
+            "q": "Where is my data stored?",
+            "a": "In %APPDATA%\\Dofus Companion (Windows). Local JSON data only, nothing is sent to a server."
+          }
+        ]
+      },
+      {
+        "title": "When Alt+D doesn't respond",
+        "items": [
+          {
+            "q": "The Alt+D hotkey doesn't work",
+            "a": "Check that no other app (Discord, AutoHotkey, OBS) is using the same shortcut. You can change the hotkey in the app's settings."
+          },
+          {
+            "q": "The overlay disappears in exclusive fullscreen",
+            "a": "Dofus in exclusive fullscreen hides Windows overlays. Switch Dofus to \"Borderless window\" in the game's graphics settings."
+          },
+          {
+            "q": "How do I change the shortcut?",
+            "a": "Right-click the app icon → Settings → Global shortcut. Any free combination works."
+          }
+        ]
+      },
+      {
+        "title": "Privacy, simple, we collect nothing",
+        "items": [
+          {
+            "q": "Where is my data sent?",
+            "a": "Nowhere. The app reads local JSON files and checks the releases channel for auto-update (HTTPS + Ed25519 signature). No telemetry, no analytics, no tracking."
+          },
+          {
+            "q": "How do I uninstall cleanly?",
+            "a": "Windows Control Panel → Apps → Dofus Companion → Uninstall. The NSIS installer removes the data folder. For MSI: same thing via Apps & features."
+          },
+          {
+            "q": "Are the strategies up to date?",
+            "a": "Continuously updated with each release. Every sentence carries a provenance badge (official, community, LLM + citation). You can report an error via the Feedback page."
+          },
+          {
+            "q": "Will the project always be free?",
+            "a": "On this release, the download and full usage are free. If we ever add advanced features that need dedicated infrastructure (multi-device sync, cloud storage, server-backed features), those additions could become paid. The base usage stays free."
+          }
+        ]
+      },
+      {
+        "title": "Found a mistake? Good.",
+        "items": [
+          {
+            "q": "How do I report a mistake in a strategy?",
+            "a": "Open the Feedback page, type = bug or suggestion, with the boss name and what's incorrect. We read everything."
+          },
+          {
+            "q": "How do I translate or add a language?",
+            "a": "EN is already covered. For another language, reach out via the Feedback page, we'll scope it together first."
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "eyebrow": "Feedback",
+    "title": "Help us improve the Companion.",
+    "subtitle": "A wrong strategy, a missing boss, a suggestion, a bug? Send a message. No account, no tracker, just a note that lands in our inbox.",
+    "form": {
+      "typeLabel": "Type",
+      "typeOptions": {
+        "bug": "Bug",
+        "suggestion": "Suggestion",
+        "strategy": "Strategy error",
+        "other": "Other"
+      },
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Klime, white glyph in Bravery, for example",
+      "emailLabel": "Your email (optional)",
+      "emailPlaceholder": "So we can reply if needed",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Describe the bug, suggestion, or strategy to fix. The more specific, the more useful.",
+      "submit": "Send",
+      "submitting": "Sending…",
+      "success": "Message received, thanks. We'll get back to you if needed.",
+      "errors": {
+        "generic": "Failed to send, try again in a minute.",
+        "rateLimited": "You've sent multiple messages, wait a few minutes.",
+        "validation": "Check the fields, some are incomplete or invalid.",
+        "subjectRequired": "Subject required",
+        "messageRequired": "Message required (10 characters minimum)",
+        "emailInvalid": "Invalid email"
+      },
+      "honeypotLabel": "Leave this field empty"
+    },
+    "alternative": {
+      "title": "Prefer a direct channel?",
+      "body": "For sensitive security topics, put \"security\" in the subject so we treat it as priority."
+    }
+  },
+  "supportPage": {
+    "eyebrow": "Support",
+    "title": "Here's how to back the time we put in.",
+    "subtitle": "Dofus Companion is built on spare time by two people. If the tool saves you runs, here's how to support the project.",
+    "tiers": [
+      {
+        "tag": "One-off",
+        "title": "Buy us a coffee",
+        "body": "One-time payment via Buy Me a Coffee, starting at 3 €. Fast, no account to create, no recurrence. The most direct way to say thanks.",
+        "ctaLabel": "Buy Me a Coffee",
+        "href": "https://buymeacoffee.com/dofuscompanion",
+        "icon": "coffee",
+        "variant": "primary",
+        "bmcButtonText": "Buy me a coffee",
+        "qrImage": "/support/buymeacoffee-qr.png",
+        "qrLabel": "Or scan the QR from your phone"
+      },
+      {
+        "tag": "Recurring",
+        "title": "GitHub Sponsors",
+        "body": "Monthly, via your GitHub account. Helps fund ongoing development and project running costs.",
+        "ctaLabel": "Sponsor the project",
+        "href": "https://github.com/sponsors/noureddinestam",
+        "icon": "heart",
+        "variant": "secondary"
+      }
+    ],
+    "transparency": {
+      "title": "Where does the support actually go?",
+      "body": "Donations cover dev time and the technical costs of the project.",
+      "microCopy": "No undisclosed paid sponsor."
+    },
+    "noPerks": {
+      "title": "What won't change",
+      "body": "Boss and monster strategies, whether generated or improved in-house, stay accessible with no paywall.\n\nOn this release, a sponsor and a free user see the same app. A one-off donation funds the project, not a status."
+    },
+    "alternatives": {
+      "title": "Can't donate? Do this instead.",
+      "items": [
+        "Tell your guild about the app, the best marketing there is.",
+        "Report a bug via the Feedback page when you hit one.",
+        "Suggest a strategy fix via the Feedback page, that's valuable.",
+        "Keep us bookmarked on Buy Me a Coffee if you come back often."
+      ]
+    }
+  },
+  "legal": {
+    "privacy": {
+      "eyebrow": "Legal",
+      "title": "Privacy policy",
+      "sections": [
+        {
+          "heading": "What data do we collect?",
+          "body": "THE LOCAL APP\n\nThe overlay installed on your machine doesn't collect, store, or send any personal data. Strategy JSON files are read only from your local disk. Your settings (language, opacity, shortcuts) are stored in %APPDATA%\\Dofus Companion and never leave your machine.\n\nTHE WEB SITE\n\nThis site sets no cookies, embeds no tracker, runs no analytics. Standard hosting access logs from Vercel, IP, user-agent, path, HTTP status, are retained per Vercel's policy. We neither consult nor export them.\n\nFEEDBACK FORM\n\nIf you use the Feedback page, the information you send (subject, message, and email if provided) reaches us by email via Resend. It is not stored in a database, not shared, and is used only to reply to you.\n\nFINANCIAL SUPPORT (OPTIONAL)\n\nIf you choose to support the project via Buy Me a Coffee or GitHub Sponsors, those platforms handle the payment under their own privacy policies:\n\n- Buy Me a Coffee, privacy policy: https://www.buymeacoffee.com/privacy-policy\n- GitHub, privacy policy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement\n\nWe only receive the donation amount and, if you provide one, the display name you chose. No payment information (card, address) is shared with us."
+        },
+        {
+          "heading": "Contact",
+          "body": "For any privacy-related question, reach us via the Feedback page.\n\nUnder the GDPR, you have the right to access, rectify, or delete the data concerning you. Since the app collects nothing, those rights apply only to data handled by the donation platforms listed above (through their own channels).\n\nLast updated: 2026-05-19"
+        }
+      ]
+    },
+    "terms": {
+      "eyebrow": "Legal",
+      "title": "Terms of use",
+      "sections": [
+        {
+          "heading": "License",
+          "body": "The Dofus Companion application (Windows overlay) is proprietary software. Any unauthorized reproduction, modification, redistribution, or reverse-engineering is forbidden. Strategy data (combat cards, monster sheets), trademarks, logos, and graphical assets remain the property of the project. The source code of this website itself is available under the MIT license."
+        },
+        {
+          "heading": "Warranty",
+          "body": "The software is provided \"as is\", without warranty of any kind. Use at your own risk."
+        },
+        {
+          "heading": "Dofus trademark",
+          "body": "Dofus® is a registered trademark of Ankama Games. Dofus Companion is an unofficial application built by Noureddine & Elhadi L. This project is neither endorsed by nor affiliated with Ankama."
+        },
+        {
+          "heading": "Changes to these terms",
+          "body": "These terms may evolve with the project. Any significant change will be announced in the site changelog, and the last-updated date below will be refreshed accordingly."
+        },
+        {
+          "heading": "Governing law",
+          "body": "These terms are governed by French law. Any dispute falls under the jurisdiction of the courts of Paris, France."
+        },
+        {
+          "heading": "Contact",
+          "body": "For any legal question, reach us via the Feedback page with \"legal\" in the subject.\n\nLast updated: 2026-05-19"
+        }
+      ]
+    },
+    "licenses": {
+      "eyebrow": "Legal",
+      "title": "Dependency licenses",
+      "body": "Dofus Companion relies on third-party projects. Major dependencies and their licenses:",
+      "items": [
+        {
+          "name": "Next.js",
+          "license": "MIT",
+          "href": "https://github.com/vercel/next.js"
+        },
+        {
+          "name": "React",
+          "license": "MIT",
+          "href": "https://github.com/facebook/react"
+        },
+        {
+          "name": "Tailwind CSS",
+          "license": "MIT",
+          "href": "https://github.com/tailwindlabs/tailwindcss"
+        },
+        {
+          "name": "Radix UI",
+          "license": "MIT",
+          "href": "https://github.com/radix-ui/primitives"
+        },
+        {
+          "name": "Framer Motion",
+          "license": "MIT",
+          "href": "https://github.com/framer/motion"
+        },
+        {
+          "name": "Lucide",
+          "license": "ISC",
+          "href": "https://github.com/lucide-icons/lucide"
+        },
+        {
+          "name": "next-intl",
+          "license": "MIT",
+          "href": "https://github.com/amannn/next-intl"
+        },
+        {
+          "name": "Tauri",
+          "license": "Apache-2.0 / MIT",
+          "href": "https://github.com/tauri-apps/tauri"
+        }
+      ],
+      "footer": "Full list available on request via the Feedback page."
+    }
+  },
+  "decouvre": {
+    "meta": {
+      "title": "Discover the Companion: Klime strategy and Infinite Dreams",
+      "description": "Full tour of Dofus Companion. Concrete example: Klime strategy (Klime's Private Rooms, Infinite Dreams). Instant search, 3-block combat cards, dedicated monsters view, 185 endgame dungeons. Bilingual FR/EN, offline, no tracker."
+    },
+    "hero": {
+      "eyebrow": "Companion tour",
+      "title": "Your dungeon tome, opened on the right page.",
+      "subtitle": "Here's what the overlay lays over your screen. Every capture is the real app.",
+      "backToHome": "← Back to home"
+    },
+    "toggle": {
+      "ariaLabel": "Theme of the captures below",
+      "prefix": "Preview",
+      "dark": "Dark",
+      "light": "Parchment"
+    },
+    "nav": {
+      "label": "Features",
+      "search": "Search",
+      "combatCards": "Combat cards",
+      "monsters": "Monsters view",
+      "settings": "Settings",
+      "density": "Density",
+      "shortcuts": "Shortcuts",
+      "security": "Security"
+    },
+    "features": {
+      "search": {
+        "eyebrow": "Instant search",
+        "title": "185 dungeons under your fingertips.",
+        "body": "Type the first letters of a dungeon or monster name. The overlay filters as you go, arrow keys navigate, Enter opens. No menu, no click, no dead time.",
+        "bullets": [
+          "Alt+D opens and closes the overlay, even mid-fight",
+          "185 endgame dungeons + 800+ indexed monsters",
+          "Typo-tolerant fuzzy search"
+        ],
+        "alt": "Search screen with dungeon list"
+      },
+      "combatCards": {
+        "eyebrow": "Combat cards",
+        "title": "Three blocks. No wall of text.",
+        "body": "The capture shows Klime's strategy (Klime's Private Rooms, a level 200+ boss you meet often in Infinite Dreams). UNLOCK says every character must end their turn on a white glyph and an ally has to be pushed onto Klime to remove his invulnerability. DANGERS covers the pacified state and the instant death in Bravery expedition. TIPS reminds you Klime generates a glyph at his starting cell. It all fits in a few lines, readable between two turns.",
+        "bullets": [
+          "Content sourced from Fandom FR/EN + DofusDB, with verbatim citation when LLM extraction is used",
+          "Nothing invented: if a mechanic is missing, the block stays empty",
+          "Bilingual FR/EN with matching depth, handy when your mates play in English"
+        ],
+        "alt": "Dofus Companion - Klime strategy for Infinite Dreams: Unlock, Dangers and Tips inside a combat card"
+      },
+      "monsters": {
+        "eyebrow": "Dedicated monsters view",
+        "title": "Ctrl+M, know who's across the room.",
+        "body": "This is the feature built for Infinite Dreams. Run into Harrogant, Cuirboule or Peunch in a wave? Ctrl+M, type the name, you get their card with weak element, HP, family and parent dungeon. Three seconds on the keyboard and you know who tackles, who pushes, who heals.",
+        "bullets": [
+          "800+ monsters with weak element and HP",
+          "Filter out lambda monsters with no notable mechanic, silence rule",
+          "One-click access to the parent dungeon from each card, useful when a monster from deep-endgame lands in your wave"
+        ],
+        "alt": "Dofus Companion - Infinite Dreams monsters view sorted by level, quick add identification"
+      },
+      "settings": {
+        "eyebrow": "Settings",
+        "title": "The overlay adapts to your setup.",
+        "body": "Opacity to see Dofus behind, compact density for small screens, parchment or dark theme, FR/EN language, per-block content visibility. Every toggle applies instantly, no restart.",
+        "bullets": [
+          "Opacity slider 50% → 100%, applied live",
+          "Comfortable / compact density to tighten vertical rhythm",
+          "Parchment (Dofus light) or dark (brown + gold) theme"
+        ],
+        "alt": "Settings panel open, Appearance section"
+      },
+      "density": {
+        "eyebrow": "Compact density",
+        "title": "For small screens.",
+        "body": "When you're on a laptop or Dofus already fills the window, switch the overlay to compact mode: paddings halved, tighter spacing, same legibility. The toggle lives in Settings.",
+        "alt": "Preview of compact density mode"
+      },
+      "shortcuts": {
+        "eyebrow": "Keyboard shortcuts",
+        "title": "Built for a PC player.",
+        "body": "Nine shortcuts cover everything. Alt+D to summon the overlay, Ctrl+M for the monsters view, V to toggle actionable vs detailed view, / to jump into the search. Full list inside the settings panel.",
+        "alt": "Settings panel scrolled to the Shortcuts section"
+      },
+      "security": {
+        "eyebrow": "Security",
+        "title": "No risk for your account.",
+        "body": "Dofus Companion is an information overlay. It doesn't read game memory, doesn't modify anything, doesn't simulate any input. Tauri Ed25519 signature, SHA256 hashes published with every release, VirusTotal submission on each build.",
+        "bullets": [
+          "Never reads the Dofus client's memory",
+          "No automation, no macro, no bot",
+          "Runs offline, zero server, zero tracker",
+          "Ed25519 signature + SHA256 published with every release"
+        ],
+        "securityLink": "See the Security page →",
+        "faqLink": "Frequently asked security questions"
+      }
+    },
+    "cta": {
+      "eyebrow": "Ready for your next run?",
+      "title": "Download and get going.",
+      "body": "Windows 10 or 11. Under a minute to install, auto-update enabled. Free to download."
+    }
+  }
+}

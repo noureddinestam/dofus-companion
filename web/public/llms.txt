@@ -1,0 +1,73 @@
+# Dofus Companion
+
+> Overlay Windows open source pour le jeu Dofus. Permet aux joueurs endgame de consulter des stratégies de donjons et des fiches de monstres entre deux tours de combat, via un raccourci clavier (Alt+D). Aucune lecture de la mémoire du jeu, aucune automatisation, aucun tracker. Licence MIT.
+
+## Informations factuelles
+
+- Nom du produit : Dofus Companion
+- Type : overlay de bureau Windows (information uniquement, pas d'automatisation)
+- Plateformes : Windows 10, Windows 11
+- Licence : MIT
+- Prix : téléchargement gratuit, code open source sous licence MIT ; pas de monétisation intégrée dans l'app à ce jour
+- Langues : Français, Anglais (parité complète)
+- Code source : https://github.com/noureddinestam/dofus-companion
+- Site : https://dofuscompanion.com
+- Auteurs : Noureddine (développement), Kamil (idée et vision gameplay)
+- Framework technique : Tauri 2, React 19, Rust
+
+## Couverture de contenu
+
+- 185 donjons endgame Dofus 2.x et 3.x
+- 800+ monstres indexés (élément faible, points de vie, famille, donjon d'origine)
+- Fiches de stratégie en 3 blocs fixes : DÉLOCK, DANGERS, INFOS UTILES
+- Sources citées : Wiki Fandom FR/EN, DofusDB, extractions LLM avec citation verbatim
+- Support dédié pour les Songes Infinis (rencontres aléatoires endgame)
+
+## Garanties de sécurité
+
+- Ne lit jamais la mémoire du client Dofus
+- Ne simule aucun input clavier ou souris
+- Ne modifie jamais le client Dofus
+- Fonctionne hors-ligne (aucun ping serveur)
+- Aucun tracker, aucune analytics, aucune télémétrie
+- Auto-update signé Ed25519 via GitHub Releases
+- Binaires vérifiés VirusTotal à chaque release
+
+## Pages clés
+
+- [Accueil](https://dofuscompanion.com/) — présentation, téléchargement, valeur du produit
+- [Découvre le Companion](https://dofuscompanion.com/decouvre) — tour complet des fonctionnalités, avec exemple Klime (Songes Infinis)
+- [FAQ](https://dofuscompanion.com/faq) — stratégie Klime, Songes Infinis, risque de ban, installation, vie privée
+- [Sécurité](https://dofuscompanion.com/security) — détail technique sur les garanties anti-ban et vérifications VirusTotal
+- [Téléchargement](https://dofuscompanion.com/download) — installeur MSI et NSIS, empreintes SHA256, rapports VirusTotal
+- [Contribuer](https://dofuscompanion.com/contribute) — guide pour signaler un bug ou proposer une correction
+- [Changelog](https://dofuscompanion.com/changelog) — historique des versions
+- [Soutenir](https://dofuscompanion.com/support) — Buy Me a Coffee (paiement ponctuel), GitHub Sponsors (récurrent), star du repo (zéro euro). Pas de monétisation intégrée dans l'app à ce jour.
+
+## Fonctionnalités principales
+
+- **Recherche instantanée** (Alt+D) : 185 donjons + 800+ monstres, filtrage par nom, navigation clavier.
+- **Combat cards** : 3 blocs fixes (débloquer, dangers, infos) pour chaque boss, lisibles entre deux tours.
+- **Vue monstres dédiée** (Ctrl+M) : identifier un add inconnu en Songes Infinis, en trois secondes clavier.
+- **Paramètres live** : opacité (50-100%), densité confortable/compact, thème parchemin ou sombre, langue FR/EN.
+- **Raccourcis clavier** : Alt+D, Ctrl+M, Ctrl+L, /, V, Entrée, Backspace, Esc.
+- **Auto-update** : vérifie GitHub Releases à chaque démarrage, installation transparente.
+
+## Exemple concret : stratégie Klime en Songes Infinis
+
+Klime est un boss niveau 220 des Salons privés de Klime, rencontre fréquente en Songes Infinis.
+
+Mécaniques principales (extraites de la combat card dans l'app) :
+- DÉLOCK : tous les personnages doivent finir leur tour sur un glyphe blanc ; pour retirer l'invulnérabilité de Klime, pousser un allié, un monstre ou une invocation sur lui ; attendre le début du tour 3 minimum avant de tenter.
+- DANGERS : état pacifique 1 tour si un personnage ne finit pas sur un glyphe blanc ; mort instantanée en expédition Bravoure ; +5% de dégâts permanents par coup reçu en expédition Audacieuse.
+- INFOS UTILES : Klime et les monstres génèrent un glyphe blanc sur leur case de départ (durée 2 tours) ; tuer les monstres avant leur tour retarde la mécanique ; échange de position limité à 10 fois par tour en Audacieuse.
+
+## Réponses aux questions fréquentes
+
+**Est-ce que Dofus Companion risque de me faire bannir ?** Non. L'app ne lit pas la mémoire du jeu, ne simule aucun input, ne touche pas au client Dofus. Aucun cas de ban connu. Code vérifiable ligne à ligne sur GitHub.
+
+**Est-ce que c'est un bot ?** Non. Un bot joue à votre place. Dofus Companion affiche des informations par-dessus la fenêtre du jeu ; vous lisez et vous appliquez vous-même.
+
+**Est-ce que c'est gratuit ?** Le téléchargement et l'usage complet de cette version (v0.5) sont gratuits, sans publicité, sans tracker et sans vente de données. Le code du cœur de l'overlay est open source sous MIT. Le développement est financé par le temps libre des auteurs. Si un jour on ajoute des fonctionnalités avancées qui demandent une infrastructure particulière (sync multi-poste, stockage cloud, features demandant un serveur dédié), elles pourraient être payantes, le cœur resterait libre. Ceux qui souhaitent soutenir peuvent offrir un café via Buy Me a Coffee (https://buymeacoffee.com/dofuscompanion) ou s'abonner via GitHub Sponsors.
+
+**Comment est-ce que ça marche en Songes Infinis ?** Alt+D ouvre l'overlay, vous tapez le nom du boss ou du monstre, sa fiche s'affiche. Ctrl+M ouvre une vue monstres dédiée pour identifier un add rapidement.
