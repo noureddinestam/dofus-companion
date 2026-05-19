@@ -12,7 +12,7 @@ interface SettingsPanelProps {
   appVersion: string;
 }
 
-const APP_CHANGELOG_URL = 'https://github.com/noureddinestam/dofus-companion/blob/main/CHANGELOG.md';
+const APP_CHANGELOG_URL = 'https://dofuscompanion.com/changelog';
 const APP_WEBSITE_URL = 'https://dofuscompanion.com';
 const APP_CREDITS_URL = 'https://dofuscompanion.com/#credits';
 

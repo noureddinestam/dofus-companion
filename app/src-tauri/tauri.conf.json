@@ -35,7 +35,7 @@
     "updater": {
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDM3MjQ4Qjg2Q0RCOTk2MzgKUldRNGxybk5ob3NrTjlsVE80Y3NibmpJSVlqYmlHQTdFTGd1dzdnT2dJMWFobmtURGFVaWRwbVMK",
       "endpoints": [
-        "https://github.com/noureddinestam/dofus-companion/releases/latest/download/latest.json"
+        "https://github.com/noureddinestam/dofus-companion-releases/releases/latest/download/latest.json"
       ]
     }
   },
@@ -43,12 +43,12 @@
     "active": true,
     "createUpdaterArtifacts": true,
     "targets": ["msi", "nsis"],
-    "publisher": "noureddinestam",
-    "copyright": "Copyright (c) 2026 noureddinestam. MIT license.",
+    "publisher": "Noureddine & Elhadi L.",
+    "copyright": "Copyright (c) 2026 Noureddine & Elhadi L. All rights reserved.",
     "homepage": "https://dofuscompanion.com",
     "category": "Utility",
-    "shortDescription": "Overlay Windows open source pour Dofus — 185 donjons, strategies FR/EN.",
-    "longDescription": "Dofus Companion is an unofficial open source overlay for Dofus: 185 dungeons, bilingual FR/EN strategies, readable-in-10-seconds short form. No memory reading, no automation, no tracker. MIT license, source at https://github.com/noureddinestam/dofus-companion.",
+    "shortDescription": "Overlay Windows indépendant pour Dofus, 185 donjons, stratégies FR/EN.",
+    "longDescription": "Dofus Companion is an unofficial Windows overlay for Dofus: 185 dungeons, bilingual FR/EN strategies, readable in 10 seconds. No memory reading, no automation, no tracker. Built by Noureddine & Elhadi L. Not affiliated with Ankama.",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",

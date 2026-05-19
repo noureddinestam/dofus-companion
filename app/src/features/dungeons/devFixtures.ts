@@ -162,7 +162,7 @@ const DEV_SHORTS: SlugShortMap = {
       provenance: {
         kind: 'community',
         contributor: 'dev-fixture',
-        prUrl: 'https://github.com/noureddinestam/dofus-companion/pulls',
+        prUrl: 'https://dofuscompanion.com/retours',
       },
     },
     en: null,
