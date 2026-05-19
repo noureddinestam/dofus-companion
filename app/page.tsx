@@ -22,7 +22,6 @@ export default async function HomePage() {
     softwareVersion: release.version.replace(/^v/, ""),
     downloadUrl: asset?.downloadUrl,
     url: siteUrl,
-    license: "https://opensource.org/licenses/MIT",
   };
   return (
     <>

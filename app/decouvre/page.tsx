@@ -5,7 +5,6 @@ import { env } from "@/lib/env";
 import { FeatureBlock } from "@/components/decouvre/FeatureBlock";
 import { ThemeToggleButton } from "@/components/decouvre/ThemeToggleButton";
 import { ThemeToggleProvider } from "@/components/decouvre/ThemeToggleContext";
-import { GithubIcon } from "@/components/icons/GithubIcon";
 import { ArrowRightIcon } from "@/components/icons/InlineIcons";
 import { DownloadCta } from "@/components/landing/DownloadCta";
 
@@ -196,11 +195,10 @@ export default async function DecouvrePage() {
             </ul>
             <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
               <Link
-                href="https://github.com/noureddinestam/dofus-companion"
+                href="/security"
                 className="group border-border text-foreground/90 hover:border-gold/60 hover:text-gold inline-flex items-center gap-2 rounded-md border px-4 py-2 font-medium transition-colors"
               >
-                <GithubIcon className="h-4 w-4" />
-                {f.security.githubLink}
+                {f.security.securityLink}
               </Link>
               <Link
                 href="/faq"

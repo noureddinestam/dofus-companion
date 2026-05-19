@@ -5,22 +5,21 @@
     "changelog": "Changelog",
     "faq": "FAQ",
     "support": "Support",
-    "github": "GitHub",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
   "hero": {
-    "eyebrow": "Built for Infinite Dreams · Windows · Open source",
+    "eyebrow": "Built for Infinite Dreams · Windows · Independent",
     "titleLead": "The Dofus overlay that fits behind",
     "titleAccent": "Alt+D",
     "titleTrail": ".",
-    "subtitle": "{count} endgame dungeons, 800+ indexed monsters. Three-block cards readable between two turns. Offline, no memory reading, open source on GitHub.",
+    "subtitle": "{count} endgame dungeons, 800+ indexed monsters. Three-block cards readable between two turns. Offline, no memory reading.",
     "dungeonCount": "185",
-    "dungeonHoverHint": "42 still waiting for your PR",
-    "dungeonHoverCta": "Contribute",
+    "dungeonHoverHint": "coverage still expanding",
+    "dungeonHoverCta": "Explore",
     "ctaPrimaryPrefix": "Download for Windows",
     "ctaPrimaryReveal": "Yes, it's the same file.",
-    "ctaSecondary": "View on GitHub",
+    "ctaSecondary": "Take the tour",
     "microCopy": "Windows 10/11 · Works with Dofus 2.x and 3.x · Tauri-signed, VirusTotal-verified",
     "heroImageAlt": "Dofus Companion open on Klime's Infinite Dreams strategy, three-block combat card: Unlock, Dangers, Tips"
   },
@@ -46,7 +45,7 @@
       {
         "icon": "shield",
         "title": "No risk for your account",
-        "body": "Doesn't read game memory. Doesn't simulate any input. Doesn't touch the Dofus client. MIT source, verifiable line by line on GitHub."
+        "body": "Doesn't read game memory. Doesn't simulate any input. Doesn't touch the Dofus client. Tauri-signed, VirusTotal-verified."
       },
       {
         "icon": "bolt",
@@ -55,7 +54,7 @@
       },
       {
         "icon": "target",
-        "title": "Offline and open source",
+        "title": "Offline, no server",
         "body": "No tracker, no telemetry, no connection required. The overlay reads local JSON files, shows a window, that's it. This release is free to download and works offline."
       }
     ]
@@ -110,7 +109,7 @@
       {
         "n": "01",
         "title": "Download the installer",
-        "body": "3.2 MB, Tauri-signed, VirusTotal-verified. Single source: GitHub Releases."
+        "body": "3.2 MB, Tauri-signed, VirusTotal-verified. Official download from dofuscompanion.com."
       },
       {
         "n": "02",
@@ -126,8 +125,8 @@
   },
   "roadmap": {
     "eyebrow": "Roadmap",
-    "title": "Public, versioned, PR-driven",
-    "subtitle": "Most up-voted issues ship first. Everything is tracked.",
+    "title": "Public, versioned",
+    "subtitle": "The most-requested items ship first. Everything is tracked.",
     "cta": "View the roadmap",
     "columns": [
       {
@@ -138,43 +137,42 @@
       {
         "label": "Next",
         "version": "v0.6",
-        "body": "Filter by mechanic archetype, community card contributions, broader coverage on level 200 Expeditions."
+        "body": "Filter by mechanic archetype, enriched cards, broader coverage on level 200 Expeditions."
       },
       {
-        "label": "Community asks",
+        "label": "Player requests",
         "version": "Open",
-        "body": "Suggest, upvote, discuss. Popular requests move up."
+        "body": "Suggest, discuss. Popular requests move up, via the Feedback page."
       }
     ]
   },
   "support": {
     "eyebrow": "Support",
     "title": "We put the hours in so this exists.",
-    "body": "Free to download, open source overlay, zero tracker. If the tool saves you runs, a coffee, a sponsor or a GitHub star keeps the time we put in going.",
+    "body": "Free to download, zero tracker. If the tool saves you runs, a coffee or a sponsor keeps the time we put in going.",
     "ctaCoffee": "Buy us a coffee",
     "coffeeHref": "https://buymeacoffee.com/dofuscompanion",
     "ctaSponsor": "GitHub Sponsors",
-    "ctaStar": "Star the repo",
     "microCopy": "Thank you."
   },
   "credits": {
     "eyebrow": "Credits",
-    "title": "The people who made this happen",
+    "title": "The team behind Dofus Companion",
     "items": [
       {
-        "role": "Idea & gameplay vision",
-        "name": "Kamil",
-        "body": "Dofusian since 2010. Defined exactly what an endgame player wants to read mid-fight, and, more importantly, what they don't. The \"four fixed blocks, not a Wikipedia page\" logic comes straight from his Infinite Dreams nights."
+        "role": "Co-founder & co-developer",
+        "name": "Elhadi L.",
+        "body": "Dofusian since 2010. Defined exactly what an endgame player wants to read mid-fight, and, more importantly, what they don't. Co-develops the overlay and the cards. The \"four fixed blocks, not a Wikipedia page\" logic comes straight from his Infinite Dreams nights."
       },
       {
-        "role": "Engineering",
+        "role": "Co-founder & co-developer",
         "name": "Noureddine",
-        "body": "Built the whole monorepo: landing page, Tauri overlay, bilingual scraper, update pipeline. Solo dev, features shipped when ready, not by quarter."
+        "body": "Built the whole monorepo: landing page, Tauri overlay, bilingual scraper, update pipeline. Codes alongside Elhadi, features shipped when ready, not by quarter."
       }
     ]
   },
   "footer": {
-    "tagline": "Open source Windows overlay. MIT license.",
+    "tagline": "Windows overlay for endgame. Independent.",
     "buildLines": [
       "launched between two turns",
       "built with 4 AP and 3 MP",
@@ -186,7 +184,7 @@
     ],
     "columns": {
       "project": "Project",
-      "code": "Code",
+      "support": "Support",
       "legal": "Legal"
     },
     "links": {
@@ -195,17 +193,16 @@
       "security": "Security",
       "faq": "FAQ",
       "credits": "Credits",
-      "github": "GitHub",
-      "issues": "Issues",
-      "releases": "Releases",
-      "contribute": "Contribute",
+      "download": "Download",
+      "support": "Support",
+      "feedback": "Feedback",
       "privacy": "Privacy",
       "terms": "Terms",
       "licenses": "OSS licenses"
     }
   },
   "disclaimer": {
-    "body": "Dofus Companion is an <strong>unofficial</strong> application, maintained as open source by players. <strong>Dofus®</strong> is a registered trademark of <strong>Ankama Games</strong>. This project is neither endorsed by nor affiliated with Ankama. No memory reading, no game automation, this is an information overlay only."
+    "body": "Dofus Companion is an <strong>unofficial</strong> application built by Noureddine &amp; Elhadi L. <strong>Dofus®</strong> is a registered trademark of <strong>Ankama Games</strong>. This project is neither endorsed by nor affiliated with Ankama. No memory reading, no game automation: this is an information overlay only."
   },
   "kerubim": {
     "alt": "Kerubim, Dofus' old merchant cat",
@@ -224,7 +221,7 @@
   "download": {
     "eyebrow": "Download",
     "title": "Dofus Companion for Windows",
-    "subtitle": "Open source, Tauri-signed, no tracker.",
+    "subtitle": "Tauri-signed, VirusTotal-verified, no tracker.",
     "os": {
       "windows": {
         "label": "Windows detected",
@@ -281,14 +278,14 @@
     },
     "previous": {
       "title": "Other versions",
-      "body": "Every release and its assets are archived on GitHub.",
+      "body": "Every release and its assets are archived on the public releases channel.",
       "link": "See all releases"
     }
   },
   "smartScreen": {
     "eyebrow": "Windows SmartScreen",
     "title": "If Windows shows a warning, here's why and what to do",
-    "body": "The app is open source and signed with the Tauri signature (for the auto-updater), but without a Windows EV certificate. Until the app has enough reputation-building downloads, SmartScreen may show \"Windows protected your PC\".",
+    "body": "The app is signed with the Tauri signature (for the auto-updater), but without a Windows EV certificate. Until the app has enough reputation-building downloads, SmartScreen may show \"Windows protected your PC\".",
     "steps": ["Click \"More info\"", "Click \"Run anyway\""],
     "microCopy": "You can verify the SHA256 hash before running, from the PowerShell block below.",
     "moreLink": "Learn more about SmartScreen"
@@ -315,7 +312,7 @@
           "items": [
             "Reads local JSON files (the dungeon data).",
             "Displays a window on top of Dofus.",
-            "Checks GitHub Releases for auto-update (HTTPS, Ed25519 signature)."
+            "Checks the releases channel for auto-update (HTTPS, Ed25519 signature)."
           ]
         },
         "negative": {
@@ -335,35 +332,35 @@
       },
       "virusTotal": {
         "title": "VirusTotal",
-        "body": "Each asset is submitted to VirusTotal (70+ antivirus engines). The badge below shows the live result and links to the full report. An open source installer without an EV certificate may occasionally trigger a false positive on a heuristic (machine learning) engine, this does not affect binary integrity, and clears with project reputation or an EV certificate."
+        "body": "Each asset is submitted to VirusTotal (70+ antivirus engines). The badge below shows the live result and links to the full report. An independent installer without an EV certificate may occasionally trigger a false positive on a heuristic (machine learning) engine, this does not affect binary integrity, and clears with project reputation or an EV certificate."
       },
       "smartScreen": {
         "title": "Windows SmartScreen",
-        "body": "SmartScreen blocks executables without enough reputation. The app is Tauri-signed but lacks a Windows EV certificate. The warning will disappear with enough downloads or via an EV certificate. If you'd rather, you can build from source.",
-        "alt": "Build from source"
+        "body": "SmartScreen blocks executables without enough reputation. The app is Tauri-signed but lacks a Windows EV certificate. The warning will disappear with enough downloads or via an EV certificate.",
+        "alt": ""
       },
-      "audit": {
-        "title": "Open source audit",
+      "guarantees": {
+        "title": "Technical guarantees",
         "items": [
           {
-            "label": "Code",
-            "body": "100% public on GitHub, MIT license.",
-            "cta": "View the repo",
-            "href": "https://github.com/noureddinestam/dofus-companion"
+            "label": "Tauri signature",
+            "body": "Each release is signed with the project's Ed25519 key, verified by the auto-updater."
           },
           {
-            "label": "Build",
-            "body": "Reproducible via GitHub Actions, Tauri-signed.",
-            "cta": "View release.yml",
-            "href": "https://github.com/noureddinestam/dofus-companion/blob/main/.github/workflows/release.yml"
+            "label": "SHA256 fingerprint",
+            "body": "Hash published with each release, verifiable in PowerShell before running."
+          },
+          {
+            "label": "VirusTotal",
+            "body": "Submitted on every release. Live badge on the Download page."
           }
         ]
       },
       "report": {
         "title": "Report a vulnerability",
-        "body": "Open a Security Advisory on GitHub. Response within 72h, coordinated fix and disclosure.",
-        "cta": "Open a Security Advisory",
-        "href": "https://github.com/noureddinestam/dofus-companion/security/advisories/new"
+        "body": "For any sensitive security report, reach out via the Feedback page with \"security\" in the subject. Response within 72h, coordinated fix and disclosure.",
+        "cta": "Feedback page",
+        "href": "/retours"
       }
     }
   },
@@ -374,17 +371,17 @@
     "empty": "No releases published yet.",
     "viewNotes": "Full notes",
     "downloads": "Downloads",
-    "unavailable": "Couldn't load releases from GitHub, try again later.",
-    "fullHistory": "See all releases on GitHub"
+    "unavailable": "Couldn't load releases, try again later.",
+    "fullHistory": "See all releases"
   },
   "faq": {
     "meta": {
       "title": "FAQ, Klime strategy, Infinite Dreams, ban risk",
-      "description": "Answers about Dofus Companion: Klime strategy for Infinite Dreams, ban risk, Windows install, privacy, uninstall. Open source overlay, no memory reading, 0 tracker."
+      "description": "Answers about Dofus Companion: Klime strategy for Infinite Dreams, ban risk, Windows install, privacy, uninstall. Independent overlay, no memory reading, 0 tracker."
     },
     "eyebrow": "FAQ",
     "title": "Frequently asked questions",
-    "subtitle": "Infinite Dreams, legal, installation, usage, data, contributing.",
+    "subtitle": "Infinite Dreams, legal, installation, usage, data, feedback.",
     "categories": [
       {
         "title": "Infinite Dreams and boss strategies",
@@ -459,7 +456,7 @@
         "items": [
           {
             "q": "Where is my data sent?",
-            "a": "Nowhere. The app reads local JSON files and checks GitHub Releases for auto-update (HTTPS + Ed25519 signature). No telemetry, no analytics, no tracking."
+            "a": "Nowhere. The app reads local JSON files and checks the releases channel for auto-update (HTTPS + Ed25519 signature). No telemetry, no analytics, no tracking."
           },
           {
             "q": "How do I uninstall cleanly?",
@@ -467,11 +464,11 @@
           },
           {
             "q": "Are the strategies up to date?",
-            "a": "Continuously updated via public PRs. Every sentence carries a provenance badge (official, community, LLM + citation). You can report an error via GitHub Issues."
+            "a": "Continuously updated with each release. Every sentence carries a provenance badge (official, community, LLM + citation). You can report an error via the Feedback page."
           },
           {
             "q": "Will the project always be free?",
-            "a": "The overlay core, search, combat cards, monster view, silence rule, keyboard shortcuts, stays open source under MIT, auditable on GitHub. For this release, the download and full usage are free. If we ever add advanced features that need dedicated infrastructure (multi-device sync, cloud storage, server-backed features), those additions could become paid. The core would stay open source."
+            "a": "On this release, the download and full usage are free. If we ever add advanced features that need dedicated infrastructure (multi-device sync, cloud storage, server-backed features), those additions could become paid. The base usage stays free."
           }
         ]
       },
@@ -480,51 +477,56 @@
         "items": [
           {
             "q": "How do I report a mistake in a strategy?",
-            "a": "Open an Issue on GitHub with the boss name and what's incorrect. See the Contribute page."
+            "a": "Open the Feedback page, type = bug or suggestion, with the boss name and what's incorrect. We read everything."
           },
           {
             "q": "How do I translate or add a language?",
-            "a": "EN is already covered. For another language, open a GitHub Discussion, we'll scope it together first."
+            "a": "EN is already covered. For another language, reach out via the Feedback page, we'll scope it together first."
           }
         ]
       }
     ]
   },
-  "contribute": {
-    "eyebrow": "Contribute",
-    "title": "The community fixes. That's how the app improves.",
-    "subtitle": "A wrong strategy, a missing boss, a clunky translation, open an issue, or drop a PR. The workflow is documented, templates are ready. No CLA, no gatekeeping.",
-    "paths": [
-      {
-        "title": "Code",
-        "body": "Fork, PR, issue. Conventional Commits. README at the repo root for local setup.",
-        "cta": "View the repo",
-        "href": "https://github.com/noureddinestam/dofus-companion"
+  "feedback": {
+    "eyebrow": "Feedback",
+    "title": "Help us improve the Companion.",
+    "subtitle": "A wrong strategy, a missing boss, a suggestion, a bug? Send a message. No account, no tracker, just a note that lands in our inbox.",
+    "form": {
+      "typeLabel": "Type",
+      "typeOptions": {
+        "bug": "Bug",
+        "suggestion": "Suggestion",
+        "strategy": "Strategy error",
+        "other": "Other"
       },
-      {
-        "title": "Data",
-        "body": "Fix or enrich dungeon strategies. Workflow documented in docs/DATA-CONTRIBUTING.md.",
-        "cta": "Read the guide",
-        "href": "https://github.com/noureddinestam/dofus-companion/blob/main/docs/DATA-CONTRIBUTING.md"
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Klime, white glyph in Bravery, for example",
+      "emailLabel": "Your email (optional)",
+      "emailPlaceholder": "So we can reply if needed",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Describe the bug, suggestion, or strategy to fix. The more specific, the more useful.",
+      "submit": "Send",
+      "submitting": "Sending…",
+      "success": "Message received, thanks. We'll get back to you if needed.",
+      "errors": {
+        "generic": "Failed to send, try again in a minute.",
+        "rateLimited": "You've sent multiple messages, wait a few minutes.",
+        "validation": "Check the fields, some are incomplete or invalid.",
+        "subjectRequired": "Subject required",
+        "messageRequired": "Message required (10 characters minimum)",
+        "emailInvalid": "Invalid email"
       },
-      {
-        "title": "Combat cards",
-        "body": "Dedicated guide to propose or fix a combat card (unlock, dangers, tips). Format, sources, examples.",
-        "cta": "Read the guide",
-        "href": "https://github.com/noureddinestam/dofus-companion/blob/main/docs/COMBAT-CARDS-CONTRIBUTING.md"
-      },
-      {
-        "title": "Bug report",
-        "body": "Dedicated issue template with the useful info: version, OS, hotkey, repro steps.",
-        "cta": "Open an issue",
-        "href": "https://github.com/noureddinestam/dofus-companion/issues/new/choose"
-      }
-    ]
+      "honeypotLabel": "Leave this field empty"
+    },
+    "alternative": {
+      "title": "Prefer a direct channel?",
+      "body": "For sensitive security topics, put \"security\" in the subject so we treat it as priority."
+    }
   },
   "supportPage": {
     "eyebrow": "Support",
-    "title": "The core stays open source. Everything else is the time you can support.",
-    "subtitle": "Dofus Companion is built on spare time. The overlay itself, search, combat cards, monster view, everything you actually use in a dungeon, is open source under MIT. If the tool saves you runs, here's how to support the time we put in.",
+    "title": "Here's how to back the time we put in.",
+    "subtitle": "Dofus Companion is built on spare time by two people. If the tool saves you runs, here's how to support the project.",
     "tiers": [
       {
         "tag": "One-off",
@@ -541,38 +543,29 @@
       {
         "tag": "Recurring",
         "title": "GitHub Sponsors",
-        "body": "Monthly, via your GitHub account. Long-term goal: fund a Windows EV certificate to remove the SmartScreen warning for everyone.",
+        "body": "Monthly, via your GitHub account. Helps fund ongoing development and project running costs.",
         "ctaLabel": "Sponsor the project",
         "href": "https://github.com/sponsors/noureddinestam",
         "icon": "heart",
         "variant": "secondary"
-      },
-      {
-        "tag": "Zero cost",
-        "title": "Star & share",
-        "body": "Zero euros, one click. Helps the Windows SmartScreen reputation: the more of us, the less often the blue screen hits the next user.",
-        "ctaLabel": "Star the repo",
-        "href": "https://github.com/noureddinestam/dofus-companion",
-        "icon": "star",
-        "variant": "outline"
       }
     ],
     "transparency": {
       "title": "Where does the support actually go?",
-      "body": "Donations cover technical costs (LLM strategy regeneration, hosting, a Windows code-signing certificate we're aiming at) and dev time.",
-      "microCopy": "No undisclosed paid sponsor, no side wallet."
+      "body": "Donations cover dev time and the technical costs of the project.",
+      "microCopy": "No undisclosed paid sponsor."
     },
     "noPerks": {
       "title": "What won't change",
-      "body": "The overlay core, search, combat cards, monster view, silence rule, keyboard shortcuts, stays open source under MIT. Boss and monster strategies, whether generated or contributed by PR, stay accessible with no paywall.\n\nOn this release, a sponsor and a free user see the same app. A one-off donation funds the project, not a status."
+      "body": "Boss and monster strategies, whether generated or improved in-house, stay accessible with no paywall.\n\nOn this release, a sponsor and a free user see the same app. A one-off donation funds the project, not a status."
     },
     "alternatives": {
       "title": "Can't donate? Do this instead.",
       "items": [
-        "Star the repo, 1 second, useful for SmartScreen reputation.",
-        "Open an issue when you find a bug, that's valuable.",
-        "Fix a strategy via PR, we have a template ready.",
-        "Tell your guild about the app, the best marketing there is."
+        "Tell your guild about the app, the best marketing there is.",
+        "Report a bug via the Feedback page when you hit one.",
+        "Suggest a strategy fix via the Feedback page, that's valuable.",
+        "Keep us bookmarked on Buy Me a Coffee if you come back often."
       ]
     }
   },
@@ -583,11 +576,11 @@
       "sections": [
         {
           "heading": "What data do we collect?",
-          "body": "THE LOCAL APP\n\nThe overlay installed on your machine doesn't collect, store, or send any personal data. Strategy JSON files are read only from your local disk. Your settings (language, opacity, shortcuts) are stored in %APPDATA%\\Dofus Companion and never leave your machine.\n\nTHE WEB SITE\n\nThis site sets no cookies, embeds no tracker, runs no analytics. Standard hosting access logs from Vercel, IP, user-agent, path, HTTP status, are retained per Vercel's policy. We neither consult nor export them.\n\nFINANCIAL SUPPORT (OPTIONAL)\n\nIf you choose to support the project via Buy Me a Coffee or GitHub Sponsors, those platforms handle the payment under their own privacy policies:\n\n- Buy Me a Coffee, privacy policy: https://www.buymeacoffee.com/privacy-policy\n- GitHub, privacy policy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement\n\nWe only receive the donation amount and, if you provide one, the display name you chose. No payment information (card, address) is shared with us."
+          "body": "THE LOCAL APP\n\nThe overlay installed on your machine doesn't collect, store, or send any personal data. Strategy JSON files are read only from your local disk. Your settings (language, opacity, shortcuts) are stored in %APPDATA%\\Dofus Companion and never leave your machine.\n\nTHE WEB SITE\n\nThis site sets no cookies, embeds no tracker, runs no analytics. Standard hosting access logs from Vercel, IP, user-agent, path, HTTP status, are retained per Vercel's policy. We neither consult nor export them.\n\nFEEDBACK FORM\n\nIf you use the Feedback page, the information you send (subject, message, and email if provided) reaches us by email via Resend. It is not stored in a database, not shared, and is used only to reply to you.\n\nFINANCIAL SUPPORT (OPTIONAL)\n\nIf you choose to support the project via Buy Me a Coffee or GitHub Sponsors, those platforms handle the payment under their own privacy policies:\n\n- Buy Me a Coffee, privacy policy: https://www.buymeacoffee.com/privacy-policy\n- GitHub, privacy policy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement\n\nWe only receive the donation amount and, if you provide one, the display name you chose. No payment information (card, address) is shared with us."
         },
         {
           "heading": "Contact",
-          "body": "For any privacy-related question:\n\n- Public discussion: https://github.com/noureddinestam/dofus-companion/discussions\n- Private report: https://github.com/noureddinestam/dofus-companion/security/advisories\n\nUnder the GDPR, you have the right to access, rectify, or delete the data concerning you. Since the app collects nothing, those rights apply only to data handled by the donation platforms listed above (through their own channels).\n\nLast updated: 2026-04-20"
+          "body": "For any privacy-related question, reach us via the Feedback page.\n\nUnder the GDPR, you have the right to access, rectify, or delete the data concerning you. Since the app collects nothing, those rights apply only to data handled by the donation platforms listed above (through their own channels).\n\nLast updated: 2026-05-19"
         }
       ]
     },
@@ -597,7 +590,7 @@
       "sections": [
         {
           "heading": "License",
-          "body": "The source code of Dofus Companion is distributed under the MIT license. You may use, modify, and redistribute it under the license terms (see LICENSE in the repo). Strategy data (combat cards, monster sheets) is provided under the same license for v0.5; its status for later versions will be specified in the repository. Dofus Companion's trademarks, logos, and graphical assets remain the property of the project."
+          "body": "The Dofus Companion application (Windows overlay) is proprietary software. Any unauthorized reproduction, modification, redistribution, or reverse-engineering is forbidden. Strategy data (combat cards, monster sheets), trademarks, logos, and graphical assets remain the property of the project. The source code of this website itself is available under the MIT license."
         },
         {
           "heading": "Warranty",
@@ -605,7 +598,7 @@
         },
         {
           "heading": "Dofus trademark",
-          "body": "Dofus® is a registered trademark of Ankama Games. Dofus Companion is an unofficial application, maintained as open source by players. This project is neither endorsed by nor affiliated with Ankama."
+          "body": "Dofus® is a registered trademark of Ankama Games. Dofus Companion is an unofficial application built by Noureddine & Elhadi L. This project is neither endorsed by nor affiliated with Ankama."
         },
         {
           "heading": "Changes to these terms",
@@ -617,14 +610,14 @@
         },
         {
           "heading": "Contact",
-          "body": "For any legal question: open a Discussion on GitHub, or a Security Advisory for sensitive matters.\n\nLast updated: 2026-04-20"
+          "body": "For any legal question, reach us via the Feedback page with \"legal\" in the subject.\n\nLast updated: 2026-05-19"
         }
       ]
     },
     "licenses": {
       "eyebrow": "Legal",
       "title": "Dependency licenses",
-      "body": "Dofus Companion relies on open source projects. Major dependencies and their licenses:",
+      "body": "Dofus Companion relies on third-party projects. Major dependencies and their licenses:",
       "items": [
         {
           "name": "Next.js",
@@ -667,13 +660,13 @@
           "href": "https://github.com/tauri-apps/tauri"
         }
       ],
-      "footer": "Full list in the repo's package.json."
+      "footer": "Full list available on request via the Feedback page."
     }
   },
   "decouvre": {
     "meta": {
       "title": "Discover the Companion: Klime strategy and Infinite Dreams",
-      "description": "Full tour of Dofus Companion. Concrete example: Klime strategy (Klime's Private Rooms, Infinite Dreams). Instant search, 3-block combat cards, dedicated monsters view, 185 endgame dungeons. Bilingual FR/EN, offline, open source."
+      "description": "Full tour of Dofus Companion. Concrete example: Klime strategy (Klime's Private Rooms, Infinite Dreams). Instant search, 3-block combat cards, dedicated monsters view, 185 endgame dungeons. Bilingual FR/EN, offline, no tracker."
     },
     "hero": {
       "eyebrow": "Companion tour",
@@ -757,21 +750,21 @@
       "security": {
         "eyebrow": "Security",
         "title": "No risk for your account.",
-        "body": "Dofus Companion is an information overlay. It doesn't read game memory, doesn't modify anything, doesn't simulate any input. The code is open source under MIT, inspect every line on GitHub.",
+        "body": "Dofus Companion is an information overlay. It doesn't read game memory, doesn't modify anything, doesn't simulate any input. Tauri Ed25519 signature, SHA256 hashes published with every release, VirusTotal submission on each build.",
         "bullets": [
           "Never reads the Dofus client's memory",
           "No automation, no macro, no bot",
           "Runs offline, zero server, zero tracker",
-          "Line-by-line verifiable source on GitHub"
+          "Ed25519 signature + SHA256 published with every release"
         ],
-        "githubLink": "View the source on GitHub →",
+        "securityLink": "See the Security page →",
         "faqLink": "Frequently asked security questions"
       }
     },
     "cta": {
       "eyebrow": "Ready for your next run?",
       "title": "Download and get going.",
-      "body": "Windows 10 or 11. Under a minute to install, auto-update enabled. Free to download, source code on GitHub."
+      "body": "Windows 10 or 11. Under a minute to install, auto-update enabled. Free to download."
     }
   }
 }

@@ -4,7 +4,6 @@ import * as Dialog from "@radix-ui/react-dialog";
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import { CloseIcon, MenuIcon } from "@/components/icons/InlineIcons";
-import { GithubIcon } from "@/components/icons/GithubIcon";
 import { LogoMark } from "@/components/brand/LogoMark";
 
 interface NavLink {
@@ -16,8 +15,6 @@ interface MobileNavProps {
   openLabel: string;
   closeLabel: string;
   links: readonly NavLink[];
-  githubLabel: string;
-  githubHref: string;
   langSwitcher: ReactNode;
 }
 
@@ -25,8 +22,6 @@ export function MobileNav({
   openLabel,
   closeLabel,
   links,
-  githubLabel,
-  githubHref,
   langSwitcher,
 }: MobileNavProps) {
   const [open, setOpen] = useState(false);
@@ -81,16 +76,6 @@ export function MobileNav({
                 {link.label}
               </Link>
             ))}
-            <a
-              href={githubHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={close}
-              className="text-foreground hover:text-gold mt-2 inline-flex items-center gap-3 rounded-md px-3 py-3 text-2xl font-semibold tracking-tight transition-colors"
-            >
-              <GithubIcon className="h-6 w-6" />
-              {githubLabel}
-            </a>
           </nav>
           <div className="border-border/60 border-t pt-6">{langSwitcher}</div>
         </Dialog.Content>

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { messages } from "@/lib/messages";
-import { fetchRecentReleases, type ReleaseSummary } from "@/lib/github";
+import {
+  fetchRecentReleases,
+  RELEASES_PAGE_URL,
+  type ReleaseSummary,
+} from "@/lib/github";
 
 export const revalidate = 600;
 
@@ -107,7 +111,9 @@ export default async function ChangelogPage() {
 
       <p className="mt-10">
         <Link
-          href="https://github.com/noureddinestam/dofus-companion/releases"
+          href={RELEASES_PAGE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-gold hover:text-gold-soft text-sm font-medium transition-colors"
         >
           {t.fullHistory} →

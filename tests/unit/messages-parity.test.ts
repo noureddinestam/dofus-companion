@@ -34,15 +34,12 @@ describe("messages parity", () => {
     expect(en.footer.buildLines.length).toBeGreaterThanOrEqual(5);
   });
 
-  it("supportPage surfaces 3 tiers covering primary, secondary and outline CTAs", () => {
+  it("supportPage surfaces 2 tiers covering primary (coffee) and secondary (sponsors) CTAs", () => {
     for (const locale of [fr, en]) {
-      expect(locale.supportPage.tiers).toHaveLength(3);
+      expect(locale.supportPage.tiers).toHaveLength(2);
       const variants = locale.supportPage.tiers.map((t) => t.variant);
       expect(variants).toContain("primary");
       expect(variants).toContain("secondary");
-      expect(variants).toContain("outline");
-      // Every tier ships its own href so the component can render without
-      // top-level fallback URLs on the supportPage root.
       for (const tier of locale.supportPage.tiers) {
         expect(tier.href).toMatch(/^https:\/\//);
       }

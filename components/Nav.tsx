@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getLocale, getMessages } from "@/lib/messages";
-import { GithubIcon } from "@/components/icons/GithubIcon";
 import { LangSwitcher } from "@/components/LangSwitcher";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { MobileNav } from "@/components/MobileNav";
@@ -12,8 +11,6 @@ const NAV_LINKS = [
   { href: "/faq", key: "faq" },
   { href: "/support", key: "support" },
 ] as const;
-
-const GITHUB_HREF = "https://github.com/noureddinestam/dofus-companion";
 
 export async function Nav() {
   const [m, locale] = await Promise.all([getMessages(), getLocale()]);
@@ -43,23 +40,12 @@ export async function Nav() {
                 {t[link.key]}
               </Link>
             ))}
-            <a
-              href={GITHUB_HREF}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground inline-flex items-center gap-1.5 transition-colors"
-            >
-              <GithubIcon className="h-4 w-4" />
-              {t.github}
-            </a>
           </nav>
           <LangSwitcher currentLocale={locale} />
           <MobileNav
             openLabel={t.openMenu}
             closeLabel={t.closeMenu}
             links={mobileLinks}
-            githubLabel={t.github}
-            githubHref={GITHUB_HREF}
             langSwitcher={<LangSwitcher currentLocale={locale} />}
           />
         </div>

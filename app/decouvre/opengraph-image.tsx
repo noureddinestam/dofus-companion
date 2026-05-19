@@ -81,7 +81,7 @@ export default function DecouvreOG() {
           fontSize: 22,
         }}
       >
-        <span>Overlay Windows, open source, hors-ligne</span>
+        <span>Overlay Windows, indépendant, hors-ligne</span>
         <span style={{ color: "#e8b547", fontWeight: 600 }}>
           dofuscompanion.com
         </span>

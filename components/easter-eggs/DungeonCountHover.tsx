@@ -17,7 +17,7 @@ export function DungeonCountHover({
   count,
   hoverHint,
   ctaLabel,
-  href = "/contribute",
+  href = "/decouvre",
 }: DungeonCountHoverProps) {
   const [revealed, setRevealed] = useState(false);
   const timerRef = useRef<number | null>(null);

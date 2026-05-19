@@ -1,6 +1,6 @@
 # Dofus Companion — Website
 
-Site vitrine + download pour l'overlay Windows [Dofus Companion](https://github.com/noureddinestam/dofus-companion).
+Site vitrine + download pour l'overlay Windows Dofus Companion.
 
 Next.js 16 (App Router) · TypeScript strict · Tailwind 4 · déployé sur Vercel.
 
@@ -9,10 +9,11 @@ Next.js 16 (App Router) · TypeScript strict · Tailwind 4 · déployé sur Verc
 - Next.js 16 + React 19 (App Router, Turbopack)
 - Tailwind CSS 4 (CSS-first, tokens dans `app/globals.css`)
 - Radix UI primitives (Dialog, Dropdown, Tabs)
-- `next-intl` (FR par défaut, EN à venir en Phase 6)
+- `next-intl` (FR par défaut, EN couvert)
 - Lucide icons, Framer Motion (hero uniquement)
+- Resend (formulaire `/retours`) + Zod (validation)
 
-Le site **n'héberge aucun binaire**. Il proxy l'API GitHub Releases du repo parent avec ISR + fallback JSON statique.
+Le site **n'héberge aucun binaire**. Il proxy l'API GitHub Releases du repo public `noureddinestam/dofus-companion-releases` avec ISR + fallback JSON statique. Le code source de l'overlay reste privé.
 
 ## Scripts
 
@@ -30,26 +31,17 @@ npm run format:check  # Prettier check
 
 Copier `.env.example` → `.env.local`. Côté Vercel, définir par environnement (Preview + Production).
 
-| Clé                    | Utilité                               | Scope   | Phase |
-| ---------------------- | ------------------------------------- | ------- | ----- |
-| `NEXT_PUBLIC_SITE_URL` | Metadata, OG, canonical               | Public  | 1     |
-| `GITHUB_TOKEN`         | Rate-limit API GitHub (60→5000 req/h) | Serveur | 2     |
-| `VIRUSTOTAL_API_KEY`   | Badge scan antivirus                  | Serveur | 4     |
-
-## Phasage
-
-Voir [`DOFUS_COMPANION_WEBSITE_BRIEF.md`](https://github.com/noureddinestam/dofus-companion/blob/main/DOFUS_COMPANION_WEBSITE_BRIEF.md) dans le repo parent.
-
-- [x] Phase 1 — Bootstrap (layout, nav, footer, disclaimer, CI)
-- [ ] Phase 2 — API + data layer (GitHub Releases)
-- [ ] Phase 3 — Landing page
-- [ ] Phase 4 — /download + /security
-- [ ] Phase 5 — Pages secondaires
-- [ ] Phase 6 — Polish + i18n EN
-- [ ] Phase 7 — Launch
+| Clé                    | Utilité                                            | Scope   |
+| ---------------------- | -------------------------------------------------- | ------- |
+| `NEXT_PUBLIC_SITE_URL` | Metadata, OG, canonical                            | Public  |
+| `GITHUB_TOKEN`         | Rate-limit API GitHub (60→5000 req/h)              | Serveur |
+| `VIRUSTOTAL_API_KEY`   | Badge scan antivirus                               | Serveur |
+| `RESEND_API_KEY`       | Envoi du formulaire `/retours` via Resend          | Serveur |
+| `FEEDBACK_TO_EMAIL`    | Destinataire (défaut: contact@dofuscompanion.com)  | Serveur |
+| `FEEDBACK_FROM_EMAIL`  | Expéditeur (défaut: noreply@dofuscompanion.com)    | Serveur |
 
 ## Licence
 
-MIT.
+Le code source de **ce site web** est sous licence MIT.
 
-Dofus Companion est une application **non-officielle**. Dofus® est une marque déposée d'Ankama Games. Ce projet n'est ni approuvé ni affilié à Ankama.
+L'**application Dofus Companion** (overlay Windows) est un logiciel propriétaire et n'est pas couverte par cette licence. Dofus Companion est une application **non-officielle** développée par Noureddine & Elhadi L. Dofus® est une marque déposée d'Ankama Games. Ce projet n'est ni approuvé ni affilié à Ankama.

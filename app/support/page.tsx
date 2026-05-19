@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
 import { getMessages, messages } from "@/lib/messages";
-import {
-  CoffeeIcon,
-  HeartIcon,
-  StarIcon,
-} from "@/components/icons/InlineIcons";
+import { CoffeeIcon, HeartIcon } from "@/components/icons/InlineIcons";
 import { BuyMeACoffeeButton } from "@/components/support/BuyMeACoffeeButton";
 
-type IconName = "coffee" | "heart" | "star";
+type IconName = "coffee" | "heart";
 const ICONS: Record<IconName, React.ComponentType<{ className?: string }>> = {
   coffee: CoffeeIcon,
   heart: HeartIcon,
-  star: StarIcon,
 };
 
 const TIER_CARD_STYLES: Record<string, string> = {
@@ -49,7 +44,7 @@ export default async function SupportPage() {
         <p className="text-muted">{t.subtitle}</p>
       </header>
 
-      <section className="mb-14 grid gap-4 md:grid-cols-3">
+      <section className="mb-14 grid gap-4 md:grid-cols-2">
         {t.tiers.map((tier) => {
           const Icon = ICONS[tier.icon as IconName] ?? HeartIcon;
           const cardClass =

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getMessages, messages } from "@/lib/messages";
 import { VirusTotalBadge } from "@/components/download/VirusTotalBadge";
 
@@ -86,43 +87,27 @@ export default async function SecurityPage() {
         <h2 className="mb-3 text-2xl font-semibold tracking-tight">
           {s.smartScreen.title}
         </h2>
-        <p className="text-muted mb-4 text-sm leading-relaxed">
+        <p className="text-muted text-sm leading-relaxed">
           {s.smartScreen.body}
         </p>
-        <a
-          href="https://github.com/noureddinestam/dofus-companion#build-from-source"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gold hover:text-gold-soft text-sm font-medium transition-colors"
-        >
-          {s.smartScreen.alt} →
-        </a>
       </section>
 
       <section className="mb-12">
         <h2 className="mb-6 text-2xl font-semibold tracking-tight">
-          {s.audit.title}
+          {s.guarantees.title}
         </h2>
-        <ul className="grid gap-4 md:grid-cols-2">
-          {s.audit.items.map((item) => (
+        <ul className="grid gap-4 md:grid-cols-3">
+          {s.guarantees.items.map((item) => (
             <li
               key={item.label}
               className="border-border/70 bg-card/30 rounded-lg border p-6"
             >
-              <p className="text-gold mb-1 font-mono text-[11px] tracking-[0.15em] uppercase">
+              <p className="text-gold mb-2 font-mono text-[11px] tracking-[0.15em] uppercase">
                 {item.label}
               </p>
-              <p className="text-foreground/90 mb-3 text-sm leading-relaxed">
+              <p className="text-foreground/90 text-sm leading-relaxed">
                 {item.body}
               </p>
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gold hover:text-gold-soft text-sm font-medium transition-colors"
-              >
-                {item.cta} →
-              </a>
             </li>
           ))}
         </ul>
@@ -135,14 +120,12 @@ export default async function SecurityPage() {
         <p className="text-muted mb-4 text-sm leading-relaxed">
           {s.report.body}
         </p>
-        <a
+        <Link
           href={s.report.href}
-          target="_blank"
-          rel="noopener noreferrer"
           className="bg-gold text-background hover:bg-gold-soft inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-transform hover:-translate-y-0.5"
         >
           {s.report.cta}
-        </a>
+        </Link>
       </section>
     </div>
   );

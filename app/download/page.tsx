@@ -5,6 +5,7 @@ import { messages } from "@/lib/messages";
 import { env } from "@/lib/env";
 import { detectOs } from "@/lib/os";
 import { getLatestRelease } from "@/lib/release";
+import { RELEASES_PAGE_URL } from "@/lib/github";
 import { OsBanner } from "@/components/download/OsBanner";
 import { AssetCard } from "@/components/download/AssetCard";
 import { SmartScreenNotice } from "@/components/download/SmartScreenNotice";
@@ -126,7 +127,9 @@ export default async function DownloadPage() {
         <h2 className="mb-2 text-lg font-semibold">{t.previous.title}</h2>
         <p className="text-muted mb-4 text-sm">{t.previous.body}</p>
         <Link
-          href="https://github.com/noureddinestam/dofus-companion/releases"
+          href={RELEASES_PAGE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-gold hover:text-gold-soft text-sm font-medium transition-colors"
         >
           {t.previous.link} →

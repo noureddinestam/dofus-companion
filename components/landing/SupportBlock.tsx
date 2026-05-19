@@ -1,9 +1,5 @@
 import { getMessages } from "@/lib/messages";
-import {
-  CoffeeIcon,
-  HeartIcon,
-  StarIcon,
-} from "@/components/icons/InlineIcons";
+import { CoffeeIcon, HeartIcon } from "@/components/icons/InlineIcons";
 
 export async function SupportBlock() {
   const m = await getMessages();
@@ -39,15 +35,6 @@ export async function SupportBlock() {
             >
               <HeartIcon className="h-4 w-4" />
               {t.ctaSponsor}
-            </a>
-            <a
-              href="https://github.com/noureddinestam/dofus-companion"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border-border text-foreground/90 hover:border-gold/60 hover:text-gold inline-flex items-center gap-2 rounded-md border px-4 py-2.5 text-sm font-medium transition-colors"
-            >
-              <StarIcon className="h-4 w-4" />
-              {t.ctaStar}
             </a>
           </div>
           <p className="text-muted mt-6 font-mono text-[11px]">{t.microCopy}</p>

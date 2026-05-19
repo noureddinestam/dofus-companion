@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { getLocale, getMessages } from "@/lib/messages";
 import { ArrowRightIcon } from "@/components/icons/InlineIcons";
-import { GithubIcon } from "@/components/icons/GithubIcon";
 import { FadeInUp } from "@/components/motion/FadeInUp";
 import { DungeonCountHover } from "@/components/easter-eggs/DungeonCountHover";
 import { DownloadCta } from "./DownloadCta";
@@ -64,10 +63,9 @@ export async function Hero() {
               <DownloadCta />
             </Suspense>
             <Link
-              href="https://github.com/noureddinestam/dofus-companion"
+              href="/decouvre"
               className="group border-border text-foreground/90 hover:border-gold/60 hover:text-gold inline-flex items-center gap-2 rounded-md border px-4 py-3 text-sm font-medium transition-colors"
             >
-              <GithubIcon className="h-4 w-4" />
               {t.ctaSecondary}
               <ArrowRightIcon className="h-3.5 w-3.5 translate-x-0 transition-transform group-hover:translate-x-0.5" />
             </Link>

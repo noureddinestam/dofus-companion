@@ -21,24 +21,11 @@ const FOOTER_COLS: ReadonlyArray<{
     ],
   },
   {
-    titleKey: "code",
+    titleKey: "support",
     links: [
-      {
-        href: "https://github.com/noureddinestam/dofus-companion",
-        key: "github",
-        external: true,
-      },
-      {
-        href: "https://github.com/noureddinestam/dofus-companion/issues",
-        key: "issues",
-        external: true,
-      },
-      {
-        href: "https://github.com/noureddinestam/dofus-companion/releases",
-        key: "releases",
-        external: true,
-      },
-      { href: "/contribute", key: "contribute" },
+      { href: "/download", key: "download" },
+      { href: "/support", key: "support" },
+      { href: "/retours", key: "feedback" },
     ],
   },
   {

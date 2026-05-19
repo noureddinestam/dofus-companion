@@ -1,5 +1,7 @@
 const GH_OWNER = "noureddinestam";
-const GH_REPO = "dofus-companion";
+const GH_REPO = "dofus-companion-releases";
+export const RELEASES_REPO_URL = `https://github.com/${GH_OWNER}/${GH_REPO}`;
+export const RELEASES_PAGE_URL = `${RELEASES_REPO_URL}/releases`;
 const LATEST_RELEASE_URL = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/releases/latest`;
 const RELEASES_URL = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/releases`;
 const SHA256SUMS_ASSET_NAME = "SHA256SUMS.txt";

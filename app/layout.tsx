@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 const SITE_URL = env.NEXT_PUBLIC_SITE_URL;
 const DESCRIPTION =
-  "Overlay Windows open source pour Dofus : 185 donjons, stratégies bilingues FR/EN, lisible en 10 secondes. Pas d'Alt+Tab, pas de pub, pas de tracking.";
+  "Overlay Windows indépendant pour Dofus : 185 donjons, stratégies bilingues FR/EN, lisible en 10 secondes. Pas d'Alt+Tab, pas de pub, pas de tracking.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   },
   description: DESCRIPTION,
   applicationName: "Dofus Companion",
-  authors: [{ name: "noureddinestam" }],
-  creator: "noureddinestam",
+  authors: [{ name: "Noureddine" }, { name: "Elhadi L." }],
+  creator: "Noureddine & Elhadi L.",
   robots: {
     index: true,
     follow: true,
@@ -77,10 +77,17 @@ export default async function RootLayout({
     name: "Dofus Companion",
     url: SITE_URL,
     logo: `${SITE_URL}/icon.svg`,
-    sameAs: ["https://github.com/noureddinestam/dofus-companion"],
     founder: [
-      { "@type": "Person", name: "Noureddine", jobTitle: "Développement" },
-      { "@type": "Person", name: "Kamil", jobTitle: "Idée et vision gameplay" },
+      {
+        "@type": "Person",
+        name: "Noureddine",
+        jobTitle: "Co-fondateur & co-développeur",
+      },
+      {
+        "@type": "Person",
+        name: "Elhadi L.",
+        jobTitle: "Co-fondateur & co-développeur",
+      },
     ],
   };
   return (
