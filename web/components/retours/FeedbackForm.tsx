@@ -14,6 +14,7 @@ interface FeedbackFormProps {
     emailPlaceholder: string;
     messageLabel: string;
     messagePlaceholder: string;
+    counterTemplate: string;
     submit: string;
     submitting: string;
     success: string;
@@ -30,6 +31,9 @@ interface FeedbackFormProps {
 }
 
 const TYPES: FeedbackType[] = ["bug", "suggestion", "strategy", "other"];
+const MESSAGE_MAX = 5000;
+const MESSAGE_AMBER_THRESHOLD = 4500;
+const MESSAGE_ROSE_THRESHOLD = 4900;
 
 interface FieldErrors {
   subject?: string;
@@ -208,14 +212,27 @@ export function FeedbackForm({ labels }: FeedbackFormProps) {
           onChange={(e) => setMessage(e.target.value)}
           placeholder={labels.messagePlaceholder}
           rows={7}
-          maxLength={5000}
+          maxLength={MESSAGE_MAX}
           required
           aria-invalid={Boolean(fieldErrors.message)}
-          aria-describedby={
-            fieldErrors.message ? "feedback-message-error" : undefined
-          }
+          aria-describedby={`feedback-message-counter${fieldErrors.message ? " feedback-message-error" : ""}`}
           className="border-border bg-background/60 focus:border-gold/60 focus:ring-gold/30 rounded-md border px-3 py-2 text-sm outline-none focus:ring-2"
         />
+        <p
+          id="feedback-message-counter"
+          aria-live="polite"
+          className={`text-xs ${
+            message.length > MESSAGE_ROSE_THRESHOLD
+              ? "text-rose-300"
+              : message.length > MESSAGE_AMBER_THRESHOLD
+                ? "text-amber-300"
+                : "text-muted"
+          }`}
+        >
+          {labels.counterTemplate
+            .replace("{count}", String(message.length))
+            .replace("{max}", String(MESSAGE_MAX))}
+        </p>
         {fieldErrors.message && (
           <p id="feedback-message-error" className="text-xs text-rose-300">
             {fieldErrors.message}

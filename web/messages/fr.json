@@ -545,6 +545,7 @@
       "emailPlaceholder": "Pour qu'on puisse te répondre",
       "messageLabel": "Message",
       "messagePlaceholder": "Décris le bug, la suggestion, ou la stratégie à corriger. Plus c'est précis, plus c'est utile.",
+      "counterTemplate": "{count} / {max} caractères",
       "submit": "Envoyer",
       "submitting": "Envoi en cours…",
       "success": "Message reçu, merci. On revient vers toi si besoin.",

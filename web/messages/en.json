@@ -542,6 +542,7 @@
       "emailPlaceholder": "So we can reply if needed",
       "messageLabel": "Message",
       "messagePlaceholder": "Describe the bug, suggestion, or strategy to fix. The more specific, the more useful.",
+      "counterTemplate": "{count} / {max} characters",
       "submit": "Send",
       "submitting": "Sending…",
       "success": "Message received, thanks. We'll get back to you if needed.",
