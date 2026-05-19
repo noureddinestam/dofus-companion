@@ -5,10 +5,18 @@ on:
     tags:
       - 'v*.*.*'
 
+env:
+  # The release target repo is intentionally separate from this private
+  # source repo. The auto-updater (tauri.conf.json) and the website
+  # changelog both fetch from RELEASES_REPO.
+  RELEASES_REPO: noureddinestam/dofus-companion-releases
+
 jobs:
   release-windows:
     runs-on: windows-latest
     permissions:
+      # Needed to fire the repository_dispatch ping back to this repo so
+      # update-release-fallback.yml runs without waiting for the daily cron.
       contents: write
 
     steps:
@@ -42,7 +50,7 @@ jobs:
         run: |
           $conf = Get-Content app/src-tauri/tauri.conf.json | ConvertFrom-Json
           $version = $conf.version
-          $repo = "${{ github.repository }}"
+          $repo = "${{ env.RELEASES_REPO }}"
           $tag  = "${{ github.ref_name }}"
           $base = "https://github.com/$repo/releases/download/$tag"
 
@@ -106,9 +114,13 @@ jobs:
           Write-Host "== SHA256SUMS.txt =="
           Get-Content $outputPath
 
-      - name: Create GitHub Release
+      - name: Create GitHub Release (on releases repo)
         uses: softprops/action-gh-release@v2
         with:
+          repository: ${{ env.RELEASES_REPO }}
+          token: ${{ secrets.RELEASES_PAT }}
+          tag_name: ${{ github.ref_name }}
+          target_commitish: main
           name: "Dofus Companion ${{ github.ref_name }}"
           body: |
             ## Installation
@@ -123,7 +135,7 @@ jobs:
             **Intégrité :** vérifiable depuis `SHA256SUMS.txt` attaché à cette release, ou `Get-FileHash <fichier> -Algorithm SHA256` en PowerShell.
 
             ---
-            [README](https://github.com/${{ github.repository }}#readme) · [CHANGELOG](https://github.com/${{ github.repository }}/blob/main/scraper/output/CHANGELOG-DATA.md)
+            [Site officiel](https://dofuscompanion.com) · [Changelog](https://dofuscompanion.com/changelog) · [Retours](https://dofuscompanion.com/retours)
           files: |
             app/src-tauri/target/release/bundle/msi/*.msi
             app/src-tauri/target/release/bundle/msi/*.msi.sig
@@ -131,3 +143,28 @@ jobs:
             app/src-tauri/target/release/bundle/nsis/*-setup.exe.sig
             latest.json
             SHA256SUMS.txt
+
+      - name: Notify website to refresh release fallback
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: pwsh
+        run: |
+          # Pings the parent workflow update-release-fallback.yml via repository_dispatch.
+          # Failure here is non-fatal: the website also runs a daily cron failsafe.
+          try {
+            $body = @{ event_type = "new-release" } | ConvertTo-Json
+            Invoke-RestMethod `
+              -Uri "https://api.github.com/repos/${{ github.repository }}/dispatches" `
+              -Method Post `
+              -Headers @{
+                Authorization = "Bearer $env:GH_TOKEN"
+                Accept = "application/vnd.github+json"
+                "X-GitHub-Api-Version" = "2022-11-28"
+              } `
+              -Body $body `
+              -ContentType "application/json"
+            Write-Host "Dispatch sent."
+          } catch {
+            Write-Host "::warning::repository_dispatch failed (non-fatal): $_"
+          }
